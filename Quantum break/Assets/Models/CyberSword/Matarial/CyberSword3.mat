@@ -324,13 +324,13 @@ Material:
     - _StylingSpecularOpacity: 0.64
     - _StylingSpecularOpacityFalloff: 0
     - _StylingSpecularRotation: 195
-    - _StylingSpecularSize: 0.402
+    - _StylingSpecularSize: 0.037
     - _StylingSpecularSmoothness: 0
     - _StylingSpecularSyncWithOtherStyling: 1
     - _StylingSpecularThickness: 1
     - _StylingSpecularThicknessControl: 0
     - _StylingSpecularThicknessFalloff: 0.5
-    - _StylingSpecularUseLightColors: 1
+    - _StylingSpecularUseLightColors: 0
     - _StylingTerminatorPosition: 0
     - _SumLightsBeforePosterization: 1
     - _Surface: 0

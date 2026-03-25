@@ -330,7 +330,7 @@ Material:
     - _StylingSpecularThickness: 1
     - _StylingSpecularThicknessControl: 0
     - _StylingSpecularThicknessFalloff: 0.5
-    - _StylingSpecularUseLightColors: 1
+    - _StylingSpecularUseLightColors: 0
     - _StylingTerminatorPosition: 0
     - _SumLightsBeforePosterization: 1
     - _Surface: 0

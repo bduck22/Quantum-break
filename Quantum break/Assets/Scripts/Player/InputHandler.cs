@@ -1,74 +1,103 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[Serializable]
 public struct InputData
 {
-    public Vector2 move;
-    public bool jumpPressed;
-    public bool dashPressed;
+    public Vector2 Move;
+    public Vector2 Rotate;
+    public bool JumpPressed;
+    public bool DashPressed;
+    public bool JumpHeld;
 }
 
-public class InputHandler : MonoBehaviour, IInput
+public class InputHandler : MonoBehaviour
 {
-    public Vector2 Move { get; private set; }
+    public InputData CurrentInput;
 
-    public bool JumpPressed { get; private set; }
-    public bool DashPressed { get; private set; }
+    public Vector2 Move => CurrentInput.Move;
+    public Vector2 Rotate => CurrentInput.Rotate;
+    public bool JumpPressed => CurrentInput.JumpPressed;
+    public bool DashPressed => CurrentInput.DashPressed;
+    public bool JumpHeld => CurrentInput.JumpHeld;
 
-    public void ClearFrameInput()
-    {
-        JumpPressed = false;
-        DashPressed = false;
-    }
-
-    private PlayerInputActions inputActions;
+    private PlayerInputActions InputActions;
 
     private void Awake()
     {
-        inputActions = new PlayerInputActions();
+        InputActions = new PlayerInputActions();
+        CurrentInput = new InputData();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
     {
-        inputActions.Enable();
+        InputActions.Enable();
 
-        inputActions.Player.Move.performed += OnMove;
-        inputActions.Player.Move.canceled += OnMove;
+        InputActions.Player.Move.performed += OnMove;
+        InputActions.Player.Move.canceled += OnMove;
 
-        inputActions.Player.Jump.started += OnJump;
-        inputActions.Player.Dash.started += OnDash;
+        InputActions.Player.Rotate.performed += OnRotate;
+        InputActions.Player.Rotate.canceled += OnRotate;
+
+        InputActions.Player.Jump.started += OnJump;
+        InputActions.Player.Jump.canceled += OnJump;
+
+        InputActions.Player.Dash.started += OnDash;
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Move.performed -= OnMove;
-        inputActions.Player.Move.canceled -= OnMove;
-        inputActions.Player.Jump.started -= OnJump;
-        inputActions.Player.Dash.started -= OnDash;
+        InputActions.Player.Move.performed -= OnMove;
+        InputActions.Player.Move.canceled -= OnMove;
 
-        inputActions.Disable();
+        InputActions.Player.Rotate.performed -= OnRotate;
+        InputActions.Player.Rotate.canceled -= OnRotate;
+
+        InputActions.Player.Jump.started -= OnJump;
+        InputActions.Player.Jump.canceled -= OnJump;
+
+        InputActions.Player.Dash.started -= OnDash;
+
+        InputActions.Disable();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        Move = ctx.ReadValue<Vector2>();
+        CurrentInput.Move = ctx.ReadValue<Vector2>();
+    }
+    public void OnRotate(InputAction.CallbackContext ctx)
+    {
+        CurrentInput.Rotate = ctx.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
-            JumpPressed = true;
+        if (ctx.started)
+        {
+            CurrentInput.JumpPressed = true;
+            CurrentInput.JumpHeld = true;
+        }
+        if (ctx.canceled)
+        {
+            CurrentInput.JumpHeld = false;
+        }
     }
 
     public void OnDash(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
-            DashPressed = true;
+        CurrentInput.DashPressed = ctx.ReadValue<bool>();
     }
 
-    public void ClearOneFrameInput()
+    public void ClearJump()
     {
-        JumpPressed = false;
-        DashPressed = false;
+        CurrentInput.JumpPressed = false;
+    }
+
+    public void ClearDash()
+    {
+        CurrentInput.DashPressed = false;
     }
 }

@@ -14,7 +14,7 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   - _NORMALMAP
-  - _SHADING_BLINNPHONG
+  - _SHADING_COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -177,7 +177,7 @@ Material:
     - _Metallic: 0
     - _NoiseIntensity: 1.72
     - _NoiseTextureQuality: 0
-    - _NumberOfCells: 4
+    - _NumberOfCells: 5
     - _NumberOfCellsHatching: 5
     - _OcclusionStrength: 1
     - _OpacityRandomIntensity: 0
@@ -220,7 +220,7 @@ Material:
     - _SSCameraDistanceScaled: 1
     - _ShadingAffectedByNormalMap: 1
     - _ShadingFunction: 0
-    - _ShadingMode: 1
+    - _ShadingMode: 0
     - _ShadingNoise1Seed: 1
     - _ShadingNoise1Size: 0.1
     - _ShadingNoise2Seed: 1

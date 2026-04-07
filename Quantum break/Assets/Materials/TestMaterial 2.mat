@@ -200,7 +200,7 @@ Material:
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimAffectedArea: 1
+    - _RimAffectedArea: 2
     - _RimAffectedByNormalMap: 1
     - _RimAnchorSSToObjectsOrigin: 1
     - _RimBlending: 0
@@ -292,7 +292,7 @@ Material:
     - _StylingDFStartingDistance: 0
     - _StylingDistanceFadeValue: 0
     - _StylingOvermodelingFactor: 0.999
-    - _StylingRimAffectedArea: 1
+    - _StylingRimAffectedArea: 2
     - _StylingRimBlending: 0
     - _StylingRimDensity: 17.6
     - _StylingRimHalftonesOffset: 1

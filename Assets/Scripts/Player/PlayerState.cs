@@ -25,6 +25,7 @@ public abstract class State
     }
 }
 
+[Serializable]
 public class GroundState : State
 {
     public GroundState(PlayerController controller)
@@ -48,6 +49,7 @@ public class GroundState : State
     }
 }
 
+[Serializable]
 public class AirState : State
 {
     public AirState(PlayerController controller)
@@ -58,7 +60,7 @@ public class AirState : State
 
     public override void Move()
     {
-        float speed = Controller.Speed * 0.8f;
+        float speed = Controller.Speed;
         Vector3 move = Controller.InputHandler.Move;
         float gravity = Controller.Gravity;
         float yAdd = Controller.YDownAdd;
@@ -70,6 +72,7 @@ public class AirState : State
     }
 }
 
+[Serializable]
 public class WallState : State
 {
     public WallState(PlayerController controller)
@@ -81,7 +84,7 @@ public class WallState : State
 
     public override void Move()
     {
-        float speed = Controller.Speed * 0.8f;
+        float speed = Controller.Speed * 1.2f;
         Vector3 move = Controller.InputHandler.Move;
         float gravity = 0;
         float yAdd = 0;
@@ -89,6 +92,6 @@ public class WallState : State
     }
     public override void Jump()
     {
-        Controller.PlayerMovement.Jump(Controller.JumpPower);
+        Controller.PlayerMovement.Jump(Controller.JumpPower*0.8f);
     }
 }

@@ -50,6 +50,16 @@ public class PlayerMovement : MonoBehaviour
 
     public float WallUpAdd;
 
+    Vector3 Dir;
+
+    public Vector3 WallJump;
+
+    Vector3 MoveVector;
+
+    public float WallExitAngle;
+
+    float wallexittime;
+
     private void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -59,29 +69,55 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 Dir;
         if (IsWall)
         {
-            Dir = targetWallRunDir + new Vector3(0,WallUpAdd,0);
+            wallexittime = 0.3f;
+            Dir = targetWallRunDir;
         }
         else
         {
-            Dir = CameraTransform.forward * Data.Input.z + CameraTransform.right * Data.Input.x;
+            if (wallexittime > 0)
+            {
+                wallexittime -= Time.deltaTime;
+            }
+            else
+            {
+                Dir = CameraTransform.forward * Data.Input.z + CameraTransform.right * Data.Input.x;
+            }
         }
 
         Dir.y = 0;
 
         gravity();
 
-        Vector3 Move = Dir * Data.Speed;
-        Move.y = YVeolocity;
 
-        cc.Move(Move * Time.deltaTime);
+        MoveVector += Dir * Data.Speed;
+        MoveVector.y = YVeolocity;
+        if (IsWall)
+        {
+            MoveVector += new Vector3(0,WallUpAdd,0);
+        }
 
-        if (Data.Input != Vector3.zero)
+        if (Mathf.Abs(WallJump.x) > 1) 
+        {
+            MoveVector += WallJump;
+            MoveVector += targetWallRunDir * 5;
+        }
+
+        cc.Move(MoveVector * Time.deltaTime);
+
+        MoveVector = Vector3.zero;
+
+        if (Data.Input != Vector3.zero||(IsWall))
         {
             OnMoveStarted?.Invoke();
         }
+    }
+
+    public void WallExit()
+    {
+        Debug.Log("Exit");
+        Jump(10);
     }
 
     private void gravity() {
@@ -89,14 +125,17 @@ public class PlayerMovement : MonoBehaviour
         {
             float viewAlignment = Vector3.Dot(CameraTransform.forward, targetWallRunDir);
 
-            float minDot = Mathf.Cos(50f * Mathf.Deg2Rad);
-
-            Debug.Log($"View Alignment: {viewAlignment}, Min Dot: {minDot}");
+            float minDot = Mathf.Cos(WallExitAngle * Mathf.Deg2Rad);
 
             if (viewAlignment >= minDot)
             {
                 YVeolocity = 0;
                 return;
+            }
+            else
+            {
+                Debug.Log("시야 관리 똑바로해");
+                Jump(10);
             }
         }
         YVeolocity -= Data.Gravity * Time.deltaTime;
@@ -104,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cc.isGrounded)
             {
+                WallJump = Vector3.zero;
                 YVeolocity = -1f;
             }
             else
@@ -130,6 +170,8 @@ public class PlayerMovement : MonoBehaviour
         float dot2 = Vector3.Dot(viewDir, wallDir2);
 
         targetWallRunDir = (dot1 > dot2) ? wallDir1 : wallDir2;
+
+        WallJump = new Vector3(wallNormal.x, 0, wallNormal.z);
     }
 
     public void Move(PlayerMovementData Data)
@@ -141,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-        if (Data.Input == Vector3.zero)
+        if (Data.Input == Vector3.zero&&!IsWall)
         {
             OnMoveStopped?.Invoke();
         }
@@ -149,8 +191,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(float JumpPower)
     {
-        IsWall = false;
+        if (IsWall)
+        {
+            WallJump *= JumpPower*0.8f;
+        }
+        else
+        {
+            WallJump = Vector3.zero;
+        }
+
         YVeolocity += JumpPower;
+        IsWall = false;
     }
 
     public void Dash()

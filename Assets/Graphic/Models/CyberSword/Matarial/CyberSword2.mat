@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _NORMALMAP
-  - _SHADING_BLINNPHONG
+  - _SHADING_COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 30c0b54bd07e60e478f26273595ee440, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -151,7 +151,7 @@ Material:
     - _EnableShadingRandomizer: 0
     - _EnableShadingStyling: 1
     - _EnableShadows: 1
-    - _EnableSpecular: 0
+    - _EnableSpecular: 1
     - _EnableSpecularRandomizer: 0
     - _EnableSpecularStyling: 1
     - _EnableStyling: 1
@@ -208,8 +208,8 @@ Material:
     - _RimOpacityRandomMode: 0
     - _RimPolarCenterMode: 0
     - _RimSSCameraDistanceScaled: 1
-    - _RimSize: 0.25
-    - _RimSmoothness: 0
+    - _RimSize: 0.016
+    - _RimSmoothness: 0.273
     - _RimSpacingRandomIntensity: 0
     - _RimSpacingRandomMode: 0
     - _RimStyle: 0
@@ -219,7 +219,7 @@ Material:
     - _SSCameraDistanceScaled: 1
     - _ShadingAffectedByNormalMap: 1
     - _ShadingFunction: 0
-    - _ShadingMode: 1
+    - _ShadingMode: 0
     - _ShadingNoise1Seed: 1
     - _ShadingNoise1Size: 1
     - _ShadingNoise2Seed: 1
@@ -244,13 +244,13 @@ Material:
     - _SpecularNoise1Size: 1
     - _SpecularNoise2Seed: 1
     - _SpecularNoiseIntensity: 0
-    - _SpecularOpacity: 1
+    - _SpecularOpacity: 0.545
     - _SpecularOpacityRandomIntensity: 0
     - _SpecularOpacityRandomMode: 0
     - _SpecularPolarCenterMode: 0
     - _SpecularSSCameraDistanceScaled: 1
-    - _SpecularSize: 0
-    - _SpecularSmoothness: 0
+    - _SpecularSize: 0.595
+    - _SpecularSmoothness: 0.598
     - _SpecularSpacingRandomIntensity: 0
     - _SpecularSpacingRandomMode: 0
     - _SpecularStyle: 0
@@ -266,17 +266,17 @@ Material:
     - _StylingCastShadowsHalftonesOffset: 1
     - _StylingCastShadowsHalftonesRoundness: 1
     - _StylingCastShadowsHalftonesRoundnessFalloff: 1
-    - _StylingCastShadowsHardness: 1
+    - _StylingCastShadowsHardness: 0
     - _StylingCastShadowsInitialDirection: 195
     - _StylingCastShadowsIsInverted: 0
-    - _StylingCastShadowsOpacity: 0.64
-    - _StylingCastShadowsOpacityFalloff: 0
+    - _StylingCastShadowsOpacity: 0.698
+    - _StylingCastShadowsOpacityFalloff: 0.235
     - _StylingCastShadowsRotationBetweenCells: 0
     - _StylingCastShadowsSmoothness: 1
     - _StylingCastShadowsSyncWithOtherStyling: 1
     - _StylingCastShadowsThickness: 1
     - _StylingCastShadowsThicknessControl: 0
-    - _StylingCastShadowsThicknessFalloff: 0.5
+    - _StylingCastShadowsThicknessFalloff: 0
     - _StylingDFFalloff: 0
     - _StylingDFStartingDistance: 0
     - _StylingDistanceFadeValue: 0
@@ -303,42 +303,42 @@ Material:
     - _StylingShadingHalftonesOffset: 1
     - _StylingShadingHalftonesRoundness: 1
     - _StylingShadingHalftonesRoundnessFalloff: 1
-    - _StylingShadingHardness: 1
+    - _StylingShadingHardness: 0
     - _StylingShadingInitialDirection: 195
     - _StylingShadingIsInverted: 0
-    - _StylingShadingOpacity: 0.64
-    - _StylingShadingOpacityFalloff: 0
+    - _StylingShadingOpacity: 0.698
+    - _StylingShadingOpacityFalloff: 0.235
     - _StylingShadingRotationBetweenCells: 0
     - _StylingShadingSyncWithOtherStyling: 0
     - _StylingShadingThickness: 1
     - _StylingShadingThicknessControl: 0
-    - _StylingShadingThicknessFalloff: 0.5
+    - _StylingShadingThicknessFalloff: 0
     - _StylingSpecularBlending: 0
     - _StylingSpecularCutOutShading: 0
     - _StylingSpecularDensity: 3
     - _StylingSpecularHalftonesOffset: 1
     - _StylingSpecularHalftonesRoundness: 1
     - _StylingSpecularHalftonesRoundnessFalloff: 1
-    - _StylingSpecularHardness: 1
+    - _StylingSpecularHardness: 0
     - _StylingSpecularIsInverted: 0
-    - _StylingSpecularOpacity: 0.64
-    - _StylingSpecularOpacityFalloff: 0
+    - _StylingSpecularOpacity: 0.698
+    - _StylingSpecularOpacityFalloff: 0.235
     - _StylingSpecularRotation: 195
-    - _StylingSpecularSize: 0.402
-    - _StylingSpecularSmoothness: 0
+    - _StylingSpecularSize: 0.416
+    - _StylingSpecularSmoothness: 0.226
     - _StylingSpecularSyncWithOtherStyling: 1
     - _StylingSpecularThickness: 1
     - _StylingSpecularThicknessControl: 0
-    - _StylingSpecularThicknessFalloff: 0.5
-    - _StylingSpecularUseLightColors: 0
+    - _StylingSpecularThicknessFalloff: 0
+    - _StylingSpecularUseLightColors: 1
     - _StylingTerminatorPosition: 0
     - _SumLightsBeforePosterization: 1
     - _Surface: 0
     - _SyncWithLightPartitioning: 0
     - _SyncWithRim: 1
     - _SyncWithSpecular: 0
-    - _TerminatorPosition: 0
-    - _TerminatorSmoothness: 0
+    - _TerminatorPosition: -0.443
+    - _TerminatorSmoothness: 0.881
     - _TerminatorWidth: 0
     - _TheToonShaderIdentifier: 1
     - _ThicknessRandomMode: 0
@@ -361,7 +361,7 @@ Material:
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 0, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _StylingCastShadowsColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingColor: {r: 0, g: 0, b: 0, a: 1}

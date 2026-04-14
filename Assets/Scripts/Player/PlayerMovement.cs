@@ -63,8 +63,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         cc = GetComponent<CharacterController>();
-
-        Data = new PlayerMovementData(10, Vector3.zero, 20, 15);
     }
 
     private void Update()
@@ -82,23 +80,20 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Dir = CameraTransform.forward * Data.Input.z + CameraTransform.right * Data.Input.x;
+                Dir = transform.forward * Data.Input.z + transform.right * Data.Input.x;
             }
         }
 
         Dir.y = 0;
 
-        gravity();
-
-
         MoveVector += Dir * Data.Speed;
-        MoveVector.y = YVeolocity;
+        MoveVector.y = gravity();
         if (IsWall)
         {
             MoveVector += new Vector3(0,WallUpAdd,0);
         }
 
-        if (Mathf.Abs(WallJump.x) > 1) 
+        if ((Mathf.Abs(WallJump.x)+Mathf.Abs(WallJump.z)) > 1.5f) 
         {
             MoveVector += WallJump;
             MoveVector += targetWallRunDir * 5;
@@ -116,11 +111,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallExit()
     {
-        Debug.Log("Exit");
-        Jump(10);
+        Jump(6);
     }
 
-    private void gravity() {
+    public float gravity() {
         if (IsWall)
         {
             float viewAlignment = Vector3.Dot(CameraTransform.forward, targetWallRunDir);
@@ -130,12 +124,11 @@ public class PlayerMovement : MonoBehaviour
             if (viewAlignment >= minDot)
             {
                 YVeolocity = 0;
-                return;
+                return YVeolocity;
             }
             else
             {
-                Debug.Log("시야 관리 똑바로해");
-                Jump(10);
+                WallExit();
             }
         }
         YVeolocity -= Data.Gravity * Time.deltaTime;
@@ -151,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
                 YVeolocity -= Data.YAdd * Time.deltaTime;
             }
         }
-        YVeolocity = Mathf.Clamp(YVeolocity, MinGravity, MaxGravity);
+        return YVeolocity = Mathf.Clamp(YVeolocity, MinGravity, MaxGravity);
     }
 
     public void SetWallData(RaycastHit hit)

@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _NORMALMAP
-  - _SHADING_BLINNPHONG
+  - _SHADING_COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
@@ -218,7 +218,7 @@ Material:
     - _SSCameraDistanceScaled: 1
     - _ShadingAffectedByNormalMap: 1
     - _ShadingFunction: 0
-    - _ShadingMode: 1
+    - _ShadingMode: 0
     - _ShadingNoise1Seed: 1
     - _ShadingNoise1Size: 1
     - _ShadingNoise2Seed: 1
@@ -365,7 +365,7 @@ Material:
     - _StylingCastShadowsColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingRimColor: {r: 0, g: 0, b: 1, a: 1}
-    - _StylingSpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _StylingSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8079080879700551976

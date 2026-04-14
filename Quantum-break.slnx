@@ -1,0 +1,8 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ShaderCrew.TheToonShader.Core.Runtime.csproj" />
+  <Project Path="ShaderCrew.TheToonShader.3D.Editor.csproj" />
+  <Project Path="ShaderCrew.TheToonShader.Core.Editor.csproj" />
+  <Project Path="ShaderCrew.TheToonShader.3D.Runtime.csproj" />
+</Solution>

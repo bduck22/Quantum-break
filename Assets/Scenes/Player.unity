@@ -28030,8 +28030,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1827629865255638046, guid: 2b95b8c937251bf4a862469a23da16b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983619993}
+    - targetCorrespondingSourceObject: {fileID: 1827629865255638046, guid: 2b95b8c937251bf4a862469a23da16b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983619994}
   m_SourcePrefab: {fileID: 100100000, guid: 2b95b8c937251bf4a862469a23da16b2, type: 3}
+--- !u!1 &1983619992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1827629865255638046, guid: 2b95b8c937251bf4a862469a23da16b2, type: 3}
+  m_PrefabInstance: {fileID: 1983619991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1983619993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983619992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a18ef726ebacf474d95108bf4d4980b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BzKovSoft.ObjectSlicer::BzKovSoft.ObjectSlicer.BzSliceableObject
+  defaultSliceMaterial: {fileID: 2100000, guid: 40c0a6d87afb6e446ba1dcc1b67820e5, type: 2}
+  asynchronously: 0
+  waitIfBusy: 0
+  objectGrouping: 0
+--- !u!114 &1983619994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983619992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aea8801d47c1d14688dfc5a4e3c0a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SliceTest
 --- !u!1001 &1983859473
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,11 +12,10 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _EMISSION
   - _NORMALMAP
   - _SHADING_COLOR
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
@@ -152,7 +151,7 @@ Material:
     - _EnableShadingRandomizer: 0
     - _EnableShadingStyling: 1
     - _EnableShadows: 1
-    - _EnableSpecular: 0
+    - _EnableSpecular: 1
     - _EnableSpecularRandomizer: 0
     - _EnableSpecularStyling: 1
     - _EnableStyling: 1
@@ -177,7 +176,7 @@ Material:
     - _Metallic: 0
     - _NoiseIntensity: 1.72
     - _NoiseTextureQuality: 0
-    - _NumberOfCells: 5
+    - _NumberOfCells: 6
     - _NumberOfCellsHatching: 5
     - _OcclusionStrength: 1
     - _OpacityRandomIntensity: 0
@@ -250,8 +249,8 @@ Material:
     - _SpecularOpacityRandomMode: 0
     - _SpecularPolarCenterMode: 0
     - _SpecularSSCameraDistanceScaled: 1
-    - _SpecularSize: 0
-    - _SpecularSmoothness: 0
+    - _SpecularSize: 0.843
+    - _SpecularSmoothness: 0.443
     - _SpecularSpacingRandomIntensity: 0
     - _SpecularSpacingRandomMode: 0
     - _SpecularStyle: 0
@@ -263,21 +262,21 @@ Material:
     - _SrcBlendAlpha: 1
     - _StylingAdjustDistanceFadeValue: 0
     - _StylingCastShadowsBlending: 0
-    - _StylingCastShadowsDensity: 50
+    - _StylingCastShadowsDensity: 0
     - _StylingCastShadowsHalftonesOffset: 1
     - _StylingCastShadowsHalftonesRoundness: 1
     - _StylingCastShadowsHalftonesRoundnessFalloff: 1
-    - _StylingCastShadowsHardness: 0.294
-    - _StylingCastShadowsInitialDirection: 0
+    - _StylingCastShadowsHardness: 0.339
+    - _StylingCastShadowsInitialDirection: 120
     - _StylingCastShadowsIsInverted: 0
-    - _StylingCastShadowsOpacity: 1
+    - _StylingCastShadowsOpacity: 0.091
     - _StylingCastShadowsOpacityFalloff: 0
     - _StylingCastShadowsRotationBetweenCells: 0
     - _StylingCastShadowsSmoothness: 1
     - _StylingCastShadowsSyncWithOtherStyling: 1
-    - _StylingCastShadowsThickness: 0.352
+    - _StylingCastShadowsThickness: 0.222
     - _StylingCastShadowsThicknessControl: 0
-    - _StylingCastShadowsThicknessFalloff: 0.606
+    - _StylingCastShadowsThicknessFalloff: 0.16
     - _StylingDFFalloff: 0
     - _StylingDFStartingDistance: 0
     - _StylingDistanceFadeValue: 0
@@ -300,45 +299,45 @@ Material:
     - _StylingRimThicknessControl: 0
     - _StylingRimThicknessFalloff: 0.1
     - _StylingShadingBlending: 0
-    - _StylingShadingDensity: 50
+    - _StylingShadingDensity: 0
     - _StylingShadingHalftonesOffset: 1
     - _StylingShadingHalftonesRoundness: 1
     - _StylingShadingHalftonesRoundnessFalloff: 1
-    - _StylingShadingHardness: 0.294
-    - _StylingShadingInitialDirection: 0
+    - _StylingShadingHardness: 0.339
+    - _StylingShadingInitialDirection: 120
     - _StylingShadingIsInverted: 0
-    - _StylingShadingOpacity: 1
+    - _StylingShadingOpacity: 0.091
     - _StylingShadingOpacityFalloff: 0
     - _StylingShadingRotationBetweenCells: 0
     - _StylingShadingSyncWithOtherStyling: 0
-    - _StylingShadingThickness: 0.352
+    - _StylingShadingThickness: 0.222
     - _StylingShadingThicknessControl: 0
-    - _StylingShadingThicknessFalloff: 0.606
+    - _StylingShadingThicknessFalloff: 0.16
     - _StylingSpecularBlending: 0
     - _StylingSpecularCutOutShading: 0
-    - _StylingSpecularDensity: 50
+    - _StylingSpecularDensity: 0
     - _StylingSpecularHalftonesOffset: 1
     - _StylingSpecularHalftonesRoundness: 1
     - _StylingSpecularHalftonesRoundnessFalloff: 1
-    - _StylingSpecularHardness: 0.294
+    - _StylingSpecularHardness: 0.339
     - _StylingSpecularIsInverted: 0
-    - _StylingSpecularOpacity: 1
+    - _StylingSpecularOpacity: 0.091
     - _StylingSpecularOpacityFalloff: 0
-    - _StylingSpecularRotation: 0
+    - _StylingSpecularRotation: 120
     - _StylingSpecularSize: 1
     - _StylingSpecularSmoothness: 0.282
     - _StylingSpecularSyncWithOtherStyling: 1
-    - _StylingSpecularThickness: 0.352
+    - _StylingSpecularThickness: 0.222
     - _StylingSpecularThicknessControl: 0
-    - _StylingSpecularThicknessFalloff: 0.606
-    - _StylingSpecularUseLightColors: 0
+    - _StylingSpecularThicknessFalloff: 0.16
+    - _StylingSpecularUseLightColors: 1
     - _StylingTerminatorPosition: 0
     - _SumLightsBeforePosterization: 1
     - _Surface: 0
     - _SyncWithLightPartitioning: 0
     - _SyncWithRim: 1
     - _SyncWithSpecular: 0
-    - _TerminatorPosition: 0
+    - _TerminatorPosition: -0.6
     - _TerminatorSmoothness: 0
     - _TerminatorWidth: 0
     - _TheToonShaderIdentifier: 1
@@ -354,7 +353,7 @@ Material:
     - _CastShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _CastShadowsPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CoreShadowColor: {r: 0.41509432, g: 0.04307578, b: 0.04307578, a: 1}
     - _EmissionColor: {r: 0.16346896, g: 0, b: 0, a: 1}
     - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -362,10 +361,10 @@ Material:
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 0, a: 1}
+    - _SpecularColor: {r: 1, g: 0, b: 0.1739583, a: 1}
     - _SpecularPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _StylingCastShadowsColor: {r: 0, g: 0, b: 0, a: 1}
-    - _StylingColor: {r: 0.5283019, g: 0.17268658, b: 0.1644713, a: 1}
+    - _StylingColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingRimColor: {r: 0, g: 0, b: 1, a: 1}
     - _StylingSpecularColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

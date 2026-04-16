@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public RaycastHit hit;
 
-    [SerializeField] int WallDirection;
+    public int WallDirection;
 
     [Header("동작 실행 스크립트")]
     public PlayerMovement PlayerMovement;
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public float WallCancelAngle;
     public float WallIniputAngle;
     public float JumpBufferTime;
+    public float WallFrontCheckDistance;
 
     private void Awake()
     {
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         StateMachine = new StateMachine();
 
-        StateMachine.InitState(groundState);
+        InitState();
     }
 
     private void Update()
@@ -71,6 +72,25 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField] float jumpbuffer;
+
+    bool IsCanJump()
+    {
+        if (CurrentState == PlayerState.Ground)
+        {
+            if (jumpbuffer==0&&(cc.isGrounded|| GroundCoyoteTime <= GroundCoyoteTimer))
+            {
+                return true;
+            }
+            if(jumpbuffer!=0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
 
     public void DefaultControl()
     {
@@ -85,9 +105,12 @@ public class PlayerController : MonoBehaviour
 
         if (InputHandler.JumpPressed&&jumpbuffer ==0)
         {
-            StateMachine.CurrentState.Jump();
-            if(CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
-            InputHandler.ClearJump();
+            if (IsCanJump())
+            {
+                StateMachine.CurrentState.Jump();
+                if (CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
+                InputHandler.ClearJump();
+            }
         }
 
         if (InputHandler.DashPressed)
@@ -101,6 +124,12 @@ public class PlayerController : MonoBehaviour
         }
 
         StateMachine.CurrentState.Move();
+    }
+
+    void InitState()
+    {
+        CurrentState = PlayerState.Ground;
+        StateMachine.InitState(groundState);
     }
 
     void StateChange(PlayerState State)
@@ -125,8 +154,7 @@ public class PlayerController : MonoBehaviour
 
                 if(jumpbuffer > 0)
                 {
-                    Debug.Log("점프 버퍼 발동");
-                    Debug.Log(StateMachine.CurrentState == groundState);
+                    PlayerMovement.gravity();
                     StateMachine.CurrentState.Jump();
                 }
 
@@ -137,7 +165,7 @@ public class PlayerController : MonoBehaviour
     }
 
     float GroundCoyoteTimer;
-    [SerializeField] float WallCoyoteTimer;
+    float WallCoyoteTimer;
     float AirCoyoteTimer;
 
     //상태 변경 
@@ -215,7 +243,11 @@ public class PlayerController : MonoBehaviour
         //벽에 진입하는 상태인지 벽을 타고있는 상태인지에 따라 구분
         if (Walling)
         {
-            Vector3 boxCenter = transform.position + transform.right * right * 0.5f;
+            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance, LayerMask.GetMask("Map"))){
+                return false;
+            }
+
+            Vector3 boxCenter = transform.position + transform.right * right * WallRunDistance;
 
             Vector3 boxHalfExtents = new Vector3(0.3f, 0.8f, 0.3f);
 
@@ -228,9 +260,17 @@ public class PlayerController : MonoBehaviour
             //벽에 타고 있는 상태
             if (hits.Length > 0)
             {
+                if (right > 0 && InputHandler.Move.x < 0)
+                {
+                    return false;
+                }
+                else if (right < 0 && InputHandler.Move.x > 0)
+                {
+                    return false;
+                }
+
                 return true;
             }
-            return false;
         }
         else
         {
@@ -259,8 +299,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log("asd");
 
         return false;
     }

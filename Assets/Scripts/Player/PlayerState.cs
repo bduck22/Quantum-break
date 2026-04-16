@@ -36,11 +36,11 @@ public class GroundState : State
 
     public override void Move()
     {
-        float speed = Controller.Speed;
-        Vector3 move = Controller.InputHandler.Move;
-        float gravity = Controller.Gravity;
-        float yAdd = Controller.YDownAdd;
-        Controller.PlayerMovement.Move(new PlayerMovementData(speed, move, gravity, yAdd));
+        Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed,
+            Controller.InputHandler.Move,
+            Controller.Gravity,
+            Controller.YDownAdd
+            ));
     }
 
     public override void Jump()
@@ -60,11 +60,11 @@ public class AirState : State
 
     public override void Move()
     {
-        float speed = Controller.Speed;
-        Vector3 move = Controller.InputHandler.Move;
-        float gravity = Controller.Gravity;
-        float yAdd = Controller.YDownAdd;
-        Controller.PlayerMovement.Move(new PlayerMovementData(speed, move, gravity, yAdd));
+        Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed,
+            Controller.InputHandler.Move,
+            Controller.Gravity,
+            Controller.YDownAdd
+            ));
     }
 
     public override void Jump()
@@ -84,11 +84,11 @@ public class WallState : State
 
     public override void Move()
     {
-        float speed = Controller.Speed * 1.2f;
-        Vector3 move = Controller.InputHandler.Move;
-        float gravity = 0;
-        float yAdd = 0;
-        Controller.PlayerMovement.Move(new PlayerMovementData(speed, move, gravity, yAdd));
+        Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed * 1.2f,
+            Controller.InputHandler.Move,
+            Controller.Gravity,
+            Controller.YDownAdd
+            ));
     }
     public override void Jump()
     {

@@ -10295,9 +10295,14 @@ MonoBehaviour:
   Speed: 12
   JumpPower: 16
   Gravity: 25
+  Stamina: 0
+  MaxStamina: 5
+  StaminaHealSpeed: 1
+  Hp: 0
+  MaxHp: 3
+  PlusHp: 0
   GroundCoyoteTime: 0.2
   WallCoyoteTime: 0.1
-  AirCoyoteTime: 0.3
   YDownAdd: 20
   WallRunDistance: 1
   WallCancelAngle: 70
@@ -10323,6 +10328,7 @@ MonoBehaviour:
     JumpPressed: 0
     DashPressed: 0
     JumpHeld: 0
+    DashHeld: 0
 --- !u!114 &789947929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10381,7 +10387,10 @@ MonoBehaviour:
   targetWallRunDir: {x: 0, y: 0, z: 0}
   WallUpAdd: 0
   WallJump: {x: 0, y: 0, z: 0}
+  Velocity: {x: 0, y: 0, z: 0}
   WallExitAngle: 70
+  accel: 60
+  decel: 50
 --- !u!143 &789947931
 CharacterController:
   m_ObjectHideFlags: 0

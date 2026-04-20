@@ -56,9 +56,18 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 MoveVector;
 
+    public Vector3 Velocity;
+
     public float WallExitAngle;
 
+    public float accel;
+    public float decel;
+
     float wallexittime;
+
+    public bool Dashing;
+
+    public Vector3 DashOrigin;
 
     private void Start()
     {
@@ -80,7 +89,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Dir = transform.forward * Data.Input.z + transform.right * Data.Input.x;
+                if (Dashing)
+                {
+                    wallexittime = 0;
+                    Dir = Vector3.zero;
+                }
+                else
+                {
+                    Dir = transform.forward * Data.Input.z + transform.right * Data.Input.x;
+                }
             }
         }
 
@@ -99,7 +116,30 @@ public class PlayerMovement : MonoBehaviour
             MoveVector += targetWallRunDir * 5;
         }
 
-        cc.Move(MoveVector * Time.deltaTime);
+
+        Vector3 FinalVel;
+        if (cc.isGrounded)
+        {
+            float rate = Data.Input.sqrMagnitude > 0f ? accel : decel;
+
+            Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.deltaTime);
+
+            FinalVel = Velocity;
+        }
+        else
+        {
+            Velocity = Vector3.zero;
+
+            FinalVel = MoveVector;
+        }
+
+        if (Dashing)
+        {
+            Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
+            Debug.Log(Vector3.Distance(DashOrigin, NextVector));
+        }
+
+        cc.Move(FinalVel * Time.deltaTime);
 
         MoveVector = Vector3.zero;
 
@@ -174,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
         {
             this.Data = Data;
         }
-        
+
 
         if (Data.Input == Vector3.zero&&!IsWall)
         {

@@ -202,7 +202,7 @@ Material:
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimAffectedArea: 1
+    - _RimAffectedArea: 2
     - _RimAffectedByNormalMap: 1
     - _RimAnchorSSToObjectsOrigin: 1
     - _RimBlending: 2

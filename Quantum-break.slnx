@@ -1,8 +1,13 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="BzKovSoft.ObjectSlicer.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ShaderCrew.TheToonShader.Core.Runtime.csproj" />
+  <Project Path="BzKovSoft.CharacterSlicer.csproj" />
   <Project Path="ShaderCrew.TheToonShader.3D.Editor.csproj" />
   <Project Path="ShaderCrew.TheToonShader.Core.Editor.csproj" />
   <Project Path="ShaderCrew.TheToonShader.3D.Runtime.csproj" />
+  <Project Path="BzKovSoft.ObjectSlicer.Samples.csproj" />
+  <Project Path="BzKovSoft.ObjectSlicer.Tests.csproj" />
+  <Project Path="BzKovSoft.CharacterSlicer.Samples.csproj" />
 </Solution>

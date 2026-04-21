@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     public float JumpBufferTime;
     public float WallFrontCheckDistance;
 
+    public Transform SpawnPoint;
+
     private void Awake()
     {
         InputHandler = GetComponent<InputHandler>();
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         StateMachine = new StateMachine();
 
-        PlayerInit(Vector3.zero);
+        PlayerInit(SpawnPoint.position);
     }
 
     private void Update()
@@ -128,6 +130,43 @@ public class PlayerController : MonoBehaviour
 
     public void DefaultControl()
     {
+        if (InputHandler.Rotate.magnitude > 0)
+        {
+            PlayerRotate.Rotate(Sensitivity, InputHandler.Rotate);
+        }
+
+        if (InputHandler.DashPressed&&InputHandler.DashHeld)
+        {
+            if (Stamina > 0)
+            {
+                if (!PlayerMovement.Dashing)
+                {
+                    PlayerMovement.DashOrigin = transform.position;
+                    PlayerMovement.WallExit();
+                    PlayerMovement.Dashing = true;
+                    Time.timeScale = 0.05f;
+                }
+                Stamina -= Time.fixedDeltaTime;
+                return;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                PlayerMovement.DashOrigin = Vector3.zero;
+                PlayerMovement.Dashing = false;
+                Time.timeScale = 1f;
+                StateMachine.CurrentState.Dash();
+                InputHandler.ClearDash();
+            }
+        }
+        else if (Time.timeScale != 1)
+        {
+            PlayerMovement.DashOrigin = Vector3.zero;
+            PlayerMovement.Dashing = false;
+            Time.timeScale = 1f;
+            StateMachine.CurrentState.Dash();
+            InputHandler.ClearDash();
+        }
 
         PlayerMovement.isHoldingJump = InputHandler.JumpHeld;
 
@@ -145,38 +184,6 @@ public class PlayerController : MonoBehaviour
                 if (CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
                 InputHandler.ClearJump();
             }
-        }
-
-        if (InputHandler.DashPressed)
-        {
-            if(Stamina > 0)
-            {
-                if (!PlayerMovement.Dashing)
-                {
-                    PlayerMovement.WallExit();
-                    PlayerMovement.Dashing = true;
-                    Time.timeScale = 0.05f;
-                }
-                Stamina -= Time.deltaTime;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                StateMachine.CurrentState.Dash();
-                InputHandler.ClearDash();
-            }
-        }
-        else if(Time.timeScale != 1)
-        {
-            PlayerMovement.Dashing = false;
-            Time.timeScale = 1f;
-            StateMachine.CurrentState.Dash();
-            InputHandler.ClearDash();
-        }
-
-        if (InputHandler.Rotate.magnitude > 0)
-        {
-            PlayerRotate.Rotate(Sensitivity, InputHandler.Rotate);
         }
 
         StateMachine.CurrentState.Move();

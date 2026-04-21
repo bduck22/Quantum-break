@@ -102,7 +102,7 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            CurrentInput.DashPressed = false;
+            CurrentInput.DashHeld = false;
         }
     }
 

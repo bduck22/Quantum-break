@@ -39,7 +39,8 @@ public class GroundState : State
         Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed,
             Controller.InputHandler.Move,
             Controller.Gravity,
-            Controller.YDownAdd
+            Controller.YDownAdd,
+            Controller.DashPower
             ));
     }
 
@@ -63,7 +64,8 @@ public class AirState : State
         Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed,
             Controller.InputHandler.Move,
             Controller.Gravity,
-            Controller.YDownAdd
+            Controller.YDownAdd,
+            Controller.DashPower
             ));
     }
 
@@ -87,7 +89,8 @@ public class WallState : State
         Controller.PlayerMovement.Move(new PlayerMovementData(Controller.Speed * 1.2f,
             Controller.InputHandler.Move,
             Controller.Gravity,
-            Controller.YDownAdd
+            Controller.YDownAdd,
+            Controller.DashPower
             ));
     }
     public override void Jump()

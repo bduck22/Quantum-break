@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class CameraEffectController : MonoBehaviour
 {
+    public PlayerController PlayerController;
+
     public PlayerMovement PlayerMovement;
 
     CameraShake CameraShake;
 
     FOV FOV;
 
+    public CameraAnimation CameraAnimation;
+
+    public PostProcessingController PostProcessingController;
+
     private void Awake()
     {
         CameraShake = GetComponent<CameraShake>();
         FOV = GetComponent<FOV>();
+        PostProcessingController = GetComponent<PostProcessingController>();
     }
 
     private void OnEnable()
@@ -31,6 +38,19 @@ public class CameraEffectController : MonoBehaviour
 
         PlayerMovement.OnMoveStopped += CameraShake.StopShake;
         PlayerMovement.OnMoveStopped += FOV.BackFOV;
+
+        PlayerMovement.OnDash += FOV.DashFOV;
+        PlayerMovement.OnDash += FOV.BackFOV;
+        PlayerMovement.OnDash += PostProcessingController.DashFilterOff;
+
+        PlayerMovement.OnStepped += CameraAnimation.BigShake;
+
+        PlayerController.OnDashing += FOV.DashingFOV;
+        PlayerController.OnDashing += PostProcessingController.DashFilterOn;
+
+        PlayerController.OnLeftWall += CameraAnimation.SetLeftWall;
+        PlayerController.OnRightWall += CameraAnimation.SetRightWall;
+        PlayerController.OnWalk += CameraAnimation.SetWalk;
     }
 
     public void OffChain()
@@ -40,5 +60,18 @@ public class CameraEffectController : MonoBehaviour
 
         PlayerMovement.OnMoveStopped -= CameraShake.StopShake;
         PlayerMovement.OnMoveStopped -= FOV.BackFOV;
+
+        PlayerMovement.OnDash -= FOV.DashFOV;
+        PlayerMovement.OnDash -= FOV.BackFOV;
+        PlayerMovement.OnDash -= PostProcessingController.DashFilterOff;
+
+        PlayerMovement.OnStepped -= CameraAnimation.BigShake;
+
+        PlayerController.OnDashing -= FOV.DashingFOV;
+        PlayerController.OnDashing -= PostProcessingController.DashFilterOn;
+
+        PlayerController.OnLeftWall -= CameraAnimation.SetLeftWall;
+        PlayerController.OnRightWall -= CameraAnimation.SetRightWall;
+        PlayerController.OnWalk -= CameraAnimation.SetWalk;
     }
 }

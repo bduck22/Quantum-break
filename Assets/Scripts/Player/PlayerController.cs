@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public float Speed;
 
     public float JumpPower;
+    public float DashPower;
     public float Gravity;
 
     public float Stamina;
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public float StaminaHealSpeed;
 
     public int Hp;
-    public int MaxHp=3;
+    public int MaxHp = 3;
     public int PlusHp;
 
     [Header("플레이어 보정값")]
@@ -55,8 +57,17 @@ public class PlayerController : MonoBehaviour
     public float WallIniputAngle;
     public float JumpBufferTime;
     public float WallFrontCheckDistance;
+    public float DashReloadTime;
 
     public Transform SpawnPoint;
+
+    //플레이어 이벤트
+    public event Action OnRightWall;
+    public event Action OnLeftWall;
+    public event Action OnWalk;
+    public event Action OnAir;
+
+    public event Action OnDashing;
 
     private void Awake()
     {
@@ -81,6 +92,27 @@ public class PlayerController : MonoBehaviour
         StateTransitions();
 
         StaminaHeal();
+
+        if (WallDirection == -1)
+        {
+            OnRightWall?.Invoke();
+        }
+        else if (WallDirection == 1)
+        {
+            OnLeftWall?.Invoke();
+        }
+
+        if(WallDirection == 0)
+        {
+            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f&& PlayerMovement.YVeolocity <= -22)
+            {
+                OnAir?.Invoke();
+            }
+            else
+            {
+                OnWalk?.Invoke();
+            }
+        }
     }
 
     public void PlayerInit(Vector3 SpawnPoint)
@@ -107,17 +139,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [SerializeField] float jumpbuffer;
+    float jumpbuffer;
 
     bool IsCanJump()
     {
         if (CurrentState == PlayerState.Ground)
         {
-            if (jumpbuffer==0&&(cc.isGrounded|| GroundCoyoteTime <= GroundCoyoteTimer))
+            if (jumpbuffer == 0 && (cc.isGrounded || GroundCoyoteTime <= GroundCoyoteTimer))
             {
                 return true;
             }
-            if(jumpbuffer!=0)
+            if (jumpbuffer != 0)
+            {
+                return true;
+            }
+            if (!InputHandler.DashHeld)
             {
                 return true;
             }
@@ -128,6 +164,16 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    void DashUp()
+    {
+        DashReLoadTimer = DashReloadTime;
+        PlayerMovement.DashOrigin = Quaternion.identity;
+        PlayerMovement.Dashing = false;
+        Time.timeScale = 1f;
+        StateMachine.CurrentState.Dash();
+        InputHandler.ClearDash();
+    }
+
     public void DefaultControl()
     {
         if (InputHandler.Rotate.magnitude > 0)
@@ -135,48 +181,56 @@ public class PlayerController : MonoBehaviour
             PlayerRotate.Rotate(Sensitivity, InputHandler.Rotate);
         }
 
-        if (InputHandler.DashPressed&&InputHandler.DashHeld)
+        if (DashReLoadTimer > 0)
         {
-            if (Stamina > 0)
+            DashReLoadTimer -= Time.deltaTime;
+        }
+
+        if (InputHandler.DashPressed && InputHandler.DashHeld)
+        {
+            if (DashReLoadTimer > 0)
             {
-                if (!PlayerMovement.Dashing)
-                {
-                    PlayerMovement.DashOrigin = transform.position;
-                    PlayerMovement.WallExit();
-                    PlayerMovement.Dashing = true;
-                    Time.timeScale = 0.05f;
-                }
-                Stamina -= Time.fixedDeltaTime;
-                return;
+                InputHandler.ClearDash();
             }
             else
             {
-                Time.timeScale = 1f;
-                PlayerMovement.DashOrigin = Vector3.zero;
-                PlayerMovement.Dashing = false;
-                Time.timeScale = 1f;
-                StateMachine.CurrentState.Dash();
-                InputHandler.ClearDash();
+                if ((Stamina > 0 && PlayerMovement.Dashing) || Stamina >= 1)
+                {
+                    if (!PlayerMovement.Dashing)
+                    {
+                        Stamina -= 1f;
+                        OnDashing?.Invoke();
+                        PlayerMovement.DashOrigin = transform.rotation;
+                        PlayerMovement.WallExit();
+                        PlayerMovement.Dashing = true;
+                        Time.timeScale = 0.05f;
+                    }
+                    Stamina -= Time.unscaledDeltaTime;
+                }
+                else if (PlayerMovement.Dashing)
+                {
+                    DashUp();
+                }
+                else
+                {
+                    InputHandler.ClearDash();
+                }
             }
         }
-        else if (Time.timeScale != 1)
+        else if (InputHandler.DashPressed)
         {
-            PlayerMovement.DashOrigin = Vector3.zero;
-            PlayerMovement.Dashing = false;
-            Time.timeScale = 1f;
-            StateMachine.CurrentState.Dash();
-            InputHandler.ClearDash();
+            DashUp();
         }
 
         PlayerMovement.isHoldingJump = InputHandler.JumpHeld;
 
-        if(jumpbuffer > 0)
+        if (jumpbuffer > 0)
         {
             jumpbuffer -= Time.deltaTime;
         }
         else jumpbuffer = 0;
 
-        if (InputHandler.JumpPressed&&jumpbuffer ==0)
+        if (InputHandler.JumpPressed && jumpbuffer == 0)
         {
             if (IsCanJump())
             {
@@ -214,7 +268,7 @@ public class PlayerController : MonoBehaviour
             }
             if (CurrentState == PlayerState.Ground)
             {
-                if(jumpbuffer > 0)
+                if (jumpbuffer > 0)
                 {
                     PlayerMovement.gravity();
                     StateMachine.CurrentState.Jump();
@@ -230,7 +284,8 @@ public class PlayerController : MonoBehaviour
     }
 
     float GroundCoyoteTimer;
-    float WallCoyoteTimer;
+    [SerializeField] float WallCoyoteTimer;
+    float DashReLoadTimer;
 
     //상태 변경 
     public void StateTransitions()
@@ -240,6 +295,7 @@ public class PlayerController : MonoBehaviour
         {
             //닿았으면 땅 상태로 변경
             GroundCoyoteTimer = 0;
+            WallCoyoteTimer = 0;
             StateChange(PlayerState.Ground);
         }
         else
@@ -249,14 +305,14 @@ public class PlayerController : MonoBehaviour
             if (GroundCoyoteTime <= GroundCoyoteTimer)
             {
                 //현재 벽을 타고 있는지 확인
-                if (IsWall()&&!InputHandler.DashHeld)
+                if (IsWall() && !InputHandler.DashHeld)
                 {
                     StateChange(PlayerState.Wall);
                 }
                 else
                 {
                     WallCoyoteTimer += Time.deltaTime;
-                    if (WallCoyoteTime <= WallCoyoteTimer)
+                    if (WallCoyoteTime <= WallCoyoteTimer || InputHandler.DashHeld)
                     {
                         if (PlayerMovement.IsWall)
                         {
@@ -282,7 +338,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(IsRightWall(WallDirection))
+            if (IsRightWall(WallDirection))
             {
                 return true;
             }
@@ -301,7 +357,21 @@ public class PlayerController : MonoBehaviour
         //벽에 진입하는 상태인지 벽을 타고있는 상태인지에 따라 구분
         if (Walling)
         {
-            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance, LayerMask.GetMask("Map"))){
+            Vector3 wallNormal = hit.normal;
+            Vector3 wallDir1 = Vector3.Cross(Vector3.up, wallNormal).normalized;
+            Vector3 wallDir2 = -wallDir1;
+
+            Vector3 viewDir = Camera.main.transform.forward;
+            viewDir.y = 0f;
+            viewDir.Normalize();
+
+            float dot1 = Vector3.Dot(viewDir, wallDir1);
+            float dot2 = Vector3.Dot(viewDir, wallDir2);
+
+            Vector3 dir = (dot1 > dot2) ? wallDir1 : wallDir2;
+
+            if (Physics.Raycast(RayTransform.position, dir, WallFrontCheckDistance, LayerMask.GetMask("Map")))
+            {
                 return false;
             }
 
@@ -330,8 +400,12 @@ public class PlayerController : MonoBehaviour
                 return true;
             }
         }
-        else
+        else if (!InputHandler.DashHeld)
         {
+            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance, LayerMask.GetMask("Map")))
+            {
+                return false;
+            }
             //벽에 진입하는 상태
             if (Physics.Raycast(RayTransform.position, transform.right * right, WallRunDistance, LayerMask.GetMask("Map")))
             {

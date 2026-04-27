@@ -8,52 +8,67 @@ public class FOV : MonoBehaviour
 
     public float DefaultFOV;
 
-    public float CurrentFOV;
-
     public float FOVRange;
+
+    public float FOVDash;
 
     public float FOVUpSpeed;
 
     public float FOVBackSpeed;
 
+    public float TargetFOV;
+
     private void Start()
     {
         cam = Camera.main;
 
-        CurrentFOV = DefaultFOV;
+        TargetFOV = DefaultFOV;
 
-        cam.fieldOfView = CurrentFOV;
+        cam.fieldOfView = TargetFOV;
     }
 
     private void Update()
     {
-        if(cam.fieldOfView != CurrentFOV)
+        if(cam.fieldOfView != TargetFOV)
         {
-            cam.fieldOfView = CurrentFOV;
+            if (cam.fieldOfView > TargetFOV)
+            {
+                cam.fieldOfView -= FOVBackSpeed * Time.unscaledDeltaTime;
+                if(cam.fieldOfView - TargetFOV <= 0)
+                {
+                    cam.fieldOfView = TargetFOV;
+                }
+            }
+            else if (cam.fieldOfView < TargetFOV) {
+                cam.fieldOfView += FOVUpSpeed * Time.unscaledDeltaTime;
+                if (cam.fieldOfView - TargetFOV >= 0)
+                {
+                    cam.fieldOfView = TargetFOV;
+                }
+            }
         }
     }
 
     public void FOVUp()
     {
-        if(CurrentFOV <= (DefaultFOV + FOVRange))
+        if (TargetFOV < DefaultFOV + FOVRange)
         {
-            CurrentFOV+= Time.deltaTime * FOVUpSpeed;
+            TargetFOV = DefaultFOV + FOVRange;
         }
     }
 
     public void BackFOV()
     {
-        StartCoroutine(backFOV());
+        TargetFOV = DefaultFOV;
     }
 
-    IEnumerator backFOV()
+    public void DashFOV()
     {
-        while (CurrentFOV > DefaultFOV)
-        {
-            CurrentFOV -= Time.deltaTime * FOVBackSpeed;
-            
-            yield return new WaitForEndOfFrame();
-        }
-        CurrentFOV = DefaultFOV;
+        cam.fieldOfView = DefaultFOV + FOVDash;
+    }
+
+    public void DashingFOV()
+    {
+        TargetFOV = DefaultFOV + FOVDash-14;
     }
 }

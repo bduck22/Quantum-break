@@ -7,17 +7,19 @@ using UnityEngine.InputSystem.XR;
 [Serializable]
 public struct PlayerMovementData
 {
-    public PlayerMovementData(float Speed, Vector3 Input, float Gravity, float YAdd)
+    public PlayerMovementData(float Speed, Vector3 Input, float Gravity, float YAdd, float DashPower)
     {
         this.Speed = Speed;
         this.Input = Input;
         this.Gravity = Gravity;
         this.YAdd = YAdd;
+        this.DashPower = DashPower;
     }
     public float Speed;
     public Vector3 Input;
     public float Gravity;
     public float YAdd;
+    public float DashPower;
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -44,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     public event Action OnMoveStopped;
 
+    public event Action OnStepped;
+
+    public event Action OnDash;
+
     [SerializeField] PlayerMovementData Data;
 
     [SerializeField] Vector3 targetWallRunDir;
@@ -67,7 +73,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool Dashing;
 
-    public Vector3 DashOrigin;
+    public Quaternion DashOrigin;
+
+    public Vector3 DashForce;
+
+    public Transform XAngeCamera;
 
     private void Start()
     {
@@ -135,18 +145,35 @@ public class PlayerMovement : MonoBehaviour
 
         if (Dashing)
         {
-            Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
-            Debug.Log(Vector3.Distance(DashOrigin, NextVector));
+            FinalVel.x = FinalVel.y/15f;
+            FinalVel.y = FinalVel.y/10f;
+            FinalVel.z = FinalVel.z/15f;
+
+            FinalVel += transform.right * Data.Input.x*5f;//(DashOrigin * Vector3.right)
+            //Debug.Log(FinalVel);
+            //Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
+            //NextVector = (DashOrigin - NextVector);
+
+            //Debug.Log(NextVector);
+            //if(NextVector.magnitude > 2)
+            //{
+            //    FinalVel = Vector3.zero;   
+            //}
         }
 
-        cc.Move(FinalVel * Time.deltaTime);
+        if(DashForce != Vector3.zero)
+        {
+            FinalVel += DashForce;
+            DashForce -= DashForce * Time.deltaTime * 7f;
+            if(DashForce.magnitude <= 0.5f)
+            {
+                DashForce = Vector3.zero;
+            }
+        }
+
+        cc.Move(FinalVel * Time.unscaledDeltaTime);
 
         MoveVector = Vector3.zero;
-
-        if (Data.Input != Vector3.zero||(IsWall))
-        {
-            OnMoveStarted?.Invoke();
-        }
     }
 
     public void WallExit()
@@ -176,6 +203,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cc.isGrounded)
             {
+                if(YVeolocity <= -30f)
+                {
+                    OnStepped?.Invoke();
+                }
                 WallJump = Vector3.zero;
                 YVeolocity = -1f;
             }
@@ -213,12 +244,15 @@ public class PlayerMovement : MonoBehaviour
         if (this.Data.Input != Data.Input || this.Data.Gravity != Data.Gravity)
         {
             this.Data = Data;
-        }
 
-
-        if (Data.Input == Vector3.zero&&!IsWall)
-        {
-            OnMoveStopped?.Invoke();
+            if (Data.Input == Vector3.zero && !IsWall)
+            {
+                OnMoveStopped?.Invoke();
+            }
+            else
+            {
+                OnMoveStarted?.Invoke();
+            }
         }
     }
 
@@ -239,6 +273,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
-        
+        DashForce = Vector3.zero;
+        float Yaded=0;
+        if (XAngeCamera.eulerAngles.x <= 330f && XAngeCamera.eulerAngles.x >= 280f)
+        {
+            Yaded = (XAngeCamera.eulerAngles.x - 180);
+        }
+        else if (XAngeCamera.eulerAngles.x <= 80 && XAngeCamera.eulerAngles.x >= 30f)
+        {
+            Yaded = (XAngeCamera.eulerAngles.x + 70);
+        }
+        DashForce = transform.forward * (Data.DashPower-Yaded/2f);
+        if(XAngeCamera.eulerAngles.x <= 180)
+        {
+            Yaded = -Yaded;
+        }
+        DashForce.y = Yaded*0.55f;
+        OnDash?.Invoke();
     }
 }

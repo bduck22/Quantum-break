@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraAnimationController : MonoBehaviour
+public class CameraAnimation : MonoBehaviour
 {
     public Animator CamAnimator;
 
@@ -10,6 +10,8 @@ public class CameraAnimationController : MonoBehaviour
     {
         if (walk)
         {
+            CamAnimator.SetBool("Walk", false);
+            CamAnimator.SetTrigger("RightWall");
             walk = false;
         }
     }
@@ -17,6 +19,8 @@ public class CameraAnimationController : MonoBehaviour
     {
         if (walk)
         {
+            CamAnimator.SetBool("Walk", false);
+            CamAnimator.SetTrigger("LeftWall");
             walk = false;
         }
     }
@@ -25,8 +29,16 @@ public class CameraAnimationController : MonoBehaviour
     {
         if (!walk)
         {
+            CamAnimator.SetBool("Walk", true);
             walk = true;
-            
+        }
+    }
+
+    public void BigShake()
+    {
+        if (walk)
+        {
+            CamAnimator.SetTrigger("Big");
         }
     }
 }

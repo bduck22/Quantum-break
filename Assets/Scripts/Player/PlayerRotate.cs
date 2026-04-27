@@ -11,8 +11,8 @@ public class PlayerRotate : MonoBehaviour
 
     public void Rotate(float Sensitivity, Vector2 Input)
     {
-        float mouseX = Input.x * Sensitivity * Time.deltaTime;
-        float mouseY = Input.y * Sensitivity * Time.deltaTime;
+        float mouseX = Input.x * Sensitivity * Time.unscaledDeltaTime;
+        float mouseY = Input.y * Sensitivity * Time.unscaledDeltaTime;
 
         transform.Rotate(Vector3.up * mouseX);
 

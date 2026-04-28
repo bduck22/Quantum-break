@@ -23,6 +23,8 @@ public class MotionController : MonoBehaviour
         PlayerController.OnRightWall += ArmAnimation.SetRightWall;
         PlayerController.OnWalk += ArmAnimation.SetWalk;
         PlayerController.OnAir += ArmAnimation.SetAir;
+
+        PlayerController.PlayerAttack.OnAttack += ArmAnimation.SetAttack;
     }
 
     public void OffChain()
@@ -32,5 +34,7 @@ public class MotionController : MonoBehaviour
         PlayerController.OnRightWall -= ArmAnimation.SetRightWall;
         PlayerController.OnWalk -= ArmAnimation.SetWalk;
         PlayerController.OnAir -= ArmAnimation.SetAir;
+
+        PlayerController.PlayerAttack.OnAttack -= ArmAnimation.SetAttack;
     }
 }

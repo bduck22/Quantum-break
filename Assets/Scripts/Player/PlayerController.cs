@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerRotate PlayerRotate;
 
+    public PlayerAttack PlayerAttack;
+
     [Header("플레이어 능력치")]
     public float Sensitivity;
     public float Speed;
@@ -74,6 +76,8 @@ public class PlayerController : MonoBehaviour
         InputHandler = GetComponent<InputHandler>();
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerRotate = GetComponent<PlayerRotate>();
+        PlayerAttack = GetComponent<PlayerAttack>();
+
         cc = GetComponent<CharacterController>();
 
         groundState = new GroundState(this);
@@ -199,8 +203,23 @@ public class PlayerController : MonoBehaviour
         InputHandler.ClearDash();
     }
 
+    bool IsCanAttack()
+    {
+        if (InputHandler.AttackPressed)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void DefaultControl()
     {
+        if (IsCanAttack())
+        {
+            PlayerAttack.Attack();
+            InputHandler.ClearAttack();
+        }
+
         if (InputHandler.Rotate.magnitude > 0)
         {
             PlayerRotate.Rotate(Sensitivity, InputHandler.Rotate);

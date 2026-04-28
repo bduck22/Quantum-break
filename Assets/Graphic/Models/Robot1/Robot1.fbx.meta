@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7456a5c42181b0940bb66b9804c460ff
+guid: 8321a6db7659ed847aba050889592ff4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,32 +7,32 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot1.004
+      name: Robot1_1
     second: {fileID: 2100000, guid: 11a1839acda9e65479ed3f8325d4d9a5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot2.004
+      name: Robot1_2
     second: {fileID: 2100000, guid: 69e3b1ef99641c24e84299f6501f49d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot3.004
+      name: Robot1_3
     second: {fileID: 2100000, guid: 6fc245fceb69a5d4e84cf3417c4fcedf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot4.004
+      name: Robot1_4
     second: {fileID: 2100000, guid: c746666ac3853d1408677483c3031238, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot5.004
+      name: Robot1_5
     second: {fileID: 2100000, guid: 5cdadda8245b5604ea013a2db2e40c93, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Robot6.004
+      name: Robot1_6
     second: {fileID: 2100000, guid: 890ba56791d1c2940a71300411bd1a87, type: 2}
   materials:
     materialImportMode: 2

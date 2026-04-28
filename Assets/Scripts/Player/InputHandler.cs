@@ -11,6 +11,7 @@ public struct InputData
     public bool DashPressed;
     public bool JumpHeld;
     public bool DashHeld;
+    public bool AttackPressed;
 }
 
 public class InputHandler : MonoBehaviour
@@ -24,6 +25,8 @@ public class InputHandler : MonoBehaviour
     public bool JumpHeld => CurrentInput.JumpHeld;
 
     public bool DashHeld => CurrentInput.DashHeld;
+
+    public bool AttackPressed => CurrentInput.AttackPressed;
 
     private PlayerInputActions InputActions;
 
@@ -51,6 +54,8 @@ public class InputHandler : MonoBehaviour
         InputActions.Player.Dash.started += OnDash;
         InputActions.Player.Dash.canceled += OnDash;
 
+        InputActions.Player.Attack.started += OnAttack;
+
         //InputActions.Player.Attack.started +=
     }
 
@@ -67,6 +72,8 @@ public class InputHandler : MonoBehaviour
 
         InputActions.Player.Dash.started -= OnDash;
         InputActions.Player.Dash.canceled -= OnDash;
+
+        InputActions.Player.Attack.started -= OnAttack;
 
         InputActions.Disable();
     }
@@ -104,6 +111,16 @@ public class InputHandler : MonoBehaviour
         {
             CurrentInput.DashHeld = false;
         }
+    }
+
+    public void OnAttack(InputAction.CallbackContext ctx)
+    {
+        CurrentInput.AttackPressed = true;
+    }
+
+    public void ClearAttack()
+    {
+        CurrentInput.AttackPressed = false;
     }
 
     public void ClearJump()

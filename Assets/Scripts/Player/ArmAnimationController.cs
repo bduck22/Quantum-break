@@ -46,4 +46,9 @@ public class ArmAnimationController : MonoBehaviour
             walk = false;
         }
     }
+
+    public void SetAttack()
+    {
+        ArmAnimator.SetTrigger("Attack");
+    }
 }

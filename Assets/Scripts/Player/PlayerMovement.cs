@@ -258,7 +258,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(float JumpPower)
     {
-        Debug.Log("Jump!!!");
         if (IsWall)
         {
             WallJump *= JumpPower*0.8f;

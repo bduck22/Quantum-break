@@ -147,21 +147,19 @@ public class PlayerController : MonoBehaviour
 
     bool IsCanJump()
     {
-        if (!InputHandler.JumpPressed)
-        {
-            return false;
-        }
-
         if (CurrentState == PlayerState.Ground)
         {
-            if (jumpbuffer == 0 && (cc.isGrounded || GroundCoyoteTime <= GroundCoyoteTimer))
+            if (InputHandler.JumpPressed && cc.isGrounded&&jumpbuffer == 0)
             {
+                Debug.Log("CASE 1");
                 return true;
             }
-            if (jumpbuffer != 0 && (cc.isGrounded))
-            {
-                return true;
-            }
+            //else if (jumpbuffer != 0 && (cc.isGrounded))
+            //{
+            //    Debug.Log("CASE 2");
+            //    return true;
+            //}
+
 
             return false;
         }
@@ -275,10 +273,18 @@ public class PlayerController : MonoBehaviour
         else jumpbuffer = 0;
 
 
+        if (InputHandler.JumpPressed)
+        {
+            if (CurrentState == PlayerState.Air)
+            {
+                jumpbuffer = JumpBufferTime;
+                InputHandler.ClearJump();
+            }
+        }
+
         if (IsCanJump())
         {
             StateMachine.CurrentState.Jump();
-            if (CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
             InputHandler.ClearJump();
         }
 
@@ -312,6 +318,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (jumpbuffer > 0)
                 {
+                    jumpbuffer = 0;
                     PlayerMovement.gravity();
                     StateMachine.CurrentState.Jump();
                 }

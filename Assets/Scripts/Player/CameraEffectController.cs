@@ -14,11 +14,17 @@ public class CameraEffectController : MonoBehaviour
 
     public PostProcessingController PostProcessingController;
 
+    public CameraHighlightLineDraw CameraHighlightLineDraw;
+
+    public PlayerForwardEffectController PlayerForwardEffectController;
+
     private void Awake()
     {
         CameraShake = GetComponent<CameraShake>();
         FOV = GetComponent<FOV>();
         PostProcessingController = GetComponent<PostProcessingController>();
+        CameraHighlightLineDraw = GetComponent<CameraHighlightLineDraw>();
+        PlayerForwardEffectController = GetComponent<PlayerForwardEffectController>();
     }
 
     private void OnEnable()
@@ -42,6 +48,8 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash += FOV.DashFOV;
         PlayerMovement.OnDash += FOV.BackFOV;
         PlayerMovement.OnDash += PostProcessingController.DashFilterOff;
+        PlayerMovement.OnDash += CameraHighlightLineDraw.OnDash;
+        PlayerMovement.OnDash += PlayerForwardEffectController.VfxPlay;
 
         PlayerMovement.OnStepped += CameraAnimation.BigShake;
 
@@ -64,6 +72,8 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash -= FOV.DashFOV;
         PlayerMovement.OnDash -= FOV.BackFOV;
         PlayerMovement.OnDash -= PostProcessingController.DashFilterOff;
+        PlayerMovement.OnDash -= CameraHighlightLineDraw.OnDash;
+        PlayerMovement.OnDash -= PlayerForwardEffectController.VfxPlay;
 
         PlayerMovement.OnStepped -= CameraAnimation.BigShake;
 

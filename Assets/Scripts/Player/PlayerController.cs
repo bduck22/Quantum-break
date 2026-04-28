@@ -139,29 +139,54 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float jumpbuffer;
+    [SerializeField] float jumpbuffer;
 
     bool IsCanJump()
     {
+        if (!InputHandler.JumpPressed)
+        {
+            return false;
+        }
+
         if (CurrentState == PlayerState.Ground)
         {
             if (jumpbuffer == 0 && (cc.isGrounded || GroundCoyoteTime <= GroundCoyoteTimer))
             {
                 return true;
             }
-            if (jumpbuffer != 0)
-            {
-                return true;
-            }
-            if (!InputHandler.DashHeld)
+            if (jumpbuffer != 0 && (cc.isGrounded))
             {
                 return true;
             }
 
             return false;
         }
+        else if (CurrentState == PlayerState.Wall)
+        {
+            return true;
+        }
 
-        return true;
+        return false;
+
+        //if (CurrentState == PlayerState.Ground)
+        //{
+        //    if (jumpbuffer == 0 && (cc.isGrounded || GroundCoyoteTime <= GroundCoyoteTimer))
+        //    {
+        //        return true;
+        //    }
+        //    if (jumpbuffer != 0)
+        //    {
+        //        return true;
+        //    }
+        //    if (!InputHandler.DashHeld)
+        //    {
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
+
+        //return true;
     }
 
     void DashUp()
@@ -230,14 +255,12 @@ public class PlayerController : MonoBehaviour
         }
         else jumpbuffer = 0;
 
-        if (InputHandler.JumpPressed && jumpbuffer == 0)
+
+        if (IsCanJump())
         {
-            if (IsCanJump())
-            {
-                StateMachine.CurrentState.Jump();
-                if (CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
-                InputHandler.ClearJump();
-            }
+            StateMachine.CurrentState.Jump();
+            if (CurrentState != PlayerState.Wall) jumpbuffer = JumpBufferTime;
+            InputHandler.ClearJump();
         }
 
         StateMachine.CurrentState.Move();
@@ -284,7 +307,7 @@ public class PlayerController : MonoBehaviour
     }
 
     float GroundCoyoteTimer;
-    [SerializeField] float WallCoyoteTimer;
+    float WallCoyoteTimer;
     float DashReLoadTimer;
 
     //상태 변경 

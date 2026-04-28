@@ -288,6 +288,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Yaded = -Yaded;
         }
+        if(YVeolocity < 0) YVeolocity = 0;
         DashForce.y = Yaded*0.55f;
         OnDash?.Invoke();
     }

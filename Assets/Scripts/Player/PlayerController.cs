@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public int WallDirection;
 
+    bool CanWalkJump;
+
     [Header("동작 실행 스크립트")]
     public PlayerMovement PlayerMovement;
 
@@ -147,24 +149,23 @@ public class PlayerController : MonoBehaviour
 
     bool IsCanJump()
     {
+        if (InputHandler.DashHeld || !InputHandler.JumpPressed)
+        {
+            return false;
+        }
+
         if (CurrentState == PlayerState.Ground)
         {
-            if (InputHandler.JumpPressed && cc.isGrounded&&jumpbuffer == 0)
+            if ( cc.isGrounded&&jumpbuffer == 0)
             {
-                Debug.Log("CASE 1");
                 return true;
             }
-            //else if (jumpbuffer != 0 && (cc.isGrounded))
-            //{
-            //    Debug.Log("CASE 2");
-            //    return true;
-            //}
-
 
             return false;
         }
-        else if (CurrentState == PlayerState.Wall)
+        else if (CurrentState==PlayerState.Wall&&CanWalkJump)
         {
+            CanWalkJump = false;
             return true;
         }
 
@@ -342,6 +343,7 @@ public class PlayerController : MonoBehaviour
         //땅에 닿아있는지 확인
         if (cc.isGrounded)
         {
+            CanWalkJump = false;
             //닿았으면 땅 상태로 변경
             GroundCoyoteTimer = 0;
             WallCoyoteTimer = 0;
@@ -470,6 +472,8 @@ public class PlayerController : MonoBehaviour
                     //    return false;
                     //}
                     WallDirection = right;
+
+                    CanWalkJump = true;
 
                     //현재 상태가 벽이 아닐 때 상태 변경
                     Walling = true;

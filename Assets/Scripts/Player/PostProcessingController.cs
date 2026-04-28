@@ -12,7 +12,7 @@ public class PostProcessingController : MonoBehaviour
     LensDistortion lensDistortion;
     public float LensUpSpeed;
     public float LensDownSpeed;
-    bool lensoff;
+    public bool lensoff;
 
     [Header("모션블러")]
     MotionBlur motionBlur;
@@ -22,7 +22,7 @@ public class PostProcessingController : MonoBehaviour
     Vignette vignette;
     public float VignetteUpSpeed;
     public float VignetteDownSpeed;
-    bool vigoff;
+    public bool vigoff;
 
     [Header("흐림효과")]
     DepthOfField depthOfField;
@@ -41,19 +41,21 @@ public class PostProcessingController : MonoBehaviour
 
     public void DashFilterOn()
     {
+        vignette.intensity.value = 0;
+        lensDistortion.intensity.value = 0;
         lensDistortion.active = true;
+        lensoff = false;
         vignette.active = true;
         depthOfField.active = true;
-        vignette.intensity.value = 0;
     }
 
     public void DashFilterOff()
     {
-        lensoff = true;
-        vigoff = true;
         lensDistortion.intensity.value = 0.4f;
         motionBlur.intensity.value = 0.4f;
         motionBlur.clamp.value = 0.15f;
+        lensoff = true;
+        vigoff = true;
     }
 
     private void Update()
@@ -62,7 +64,6 @@ public class PostProcessingController : MonoBehaviour
         {
             if (lensoff)
             {
-
                 lensDistortion.intensity.value -= Time.unscaledDeltaTime*LensDownSpeed;
                 if (lensDistortion.intensity.value <= 0)
                 {

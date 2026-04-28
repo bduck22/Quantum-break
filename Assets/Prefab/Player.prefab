@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
   YAmplitude: 0.06
-  XAmplitude: 0.03
+  XAmplitude: 0.045
   YSpeed: 15
   XSpeed: 12
   BaseY: 1.5
@@ -335,10 +335,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PostProcessingController
   LensUpSpeed: 1
-  LensDownSpeed: 0.5
+  LensDownSpeed: 1
+  lensoff: 0
   MotionDownSpeed: 0.5
   VignetteUpSpeed: 1.5
   VignetteDownSpeed: 2
+  vigoff: 0
 --- !u!114 &3900089082620692678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +919,7 @@ MonoBehaviour:
   WallRunDistance: 1
   WallCancelAngle: 70
   WallIniputAngle: 90
-  JumpBufferTime: 0.3
+  JumpBufferTime: 0.5
   WallFrontCheckDistance: 3
   DashReloadTime: 0.5
   SpawnPoint: {fileID: 0}

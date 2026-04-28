@@ -36419,6 +36419,10 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1564789574}
+    - target: {fileID: 7574219593190951933, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
+      propertyPath: JumpBufferTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8551730711776576062, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       propertyPath: m_Name
       value: Player

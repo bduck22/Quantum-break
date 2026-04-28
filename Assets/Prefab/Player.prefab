@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 7574219593190951933}
   - component: {fileID: 6720759181549599553}
   - component: {fileID: 1508020604561100035}
+  - component: {fileID: 8668031995856294629}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -877,6 +878,7 @@ MonoBehaviour:
     DashPressed: 0
     JumpHeld: 0
     DashHeld: 0
+    AttackPressed: 0
 --- !u!114 &7574219593190951933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +899,7 @@ MonoBehaviour:
   WallDirection: 0
   PlayerMovement: {fileID: 0}
   PlayerRotate: {fileID: 0}
+  PlayerAttack: {fileID: 8668031995856294629}
   Sensitivity: 60
   Speed: 12
   JumpPower: 16
@@ -949,6 +952,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MotionController
   PlayerController: {fileID: 7574219593190951933}
   ArmAnimation: {fileID: 7032851300679098436}
+--- !u!114 &8668031995856294629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551730711776576062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae2a365d7f166f4cbcb8c54c6f3caac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
 --- !u!1 &8835396000652473016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5b6178fb44dc2e4469a8c9c2c8fd05bc, type: 2}
     - target: {fileID: 4704358522521731755, guid: c3546b2f491bdbb4caab54b00a07da1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.374
+      value: 0.564
       objectReference: {fileID: 0}
     - target: {fileID: 4704358522521731755, guid: c3546b2f491bdbb4caab54b00a07da1f, type: 3}
       propertyPath: m_LocalPosition.y

@@ -18,7 +18,6 @@ public class MotionController : MonoBehaviour
 
     public void OnChain()
     {
-
         PlayerController.OnLeftWall += ArmAnimation.SetLeftWall;
         PlayerController.OnRightWall += ArmAnimation.SetRightWall;
         PlayerController.OnWalk += ArmAnimation.SetWalk;

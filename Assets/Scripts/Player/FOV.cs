@@ -6,16 +6,22 @@ public class FOV : MonoBehaviour
 {
     Camera cam;
 
+    [Header("기본 FOV")]
     public float DefaultFOV;
 
+    [Header("달릴 때 추가되는 FOV 범위")]
     public float FOVRange;
 
+    [Header("대쉬할 때 추가되는 FOV")]
     public float FOVDash;
 
+    [Header("FOV Up 속도")]
     public float FOVUpSpeed;
 
+    [Header("FOV Back 속도")]
     public float FOVBackSpeed;
 
+    [Header("현재 목표 FOV")]
     public float TargetFOV;
 
     private void Start()

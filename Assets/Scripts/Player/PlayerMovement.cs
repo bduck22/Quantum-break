@@ -26,21 +26,56 @@ public class PlayerMovement : MonoBehaviour
 {
     CharacterController cc;
 
+    [Header("카메라")]    
     public Transform CameraTransform;
 
     public CameraShake CamShake;
 
+    public Transform XAngeCamera;
+
+    [Header("현재 중력")]
     public float YVeolocity;
 
+    [Header("이동 상태 확인용")]
     public bool isHoldingJump;
 
     public bool IsWall;
 
     public float HoldTime=0;
 
+    public float WallExitAngle;
+
+    [Header("최대/최소 중력")]
     public float MaxGravity;
 
     public float MinGravity;
+
+    [Header("벽 타기 시 위로 올라가는 값")]
+    public float WallUpAdd;
+
+    Vector3 Dir;
+
+    [Header("벽의 바깥쪽 방향")]
+    public Vector3 WallJump;
+
+    [Header("현재 미끄러지는 값")]
+    public Vector3 Velocity;
+
+    [Header("바닥에서 이동할 때 가속/감속")]
+    public float accel;
+    public float decel;
+
+    [Header("대시 보정값")]
+
+    public bool Dashing;
+
+    public Quaternion DashOrigin;
+
+    public Vector3 DashForce;
+
+    float wallexittime;
+
+    Vector3 MoveVector;
 
     public event Action OnMoveStarted;
 
@@ -53,32 +88,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerMovementData Data;
 
     [SerializeField] Vector3 targetWallRunDir;
-
-    public float WallUpAdd;
-
-    Vector3 Dir;
-
-    public Vector3 WallJump;
-
-    Vector3 MoveVector;
-
-    public Vector3 Velocity;
-
-    public float WallExitAngle;
-
-    public float accel;
-    public float decel;
-
-    float wallexittime;
-
-    public bool Dashing;
-
-    public Quaternion DashOrigin;
-
-    public Vector3 DashForce;
-
-    public Transform XAngeCamera;
-
     private void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -260,14 +269,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsWall)
         {
-            WallJump *= JumpPower*0.8f;
+            WallJump *= JumpPower;
         }
         else
         {
             WallJump = Vector3.zero;
         }
 
-        YVeolocity += JumpPower;
+        YVeolocity += JumpPower*0.95f;
         IsWall = false;
     }
 

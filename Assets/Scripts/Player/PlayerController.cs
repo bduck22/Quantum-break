@@ -12,21 +12,23 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Vector3 PlayerLookDir => Camera.main.transform.forward;
 
-    public PlayerState CurrentState;
-
-    public Transform RayTransform;
-
     GroundState groundState;
     AirState airState;
     WallState wallState;
 
-    public bool Walling;
+    bool CanWalkJump;
 
     public RaycastHit hit;
 
+    [Header("현재 상태")]
+    public PlayerState CurrentState;
+
+    [Header("벽 타기 관련")]
+    public bool Walling;
+
     public int WallDirection;
 
-    bool CanWalkJump;
+    public Transform RayTransform;
 
     [Header("동작 실행 스크립트")]
     public PlayerMovement PlayerMovement;
@@ -36,7 +38,6 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack PlayerAttack;
 
     [Header("플레이어 능력치")]
-    public float Sensitivity;
     public float Speed;
 
     public float JumpPower;
@@ -63,7 +64,11 @@ public class PlayerController : MonoBehaviour
     public float WallFrontCheckDistance;
     public float DashReloadTime;
 
+    [Header("플레이어 시작 위치")]
     public Transform SpawnPoint;
+
+    [Header("게임 설정치")]
+    public float Sensitivity;
 
     //플레이어 이벤트
     public event Action OnRightWall;

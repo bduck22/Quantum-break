@@ -373,6 +373,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerForwardEffectController
   vfx: {fileID: 4014599293237125160}
   duration: 0.2
+--- !u!1 &3532669536259563408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174167521970444486}
+  - component: {fileID: 4321063556089920600}
+  m_Layer: 7
+  m_Name: HitCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174167521970444486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532669536259563408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3188472417899536698}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4321063556089920600
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532669536259563408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &5080094725683402066
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +822,7 @@ Transform:
   - {fileID: 6177523702876492751}
   - {fileID: 4621699400916427813}
   - {fileID: 7446084044337446527}
+  - {fileID: 174167521970444486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5617107693929758237
@@ -808,12 +864,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   CameraTransform: {fileID: 4350426050745794156}
   CamShake: {fileID: 9157483264075000984}
+  XAngeCamera: {fileID: 4350426050745794156}
   YVeolocity: 0
   isHoldingJump: 0
   IsWall: 0
   HoldTime: 0
+  WallExitAngle: 70
   MaxGravity: 100
   MinGravity: -100
+  WallUpAdd: 0
+  WallJump: {x: 0, y: 0, z: 0}
+  Velocity: {x: 0, y: 0, z: 0}
+  accel: 60
+  decel: 50
+  Dashing: 0
+  DashOrigin: {x: 0, y: 0, z: 0, w: 0}
+  DashForce: {x: 0, y: 0, z: 0}
   Data:
     Speed: 0
     Input: {x: 0, y: 0, z: 0}
@@ -821,16 +887,6 @@ MonoBehaviour:
     YAdd: 0
     DashPower: 0
   targetWallRunDir: {x: 0, y: 0, z: 0}
-  WallUpAdd: 0
-  WallJump: {x: 0, y: 0, z: 0}
-  Velocity: {x: 0, y: 0, z: 0}
-  WallExitAngle: 70
-  accel: 60
-  decel: 50
-  Dashing: 0
-  DashOrigin: {x: 0, y: 0, z: 0, w: 0}
-  DashForce: {x: 0, y: 0, z: 0}
-  XAngeCamera: {fileID: 4350426050745794156}
 --- !u!114 &5514819461216319374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,13 +952,12 @@ MonoBehaviour:
   InputHandler: {fileID: 0}
   cc: {fileID: 0}
   CurrentState: 0
-  RayTransform: {fileID: 4621699400916427813}
   Walling: 0
   WallDirection: 0
+  RayTransform: {fileID: 4621699400916427813}
   PlayerMovement: {fileID: 0}
   PlayerRotate: {fileID: 0}
   PlayerAttack: {fileID: 8668031995856294629}
-  Sensitivity: 60
   Speed: 12
   JumpPower: 16
   DashPower: 80
@@ -923,7 +978,7 @@ MonoBehaviour:
   WallFrontCheckDistance: 3
   DashReloadTime: 0.5
   SpawnPoint: {fileID: 0}
-  jumpbuffer: 0
+  Sensitivity: 60
 --- !u!114 &6720759181549599553
 MonoBehaviour:
   m_ObjectHideFlags: 0

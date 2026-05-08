@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool Dashing;
 
-    public Quaternion DashOrigin;
+    public Vector3 DashOrigin;
 
     public Vector3 DashForce;
 
@@ -158,16 +158,27 @@ public class PlayerMovement : MonoBehaviour
             FinalVel.y = FinalVel.y/10f;
             FinalVel.z = FinalVel.z/15f;
 
-            FinalVel += transform.right * Data.Input.x*5f;//(DashOrigin * Vector3.right)
-            //Debug.Log(FinalVel);
-            //Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
-            //NextVector = (DashOrigin - NextVector);
+            FinalVel += transform.right * Data.Input.x*5f;//
+            Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
+            NextVector.y = 0;
+            Vector3 DashOrigin = this.DashOrigin;
+            DashOrigin.y = 0;
+            NextVector = (DashOrigin - NextVector);
 
-            //Debug.Log(NextVector);
-            //if(NextVector.magnitude > 2)
-            //{
-            //    FinalVel = Vector3.zero;   
-            //}
+            if (NextVector.magnitude > 6f)
+            {
+                Vector3 next = NextVector;
+                NextVector = transform.position + FinalVel * Time.deltaTime * -1;
+                NextVector.y = 0;
+                DashOrigin = this.DashOrigin;
+                DashOrigin.y = 0;
+                NextVector = (DashOrigin - NextVector);
+                
+                if(next.magnitude > NextVector.magnitude)
+                {
+                    FinalVel = Vector3.zero;
+                }
+            }
         }
 
         if(DashForce != Vector3.zero)
@@ -229,8 +240,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetWallData(RaycastHit hit)
     {
-        IsWall = true;
-
         Vector3 wallNormal = hit.normal;
         Vector3 wallDir1 = Vector3.Cross(Vector3.up, wallNormal).normalized;
         Vector3 wallDir2 = -wallDir1;
@@ -300,5 +309,10 @@ public class PlayerMovement : MonoBehaviour
         if(YVeolocity < 0) YVeolocity = 0;
         DashForce.y = Yaded*0.55f;
         OnDash?.Invoke();
+    }
+
+    public void AttackDash()
+    {
+        //DashForce += transform.forward * 12.5f;
     }
 }

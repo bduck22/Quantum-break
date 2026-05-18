@@ -4,7 +4,7 @@ using System;
 
 public interface MovementAI
 {
-    public void OnStart();
+    public void OnStart(EnemyInfomation Info);
     public void OnMove();
     public void OnStop();
 }
@@ -17,18 +17,20 @@ public abstract class MovementAIBase : MonoBehaviour, MovementAI
 
     public event Action OnWayPoint;
 
-    public bool IsMoving;
-    public virtual void OnStart()
-    {
-        IsMoving = true;
-    }
-    public virtual void OnMove()
-    {
+    public bool FinalArrived;
 
-    }
-    public virtual void OnStop()
+    public bool IsMoving;
+    public abstract void OnStart(EnemyInfomation Info);
+    public abstract void OnMove();
+    public abstract void OnStop();
+    public virtual void Init(List<Transform> wayPoints)
     {
-        IsMoving = false;
+        WayPoints = wayPoints;
+        CurrentWayPIndex = 0;
     }
-    public abstract void Init();
+
+    protected void InvokeOnWayPoint()
+    {
+        OnWayPoint?.Invoke();
+    }
 }

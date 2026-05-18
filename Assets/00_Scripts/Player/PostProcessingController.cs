@@ -24,6 +24,10 @@ public class PostProcessingController : MonoBehaviour
     public float VignetteDownSpeed;
     public bool vigoff;
 
+    [Header("화면 색 분리")]
+    ChromaticAberration chromaticAberration;
+    public float ChromaticDownSpeed;
+
     [Header("흐림효과")]
     DepthOfField depthOfField;
 
@@ -37,6 +41,18 @@ public class PostProcessingController : MonoBehaviour
         volume.profile.TryGet(out vignette);
         volume.profile.TryGet(out depthOfField);
         volume.profile.TryGet(out colorAdjustments);
+        volume.profile.TryGet(out chromaticAberration);
+    }
+
+    private void Update()
+    {
+        SetLensDistortion();
+
+        SetMotionBlur();
+
+        SetVignette();
+
+        SetChromatic();
     }
 
     public void DashFilterOn()
@@ -56,53 +72,71 @@ public class PostProcessingController : MonoBehaviour
         motionBlur.clamp.value = 0.15f;
         lensoff = true;
         vigoff = true;
+        chromaticAberration.intensity.value = 0.8f;
     }
 
-    private void Update()
+    void SetChromatic()
+    {
+        if (chromaticAberration.intensity.value > 0)
+        {
+            chromaticAberration.intensity.value -= Time.unscaledDeltaTime * ChromaticDownSpeed;
+        }
+        else
+        {
+            chromaticAberration.intensity.value = 0;
+        }
+    }
+
+    void SetLensDistortion()
     {
         if (lensDistortion.active)
         {
             if (lensoff)
             {
-                lensDistortion.intensity.value -= Time.unscaledDeltaTime*LensDownSpeed;
+                lensDistortion.intensity.value -= Time.unscaledDeltaTime * LensDownSpeed;
                 if (lensDistortion.intensity.value <= 0)
                 {
                     lensDistortion.active = false;
                     lensoff = false;
                 }
             }
-            else if(lensDistortion.intensity.value <= 0.4f)
+            else if (lensDistortion.intensity.value <= 0.4f)
             {
-                lensDistortion.intensity.value += Time.unscaledDeltaTime*LensUpSpeed;
+                lensDistortion.intensity.value += Time.unscaledDeltaTime * LensUpSpeed;
             }
         }
+    }
 
-
-        if(motionBlur.intensity.value > 0.3f)
+    void SetMotionBlur()
+    {
+        if (motionBlur.intensity.value > 0.3f)
         {
-            motionBlur.intensity.value -= Time.unscaledDeltaTime*MotionDownSpeed;
+            motionBlur.intensity.value -= Time.unscaledDeltaTime * MotionDownSpeed;
         }
-        else if(motionBlur.intensity.value != 0.3f)
-        { 
+        else if (motionBlur.intensity.value != 0.3f)
+        {
             motionBlur.intensity.value = 0.3f;
         }
 
 
-        if(motionBlur.clamp.value > 0.03f)
+        if (motionBlur.clamp.value > 0.03f)
         {
             motionBlur.clamp.value -= Time.unscaledDeltaTime * MotionDownSpeed;
         }
-        else if(motionBlur.clamp.value != 0.03f)
+        else if (motionBlur.clamp.value != 0.03f)
         {
             motionBlur.clamp.value = 0.03f;
         }
+    }
 
+    void SetVignette()
+    {
         if (vignette.active)
         {
             if (vigoff)
             {
-                vignette.intensity.value -= Time.unscaledDeltaTime*VignetteDownSpeed;
-                if(vignette.intensity.value <= 0)
+                vignette.intensity.value -= Time.unscaledDeltaTime * VignetteDownSpeed;
+                if (vignette.intensity.value <= 0)
                 {
                     colorAdjustments.colorFilter.overrideState = false;
                     depthOfField.active = false;
@@ -110,9 +144,9 @@ public class PostProcessingController : MonoBehaviour
                     vigoff = false;
                 }
             }
-            else if(vignette.intensity.value < 0.5f)
+            else if (vignette.intensity.value < 0.5f)
             {
-                vignette.intensity.value += Time.unscaledDeltaTime*VignetteUpSpeed;
+                vignette.intensity.value += Time.unscaledDeltaTime * VignetteUpSpeed;
             }
             else if (!colorAdjustments.colorFilter.overrideState)
             {

@@ -18,6 +18,8 @@ public class CameraEffectController : MonoBehaviour
 
     public PlayerForwardEffectController PlayerForwardEffectController;
 
+    public ScreenGhostEffect ScreenGhostEffect;
+
     private void Awake()
     {
         CameraShake = GetComponent<CameraShake>();
@@ -25,6 +27,7 @@ public class CameraEffectController : MonoBehaviour
         PostProcessingController = GetComponent<PostProcessingController>();
         CameraHighlightLineDraw = GetComponent<CameraHighlightLineDraw>();
         PlayerForwardEffectController = GetComponent<PlayerForwardEffectController>();
+        ScreenGhostEffect = GetComponent<ScreenGhostEffect>();  
     }
 
     private void OnEnable()
@@ -50,6 +53,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash += PostProcessingController.DashFilterOff;
         PlayerMovement.OnDash += CameraHighlightLineDraw.OnDash;
         PlayerMovement.OnDash += PlayerForwardEffectController.VfxPlay;
+        PlayerMovement.OnDash += ScreenGhostEffect.PlayEffect;
 
         PlayerMovement.OnStepped += CameraAnimation.BigShake;
 
@@ -74,6 +78,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash -= PostProcessingController.DashFilterOff;
         PlayerMovement.OnDash -= CameraHighlightLineDraw.OnDash;
         PlayerMovement.OnDash -= PlayerForwardEffectController.VfxPlay;
+        PlayerMovement.OnDash -= ScreenGhostEffect.PlayEffect;
 
         PlayerMovement.OnStepped -= CameraAnimation.BigShake;
 

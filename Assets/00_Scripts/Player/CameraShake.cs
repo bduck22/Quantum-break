@@ -24,13 +24,6 @@ public class CameraShake : MonoBehaviour
 
     bool shaking;
 
-    [Header("착지 시 추가되는 세기")]
-    public float StepYT;
-    public float StepXT;
-
-    [Header("착지 시 추가되는 속도")]
-    public float StepSpeed;
-
     void Start()
     {
         BaseY = transform.localPosition.y;

@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     public float JumpBufferTime;
     public float WallFrontCheckDistance;
     public float DashReloadTime;
+    public float AttackBufferTime;
+
+    float AttackBufferTimer;
 
     [Header("플레이어 시작 위치")]
     public Transform SpawnPoint;
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
         if (WallDirection == 0)
         {
-            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= -22)
+            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= -20)
             {
                 OnAir?.Invoke();
             }
@@ -190,11 +193,25 @@ public class PlayerController : MonoBehaviour
 
     bool IsCanAttack()
     {
+        if(AttackBufferTimer > 0)
+        {
+            if (PlayerMovement.Dashing)
+            {
+                AttackBufferTimer -= Time.unscaledDeltaTime;
+            }
+            else
+            {
+                AttackBufferTimer = 0;
+                InputHandler.ClearAttack();
+                return true;
+            }
+        }
         if (InputHandler.AttackPressed)
         {
             if (PlayerMovement.Dashing)
             {
                 InputHandler.ClearAttack();
+                AttackBufferTimer = AttackBufferTime;
                 return false;
             }
             return true;

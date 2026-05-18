@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
     CharacterController cc;
 
     [Header("카메라")]    
-    public Transform CameraTransform;
-
     public CameraShake CamShake;
 
     public Transform XAngeCamera;
@@ -191,9 +189,34 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (CheckBlocked((FinalVel).normalized))
+        {
+            MoveVector.x = 0;
+            MoveVector.z = 0;
+            return;
+        }
+
         cc.Move(FinalVel * Time.unscaledDeltaTime);
 
         MoveVector = Vector3.zero;
+    }
+
+    bool CheckBlocked(Vector3 dir)
+    {
+        int layer = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position + new Vector3(0,0.4f,0), dir, out hit,  3, ~layer))
+        {
+            Vector3 hitP = hit.transform.position;
+            Vector3 distance = hitP - transform.position;
+            //distance.y = 0;
+            Debug.Log(distance.sqrMagnitude);
+            if(distance.sqrMagnitude <= 1.65f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void WallExit()
@@ -204,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity() {
         if (IsWall)
         {
-            float viewAlignment = Vector3.Dot(CameraTransform.forward, targetWallRunDir);
+            float viewAlignment = Vector3.Dot(XAngeCamera.forward, targetWallRunDir);
 
             float minDot = Mathf.Cos(WallExitAngle * Mathf.Deg2Rad);
 
@@ -223,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cc.isGrounded)
             {
-                if(YVeolocity <= -30f)
+                if(YVeolocity <= -20f)
                 {
                     OnStepped?.Invoke();
                 }
@@ -244,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 wallDir1 = Vector3.Cross(Vector3.up, wallNormal).normalized;
         Vector3 wallDir2 = -wallDir1;
 
-        Vector3 viewDir = CameraTransform.forward;
+        Vector3 viewDir = XAngeCamera.forward;
         viewDir.y = 0f;
         viewDir.Normalize();
 

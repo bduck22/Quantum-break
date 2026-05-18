@@ -6,6 +6,6 @@ public class WaveSpawnData : ScriptableObject
     public GameObject EnemyPrefab;
     public int SpawnCount;
     public float SpawnDelay;
-    public int SpawnPointIndex;
+//    public int SpawnPointIndex;
 }
 

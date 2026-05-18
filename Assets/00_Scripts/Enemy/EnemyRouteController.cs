@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyRouteController : MonoBehaviour
@@ -8,7 +9,17 @@ public class EnemyRouteController : MonoBehaviour
 
     public List<Route> Routes;
 
+    public int CurrentWave;
+
+    public Color LineColor;
+
+    //[HideInInspector]
+    public PlayerController player;
+    public Transform Core;
+
     LineRenderer lineRenderer;
+
+    [SerializeField] bool Spawning;
 
     private void Start()
     {
@@ -38,8 +49,56 @@ public class EnemyRouteController : MonoBehaviour
         LoadRoute(0);
     }
 
-    void LoadRoute(int currentWave)
+    float linefalsetime = 0;
+
+    float spawningtime = 0;
+
+    private void Update()
     {
+        if (Spawning)
+        {
+            linefalsetime += Time.deltaTime;
+            lineRenderer.material.color -= Color.black * Time.deltaTime;
+            if(lineRenderer.material.color.a <= 0)
+            {
+                lineRenderer.material.color = new Color(0,0,0,0);
+            }
+            if (linefalsetime > 2f)
+            {
+                lineRenderer.enabled = false;
+                lineRenderer.positionCount = 0;
+                Spawning = false;
+            }
+
+            if(spawningtime < WaveSpawnDatas[CurrentWave].SpawnDelay)
+            {
+                spawningtime += Time.deltaTime;
+            }
+            else
+            {
+                spawningtime = 0;
+                Spawn();
+            }
+        }
+
+        if (lineRenderer.enabled)
+        {
+            lineRenderer.material.mainTextureOffset -= new Vector2(3 * Time.deltaTime, 0);
+            lineRenderer.material.mainTextureOffset = new Vector2(Mathf.Clamp(lineRenderer.material.mainTextureOffset.x, -1, 0), lineRenderer.material.mainTextureOffset.y);
+            if (lineRenderer.material.mainTextureOffset.x <= -1)
+            {
+                lineRenderer.material.mainTextureOffset = new Vector2(0, lineRenderer.material.mainTextureOffset.y);
+            }
+        }
+    }
+
+    public void LoadRoute(int currentWave)
+    {
+        CurrentWave = currentWave;
+
+        lineRenderer.enabled = true;
+        lineRenderer.material.color = LineColor;
+
         lineRenderer.positionCount = Routes[currentWave].WayPoints.Length;
 
         for(int i = 0; i< Routes[currentWave].WayPoints.Length; i++)
@@ -47,11 +106,25 @@ public class EnemyRouteController : MonoBehaviour
             Vector3 P = new Vector3(Routes[currentWave].WayPoints[i].position.x, Routes[currentWave].WayPoints[i].position.y + 0.5f, Routes[currentWave].WayPoints[i].position.z);
             lineRenderer.SetPosition(i, P);
         }
+
+        SpawnStart();
     }
 
-    public void Spawn(int index)
+    public void SpawnStart()
     {
-        //Instantiate
+        Spawning = true;
+        linefalsetime = 0;
+        spawningtime = 0;
+    }
+
+    void Spawn()
+    {
+        EnemyController enemy = Instantiate(WaveSpawnDatas[CurrentWave].EnemyPrefab, Routes[CurrentWave].WayPoints[0].position, Quaternion.identity).GetComponent<EnemyController>();
+        List<Transform> WayPoints = Routes[CurrentWave].WayPoints.ToList();
+        enemy.WayPoints = WayPoints;
+        enemy.Player = player;
+        enemy.Core = Core;
+        enemy.EnemyInit();
     }
 }
 

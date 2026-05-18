@@ -5,7 +5,7 @@ public class MobEyeChecker : MonoBehaviour
 {
     public Transform Head;
     [HideInInspector]
-    public PlayerController Player;
+    public Transform Target;
 
     [Header("최대 인식 범위")]
     public float MaxCheckDistance;
@@ -18,21 +18,48 @@ public class MobEyeChecker : MonoBehaviour
 
     [Header("타겟팅 온")]
     public bool LockOn;
+
+    [Header("이동전환 속도")]
+    public float StopToMoveTimer;
+    [HideInInspector]
+    public float lockontime;
+
     public void Init(PlayerController Player)
     {
-        this.Player = Player;
+        this.Target = Player.transform;
     }
 
-    public bool CheckPlayerInEye()
+    public bool CheckTargetInEye()
     {
-        Vector3 targetPosition = Player.transform.position + new Vector3(0, Head.localPosition.y, 0);
+        Vector3 targetPosition = Target.position + new Vector3(0, Head.localPosition.y, 0);
         Vector3 dir = targetPosition - Head.position;
 
-        if (!CheckingPlayerInEye(dir))
+        if (Target.gameObject.layer != 9)
         {
-            LockOn = false;
-            return false;
+            LockOn = true;
+            return true;
         }
+
+        //if (LockOn)
+        //{
+        //    if (Vector3.Magnitude(dir) >= MaxCheckDistance)
+        //    {
+        //        LockOn = false;
+        //        return false;
+        //    }
+
+        //    if (!CheckingPlayerInEye(dir))
+        //    {
+        //        LockOn = false;
+        //        return false;
+        //        //LockOn = false;
+        //        //return false;
+        //    }
+
+
+        //        return true;
+        //}
+
 
         if (Vector3.Magnitude(dir) <= MinCheckDistance)
         {
@@ -40,36 +67,57 @@ public class MobEyeChecker : MonoBehaviour
             return true;
         }
 
-        if (LockOn)
-        {
-            if(Vector3.Magnitude(dir) >= MaxCheckDistance)
-            {
-                LockOn = false;
-                return false;
-            }
-
-            if (!CheckingPlayerInEye(dir))
-            {
-                LockOn = false;
-                return false;
-                //LockOn = false;
-                //return false;
-            }
-
-            return true;
-        }
-
         if (Vector3.Magnitude(dir) <= MaxCheckDistance)
         {
-            Vector3 forward = transform.forward;
-            Vector3 dirToTarget = dir;
-
-            float angle = Vector3.Angle(forward, dirToTarget);
-            if(angle <= EyeAngle*0.5f)
+            if (LockOn)
             {
-                LockOn = true;
+                if (CheckingPlayerInEye(dir)) //플레이어가 있음
+                {
+                    lockontime = 0;
+                    return true;
+                }
+                else //플레이어가 숨음
+                {
+                    if(lockontime >= StopToMoveTimer)
+                    {
+                        lockontime = 0;
+                        LockOn = false;
+                        return false;
+                    }
+                    else
+                    {
+                        lockontime += Time.deltaTime;
+                    }
+                }
+            }
+            else
+            {
+                if (CheckingPlayerInEye(dir))
+                {
+                    Vector3 forward = transform.forward;
+                    Vector3 dirToTarget = dir;
+
+                    float angle = Vector3.Angle(forward, dirToTarget);
+                    if (angle <= EyeAngle * 0.5f)
+                    {
+                        LockOn = true;
+                        return true;
+                    }
+                }
             }
         }
+
+        //if (CheckingPlayerInEye(dir))
+        //{
+        //    if (LockOn)
+        //    {
+        //        return true;
+        //    }
+        //}
+        //else
+        //{
+        //    LockOn = false;
+        //}
         return false;
     }
 

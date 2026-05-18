@@ -9,6 +9,21 @@ public enum Mob_State
     Death
 }
 
+public class EnemyInfomation
+{
+    public EnemyInfomation(float Speed)
+    {
+        this.Speed = Speed;
+        IsAirWind = false;
+        IsSlow = false;
+        IsStun = false;
+    }
+    public float Speed;
+    public bool IsAirWind;
+    public bool IsSlow;
+    public bool IsStun;
+}
+
 public class EnemyController : MobBase
 {
     [Header("무기")]
@@ -19,18 +34,14 @@ public class EnemyController : MobBase
 
     public event Action OnAttacked;
 
-    public List<Transform> WayPoints => MovementAI.WayPoints;
+    public List<Transform> WayPoints;
 
     MobEyeChecker EyeChecker;
 
     //[HideInInspector]
     public PlayerController Player;
-    private void Start()
-    {
-        EnemyInit();
-    }
-
-    public void EnemyInit()
+    public Transform Core;
+    private void Awake()
     {
         MovementAI = GetComponent<MovementAIBase>();
         Weapon = GetComponent<MobWeaponBase>();
@@ -38,58 +49,75 @@ public class EnemyController : MobBase
         {
             EyeChecker = GetComponent<MobEyeChecker>();
         }
+    }
 
-        MovementAI.Init();
+    public void EnemyInit()
+    {
+        MovementAI.Init(WayPoints);
         Weapon.Init();
         EyeChecker.Init(Player);
     }
 
     private void Update()
     {
-        if (EyeChecker.LockOn)
+        if (MovementAI.FinalArrived)
         {
-            Quaternion targetrotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), Time.deltaTime * 5f);
-            targetrotation.x = 0;
-            targetrotation.z = 0;
-            transform.rotation = targetrotation;
+            if (MovementAI.IsMoving)
+            {
+                MovementAI.OnStop();
+                EyeChecker.Target = Core;
+                EyeChecker.CheckTargetInEye();
+            }
+
+            Attack();
+            return;
         }
 
-        if (EyeChecker != null)
+        if (EyeChecker.LockOn)
         {
-            if (EyeChecker.CheckPlayerInEye())
+            if(EyeChecker.lockontime == 0)
+            {
+                Quaternion targetrotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), Time.deltaTime * 10f);
+                targetrotation.x = 0;
+                targetrotation.z = 0;
+                transform.rotation = targetrotation;
+            }
+        }
+        else
+        {
+            if (!MovementAI.IsMoving)
+            {
+                MovementAI.OnStart(new EnemyInfomation(Speed));
+                Weapon.OnStop();
+                return;
+            }
+            MovementAI.OnMove();
+        }
+
+        if (EyeChecker != null)//여기 수정 필요
+        {
+            if (EyeChecker.CheckTargetInEye())
             {
                 if (MovementAI.IsMoving)
                 {
                     MovementAI.OnStop();
                 }
 
-                if (Weapon.IsCanAttack())
-                {
-                    Weapon.OnAttack();
-                }
-                else
-                {
-                    Weapon.OnRating();
-                }
-
-                return;
+                Attack();
             }
         }
     }
-    
-    private void FixedUpdate()
-    {
-        if (EyeChecker.LockOn)
-        {
-            return;
-        }
 
-        if (!MovementAI.IsMoving)
+    void Attack()
+    {
+        if (Weapon.IsCanAttack())
         {
-            MovementAI.OnStart();
-            Weapon.OnStop();
-            return;
+            Weapon.OnAttack();
         }
-        MovementAI.OnMove();
+        else
+        {
+            Weapon.OnRating();
+        }
     }
+
 }

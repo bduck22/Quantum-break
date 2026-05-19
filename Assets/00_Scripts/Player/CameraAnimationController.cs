@@ -36,9 +36,6 @@ public class CameraAnimation : MonoBehaviour
 
     public void BigShake()
     {
-        if (walk)
-        {
-            CamAnimator.SetTrigger("Big");
-        }
+        CamAnimator.SetTrigger("Big");
     }
 }

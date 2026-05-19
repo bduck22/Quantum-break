@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAttack PlayerAttack;
 
+    public ArmAnimationController ArmAnimationController;
+
     [Header("플레이어 능력치")]
     public float Speed;
 
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public int Hp;
     public int MaxHp = 3;
     public int PlusHp;
+
+    public float AttackSpeed;
 
     [Header("플레이어 보정값")]
     public float GroundCoyoteTime;
@@ -88,6 +92,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerRotate = GetComponent<PlayerRotate>();
         PlayerAttack = GetComponent<PlayerAttack>();
+        ArmAnimationController = GetComponentInChildren<ArmAnimationController>();
 
         cc = GetComponent<CharacterController>();
 
@@ -119,7 +124,7 @@ public class PlayerController : MonoBehaviour
 
         if (WallDirection == 0)
         {
-            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= -20)
+            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= -25f)
             {
                 OnAir?.Invoke();
             }
@@ -193,7 +198,30 @@ public class PlayerController : MonoBehaviour
 
     bool IsCanAttack()
     {
-        if(AttackBufferTimer > 0)
+        if (!ArmAnimationController.IsCanAttack)
+        {
+            if (AttackBufferTimer > 0)
+            {
+                AttackBufferTimer -= Time.unscaledDeltaTime;
+            }
+            else
+            {
+                AttackBufferTimer = 0;
+            }
+
+            if (InputHandler.AttackPressed)
+            {
+                AttackBufferTimer = AttackBufferTime;
+            }
+            InputHandler.ClearAttack();
+            return false;
+        }
+        else
+        {
+            ArmAnimationController.SetAttackSpeed(AttackSpeed);
+        }
+
+        if (AttackBufferTimer > 0)
         {
             if (PlayerMovement.Dashing)
             {

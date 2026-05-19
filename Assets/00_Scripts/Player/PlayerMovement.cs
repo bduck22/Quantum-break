@@ -246,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cc.isGrounded)
             {
-                if(YVeolocity <= -20f)
+                if(YVeolocity <= -25f)
                 {
                     OnStepped?.Invoke();
                 }

@@ -95,6 +95,6 @@ public class WallState : State
     }
     public override void Jump()
     {
-        Controller.PlayerMovement.Jump(Controller.JumpPower*0.65f);
+        Controller.PlayerMovement.Jump(Controller.JumpPower*0.85f);
     }
 }

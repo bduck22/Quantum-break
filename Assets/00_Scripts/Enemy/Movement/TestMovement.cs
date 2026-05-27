@@ -30,7 +30,6 @@ public class TestMovement : MovementAIBase
             
         //}
         IsMoving = true;
-        Debug.Log("이동 시작");
     }
     public override void OnMove()
     {
@@ -52,7 +51,7 @@ public class TestMovement : MovementAIBase
 
         if (distance <= ArriveDistance)
         {
-            if (CurrentWayPIndex < WayPoints.Count - 1)
+            if (CurrentWayPIndex < WayPoints.Length - 1)
             {
                 InvokeOnWayPoint();
                 CurrentWayPIndex++;
@@ -64,7 +63,6 @@ public class TestMovement : MovementAIBase
             //return;
         }
 
-        Debug.Log("타겟" + targetPos);
         Vector3 dir = toTarget / distance;
         if (dir.sqrMagnitude > 0.001f)
         {
@@ -73,7 +71,7 @@ public class TestMovement : MovementAIBase
             rb.MovePosition(nextPos);
 
             Quaternion targetRot = Quaternion.LookRotation(dir);
-            Quaternion nextRot = Quaternion.Slerp(rb.rotation, targetRot, 5 * Time.fixedDeltaTime);
+            Quaternion nextRot = Quaternion.Slerp(rb.rotation, targetRot, 10 * Time.fixedDeltaTime);
             rb.MoveRotation(nextRot);
         }
     }
@@ -81,6 +79,5 @@ public class TestMovement : MovementAIBase
     {
         //OnMoreMoveTime = 0;
         IsMoving = false;
-        Debug.Log("이동 정지");
     }
 }

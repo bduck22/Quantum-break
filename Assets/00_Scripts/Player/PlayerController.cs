@@ -9,8 +9,7 @@ public class PlayerController : MonoBehaviour
     public InputHandler InputHandler;
     [HideInInspector]
     public CharacterController cc;
-    [HideInInspector]
-    public Vector3 PlayerLookDir => Camera.main.transform.forward;
+    private Camera mainCamera;
 
     GroundState groundState;
     AirState airState;
@@ -32,8 +31,6 @@ public class PlayerController : MonoBehaviour
     public PlayerMovement PlayerMovement;
 
     public PlayerRotate PlayerRotate;
-
-    public PlayerAttack PlayerAttack;
 
     public ArmAnimationController ArmAnimationController;
 
@@ -67,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public float DashReloadTime;
     public float AttackBufferTime;
 
+
     float AttackBufferTimer;
 
     [Header("플레이어 시작 위치")]
@@ -83,6 +81,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnLeftWall;
     public event Action OnWalk;
     public event Action OnAir;
+    public event Action OnAttack;
 
     public event Action OnDashing;
 
@@ -91,7 +90,6 @@ public class PlayerController : MonoBehaviour
         InputHandler = GetComponent<InputHandler>();
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerRotate = GetComponent<PlayerRotate>();
-        PlayerAttack = GetComponent<PlayerAttack>();
         ArmAnimationController = GetComponentInChildren<ArmAnimationController>();
 
         cc = GetComponent<CharacterController>();
@@ -101,6 +99,10 @@ public class PlayerController : MonoBehaviour
         wallState = new WallState(this);
 
         StateMachine = new StateMachine();
+
+        mapMask = LayerMask.GetMask("Map");
+
+        mainCamera = Camera.main;
 
         PlayerInit(SpawnPoint.position);
     }
@@ -113,6 +115,11 @@ public class PlayerController : MonoBehaviour
 
         StaminaHeal();
 
+        ArmMotion();
+    }
+
+    void ArmMotion()
+    {
         if (WallDirection == -1)
         {
             OnRightWall?.Invoke();
@@ -124,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
         if (WallDirection == 0)
         {
-            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= -25f)
+            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= 2f)
             {
                 OnAir?.Invoke();
             }
@@ -170,10 +177,14 @@ public class PlayerController : MonoBehaviour
 
         if (CurrentState == PlayerState.Ground)
         {
-            if (cc.isGrounded && jumpbuffer == 0)
+            if (!PlayerMovement.JumpInGround)
             {
-                return true;
+                if ((jumpbuffer == 0))
+                {
+                    return true;
+                }
             }
+            //Debug.Log(cc.isGrounded + " and " + jumpbuffer);
 
             return false;
         }
@@ -251,7 +262,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsCanAttack())
         {
-            PlayerAttack.Attack();
+            OnAttack?.Invoke();
             PlayerMovement.AttackDash();
             InputHandler.ClearAttack();
         }
@@ -346,6 +357,13 @@ public class PlayerController : MonoBehaviour
             {
                 case PlayerState.Ground:
                     StateMachine.ChangeState(groundState);
+
+                    if (jumpbuffer > 0)
+                    {
+                        jumpbuffer = 0;
+                        PlayerMovement.gravity();
+                        StateMachine.CurrentState.Jump();
+                    }
                     break;
                 case PlayerState.Air:
                     StateMachine.ChangeState(airState);
@@ -354,16 +372,6 @@ public class PlayerController : MonoBehaviour
                     StateMachine.ChangeState(wallState);
                     break;
             }
-            if (CurrentState == PlayerState.Ground)
-            {
-                if (jumpbuffer > 0)
-                {
-                    jumpbuffer = 0;
-                    PlayerMovement.gravity();
-                    StateMachine.CurrentState.Jump();
-                }
-            }
-
             if (CurrentState == PlayerState.Wall)
             {
                 jumpbuffer = 0;
@@ -438,9 +446,13 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    private readonly Collider[] wallHits = new Collider[8];
+    private int mapMask;
+    private static readonly Vector3 WallBoxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
+
     public bool IsRightWall(int right)
     {
-        if (Physics.Raycast(transform.position, -transform.up, 1.5f, LayerMask.GetMask("Map")))
+        if (Physics.Raycast(transform.position, -transform.up, 1.5f, mapMask))
         {
             return false;
         }
@@ -452,7 +464,7 @@ public class PlayerController : MonoBehaviour
             Vector3 wallDir1 = Vector3.Cross(Vector3.up, wallNormal).normalized;
             Vector3 wallDir2 = -wallDir1;
 
-            Vector3 viewDir = Camera.main.transform.forward;
+            Vector3 viewDir = mainCamera.transform.forward;
             viewDir.y = 0f;
             viewDir.Normalize();
 
@@ -464,7 +476,7 @@ public class PlayerController : MonoBehaviour
 
 
             RaycastHit fronthit;
-            if (Physics.Raycast(RayTransform.position, dir, out fronthit, WallFrontCheckDistance, LayerMask.GetMask("Map")))
+            if (Physics.Raycast(RayTransform.position, dir, out fronthit, WallFrontCheckDistance, mapMask))
             {
                 float blockDot = Vector3.Dot(fronthit.normal, -dir);
                 if (blockDot > 0.6f)
@@ -475,17 +487,16 @@ public class PlayerController : MonoBehaviour
 
             Vector3 boxCenter = transform.position + transform.right * right * WallRunDistance;
 
-            Vector3 boxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
-
-            Collider[] hits = Physics.OverlapBox(
+            int hitCount = Physics.OverlapBoxNonAlloc(
                 boxCenter,
-                boxHalfExtents,
+                WallBoxHalfExtents,
+                wallHits,
                 transform.rotation,
-                LayerMask.GetMask("Map")
+                mapMask
             );
 
             RaycastHit hit2;
-            if (Physics.Raycast(transform.position, transform.right * right, out hit2, WallRunDistance, LayerMask.GetMask("Map")) && PlayerMovement.IsWall)
+            if (Physics.Raycast(transform.position, transform.right * right, out hit2, WallRunDistance, mapMask) && PlayerMovement.IsWall)
             {
                 if (hit.normal != hit2.normal)
                 {
@@ -497,7 +508,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //벽에 타고 있는 상태
-            if (hits.Length > 0)
+            if (hitCount > 0)
             {
                 if (right > 0 && InputHandler.Move.x < 0)
                 {
@@ -508,20 +519,19 @@ public class PlayerController : MonoBehaviour
                     return false;
                 }
 
-                //PlayerMovement.SetWallData(hits[0]);
                 return true;
             }
         }
         else if (!InputHandler.DashHeld)
         {
-            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance, LayerMask.GetMask("Map")))
+            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance,   mapMask))
             {
                 return false;
             }
             //벽에 진입하는 상태
-            if (Physics.Raycast(RayTransform.position, transform.right * right, WallRunDistance, LayerMask.GetMask("Map")))
+            if (Physics.Raycast(RayTransform.position, transform.right * right, WallRunDistance,    mapMask))
             {
-                if (Physics.Raycast(transform.position, transform.right * right, out hit, WallRunDistance, LayerMask.GetMask("Map")))
+                if (Physics.Raycast(transform.position, transform.right * right, out hit, WallRunDistance,  mapMask))
                 {
 
                     //if (right > 0 && InputHandler.Move.x <= 0)
@@ -548,5 +558,10 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void OnHit()
+    {
+        Hp--;
     }
 }

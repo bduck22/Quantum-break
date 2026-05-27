@@ -27,6 +27,7 @@ public class MobEyeChecker : MonoBehaviour
     public void Init(PlayerController Player)
     {
         this.Target = Player.transform;
+        lockontime = 0;
     }
 
     public bool CheckTargetInEye()
@@ -39,27 +40,6 @@ public class MobEyeChecker : MonoBehaviour
             LockOn = true;
             return true;
         }
-
-        //if (LockOn)
-        //{
-        //    if (Vector3.Magnitude(dir) >= MaxCheckDistance)
-        //    {
-        //        LockOn = false;
-        //        return false;
-        //    }
-
-        //    if (!CheckingPlayerInEye(dir))
-        //    {
-        //        LockOn = false;
-        //        return false;
-        //        //LockOn = false;
-        //        //return false;
-        //    }
-
-
-        //        return true;
-        //}
-
 
         if (Vector3.Magnitude(dir) <= MinCheckDistance)
         {
@@ -82,12 +62,12 @@ public class MobEyeChecker : MonoBehaviour
                     {
                         lockontime = 0;
                         LockOn = false;
-                        return false;
                     }
                     else
                     {
                         lockontime += Time.deltaTime;
                     }
+                    return false;
                 }
             }
             else
@@ -107,17 +87,7 @@ public class MobEyeChecker : MonoBehaviour
             }
         }
 
-        //if (CheckingPlayerInEye(dir))
-        //{
-        //    if (LockOn)
-        //    {
-        //        return true;
-        //    }
-        //}
-        //else
-        //{
-        //    LockOn = false;
-        //}
+        LockOn = false;
         return false;
     }
 

@@ -11,7 +11,7 @@ public interface MovementAI
 
 public abstract class MovementAIBase : MonoBehaviour, MovementAI
 {
-    public List<Transform> WayPoints;
+    public Transform[] WayPoints;
 
     public int CurrentWayPIndex;
 
@@ -23,9 +23,9 @@ public abstract class MovementAIBase : MonoBehaviour, MovementAI
     public abstract void OnStart(EnemyInfomation Info);
     public abstract void OnMove();
     public abstract void OnStop();
-    public virtual void Init(List<Transform> wayPoints)
+    public virtual void Init(Transform[] wayPoints)
     {
-        WayPoints = wayPoints;
+        WayPoints = (Transform[])wayPoints.Clone();
         CurrentWayPIndex = 0;
     }
 

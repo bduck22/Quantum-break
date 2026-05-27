@@ -13,8 +13,9 @@ public class EnemyRouteController : MonoBehaviour
 
     public Color LineColor;
 
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerController player;
+    [HideInInspector]
     public Transform Core;
 
     LineRenderer lineRenderer;
@@ -32,45 +33,55 @@ public class EnemyRouteController : MonoBehaviour
 
     public void Init()
     {
-        int WayCount = transform.childCount-1;
+        int WayCount = transform.childCount - 1;
 
         for (int i = 0; i < WayCount; i++)
         {
-            int PointCount = transform.GetChild(i+1).childCount;
+            int PointCount = transform.GetChild(i + 1).childCount;
 
             Routes.Add(new Route());
             Routes[i].WayPoints = new Transform[PointCount];
-            for (int j=0;j< PointCount; j++)
+            for (int j = 0; j < PointCount; j++)
             {
-                Routes[i].WayPoints[j] = transform.GetChild(i+1).GetChild(j);
+                Routes[i].WayPoints[j] = transform.GetChild(i + 1).GetChild(j);
             }
         }
 
         LoadRoute(0);
     }
 
-    float linefalsetime = 0;
+    //float linefalsetime = 0;
 
     float spawningtime = 0;
+
+    Transform[] WayPoints;
+
+    int spawnCount;
 
     private void Update()
     {
         if (Spawning)
         {
-            linefalsetime += Time.deltaTime;
-            lineRenderer.material.color -= Color.black * Time.deltaTime;
-            if(lineRenderer.material.color.a <= 0)
+            //linefalsetime += Time.deltaTime;
+            if (lineRenderer.material.color.a < 0.2f)
             {
-                lineRenderer.material.color = new Color(0,0,0,0);
+                Color color = LineColor;
+                color.a = 0.2f;
+                lineRenderer.material.color = color;
             }
-            if (linefalsetime > 2f)
+            else
             {
-                lineRenderer.enabled = false;
-                lineRenderer.positionCount = 0;
-                Spawning = false;
+                lineRenderer.material.color -= Color.black * Time.deltaTime;
             }
 
-            if(spawningtime < WaveSpawnDatas[CurrentWave].SpawnDelay)
+            //if (linefalsetime > 2f)
+            //{
+            //    //lineRenderer.enabled = false;
+            //    //lineRenderer.positionCount = 0;
+            //    Spawning = false;
+            //}
+
+            if (spawningtime < WaveSpawnDatas[CurrentWave].SpawnDelay)
             {
                 spawningtime += Time.deltaTime;
             }
@@ -79,6 +90,7 @@ public class EnemyRouteController : MonoBehaviour
                 spawningtime = 0;
                 Spawn();
             }
+
         }
 
         if (lineRenderer.enabled)
@@ -101,11 +113,13 @@ public class EnemyRouteController : MonoBehaviour
 
         lineRenderer.positionCount = Routes[currentWave].WayPoints.Length;
 
-        for(int i = 0; i< Routes[currentWave].WayPoints.Length; i++)
+        for (int i = 0; i < Routes[currentWave].WayPoints.Length; i++)
         {
             Vector3 P = new Vector3(Routes[currentWave].WayPoints[i].position.x, Routes[currentWave].WayPoints[i].position.y + 0.5f, Routes[currentWave].WayPoints[i].position.z);
             lineRenderer.SetPosition(i, P);
         }
+        WayPoints = (Transform[])Routes[CurrentWave].WayPoints.Clone();
+        spawnCount = WaveSpawnDatas[currentWave].SpawnCount;
 
         SpawnStart();
     }
@@ -113,18 +127,24 @@ public class EnemyRouteController : MonoBehaviour
     public void SpawnStart()
     {
         Spawning = true;
-        linefalsetime = 0;
+        //linefalsetime = 0;
         spawningtime = 0;
     }
 
     void Spawn()
     {
+        if (spawnCount <= 0)
+        {
+            return;
+        }
+
+        spawnCount--;
         EnemyController enemy = Instantiate(WaveSpawnDatas[CurrentWave].EnemyPrefab, Routes[CurrentWave].WayPoints[0].position, Quaternion.identity).GetComponent<EnemyController>();
-        List<Transform> WayPoints = Routes[CurrentWave].WayPoints.ToList();
-        enemy.WayPoints = WayPoints;
+        enemy.WayPoints = (Transform[])WayPoints.Clone();
         enemy.Player = player;
         enemy.Core = Core;
         enemy.EnemyInit();
+
     }
 }
 

@@ -71,6 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 DashForce;
 
+    [Header("점프 상태값")]
+    public bool JumpInGround;
+
     float wallexittime;
 
     Vector3 MoveVector;
@@ -86,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerMovementData Data;
 
     [SerializeField] Vector3 targetWallRunDir;
+
+    private void Awake()
+    {
+        blockCheckIgnoreMask = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
+    }
     private void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -93,9 +101,108 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Direction();
+
+        MoveVector += Dir * Data.Speed;
+        MoveVector.y = gravity();
+
+        WallJumping();
+
+        Vector3 FinalVel;
+
+        Friction(out FinalVel);
+
+        DashMovement(ref FinalVel);
+
+        if (CheckBlocked((FinalVel).normalized))
+        {
+            MoveVector.x = 0;
+            MoveVector.z = 0;
+            return;
+        }
+
+        cc.Move(FinalVel * Time.unscaledDeltaTime);
+
+        MoveVector = Vector3.zero;
+    }
+    void DashMovement(ref Vector3 FinalVel)
+    {
+        if (Dashing)
+        {
+            FinalVel.x = FinalVel.y / 15f;
+            FinalVel.y = FinalVel.y / 10f;
+            FinalVel.z = FinalVel.z / 15f;
+
+            FinalVel += transform.right * Data.Input.x * 5f;//
+            Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
+            NextVector.y = 0;
+            Vector3 DashOrigin = this.DashOrigin;
+            DashOrigin.y = 0;
+            NextVector = (DashOrigin - NextVector);
+
+            if (NextVector.magnitude > 6f)
+            {
+                Vector3 next = NextVector;
+                NextVector = transform.position + FinalVel * Time.deltaTime * -1;
+                NextVector.y = 0;
+                DashOrigin = this.DashOrigin;
+                DashOrigin.y = 0;
+                NextVector = (DashOrigin - NextVector);
+
+                if (next.magnitude > NextVector.magnitude)
+                {
+                    FinalVel = Vector3.zero;
+                }
+            }
+        }
+
+        if (DashForce != Vector3.zero)
+        {
+            FinalVel += DashForce;
+            DashForce -= DashForce * Time.deltaTime * 7f;
+            if (DashForce.magnitude <= 0.5f)
+            {
+                DashForce = Vector3.zero;
+            }
+        }
+    }
+    void Friction(out Vector3 FinalVel)
+    {
+        if (cc.isGrounded)
+        {
+            float rate = Data.Input.sqrMagnitude > 0f ? accel : decel;
+
+            Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.deltaTime);
+
+            FinalVel = Velocity;
+        }
+        else
+        {
+            Velocity = Vector3.zero;
+
+            FinalVel = MoveVector;
+        }
+    }
+
+    void WallJumping()
+    {
         if (IsWall)
         {
-            wallexittime = 0.3f;
+            MoveVector += new Vector3(0, WallUpAdd, 0);
+        }
+
+        if ((Mathf.Abs(WallJump.x) + Mathf.Abs(WallJump.z)) > 1.5f)
+        {
+            MoveVector += WallJump;
+            MoveVector += targetWallRunDir * 5;
+        }
+    }
+
+    void Direction()
+    {
+        if (IsWall)
+        {
+            wallexittime = 0.15f;
             Dir = targetWallRunDir;
         }
         else
@@ -119,98 +226,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Dir.y = 0;
-
-        MoveVector += Dir * Data.Speed;
-        MoveVector.y = gravity();
-        if (IsWall)
-        {
-            MoveVector += new Vector3(0,WallUpAdd,0);
-        }
-
-        if ((Mathf.Abs(WallJump.x)+Mathf.Abs(WallJump.z)) > 1.5f) 
-        {
-            MoveVector += WallJump;
-            MoveVector += targetWallRunDir * 5;
-        }
-
-
-        Vector3 FinalVel;
-        if (cc.isGrounded)
-        {
-            float rate = Data.Input.sqrMagnitude > 0f ? accel : decel;
-
-            Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.deltaTime);
-
-            FinalVel = Velocity;
-        }
-        else
-        {
-            Velocity = Vector3.zero;
-
-            FinalVel = MoveVector;
-        }
-
-        if (Dashing)
-        {
-            FinalVel.x = FinalVel.y/15f;
-            FinalVel.y = FinalVel.y/10f;
-            FinalVel.z = FinalVel.z/15f;
-
-            FinalVel += transform.right * Data.Input.x*5f;//
-            Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
-            NextVector.y = 0;
-            Vector3 DashOrigin = this.DashOrigin;
-            DashOrigin.y = 0;
-            NextVector = (DashOrigin - NextVector);
-
-            if (NextVector.magnitude > 6f)
-            {
-                Vector3 next = NextVector;
-                NextVector = transform.position + FinalVel * Time.deltaTime * -1;
-                NextVector.y = 0;
-                DashOrigin = this.DashOrigin;
-                DashOrigin.y = 0;
-                NextVector = (DashOrigin - NextVector);
-                
-                if(next.magnitude > NextVector.magnitude)
-                {
-                    FinalVel = Vector3.zero;
-                }
-            }
-        }
-
-        if(DashForce != Vector3.zero)
-        {
-            FinalVel += DashForce;
-            DashForce -= DashForce * Time.deltaTime * 7f;
-            if(DashForce.magnitude <= 0.5f)
-            {
-                DashForce = Vector3.zero;
-            }
-        }
-
-        if (CheckBlocked((FinalVel).normalized))
-        {
-            MoveVector.x = 0;
-            MoveVector.z = 0;
-            return;
-        }
-
-        cc.Move(FinalVel * Time.unscaledDeltaTime);
-
-        MoveVector = Vector3.zero;
     }
+
+    private int blockCheckIgnoreMask;
+    private static readonly Vector3 BlockRayOffset = new Vector3(0f, 0.4f, 0f);
 
     bool CheckBlocked(Vector3 dir)
     {
-        int layer = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
         RaycastHit hit;
-        if(Physics.Raycast(transform.position + new Vector3(0,0.4f,0), dir, out hit,  3, ~layer))
+        if(Physics.Raycast(transform.position + BlockRayOffset, dir, out hit,  3, ~blockCheckIgnoreMask))
         {
             Vector3 hitP = hit.transform.position;
             Vector3 distance = hitP - transform.position;
             //distance.y = 0;
-            Debug.Log(distance.sqrMagnitude);
             if(distance.sqrMagnitude <= 1.65f)
             {
                 return true;
@@ -242,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         YVeolocity -= Data.Gravity * Time.deltaTime;
-        if (YVeolocity < 0 || (!isHoldingJump))
+        if (YVeolocity < 4f || (!isHoldingJump))
         {
             if (cc.isGrounded)
             {
@@ -250,6 +278,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     OnStepped?.Invoke();
                 }
+                JumpInGround = false;
                 WallJump = Vector3.zero;
                 YVeolocity = -1f;
             }
@@ -303,12 +332,18 @@ public class PlayerMovement : MonoBehaviour
         {
             WallJump *= JumpPower;
         }
-        else
+        else 
         {
+            if (JumpInGround)
+            {
+                return;
+            }
+
+            JumpInGround = true;
             WallJump = Vector3.zero;
         }
 
-        YVeolocity += JumpPower*0.95f;
+        YVeolocity = JumpPower*0.95f;
         IsWall = false;
     }
 
@@ -330,7 +365,7 @@ public class PlayerMovement : MonoBehaviour
             Yaded = -Yaded;
         }
         if(YVeolocity < 0) YVeolocity = 0;
-        DashForce.y = Yaded*0.55f;
+        DashForce.y = Yaded*0.7f;
         OnDash?.Invoke();
     }
 

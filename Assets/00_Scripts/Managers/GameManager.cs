@@ -3,13 +3,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Never Changed")]
     public PlayerController Player;
-    public Transform Core;
+    public BulletObjectPoolManager BulletObjectPoolManager;
 
+    [Header("Changed In OneMap")]
+    public Transform Core;
     public EnemySpawnManager CurrentMap;
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+        BulletObjectPoolManager.BulletPoolInit();
         MapStart();
     }
 

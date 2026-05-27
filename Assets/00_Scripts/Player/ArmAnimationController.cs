@@ -89,7 +89,7 @@ public class ArmAnimationController : MonoBehaviour
     {
         if(CurrentAttackMotion == 0&& AttackMotionTimer==0)
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0, 100) < 50)
             {
                 CurrentAttackMotion = 2;
             }

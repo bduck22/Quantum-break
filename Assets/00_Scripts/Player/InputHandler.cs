@@ -55,8 +55,6 @@ public class InputHandler : MonoBehaviour
         InputActions.Player.Dash.canceled += OnDash;
 
         InputActions.Player.Attack.started += OnAttack;
-
-        //InputActions.Player.Attack.started +=
     }
 
     private void OnDisable()

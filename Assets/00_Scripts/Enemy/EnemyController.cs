@@ -26,6 +26,9 @@ public class EnemyInfomation
 
 public class EnemyController : MobBase
 {
+    [Header("정지")]
+    public bool IsStop;
+
     [Header("무기")]
     public MobWeaponBase Weapon;
 
@@ -33,13 +36,16 @@ public class EnemyController : MobBase
     public MovementAIBase MovementAI;
 
     public event Action OnAttacked;
+    public event Action OnWalked;
+    public event Action OnFind;
 
-    public List<Transform> WayPoints;
+    public Transform[] WayPoints;
 
     MobEyeChecker EyeChecker;
 
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerController Player;
+    [HideInInspector]
     public Transform Core;
     private void Awake()
     {
@@ -60,6 +66,11 @@ public class EnemyController : MobBase
 
     private void Update()
     {
+        if (IsStop)
+        {
+            return;
+        }
+
         if (MovementAI.FinalArrived)
         {
             if (MovementAI.IsMoving)
@@ -81,12 +92,16 @@ public class EnemyController : MobBase
                 targetrotation.x = 0;
                 targetrotation.z = 0;
                 transform.rotation = targetrotation;
+
+                float Waist;
+                Debug.Log(transform.position.y - )
             }
         }
         else
         {
             if (!MovementAI.IsMoving)
             {
+                OnWalked?.Invoke();
                 MovementAI.OnStart(new EnemyInfomation(Speed));
                 Weapon.OnStop();
                 return;
@@ -100,6 +115,7 @@ public class EnemyController : MobBase
             {
                 if (MovementAI.IsMoving)
                 {
+                    OnFind?.Invoke();
                     MovementAI.OnStop();
                 }
 
@@ -112,7 +128,8 @@ public class EnemyController : MobBase
     {
         if (Weapon.IsCanAttack())
         {
-            Weapon.OnAttack();
+            OnAttacked?.Invoke();
+            Weapon.OnAttack(ShootPoint, EyeChecker.Target);
         }
         else
         {
@@ -120,4 +137,10 @@ public class EnemyController : MobBase
         }
     }
 
+    public void Hit()
+    {
+        Debug.Log("사망");
+        IsStop = true;
+        gameObject.SetActive(false);
+    }
 }

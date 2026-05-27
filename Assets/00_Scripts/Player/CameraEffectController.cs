@@ -63,6 +63,8 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnLeftWall += CameraAnimation.SetLeftWall;
         PlayerController.OnRightWall += CameraAnimation.SetRightWall;
         PlayerController.OnWalk += CameraAnimation.SetWalk;
+
+        PlayerController.OnAttack += CameraAnimation.BigShake;
     }
 
     public void OffChain()
@@ -88,5 +90,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnLeftWall -= CameraAnimation.SetLeftWall;
         PlayerController.OnRightWall -= CameraAnimation.SetRightWall;
         PlayerController.OnWalk -= CameraAnimation.SetWalk;
+
+        PlayerController.OnAttack -= CameraAnimation.BigShake;
     }
 }

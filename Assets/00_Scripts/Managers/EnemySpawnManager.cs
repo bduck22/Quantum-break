@@ -12,8 +12,9 @@ public class EnemySpawnManager : MonoBehaviour
     public Action<int> OnWaveStartInt;
 
 
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerController Player;
+    [HideInInspector]
     public Transform Core;
 
     public void MapStart()

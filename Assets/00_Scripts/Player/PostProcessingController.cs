@@ -62,7 +62,7 @@ public class PostProcessingController : MonoBehaviour
         lensDistortion.active = true;
         lensoff = false;
         vignette.active = true;
-        depthOfField.active = true;
+        //depthOfField.active = true;
     }
 
     public void DashFilterOff()

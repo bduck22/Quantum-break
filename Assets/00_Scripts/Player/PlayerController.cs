@@ -120,13 +120,16 @@ public class PlayerController : MonoBehaviour
     {
         DefaultControl();
 
-        StateTransitions();
-
         StaminaHeal();
 
-        ArmMotion();
-
         InvincibilityTimerPlay();
+    }
+
+    private void LateUpdate()
+    {
+        StateTransitions();
+
+        ArmMotion();
     }
 
     public void Parring()
@@ -403,7 +406,7 @@ public class PlayerController : MonoBehaviour
     }
 
     float GroundCoyoteTimer;
-    float WallCoyoteTimer;
+    [SerializeField] float WallCoyoteTimer;
     float DashReLoadTimer;
     float InvincibilityTimer;
 
@@ -432,8 +435,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    WallCoyoteTimer += Time.deltaTime;
-                    if (WallCoyoteTime <= WallCoyoteTimer || InputHandler.DashHeld)
+                    if(CurrentState == PlayerState.Wall && WallCoyoteTime > WallCoyoteTimer && !InputHandler.DashHeld)
+                    {
+                        WallCoyoteTimer += Time.deltaTime;
+                    }
+                    else 
                     {
                         if (PlayerMovement.IsWall)
                         {
@@ -508,7 +514,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Vector3 boxCenter = transform.position + transform.right * right * (WallRunDistance+1);
+            Vector3 boxCenter = transform.position + transform.right * right;// * (WallRunDistance+1);
 
             int hitCount = Physics.OverlapBoxNonAlloc(
                 boxCenter,
@@ -547,7 +553,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (!InputHandler.DashHeld)
         {
-            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance,   mapMask))
+            if (Physics.Raycast(RayTransform.position, transform.forward, WallFrontCheckDistance, mapMask))
             {
                 return false;
             }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
         if (WallDirection == 0)
         {
-            if (WallCoyoteTimer >= WallCoyoteTime + 0.5f && PlayerMovement.YVeolocity <= 2f)
+            if (WallCoyoteTimer == 0 && PlayerMovement.YVeolocity <= -5f&&!cc.isGrounded)
             {
                 OnAir?.Invoke();
             }
@@ -289,8 +290,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (!Invincibility)
                 {
-                    Stamina -= 1f;
                     OnDashing?.Invoke();
+                    Stamina -= 1f;
                     Vector3 dashorigin = transform.position;
                     dashorigin.y = 0;
                     PlayerMovement.DashOrigin = dashorigin;
@@ -445,6 +446,7 @@ public class PlayerController : MonoBehaviour
                         {
                             PlayerMovement.WallExit();
                         }
+                        WallCoyoteTimer = 0;
                         Walling = false;
                         WallDirection = 0;
                         StateChange(PlayerState.Air);
@@ -478,6 +480,25 @@ public class PlayerController : MonoBehaviour
     private readonly Collider[] wallHits = new Collider[8];
     private int mapMask;
     private readonly Vector3 WallBoxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
+
+
+    //private void OnDrawGizmos()
+    //{
+
+    //    Vector3 center = transform.position + transform.right * 1.5f;
+    //    Quaternion rotation = transform.rotation;
+
+    //    Gizmos.color = Color.red;
+
+    //    // 회전까지 반영해서 박스 그리기
+    //    Matrix4x4 oldMatrix = Gizmos.matrix;
+    //    Gizmos.matrix = Matrix4x4.TRS(center, rotation, Vector3.one);
+
+    //    // DrawWireCube는 전체 크기를 받으므로 halfExtents * 2
+    //    Gizmos.DrawWireCube(Vector3.zero, WallBoxHalfExtents * 2f);
+
+    //    Gizmos.matrix = oldMatrix;
+    //}
 
     bool IsRightWall(int right)
     {
@@ -514,7 +535,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Vector3 boxCenter = transform.position + transform.right * right;// * (WallRunDistance+1);
+            Vector3 boxCenter = transform.position + transform.right * right * 1.5f;// * (WallRunDistance+1);
 
             int hitCount = Physics.OverlapBoxNonAlloc(
                 boxCenter,
@@ -549,6 +570,10 @@ public class PlayerController : MonoBehaviour
                 }
 
                 return true;
+            }
+            else
+            {
+                return false;
             }
         }
         else if (!InputHandler.DashHeld)
@@ -591,7 +616,7 @@ public class PlayerController : MonoBehaviour
 
     void InvincibilityTimerPlay()
     {
-        if (Invincibility)
+        if (Invincibility&&!InputHandler.DashHeld)
         {
             if(InvincibilityTimer > 0)
             {

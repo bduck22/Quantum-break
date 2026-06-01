@@ -25,7 +25,8 @@ public class ParticleController : MonoBehaviour
 
     public void Play()
     {
-        foreach(ParticleSystem particle in Particle)
+        gameObject.SetActive(true);
+        foreach (ParticleSystem particle in Particle)
         {
             particle.Play();
         }
@@ -34,5 +35,6 @@ public class ParticleController : MonoBehaviour
     void OnParticleSystemStopped()
     {
         spawnManager.InPool(ParticleNumber, this);
+        gameObject.SetActive(false);
     }
 }

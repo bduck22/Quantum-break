@@ -67,13 +67,13 @@ public class PostProcessingController : MonoBehaviour
 
     public void DashFilterOn()
     {
-        vigoff = false;
         colorAdjustments.colorFilter.value = ScreenDashColor;
         vignette.color.value = VignetteDashColor;
         vignette.intensity.value = 0;
         lensDistortion.intensity.value = 0;
         lensDistortion.active = true;
         lensoff = false;
+        vigoff = false;
         vignette.active = true;
         //depthOfField.active = true;
     }

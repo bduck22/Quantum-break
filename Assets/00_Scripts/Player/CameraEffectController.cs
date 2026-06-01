@@ -20,6 +20,10 @@ public class CameraEffectController : MonoBehaviour
 
     public ScreenGhostEffect ScreenGhostEffect;
 
+    public PlayerHitEffect PlayerHitEffect;
+
+    public PlayerParringEffect PlayerParringEffect;
+
     private void Awake()
     {
         CameraShake = GetComponent<CameraShake>();
@@ -28,6 +32,8 @@ public class CameraEffectController : MonoBehaviour
         CameraHighlightLineDraw = GetComponent<CameraHighlightLineDraw>();
         PlayerForwardEffectController = GetComponent<PlayerForwardEffectController>();
         ScreenGhostEffect = GetComponent<ScreenGhostEffect>();  
+        PlayerHitEffect = GetComponent<PlayerHitEffect>();
+        PlayerParringEffect = GetComponent<PlayerParringEffect>();
     }
 
     private void OnEnable()
@@ -65,6 +71,18 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnWalk += CameraAnimation.SetWalk;
 
         PlayerController.OnAttack += CameraAnimation.BigShake;
+
+        PlayerController.OnHit += PlayerHitEffect.OnHit;
+        PlayerController.OnHit += PostProcessingController.HitFilterOn;
+        PlayerController.OnHit += FOV.HitedFOV;
+        PlayerController.OnHit += CameraAnimation.BigShake;
+
+        PlayerController.EndHitInvincibility += PlayerHitEffect.EndHit;
+        PlayerController.EndHitInvincibility += PostProcessingController.HitFilterOff;
+        PlayerController.EndHitInvincibility += FOV.HitBackFOV;
+
+        PlayerController.OnParried += PlayerParringEffect.OnParring;
+        PlayerController.OnParried += CameraAnimation.ParringShake;
     }
 
     public void OffChain()
@@ -92,5 +110,17 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnWalk -= CameraAnimation.SetWalk;
 
         PlayerController.OnAttack -= CameraAnimation.BigShake;
+
+        PlayerController.OnHit -= PlayerHitEffect.OnHit;
+        PlayerController.OnHit -= PostProcessingController.HitFilterOn;
+        PlayerController.OnHit -= FOV.HitedFOV;
+        PlayerController.OnHit -= CameraAnimation.BigShake;
+
+        PlayerController.EndHitInvincibility -= PlayerHitEffect.EndHit;
+        PlayerController.EndHitInvincibility -= PostProcessingController.HitFilterOff;
+        PlayerController.EndHitInvincibility -= FOV.HitBackFOV;
+
+        PlayerController.OnParried -= PlayerParringEffect.OnParring;
+        PlayerController.OnParried -= CameraAnimation.ParringShake;
     }
 }

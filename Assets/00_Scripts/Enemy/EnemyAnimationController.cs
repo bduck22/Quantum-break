@@ -23,4 +23,9 @@ public class EnemyAnimationController : MonoBehaviour
     {
         animator.SetTrigger("OnAttack");
     }
+
+    public void SetDeath()
+    {
+        animator.SetTrigger("Death");
+    }
 }

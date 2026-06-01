@@ -17,6 +17,7 @@ public class EnemyEventController : MonoBehaviour
         enemyController.OnAttacked += enemyAnimationController.SetAttack;
         enemyController.OnWalked += enemyAnimationController.SetWalk;
         enemyController.OnFind += enemyAnimationController.SetFind;
+        enemyController.OnDeath += enemyAnimationController.SetDeath;
     }
 
     private void OnDisable()
@@ -24,5 +25,6 @@ public class EnemyEventController : MonoBehaviour
         enemyController.OnAttacked -= enemyAnimationController.SetAttack;
         enemyController.OnWalked -= enemyAnimationController.SetWalk;
         enemyController.OnFind -= enemyAnimationController.SetFind;
+        enemyController.OnDeath -= enemyAnimationController.SetDeath;
     }
 }

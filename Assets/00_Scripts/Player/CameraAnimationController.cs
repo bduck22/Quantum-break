@@ -38,4 +38,9 @@ public class CameraAnimation : MonoBehaviour
     {
         CamAnimator.SetTrigger("Big");
     }
+
+    public void ParringShake()
+    {
+        CamAnimator.SetTrigger("Parring");
+    }
 }

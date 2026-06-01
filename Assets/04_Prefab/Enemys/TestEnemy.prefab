@@ -37,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 7408650550948325364}
   - {fileID: 8471738713950714386}
-  - {fileID: 9190001858862129270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6681463533276269488
@@ -56,10 +55,12 @@ MonoBehaviour:
   CurrentState: 0
   Speed: 1
   ShootPoint: {fileID: 9190001858862129270}
-  IsStop: 0
+  IsDead: 0
+  Invincibility: 0
   Weapon: {fileID: 0}
   MovementAI: {fileID: 0}
   WayPoints: []
+  Spine: {fileID: 4804261487025190657}
   Player: {fileID: 0}
   Core: {fileID: 0}
 --- !u!114 &5839902046444063290
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobEyeChecker
   Head: {fileID: 8471738713950714386}
   Target: {fileID: 0}
-  MaxCheckDistance: 30
+  MaxCheckDistance: 35
   MinCheckDistance: 12
   EyeAngle: 120
   LockOn: 0
@@ -95,9 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestWeapon
   RatingTime: 3
-  BulletSpeed: 10
   Data: {fileID: 11400000, guid: 2c2b309626bc49e48bc52678d9f6c913, type: 2}
-  Bullet: {fileID: 2666879897663644887, guid: 29a39ba400e34f743957ef484152e46d, type: 3}
+  LeadPer: 1
 --- !u!114 &80418247579883579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,12 +210,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9174133224076204546}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 2.037, z: 1.377}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.03245915, y: 0.65139735, z: -0.7575133, w: -0.028311012}
+  m_LocalPosition: {x: -0.003, y: 0.091, z: 0.679}
+  m_LocalScale: {x: 0.64102536, y: 0.64102566, z: 0.64102554}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6269255164516164863}
+  m_Father: {fileID: 7778560999531928313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2795682319144168964
 PrefabInstance:
@@ -295,7 +295,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5566240532493202685, guid: a1db201987255e14ebc8e3c4476a247f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9190001858862129270}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1db201987255e14ebc8e3c4476a247f, type: 3}
 --- !u!4 &7778560999531928313 stripped
@@ -1095,10 +1098,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59a1ac66f9764ec4cbf6a123bcfc2544, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3981821312522278719}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59a1ac66f9764ec4cbf6a123bcfc2544, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7288127509737406097}
   m_SourcePrefab: {fileID: 100100000, guid: 59a1ac66f9764ec4cbf6a123bcfc2544, type: 3}
 --- !u!4 &2163656956764081150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -45964426481611807, guid: 59a1ac66f9764ec4cbf6a123bcfc2544, type: 3}
+  m_PrefabInstance: {fileID: 7015034891804573727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4804261487025190657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2591332643568252702, guid: 59a1ac66f9764ec4cbf6a123bcfc2544, type: 3}
   m_PrefabInstance: {fileID: 7015034891804573727}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7408650550948325364 stripped
@@ -1126,7 +1137,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1168,3 +1179,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984caa57e56876a46bed486d6279930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationController
+--- !u!114 &7288127509737406097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7897907200334937422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861330528f86bdd468037db0338a18f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBulletHit

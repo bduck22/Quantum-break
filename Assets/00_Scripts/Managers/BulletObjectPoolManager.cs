@@ -1,21 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletObjectPoolManager : MonoBehaviour
 {
-    public static BulletObjectPoolManager instance;
-
     public Queue<BulletController> BulletPool;
     public int DefaultBulletPoolCount = 30;
 
     public Transform Bullets;
 
     public BulletController BulletObject;
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     public void BulletPoolInit()
     {
@@ -27,19 +21,28 @@ public class BulletObjectPoolManager : MonoBehaviour
         }
     }
 
-    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed)
+    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount ,float BulletDelay)
     {
-        if(BulletPool.Count > 0)
+        StartCoroutine(SpawningBullets(Position, Rotation, BulletSpeed, BulletCount, BulletDelay));
+    }
+
+    IEnumerator SpawningBullets(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount, float BulletDelay)
+    {
+        for(int i = 0; i < BulletCount; i++)
         {
-            BulletController bullet = BulletPool.Dequeue();
+            BulletController bullet;
+            if (BulletPool.Count > 0)
+            {
+                bullet = BulletPool.Dequeue();
+            }
+            else
+            {
+                bullet = spawnbullet();
+            }
 
             bullet.BulletInit(Position, Rotation, BulletSpeed);
-        }
-        else
-        {
-            BulletController bullet = spawnbullet();
 
-            bullet.BulletInit(Position, Rotation, BulletSpeed);
+            yield return new WaitForSeconds(BulletDelay);
         }
     }
 

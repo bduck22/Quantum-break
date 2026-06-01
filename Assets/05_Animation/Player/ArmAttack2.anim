@@ -446,7 +446,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Armature/upperarm.L/lowerarm.L/hand.L/Sword/PlayerAttackCollider
+    path: PlayerAttackCollider
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -504,7 +504,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3922269789
+      path: 328580690
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -1916,7 +1916,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Armature/upperarm.L/lowerarm.L/hand.L/Sword/PlayerAttackCollider
+    path: PlayerAttackCollider
     classID: 1
     script: {fileID: 0}
     flags: 0

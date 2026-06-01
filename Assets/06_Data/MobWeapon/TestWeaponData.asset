@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbb8551b1f4b6342bce57235ebe6da3, type: 3}
   m_Name: TestWeaponData
   m_EditorClassIdentifier: Assembly-CSharp::MobWeaponData
-  ShootRate: 5
-  BulletCount: 0
-  BulletDelay: 0
+  BulletSpeed: 50
+  ShootRate: 3
+  BulletCount: 3
+  BulletDelay: 0.1

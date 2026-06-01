@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -23,6 +24,10 @@ public class PostProcessingController : MonoBehaviour
     public float VignetteUpSpeed;
     public float VignetteDownSpeed;
     public bool vigoff;
+    [ColorUsage(true, true)]
+    public Color VignetteDashColor;
+    [ColorUsage(true, true)]
+    public Color VignetteHitColor;
 
     [Header("화면 색 분리")]
     ChromaticAberration chromaticAberration;
@@ -33,6 +38,11 @@ public class PostProcessingController : MonoBehaviour
 
     [Header("화면 색상 필터")]
     ColorAdjustments colorAdjustments;
+    [ColorUsage(true, true)]
+    public Color ScreenDashColor;
+    [ColorUsage(true, true)]
+    public Color ScreenHitColor;
+
     void Start()
     {
         volume = GetComponent<Volume>();
@@ -57,6 +67,9 @@ public class PostProcessingController : MonoBehaviour
 
     public void DashFilterOn()
     {
+        vigoff = false;
+        colorAdjustments.colorFilter.value = ScreenDashColor;
+        vignette.color.value = VignetteDashColor;
         vignette.intensity.value = 0;
         lensDistortion.intensity.value = 0;
         lensDistortion.active = true;
@@ -73,6 +86,21 @@ public class PostProcessingController : MonoBehaviour
         lensoff = true;
         vigoff = true;
         chromaticAberration.intensity.value = 0.8f;
+    }
+
+    public void HitFilterOn()
+    {
+        vigoff = false;
+        vignette.color.value = VignetteHitColor;
+        colorAdjustments.colorFilter.value = ScreenHitColor;
+        vignette.intensity.value = 0;
+        vignette.active = true;
+        chromaticAberration.intensity.value = 1f;
+    }
+
+    public void HitFilterOff()
+    {
+        vigoff = true;
     }
 
     void SetChromatic()

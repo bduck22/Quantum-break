@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Never Changed")]
     public PlayerController Player;
-    public BulletObjectPoolManager BulletObjectPoolManager;
+    public SpawnManagers spawnManagers;
 
     [Header("Changed In OneMap")]
     public Transform Core;
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-        BulletObjectPoolManager.BulletPoolInit();
+        spawnManagers.Init();
         MapStart();
     }
 

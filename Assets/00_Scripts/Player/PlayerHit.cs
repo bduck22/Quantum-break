@@ -11,11 +11,13 @@ public class PlayerHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
         if (other.CompareTag("Bullet"))
         {
-            other.transform.parent.GetComponent<BulletController>().OnFalse();
-            controller.OnHit();
+            if (!controller.Invincibility)
+            {
+                other.transform.parent.GetComponent<BulletController>().OnFalse();
+                controller.OnHited();
+            }
         }
     }
 }

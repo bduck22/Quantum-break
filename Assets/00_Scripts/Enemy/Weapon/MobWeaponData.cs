@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Mob/WeaponData")]
 public class MobWeaponData : ScriptableObject
 {
+    public float BulletSpeed;
     public float ShootRate;
-    public float BulletCount;
+    public int BulletCount;
     public float BulletDelay;
 }

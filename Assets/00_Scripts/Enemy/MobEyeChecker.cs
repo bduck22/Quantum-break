@@ -23,6 +23,13 @@ public class MobEyeChecker : MonoBehaviour
     public float StopToMoveTimer;
     [HideInInspector]
     public float lockontime;
+    [HideInInspector]
+    int layer;
+
+    private void Start()
+    {
+        layer = LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
+    }
 
     public void Init(PlayerController Player)
     {
@@ -35,15 +42,19 @@ public class MobEyeChecker : MonoBehaviour
         Vector3 targetPosition = Target.position + new Vector3(0, Head.localPosition.y, 0);
         Vector3 dir = targetPosition - Head.position;
 
+        
+
         if (Target.gameObject.layer != 9)
         {
             LockOn = true;
+            lockontime = 0;
             return true;
         }
 
         if (Vector3.Magnitude(dir) <= MinCheckDistance)
         {
             LockOn = true;
+            lockontime = 0;
             return true;
         }
 
@@ -58,7 +69,7 @@ public class MobEyeChecker : MonoBehaviour
                 }
                 else //플레이어가 숨음
                 {
-                    if(lockontime >= StopToMoveTimer)
+                    if (lockontime >= StopToMoveTimer)
                     {
                         lockontime = 0;
                         LockOn = false;
@@ -81,6 +92,7 @@ public class MobEyeChecker : MonoBehaviour
                     if (angle <= EyeAngle * 0.5f)
                     {
                         LockOn = true;
+                        lockontime = 0;
                         return true;
                     }
                 }
@@ -93,17 +105,14 @@ public class MobEyeChecker : MonoBehaviour
 
     public bool CheckingPlayerInEye(Vector3 dir)
     {
-        int layer = LayerMask.GetMask("Player") | LayerMask.GetMask("Map");
         RaycastHit hit;
         if(Physics.Raycast(Head.position, (dir).normalized, out hit ,MaxCheckDistance, layer))
         {
-            if(hit.transform.gameObject.layer == 7)
+            if(hit.transform.gameObject.layer == 9)
             {
-                //Debug.Log("플레이어 있음" + hit.transform.gameObject.layer);
                 return true;
             }
         }
-        //Debug.Log("플레이어 없음" + hit.transform.name);
         return false;
     }
 }

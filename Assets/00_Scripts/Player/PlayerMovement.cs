@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform XAngeCamera;
 
+    [Header("이전 프레임 이동방향")]
+    public Vector3 PreviousVel;
+
     [Header("현재 중력")]
     public float YVeolocity;
 
@@ -92,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        blockCheckIgnoreMask = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
+        blockCheckIgnoreMask = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map") | LayerMask.GetMask("Bullet") | LayerMask.GetMask("PlayerAttack");
     }
     private void Start()
     {
@@ -121,6 +124,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        PreviousVel = FinalVel;
+        if (Time.timeScale == 0.075f)
+        {
+            FinalVel *= 0.2f;
+        }
         cc.Move(FinalVel * Time.unscaledDeltaTime);
 
         MoveVector = Vector3.zero;
@@ -230,6 +238,11 @@ public class PlayerMovement : MonoBehaviour
 
     private int blockCheckIgnoreMask;
     private static readonly Vector3 BlockRayOffset = new Vector3(0f, 0.4f, 0f);
+
+    public void VelocityInit()
+    {
+        Velocity = Vector3.zero;
+    }
 
     bool CheckBlocked(Vector3 dir)
     {

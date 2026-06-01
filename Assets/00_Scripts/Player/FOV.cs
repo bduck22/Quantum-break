@@ -24,6 +24,11 @@ public class FOV : MonoBehaviour
     [Header("현재 목표 FOV")]
     public float TargetFOV;
 
+    [Header("맞았을 때 줄어드는 FOV")]
+    public float HitFOV;
+
+    [Header("걷는 FOV 버퍼")]
+    [SerializeField] private bool RunBuffer;
     private void Start()
     {
         cam = Camera.main;
@@ -57,15 +62,32 @@ public class FOV : MonoBehaviour
 
     public void FOVUp()
     {
-        if (TargetFOV < DefaultFOV + FOVRange)
+        if (TargetFOV == DefaultFOV || TargetFOV == (DefaultFOV + FOVRange))
         {
             TargetFOV = DefaultFOV + FOVRange;
         }
+        //else
+        //{
+        //    RunBuffer = true;
+        //}
+    }
+
+    public void HitedFOV()
+    {
+        TargetFOV = DefaultFOV - HitFOV;
+    }
+
+    public void HitBackFOV()
+    {
+        TargetFOV = DefaultFOV;
     }
 
     public void BackFOV()
     {
-        TargetFOV = DefaultFOV;
+        if(TargetFOV >= DefaultFOV)
+        {
+            TargetFOV = DefaultFOV;
+        }
     }
 
     public void DashFOV()

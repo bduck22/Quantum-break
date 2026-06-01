@@ -113,4 +113,9 @@ public class ArmAnimationController : MonoBehaviour
     {
         ArmAnimator.SetFloat("AttackSpeed", speed);
     }
+
+    public void OnParried()
+    {
+        ArmAnimator.SetTrigger("Parring");
+    }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public float WallFrontCheckDistance;
     public float DashReloadTime;
     public float AttackBufferTime;
+    public float InvincibilityTime;
 
 
     float AttackBufferTimer;
@@ -72,6 +74,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("상태값")]
     public bool CanWalkJump;
+
+    public bool Invincibility;
 
     [Header("게임 설정치")]
     public float Sensitivity;
@@ -84,6 +88,11 @@ public class PlayerController : MonoBehaviour
     public event Action OnAttack;
 
     public event Action OnDashing;
+
+    public event Action OnHit;
+    public event Action EndHitInvincibility;
+
+    public event Action OnParried;
 
     private void Awake()
     {
@@ -116,8 +125,14 @@ public class PlayerController : MonoBehaviour
         StaminaHeal();
 
         ArmMotion();
+
+        InvincibilityTimerPlay();
     }
 
+    public void Parring()
+    {
+        OnParried?.Invoke();
+    }
     void ArmMotion()
     {
         if (WallDirection == -1)
@@ -151,7 +166,7 @@ public class PlayerController : MonoBehaviour
         StatInit();
     }
 
-    public void StatInit()
+    void StatInit()
     {
         Hp = MaxHp;
 
@@ -202,6 +217,7 @@ public class PlayerController : MonoBehaviour
         DashReLoadTimer = DashReloadTime;
         PlayerMovement.DashOrigin = Vector3.zero;
         PlayerMovement.Dashing = false;
+        Invincibility = false;
         Time.timeScale = 1f;
         StateMachine.CurrentState.Dash();
         InputHandler.ClearDash();
@@ -234,36 +250,71 @@ public class PlayerController : MonoBehaviour
 
         if (AttackBufferTimer > 0)
         {
-            if (PlayerMovement.Dashing)
-            {
-                AttackBufferTimer -= Time.unscaledDeltaTime;
-            }
-            else
-            {
+            //if (Invincibility)
+            //{
+            //    AttackBufferTimer -= Time.unscaledDeltaTime;
+            //}
+            //else
+            //{
                 AttackBufferTimer = 0;
                 InputHandler.ClearAttack();
                 return true;
-            }
+            //}
         }
         if (InputHandler.AttackPressed)
         {
-            if (PlayerMovement.Dashing)
-            {
-                InputHandler.ClearAttack();
-                AttackBufferTimer = AttackBufferTime;
-                return false;
-            }
+            //if (Invincibility)
+            //{
+            //    InputHandler.ClearAttack();
+            //    AttackBufferTimer = AttackBufferTime;
+            //    return false;
+            //}
             return true;
         }
         return false;
     }
 
-    public void DefaultControl()
+    void PressingDash()
+    {
+        if (DashReLoadTimer > 0)
+        {
+            InputHandler.ClearDash();
+        }
+        else
+        {
+            if ((Stamina > 0 && Invincibility) || Stamina >= 1)
+            {
+                if (!Invincibility)
+                {
+                    Stamina -= 1f;
+                    OnDashing?.Invoke();
+                    Vector3 dashorigin = transform.position;
+                    dashorigin.y = 0;
+                    PlayerMovement.DashOrigin = dashorigin;
+                    PlayerMovement.WallExit();
+                    PlayerMovement.Dashing = true;
+                    Invincibility = true;
+                    Time.timeScale = 0.05f;
+                }
+                Stamina -= Time.unscaledDeltaTime;
+            }
+            else if (Invincibility)
+            {
+                DashUp();
+            }
+            //else
+            //{
+            //    InputHandler.ClearDash();
+            //}
+        }
+    }
+
+    void DefaultControl()
     {
         if (IsCanAttack())
         {
             OnAttack?.Invoke();
-            PlayerMovement.AttackDash();
+            //PlayerMovement.AttackDash();
             InputHandler.ClearAttack();
         }
 
@@ -279,36 +330,7 @@ public class PlayerController : MonoBehaviour
 
         if (InputHandler.DashPressed && InputHandler.DashHeld)
         {
-            if (DashReLoadTimer > 0)
-            {
-                InputHandler.ClearDash();
-            }
-            else
-            {
-                if ((Stamina > 0 && PlayerMovement.Dashing) || Stamina >= 1)
-                {
-                    if (!PlayerMovement.Dashing)
-                    {
-                        Stamina -= 1f;
-                        OnDashing?.Invoke();
-                        Vector3 dashorigin = transform.position;
-                        dashorigin.y = 0;
-                        PlayerMovement.DashOrigin = dashorigin;
-                        PlayerMovement.WallExit();
-                        PlayerMovement.Dashing = true;
-                        Time.timeScale = 0.05f;
-                    }
-                    Stamina -= Time.unscaledDeltaTime;
-                }
-                else if (PlayerMovement.Dashing)
-                {
-                    DashUp();
-                }
-                else
-                {
-                    InputHandler.ClearDash();
-                }
-            }
+            PressingDash();
         }
         else if (InputHandler.DashPressed)
         {
@@ -383,9 +405,10 @@ public class PlayerController : MonoBehaviour
     float GroundCoyoteTimer;
     float WallCoyoteTimer;
     float DashReLoadTimer;
+    float InvincibilityTimer;
 
     //상태 변경 
-    public void StateTransitions()
+    void StateTransitions()
     {
         //땅에 닿아있는지 확인
         if (cc.isGrounded)
@@ -425,7 +448,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool IsWall()
+    bool IsWall()
     {
         if (WallDirection == 0)
         {
@@ -448,9 +471,9 @@ public class PlayerController : MonoBehaviour
 
     private readonly Collider[] wallHits = new Collider[8];
     private int mapMask;
-    private static readonly Vector3 WallBoxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
+    private readonly Vector3 WallBoxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
 
-    public bool IsRightWall(int right)
+    bool IsRightWall(int right)
     {
         if (Physics.Raycast(transform.position, -transform.up, 1.5f, mapMask))
         {
@@ -485,7 +508,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Vector3 boxCenter = transform.position + transform.right * right * WallRunDistance;
+            Vector3 boxCenter = transform.position + transform.right * right * (WallRunDistance+1);
 
             int hitCount = Physics.OverlapBoxNonAlloc(
                 boxCenter,
@@ -496,7 +519,7 @@ public class PlayerController : MonoBehaviour
             );
 
             RaycastHit hit2;
-            if (Physics.Raycast(transform.position, transform.right * right, out hit2, WallRunDistance, mapMask) && PlayerMovement.IsWall)
+            if (Physics.Raycast(transform.position, transform.right * right, out hit2, (WallRunDistance + 1), mapMask) && PlayerMovement.IsWall)
             {
                 if (hit.normal != hit2.normal)
                 {
@@ -560,8 +583,29 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void OnHit()
+    void InvincibilityTimerPlay()
     {
+        if (Invincibility)
+        {
+            if(InvincibilityTimer > 0)
+            {
+                InvincibilityTimer -= Time.unscaledDeltaTime;
+            }
+            else
+            {
+                InvincibilityTimer = 0;
+                Invincibility = false;
+                EndHitInvincibility?.Invoke();
+            }
+        }
+    }
+
+    public void OnHited()
+    {
+        Invincibility = true;
+        InvincibilityTimer = InvincibilityTime;
+        PlayerMovement.VelocityInit();
         Hp--;
+        OnHit?.Invoke();
     }
 }

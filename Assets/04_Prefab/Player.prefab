@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 3900089082620692678}
   - component: {fileID: 5384958100377968053}
   - component: {fileID: 2527075933194508275}
+  - component: {fileID: 2344626351418872064}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -623,6 +624,7 @@ MonoBehaviour:
   CameraHighlightLineDraw: {fileID: 0}
   PlayerForwardEffectController: {fileID: 0}
   ScreenGhostEffect: {fileID: 0}
+  PlayerHitEffect: {fileID: 0}
 --- !u!114 &7771251096132917398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +695,18 @@ MonoBehaviour:
   startOffset: 0.05
   duration: 0.5
   tint: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &2344626351418872064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154815642722694437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b1f9201e18dd14bac7047d71ca9b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitEffect
 --- !u!1 &3532669536259563408
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +718,7 @@ GameObject:
   - component: {fileID: 174167521970444486}
   - component: {fileID: 4321063556089920600}
   - component: {fileID: 8023473145596232913}
+  - component: {fileID: 2542201305273696846}
   m_Layer: 7
   m_Name: HitCollider
   m_TagString: Untagged
@@ -762,6 +777,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEnemyCollider
   HitPower: 5
+--- !u!114 &2542201305273696846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532669536259563408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7aff2987c0fa04daacaf567c244c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHit
 --- !u!1 &5080094725683402066
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,11 +939,11 @@ Transform:
   m_GameObject: {fileID: 5295105441762858565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.32, z: 2.08}
-  m_LocalScale: {x: 0.34, y: 2.81, z: 2.37}
+  m_LocalPosition: {x: 0.0017, y: 0.0638, z: 3.3601}
+  m_LocalScale: {x: 2.7137508, y: 2.8100016, z: 4.990546}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1989622701398873394}
+  m_Father: {fileID: 6177523702876492751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1488681995524084173
 MeshFilter:
@@ -933,7 +960,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5295105441762858565}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1093,7 +1120,6 @@ Transform:
   - {fileID: 8646282363585524747}
   - {fileID: 2096656719787055743}
   - {fileID: 2356322079840637140}
-  - {fileID: 2713812563899411267}
   m_Father: {fileID: 6778330966240797013}
   m_LocalEulerAnglesHint: {x: -5.399, y: 15.642, z: -29.872}
 --- !u!1 &8551730711776576062
@@ -1112,8 +1138,7 @@ GameObject:
   - component: {fileID: 7574219593190951933}
   - component: {fileID: 6720759181549599553}
   - component: {fileID: 1508020604561100035}
-  - component: {fileID: 8668031995856294629}
-  - component: {fileID: 7679536281033490366}
+  - component: {fileID: 6480604509377074967}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -1194,6 +1219,7 @@ MonoBehaviour:
   Dashing: 0
   DashOrigin: {x: 0, y: 0, z: 0}
   DashForce: {x: 0, y: 0, z: 0}
+  JumpInGround: 0
   Data:
     Speed: 0
     Input: {x: 0, y: 0, z: 0}
@@ -1271,12 +1297,11 @@ MonoBehaviour:
   RayTransform: {fileID: 4621699400916427813}
   PlayerMovement: {fileID: 0}
   PlayerRotate: {fileID: 0}
-  PlayerAttack: {fileID: 8668031995856294629}
   ArmAnimationController: {fileID: 7032851300679098436}
   Speed: 12
   JumpPower: 16
-  DashPower: 80
-  Gravity: 25
+  DashPower: 100
+  Gravity: 30
   Stamina: 0
   MaxStamina: 100
   StaminaHealSpeed: 0.5
@@ -1285,7 +1310,7 @@ MonoBehaviour:
   PlusHp: 0
   AttackSpeed: 1
   GroundCoyoteTime: 0.2
-  WallCoyoteTime: 0.1
+  WallCoyoteTime: 0.05
   YDownAdd: 30
   WallRunDistance: 1.5
   WallCancelAngle: 70
@@ -1327,32 +1352,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MotionController
   PlayerController: {fileID: 7574219593190951933}
   ArmAnimation: {fileID: 7032851300679098436}
---- !u!114 &8668031995856294629
-MonoBehaviour:
+--- !u!54 &6480604509377074967
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8551730711776576062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae2a365d7f166f4cbcb8c54c6f3caac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
---- !u!114 &7679536281033490366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551730711776576062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9727cb3096fbc8d49be2c3e394ab240d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
-  PlayerAttack: {fileID: 8668031995856294629}
-  CameraAnimation: {fileID: 5787505380009120523}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8835396000652473016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2111,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3546b2f491bdbb4caab54b00a07da1f, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2713812563899411267}
     - targetCorrespondingSourceObject: {fileID: 874041887914136945, guid: c3546b2f491bdbb4caab54b00a07da1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1989622701398873394}

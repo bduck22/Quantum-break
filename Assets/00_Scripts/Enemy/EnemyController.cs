@@ -26,8 +26,9 @@ public class EnemyInfomation
 
 public class EnemyController : MobBase
 {
-    [Header("정지")]
-    public bool IsStop;
+    [Header("상태")]
+    public bool IsDead;
+    public bool Invincibility;
 
     [Header("무기")]
     public MobWeaponBase Weapon;
@@ -38,8 +39,12 @@ public class EnemyController : MobBase
     public event Action OnAttacked;
     public event Action OnWalked;
     public event Action OnFind;
+    public event Action OnDeath;
 
     public Transform[] WayPoints;
+
+    [Header("허리")]
+    public Transform Spine;
 
     MobEyeChecker EyeChecker;
 
@@ -60,13 +65,13 @@ public class EnemyController : MobBase
     public void EnemyInit()
     {
         MovementAI.Init(WayPoints);
-        Weapon.Init();
+        Weapon.Init(Player.GetComponent<PlayerController>().PlayerMovement);
         EyeChecker.Init(Player);
     }
 
     private void Update()
     {
-        if (IsStop)
+        if (IsDead)
         {
             return;
         }
@@ -75,10 +80,13 @@ public class EnemyController : MobBase
         {
             if (MovementAI.IsMoving)
             {
+                OnFind?.Invoke();
                 MovementAI.OnStop();
                 EyeChecker.Target = Core;
                 EyeChecker.CheckTargetInEye();
             }
+
+            LookAt(Core.transform);
 
             Attack();
             return;
@@ -88,19 +96,14 @@ public class EnemyController : MobBase
         {
             if(EyeChecker.lockontime == 0)
             {
-                Quaternion targetrotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), Time.deltaTime * 10f);
-                targetrotation.x = 0;
-                targetrotation.z = 0;
-                transform.rotation = targetrotation;
-
-                float Waist;
-                Debug.Log(transform.position.y - )
+                LookAt(Player.transform);
             }
         }
         else
         {
             if (!MovementAI.IsMoving)
             {
+                Spine.localRotation = Quaternion.identity;
                 OnWalked?.Invoke();
                 MovementAI.OnStart(new EnemyInfomation(Speed));
                 Weapon.OnStop();
@@ -124,6 +127,17 @@ public class EnemyController : MobBase
         }
     }
 
+    void LookAt(Transform Target)
+    {
+        Quaternion targetrotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * 10f);
+        targetrotation.x = 0;
+        targetrotation.z = 0;
+        transform.rotation = targetrotation;
+
+        float Waist = transform.position.y - Target.transform.position.y;
+        Spine.localRotation = Quaternion.Euler(Waist * 3, -Waist * 3, Waist * 3);
+    }
+
     void Attack()
     {
         if (Weapon.IsCanAttack())
@@ -139,8 +153,12 @@ public class EnemyController : MobBase
 
     public void Hit()
     {
-        Debug.Log("사망");
-        IsStop = true;
-        gameObject.SetActive(false);
+        if (!IsDead&&!Invincibility)
+        {
+            OnDeath?.Invoke();
+            IsDead = true;
+        }
+        //Debug.Log("사망");
+        //gameObject.SetActive(false);
     }
 }

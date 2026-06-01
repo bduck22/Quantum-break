@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1613029413852162310}
   - component: {fileID: 510197475528302032}
   - component: {fileID: 2145438147891009543}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2436957594554382267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.128}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalPosition: {x: 0, y: 0, z: -0.432}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7390762349627769574}
@@ -665,7 +665,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 1.0245758
+    angle: 4.213027
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4846,7 +4846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390762349627769574}
   - component: {fileID: 3194814623526598183}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840d891e9bef56f44b671aef56447c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
+  IsStop: 0
   BulletSpeed: 0
+  DestroyDistance: 55
+  trail: {fileID: 219327494033292370}
+  ParringEffect: {fileID: 0}
 --- !u!1 &4168796385408504955
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,7 +4903,7 @@ GameObject:
   - component: {fileID: 8038768170797098889}
   - component: {fileID: 6461329196098290647}
   - component: {fileID: 171030238330556277}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -4915,7 +4919,7 @@ Transform:
   m_GameObject: {fileID: 4168796385408504955}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0253}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.025, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5012,7 +5016,7 @@ GameObject:
   - component: {fileID: 1667716072180308874}
   - component: {fileID: 4581300421811983119}
   - component: {fileID: 5454040662339944418}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5137,7 +5141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2837964699641286800}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5174,7 +5178,7 @@ GameObject:
   - component: {fileID: 9108590386716707392}
   - component: {fileID: 7925949458764907048}
   - component: {fileID: 3603927057493442330}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5300,7 +5304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6880559585737624897}
   - component: {fileID: 219327494033292370}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5371,7 +5375,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 10
+  m_Time: 5
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -5424,7 +5428,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 1
+    textureMode: 0
     textureScale: {x: 0.3, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -5443,7 +5447,7 @@ GameObject:
   - component: {fileID: 5631112275934999670}
   - component: {fileID: 2802943332276958447}
   - component: {fileID: 5654973120210639978}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5570,7 +5574,7 @@ GameObject:
   - component: {fileID: 6771980726147591461}
   - component: {fileID: 17009601381634678}
   - component: {fileID: 8839284805441503303}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5697,7 +5701,7 @@ GameObject:
   - component: {fileID: 1900067157330673902}
   - component: {fileID: 1108069148217728572}
   - component: {fileID: 1695968650630458159}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: BodySmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5713,8 +5717,8 @@ Transform:
   m_GameObject: {fileID: 8829844771460495163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0525}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7390762349627769574}
@@ -5728,7 +5732,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8829844771460495163}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -5802,7 +5806,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10534,7 +10538,7 @@ GameObject:
   - component: {fileID: 1788057805101128436}
   - component: {fileID: 2986625802941547295}
   - component: {fileID: 1601881861636112985}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Mesh2
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -10550,7 +10554,7 @@ Transform:
   m_GameObject: {fileID: 8837952490869014607}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0034}
+  m_LocalPosition: {x: 0, y: -0, z: 0.0333}
   m_LocalScale: {x: 0.05, y: 0.050000004, z: 0.050000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10630,7 +10634,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

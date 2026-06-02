@@ -139,12 +139,12 @@ public class EnemyRouteController : MonoBehaviour
         }
 
         spawnCount--;
-        EnemyController enemy = Instantiate(WaveSpawnDatas[CurrentWave].EnemyPrefab, Routes[CurrentWave].WayPoints[0].position, Quaternion.identity).GetComponent<EnemyController>();
-        enemy.WayPoints = (Transform[])WayPoints.Clone();
+        EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal);
         enemy.Player = player;
         enemy.Core = Core;
-        enemy.EnemyInit();
+        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[CurrentWave].WayPoints[0].position);
 
+        enemy.gameObject.SetActive(true);
     }
 }
 

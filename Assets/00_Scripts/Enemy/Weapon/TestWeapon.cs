@@ -9,6 +9,7 @@ public class TestWeapon : MobWeaponBase
     public override void Init(PlayerMovement playermove)
     {
         this.playermove = playermove;
+        RatingTime = Data.ShootRate * 0.7f;
     }
     public override bool IsCanAttack()
     {
@@ -50,6 +51,6 @@ public class TestWeapon : MobWeaponBase
     }
     public override void OnStop()
     {
-        RatingTime = Data.ShootRate/2f;
+        
     }
 }

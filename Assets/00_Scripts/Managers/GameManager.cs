@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
     {
         CurrentMap.Player = Player;
         CurrentMap.Core = Core;
-        CurrentMap.MapStart();
+        CurrentMap.MapInit();
     }
 }

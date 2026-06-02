@@ -87,4 +87,13 @@ public class BulletController : MonoBehaviour
         transform.gameObject.SetActive(false);
         poolManager.BulletPool.Enqueue(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 6)
+        {
+            ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.BulletParring, transform.position, Quaternion.identity);
+            OnFalse();
+        }
+    }
 }

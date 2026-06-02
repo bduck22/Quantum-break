@@ -15,6 +15,7 @@ public class PlayerHit : MonoBehaviour
         {
             if (!controller.Invincibility)
             {
+                SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.Playerhit, other.transform.position, Quaternion.identity).Play();
                 other.transform.parent.GetComponent<BulletController>().OnFalse();
                 controller.OnHited();
             }

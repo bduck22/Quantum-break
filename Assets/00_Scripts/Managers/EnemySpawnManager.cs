@@ -17,12 +17,17 @@ public class EnemySpawnManager : MonoBehaviour
     [HideInInspector]
     public Transform Core;
 
-    public void MapStart()
+    public void MapInit()
     {
         foreach (EnemyRouteController spawner in Spawners)
         {
             spawner.player = Player;
             spawner.Core = Core;
         }
+    }
+
+    public void MapStart()
+    {
+        
     }
 }

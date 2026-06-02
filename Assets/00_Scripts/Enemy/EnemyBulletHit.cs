@@ -16,6 +16,7 @@ public class EnemyBulletHit : MonoBehaviour
             if (other.CompareTag("Bullet"))
             {
                 other.transform.parent.GetComponent<BulletController>().OnFalse();
+                SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.EnemyHit, transform.position, Quaternion.identity).Play();
                 controller.Hit();
             }
         }

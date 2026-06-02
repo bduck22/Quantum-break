@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   MobName: Test
+  Type: 0
   CurrentState: 0
   Speed: 1
   ShootPoint: {fileID: 9190001858862129270}
@@ -63,6 +64,7 @@ MonoBehaviour:
   Spine: {fileID: 4804261487025190657}
   Player: {fileID: 0}
   Core: {fileID: 0}
+  DeathTime: 15
 --- !u!114 &5839902046444063290
 MonoBehaviour:
   m_ObjectHideFlags: 0

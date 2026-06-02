@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class ParticlesSpawnManager : MonoBehaviour
 {
     [Header("파티클 원본 모델")]
     public ParticleController[] Particles;
+
+    [Header("파티클 소환위치 부모")]
+    public Transform ParticlePoolsParent;
 
     [Header("파티클 소환위치")]
     public Transform[] ParticleParents;
@@ -21,19 +23,18 @@ public class ParticlesSpawnManager : MonoBehaviour
     {
         ParticleParents = new Transform[Particles.Length];
 
-        DefulatSpawnCounts = new int[Particles.Length];
-
         ParticlePools = new Queue<ParticleController>[Particles.Length];
 
         for(int i = 0; i < ParticleParents.Length; i++)
         {
             ParticleParents[i] = new GameObject().transform;
+            ParticleParents[i].parent = ParticlePoolsParent;
 
             ParticleParents[i].name = ((Particle_Type)i).ToString();
 
             ParticlePools[i] = new Queue<ParticleController>();
 
-            for (int j = 0; j < DefulatSpawnCounts.Length; j++)
+            for (int j = 0; j < DefulatSpawnCounts[i]; j++)
             {
                 InPool(i, spawnParticle(i));
             }
@@ -69,6 +70,8 @@ public class ParticlesSpawnManager : MonoBehaviour
     {
         ParticleController particle = Instantiate(Particles[type].gameObject, ParticleParents[type]).GetComponent<ParticleController>();
 
+        particle.gameObject.SetActive(false);
+
         particle.DefaulInit(this, type);
 
         return particle;
@@ -78,5 +81,7 @@ public class ParticlesSpawnManager : MonoBehaviour
 public enum Particle_Type
 {
     BulletParring,
-    SwordParring
+    SwordParring,
+    EnemyHit,
+    Playerhit
 }

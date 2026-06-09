@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class TurretBase : MonoBehaviour
 {
-    public string TurretName;
-
-    public Turret_Type Type;
+    public TurretData Data;
 }
 
 public enum Turret_Type
 {
-    IronTaker
+    IronTaker,
+    Slow
 }

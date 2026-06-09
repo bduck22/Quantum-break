@@ -1094,8 +1094,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1759933, y: 1, z: 0.9999999}
+  m_Center: {x: -0.022566635, y: 0, z: 0}
 --- !u!114 &2345511717939429708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHitChecker
   Head: {fileID: 5018042308016587211}
+  HeadPivot: {x: 0, y: 0.3, z: 0}
+  camera: {fileID: 0}
   isparried: 0
 --- !u!1 &8180454863591819417
 GameObject:
@@ -1321,7 +1323,8 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   PlayerRotate: {fileID: 0}
   ArmAnimationController: {fileID: 7032851300679098436}
-  Speed: 12
+  defaultSpeed: 12
+  plusSpeed: 0
   JumpPower: 16
   DashPower: 80
   Gravity: 30
@@ -1364,6 +1367,7 @@ MonoBehaviour:
   XRotation: 0
   MinRotation: -80
   MaxRotation: 80
+  DeltaYawSpeed: 40
 --- !u!114 &1508020604561100035
 MonoBehaviour:
   m_ObjectHideFlags: 0

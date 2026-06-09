@@ -10,6 +10,8 @@ public class ParticleController : MonoBehaviour
 
     public int ParticleNumber;
 
+    public bool NotPool;
+
     public void Init(Vector3 Position, Quaternion Rotation)
     {
         transform.position = Position;
@@ -34,7 +36,7 @@ public class ParticleController : MonoBehaviour
 
     void OnParticleSystemStopped()
     {
-        spawnManager.InPool(ParticleNumber, this);
+        if(!NotPool) spawnManager.InPool(ParticleNumber, this);
         gameObject.SetActive(false);
     }
 }

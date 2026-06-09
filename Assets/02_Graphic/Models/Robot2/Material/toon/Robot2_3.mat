@@ -143,7 +143,7 @@ Material:
     - _EnableAntiAliasing: 1
     - _EnableCastShadows: 1
     - _EnableCastShadowsRandomizer: 0
-    - _EnableCastShadowsStyling: 1
+    - _EnableCastShadowsStyling: 0
     - _EnableOutline: 1
     - _EnableRim: 1
     - _EnableRimRandomizer: 0
@@ -154,7 +154,7 @@ Material:
     - _EnableSpecular: 1
     - _EnableSpecularRandomizer: 0
     - _EnableSpecularStyling: 0
-    - _EnableStyling: 1
+    - _EnableStyling: 0
     - _EnableStylingDistanceFade: 0
     - _EnableToonShading: 1
     - _EnvironmentReflections: 1
@@ -183,7 +183,7 @@ Material:
     - _OpacityRandomMode: 0
     - _OutlineConstantScreenWidth: 0
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 5
+    - _OutlineWidth: 1.5
     - _Parallax: 0.005
     - _PolarCenterMode: 0
     - _QueueControl: -1
@@ -208,7 +208,7 @@ Material:
     - _RimOpacityRandomMode: 0
     - _RimPolarCenterMode: 0
     - _RimSSCameraDistanceScaled: 1
-    - _RimSize: 0.4
+    - _RimSize: 0.938
     - _RimSmoothness: 0
     - _RimSpacingRandomIntensity: 0
     - _RimSpacingRandomMode: 0
@@ -292,7 +292,7 @@ Material:
     - _StylingRimOpacity: 1
     - _StylingRimOpacityFalloff: 0
     - _StylingRimRotation: 45
-    - _StylingRimSize: 0.117
+    - _StylingRimSize: 0
     - _StylingRimSmoothness: 0.294
     - _StylingRimSyncWithOtherStyling: 0
     - _StylingRimThickness: 0.9
@@ -358,14 +358,14 @@ Material:
     - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 1, a: 1}
     - _PolarCenter: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0, g: 0.48113394, b: 1, a: 1}
     - _RimPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _StylingCastShadowsColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingColor: {r: 0, g: 0, b: 0, a: 1}
-    - _StylingRimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _StylingRimColor: {r: 0, g: 0.8598771, b: 1, a: 1}
     - _StylingSpecularColor: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

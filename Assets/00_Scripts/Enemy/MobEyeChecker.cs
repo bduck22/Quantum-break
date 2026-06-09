@@ -33,6 +33,7 @@ public class MobEyeChecker : MonoBehaviour
 
     public void Init(PlayerController Player)
     {
+        LockOn = false;
         this.Target = Player.transform;
         lockontime = 0;
     }
@@ -62,6 +63,21 @@ public class MobEyeChecker : MonoBehaviour
         {
             if (LockOn)
             {
+                Debug.Log(dir.y);
+                if(Mathf.Abs(dir.y) > 5)
+                {
+                    if (lockontime >= StopToMoveTimer)
+                    {
+                        lockontime = 0;
+                        LockOn = false;
+                    }
+                    else
+                    {
+                        lockontime += Time.deltaTime;
+                    }
+                    return false;
+                }
+
                 if (CheckingPlayerInEye(dir)) //플레이어가 있음
                 {
                     lockontime = 0;
@@ -89,7 +105,7 @@ public class MobEyeChecker : MonoBehaviour
                     Vector3 dirToTarget = dir;
 
                     float angle = Vector3.Angle(forward, dirToTarget);
-                    if (angle <= EyeAngle * 0.5f)
+                    if (angle <= EyeAngle * 0.5f&&Mathf.Abs(dir.y)<5)
                     {
                         LockOn = true;
                         lockontime = 0;

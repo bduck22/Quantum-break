@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 public enum Mob_State
@@ -6,21 +5,6 @@ public enum Mob_State
     Move,
     Attack,
     Death
-}
-
-public class EnemyInfomation
-{
-    public EnemyInfomation(float Speed)
-    {
-        this.Speed = Speed;
-        IsAirWind = false;
-        IsSlow = false;
-        IsStun = false;
-    }
-    public float Speed;
-    public bool IsAirWind;
-    public bool IsSlow;
-    public bool IsStun;
 }
 
 public class EnemyController : MobBase
@@ -31,6 +15,7 @@ public class EnemyController : MobBase
 
     [Header("무기")]
     public MobWeaponBase Weapon;
+    public ParticleSystem ShinyEffect;
 
     [Header("움직임 알고리즘")]
     public MovementAIBase MovementAI;
@@ -39,6 +24,8 @@ public class EnemyController : MobBase
     public event Action OnWalked;
     public event Action OnFind;
     public event Action OnDeath;
+    public event Action<EnemyController> OnDead;
+    public event Action OnFalse;
 
     public Transform[] WayPoints;
 
@@ -47,7 +34,6 @@ public class EnemyController : MobBase
 
     MobEyeChecker EyeChecker;
 
-    [HideInInspector]
     public PlayerController Player;
     [HideInInspector]
     public Transform Core;
@@ -59,12 +45,19 @@ public class EnemyController : MobBase
     private void Awake()
     {
         MovementAI = GetComponent<MovementAIBase>();
+
         Weapon = GetComponent<MobWeaponBase>();
+        Weapon.ShinyEffect = ShinyEffect;
         if (GetComponent<MobEyeChecker>())
         {
             EyeChecker = GetComponent<MobEyeChecker>();
         }
         Collider = GetComponentInChildren<Collider>();
+
+        if (!MovementAI)
+        {
+            EnemyInit(GameManager.Instance.Player);
+        }
     }
     public void DefaultInit(EnemyPoolManager poolManager, Enemy_Type type)
     {
@@ -77,20 +70,37 @@ public class EnemyController : MobBase
         DeathTimer = 0;
         IsDead = false;
         Invincibility = false;
+        Collider.enabled = true;
         this.WayPoints = (Transform[])WayPoints.Clone();
 
-        MovementAI.Init(this.WayPoints);
-        Weapon.Init(Player.GetComponent<PlayerController>().PlayerMovement);
+        MovementAI?.Init(this.WayPoints);
+        Weapon.Init(Player.GetComponent<PlayerController>().PlayerMovement, this);
         EyeChecker.Init(Player);
-        
+
         transform.position = Position;
+
+        CurrentState = Mob_State.Attack;
+    }
+
+    public void EnemyInit(PlayerController Player)
+    {
+        DeathTimer = 0;
+        IsDead = false;
+        Invincibility = false;
+
+        this.Player = Player;
+
+        Weapon.Init(Player.PlayerMovement, this);
+        EyeChecker.Init(Player);
+
+        OnFind.Invoke();
     }
 
     [Header("시체 사라지는 시간")]
     public float DeathTime;
     float DeathTimer;
 
-    private void Update()
+    bool CheckDead()
     {
         if (IsDead)
         {
@@ -100,13 +110,21 @@ public class EnemyController : MobBase
             }
             else
             {
-                PoolManager.InPool((int)Type, this);
+                if (MovementAI)
+                {
+                    PoolManager.InPool((int)Type, this);
+                }
                 gameObject.SetActive(false);
                 DeathTimer = 0;
+                OnFalse?.Invoke();
             }
-            return;
+            return true;
         }
+        return false;
+    }
 
+    bool CheckMoveFinished()
+    {
         if (MovementAI.FinalArrived)
         {
             if (CurrentState == Mob_State.Move)
@@ -121,12 +139,16 @@ public class EnemyController : MobBase
             LookAt(Core.transform);
 
             Attack();
-            return;
+            return true;
         }
+        return false;
+    }
 
+    bool CheckLockOn()
+    {
         if (EyeChecker.LockOn)
         {
-            if(EyeChecker.lockontime == 0)
+            if (EyeChecker.lockontime == 0)
             {
                 LookAt(Player.transform);
             }
@@ -137,14 +159,21 @@ public class EnemyController : MobBase
             {
                 CurrentState = Mob_State.Move;
                 Spine.localRotation = Quaternion.identity;
-                OnWalked?.Invoke();
-                MovementAI.OnStart(new EnemyInfomation(Speed));
+                if (MovementAI)
+                {
+                    OnWalked?.Invoke();
+                    MovementAI?.OnStart(Speed);
+                }
                 Weapon.OnStop();
-                return;
+                return true;
             }
-            MovementAI.OnMove();
+            MovementAI?.OnMove();
         }
+        return false;
+    }
 
+    void CheckEye()
+    {
         if (EyeChecker != null)//여기 수정 필요
         {
             if (EyeChecker.CheckTargetInEye())
@@ -153,12 +182,42 @@ public class EnemyController : MobBase
                 {
                     CurrentState = Mob_State.Attack;
                     OnFind?.Invoke();
-                    MovementAI.OnStop();
+                    MovementAI?.OnStop();
                 }
 
                 Attack();
             }
         }
+    }
+
+    private void Update()
+    {
+        if (CheckDead())
+        {
+            return;
+        }
+
+        if (!MovementAI)
+        {
+            if (CheckLockOn())
+            {
+                return;
+            }
+            CheckEye();
+            return;
+        }
+
+        if (CheckMoveFinished())
+        {
+            return;
+        }
+
+        if (CheckLockOn())
+        {
+            return;
+        }
+
+        CheckEye();
     }
 
     void LookAt(Transform Target)
@@ -168,8 +227,9 @@ public class EnemyController : MobBase
         targetrotation.z = 0;
         transform.rotation = targetrotation;
 
-        float Waist = transform.position.y - Target.transform.position.y;
-        Spine.localRotation = Quaternion.Euler(Waist * 3, -Waist * 3, Waist * 3);
+        float Waist = Target.transform.position.y - transform.position.y;
+        float value = 1.5f;
+        Spine.localRotation = Quaternion.Euler(-Waist * value, Waist * 0.5f * value, -Waist * value);
     }
 
     void Attack()
@@ -187,15 +247,14 @@ public class EnemyController : MobBase
 
     public void Hit()
     {
-        if (!IsDead&&!Invincibility)
+        if (!IsDead && !Invincibility)
         {
             CurrentState = Mob_State.Death;
 
+            OnDead?.Invoke(this);
             OnDeath?.Invoke();
             IsDead = true;
-            Collider.enabled= false;
+            Collider.enabled = false;
         }
-        //Debug.Log("사망");
-        //gameObject.SetActive(false);
     }
 }

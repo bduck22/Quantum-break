@@ -128,7 +128,7 @@ public class EnemyRouteController : MonoBehaviour
     {
         Spawning = true;
         //linefalsetime = 0;
-        spawningtime = 0;
+        spawningtime = WaveSpawnDatas[CurrentWave].SpawnDelay;
     }
 
     void Spawn()

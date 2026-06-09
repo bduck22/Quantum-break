@@ -1,13 +1,8 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BuffController : MonoBehaviour
 {
-    public event Action OnBuffStart;
-
-    private void Start()
-    {
-        OnBuffStart?.Invoke();
-        OnBuffStart = null;
-    }
+    public List<BuffBase> Buffs = new List<BuffBase>();
 }

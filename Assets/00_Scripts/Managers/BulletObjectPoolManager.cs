@@ -21,15 +21,20 @@ public class BulletObjectPoolManager : MonoBehaviour
         }
     }
 
-    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount ,float BulletDelay)
+    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount ,float BulletDelay, EnemyController enemy)
     {
-        StartCoroutine(SpawningBullets(Position, Rotation, BulletSpeed, BulletCount, BulletDelay));
+        StartCoroutine(SpawningBullets(Position, Rotation, BulletSpeed, BulletCount, BulletDelay, enemy));
     }
 
-    IEnumerator SpawningBullets(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount, float BulletDelay)
+    IEnumerator SpawningBullets(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount, float BulletDelay, EnemyController enemy)
     {
         for(int i = 0; i < BulletCount; i++)
         {
+            if (enemy.IsDead)
+            {
+                continue;
+            }
+
             BulletController bullet;
             if (BulletPool.Count > 0)
             {

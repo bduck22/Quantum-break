@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
+[DefaultExecutionOrder(-50)]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private StateMachine StateMachine;
@@ -37,7 +38,20 @@ public class PlayerController : MonoBehaviour
     public ArmAnimationController ArmAnimationController;
 
     [Header("플레이어 능력치")]
-    public float Speed;
+    public float Speed
+    {
+        get
+        {
+            return defaultSpeed + plusSpeed;
+        }
+        set
+        {
+            plusSpeed = value;
+        }
+    }
+    public float defaultSpeed;
+    [SerializeField]
+    private float plusSpeed;
 
     public float JumpPower;
     public float DashPower;
@@ -203,7 +217,6 @@ public class PlayerController : MonoBehaviour
                     return true;
                 }
             }
-            //Debug.Log(cc.isGrounded + " and " + jumpbuffer);
 
             return false;
         }
@@ -300,7 +313,7 @@ public class PlayerController : MonoBehaviour
                     Invincibility = true;
                     Time.timeScale = 0.05f;
                 }
-                Stamina -= Time.unscaledDeltaTime;
+                    Stamina -= Time.unscaledDeltaTime;
             }
             else if (Invincibility)
             {
@@ -479,26 +492,23 @@ public class PlayerController : MonoBehaviour
 
     private readonly Collider[] wallHits = new Collider[8];
     private int mapMask;
-    private readonly Vector3 WallBoxHalfExtents = new Vector3(0.3f, 0.2f, 0.3f);
+    private readonly Vector3 WallBoxHalfExtents = new Vector3(0.65f, 0.2f, 1.25f);
 
 
-    //private void OnDrawGizmos()
-    //{
+    private void OnDrawGizmos()
+    {
 
-    //    Vector3 center = transform.position + transform.right * 1.5f;
-    //    Quaternion rotation = transform.rotation;
+        Vector3 center = transform.position + transform.right * 1.5f;
+        Quaternion rotation = transform.rotation;
 
-    //    Gizmos.color = Color.red;
+        Gizmos.color = Color.red;
+        Matrix4x4 oldMatrix = Gizmos.matrix;
+        Gizmos.matrix = Matrix4x4.TRS(center, rotation, Vector3.one);
 
-    //    // 회전까지 반영해서 박스 그리기
-    //    Matrix4x4 oldMatrix = Gizmos.matrix;
-    //    Gizmos.matrix = Matrix4x4.TRS(center, rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, WallBoxHalfExtents * 2f);
 
-    //    // DrawWireCube는 전체 크기를 받으므로 halfExtents * 2
-    //    Gizmos.DrawWireCube(Vector3.zero, WallBoxHalfExtents * 2f);
-
-    //    Gizmos.matrix = oldMatrix;
-    //}
+        Gizmos.matrix = oldMatrix;
+    }
 
     bool IsRightWall(int right)
     {
@@ -616,16 +626,18 @@ public class PlayerController : MonoBehaviour
 
     void InvincibilityTimerPlay()
     {
-        if (Invincibility&&!InputHandler.DashHeld)
+        if (Invincibility&&!PlayerMovement.Dashing)
         {
             if(InvincibilityTimer > 0)
             {
+                DashReLoadTimer = DashReloadTime;
                 InvincibilityTimer -= Time.unscaledDeltaTime;
             }
             else
             {
                 InvincibilityTimer = 0;
                 Invincibility = false;
+                DashReLoadTimer = DashReloadTime;
                 EndHitInvincibility?.Invoke();
             }
         }

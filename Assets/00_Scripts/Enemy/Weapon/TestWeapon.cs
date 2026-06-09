@@ -6,26 +6,40 @@ public class TestWeapon : MobWeaponBase
     PlayerMovement playermove;
 
     public float LeadPer;
-    public override void Init(PlayerMovement playermove)
+
+    public Vector3 TargetPivot;
+
+    public EnemyController Enemy;
+    public override void Init(PlayerMovement playermove, EnemyController enemy)
     {
         this.playermove = playermove;
+        Enemy = enemy;
         RatingTime = Data.ShootRate * 0.7f;
     }
     public override bool IsCanAttack()
     {
+        if (RatingTime >= Data.ShootRate - 1.3f &&Shooted)
+        {
+            Shooted = false;
+            ShinyEffect.Play();
+        }
         return (RatingTime >= Data.ShootRate);
     }
 
     public override void OnAttack(Transform ShootP, Transform Target)
     {
         RatingTime = 0;
-        Vector3 TargetPos = Target.position + new Vector3(0, 1.1f, 0);
+        Shooted = true;
+        Vector3 TargetPos = Target.position + TargetPivot;
         Vector3 dir;
         if (Target.gameObject.layer == 9)
         {
             Vector3 TargetVelocity = playermove.PreviousVel;
-            TargetVelocity.y = Mathf.Clamp(TargetVelocity.y, 0, 10000);
-            TargetVelocity.y /= 2;
+            if(TargetVelocity.y == -1 || TargetVelocity.y >= 0)
+            {
+                TargetVelocity.y = 0;
+            }
+
 
             float Distance = Vector3.Distance(ShootP.position, TargetPos);
             float timeToHit = Distance / Data.BulletSpeed;
@@ -41,7 +55,7 @@ public class TestWeapon : MobWeaponBase
 
         Quaternion rotation = Quaternion.LookRotation(dir);
 
-        SpawnManagers.Instance.Bullet.SpawnBullet(ShootP.position, rotation, Data.BulletSpeed, Data.BulletCount, Data.BulletDelay);
+        SpawnManagers.Instance.Bullet.SpawnBullet(ShootP.position, rotation, Data.BulletSpeed, Data.BulletCount, Data.BulletDelay, Enemy);
     }
 
     public override void OnRating()
@@ -51,6 +65,6 @@ public class TestWeapon : MobWeaponBase
     }
     public override void OnStop()
     {
-        
+        Shooted = true;
     }
 }

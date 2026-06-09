@@ -4,6 +4,8 @@ public class PlayerAttackHitChecker : MonoBehaviour
 {
     PlayerController playerController;
     public Transform Head;
+    public Vector3 HeadPivot = new Vector3(0,0.3f,0);
+    public Transform camera;
     
     int layer;
 
@@ -12,6 +14,8 @@ public class PlayerAttackHitChecker : MonoBehaviour
     private void Awake()
     {
         layer = LayerMask.GetMask("Bullet");// | LayerMask.GetMask("Enemy");
+        camera = Camera.main.transform;
+
         playerController = transform.root.GetComponent<PlayerController>();
 
         playerController.OnAttack += InitParring;
@@ -37,7 +41,7 @@ public class PlayerAttackHitChecker : MonoBehaviour
             {
                 if(collider.transform.parent.gameObject.layer == 10&&!isparried)
                 {
-                    collider.transform.parent.GetComponent<BulletController>().Parring(Head.position);
+                    collider.transform.parent.GetComponent<BulletController>().Parring(camera);//Head.position+HeadPivot
                     playerController.Parring();
                     isparried = true;
                     SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.SwordParring, collider.transform.position, Quaternion.identity).Play();
@@ -55,7 +59,7 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.CompareTag("Enemy"))
         {
             if (AttackCheck())
             {

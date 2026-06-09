@@ -26,12 +26,12 @@ public class BulletController : MonoBehaviour
         Move();
     }
 
-    public void Parring(Vector3 NewPos)
+    public void Parring(Transform Dir)
     {
-        NewPos -= new Vector3(0,0.5f,0);
-        Vector3 dir = (transform.position - NewPos).normalized;
+        //NewPos -= new Vector3(0,0.5f,0);
+        //Vector3 dir = (transform.position - NewPos).normalized;
 
-        Quaternion rotation = Quaternion.LookRotation(dir);
+        Quaternion rotation = Dir.rotation;//Quaternion.LookRotation(Dir.);
 
         BulletInit(transform.position, rotation, BulletSpeed);
 
@@ -92,7 +92,8 @@ public class BulletController : MonoBehaviour
     {
         if(other.gameObject.layer == 6)
         {
-            ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.BulletParring, transform.position, Quaternion.identity);
+            ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.Playerhit, transform.position, Quaternion.identity);
+            particle.Play();
             OnFalse();
         }
     }

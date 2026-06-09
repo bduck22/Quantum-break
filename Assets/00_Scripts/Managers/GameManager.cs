@@ -1,15 +1,23 @@
 using NUnit.Framework;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
 {
-    [Header("Never Changed")]
+    public static GameManager Instance;
+
+    [Header("절대불변")]
     public PlayerController Player;
     public SpawnManagers spawnManagers;
 
-    [Header("Changed In OneMap")]
+    [Header("맵마다 변경")]
     public Transform Core;
     public EnemySpawnManager CurrentMap;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

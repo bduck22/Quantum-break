@@ -4,7 +4,7 @@ public class EnemyAnimationController : MonoBehaviour
 {
     Animator animator;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -27,5 +27,12 @@ public class EnemyAnimationController : MonoBehaviour
     public void SetDeath()
     {
         animator.SetTrigger("Death");
+    }
+
+    public void Initation()
+    {
+        animator.ResetTrigger("Death");
+        animator.ResetTrigger("OnAttack");
+        animator.SetBool("IsAttack", false);
     }
 }

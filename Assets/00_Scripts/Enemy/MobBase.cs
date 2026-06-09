@@ -7,7 +7,21 @@ public abstract class MobBase : MonoBehaviour
     [Header("현재 상태")]
     public Mob_State CurrentState;
     [Header("능력치")]
-    public float Speed;
+    public float Speed
+    {
+        get
+        {
+            return defaultSpeed + plusSpeed;
+        }
+        set
+        {
+            plusSpeed = value;
+        }
+    }
+    public float defaultSpeed;
+    [SerializeField]
+    private float plusSpeed;
+
     [Header("격발 피벗")]
     public Transform ShootPoint;
 }

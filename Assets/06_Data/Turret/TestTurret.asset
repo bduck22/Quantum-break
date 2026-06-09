@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886a028b9fe89d145b275f99f1719e97, type: 3}
+  m_Name: TestTurret
+  m_EditorClassIdentifier: Assembly-CSharp::TurretData
+  TurretName: "\uACE0\uCCA0 \uC218\uAE09\uAE30"
+  Type: 1
+  CoolTime: 2
+  Duration: 1
+  Cognizance: 10

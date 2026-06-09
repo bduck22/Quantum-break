@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: b199bdf781c163b469823a86f9204ac9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 64860141afa10c84780f3416e43c23e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientTex:
@@ -150,13 +150,13 @@ Material:
     - _EnableAntiAliasing: 1
     - _EnableCastShadows: 1
     - _EnableCastShadowsRandomizer: 0
-    - _EnableCastShadowsStyling: 1
+    - _EnableCastShadowsStyling: 0
     - _EnableOutline: 1
     - _EnableRim: 1
     - _EnableRimRandomizer: 0
-    - _EnableRimStyling: 1
+    - _EnableRimStyling: 0
     - _EnableShadingRandomizer: 0
-    - _EnableShadingStyling: 1
+    - _EnableShadingStyling: 0
     - _EnableShadows: 1
     - _EnableSpecular: 1
     - _EnableSpecularRandomizer: 0
@@ -191,13 +191,13 @@ Material:
     - _OpacityRandomMode: 0
     - _OutlineConstantScreenWidth: 0
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 5
+    - _OutlineWidth: 2
     - _Parallax: 0.02
     - _PolarCenterMode: 0
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimAffectedArea: 1
+    - _RimAffectedArea: 2
     - _RimAffectedByNormalMap: 1
     - _RimAnchorSSToObjectsOrigin: 1
     - _RimBlending: 0
@@ -216,8 +216,8 @@ Material:
     - _RimOpacityRandomMode: 0
     - _RimPolarCenterMode: 0
     - _RimSSCameraDistanceScaled: 1
-    - _RimSize: 0.441
-    - _RimSmoothness: 0
+    - _RimSize: 0.505
+    - _RimSmoothness: 0.358
     - _RimSpacingRandomIntensity: 0
     - _RimSpacingRandomMode: 0
     - _RimStyle: 0
@@ -257,7 +257,7 @@ Material:
     - _SpecularOpacityRandomMode: 0
     - _SpecularPolarCenterMode: 0
     - _SpecularSSCameraDistanceScaled: 1
-    - _SpecularSize: 0.725
+    - _SpecularSize: 0.341
     - _SpecularSmoothness: 0.239
     - _SpecularSpacingRandomIntensity: 0
     - _SpecularSpacingRandomMode: 0
@@ -281,7 +281,7 @@ Material:
     - _StylingCastShadowsOpacityFalloff: 0
     - _StylingCastShadowsRotationBetweenCells: 30
     - _StylingCastShadowsSmoothness: 1
-    - _StylingCastShadowsSyncWithOtherStyling: 1
+    - _StylingCastShadowsSyncWithOtherStyling: 0
     - _StylingCastShadowsThickness: 0.9
     - _StylingCastShadowsThicknessControl: 0
     - _StylingCastShadowsThicknessFalloff: 0.5
@@ -291,7 +291,7 @@ Material:
     - _StylingOvermodelingFactor: 0
     - _StylingRimAffectedArea: 2
     - _StylingRimBlending: 0
-    - _StylingRimDensity: 30
+    - _StylingRimDensity: 1
     - _StylingRimHalftonesOffset: 1
     - _StylingRimHalftonesRoundness: 1
     - _StylingRimHalftonesRoundnessFalloff: 1
@@ -299,10 +299,10 @@ Material:
     - _StylingRimIsInverted: 0
     - _StylingRimOpacity: 1
     - _StylingRimOpacityFalloff: 0
-    - _StylingRimRotation: 45
-    - _StylingRimSize: 0.07
+    - _StylingRimRotation: 90
+    - _StylingRimSize: 0.238
     - _StylingRimSmoothness: 0.31
-    - _StylingRimSyncWithOtherStyling: 1
+    - _StylingRimSyncWithOtherStyling: 0
     - _StylingRimThickness: 0.9
     - _StylingRimThicknessControl: 0
     - _StylingRimThicknessFalloff: 0.5
@@ -317,7 +317,7 @@ Material:
     - _StylingShadingOpacity: 1
     - _StylingShadingOpacityFalloff: 0
     - _StylingShadingRotationBetweenCells: 30
-    - _StylingShadingSyncWithOtherStyling: 0
+    - _StylingShadingSyncWithOtherStyling: 2
     - _StylingShadingThickness: 0.9
     - _StylingShadingThicknessControl: 0
     - _StylingShadingThicknessFalloff: 0.5
@@ -365,16 +365,16 @@ Material:
     - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 1, a: 1}
     - _PolarCenter: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0, g: 0.7929554, b: 1, a: 1}
     - _RimPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _StylingCastShadowsColor: {r: 0, g: 0, b: 0, a: 1}
     - _StylingColor: {r: 0, g: 0, b: 0, a: 1}
-    - _StylingRimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _StylingRimColor: {r: 0, g: 0.8594308, b: 1, a: 1}
     - _StylingSpecularColor: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

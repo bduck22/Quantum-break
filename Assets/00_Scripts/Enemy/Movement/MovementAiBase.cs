@@ -4,7 +4,7 @@ using System;
 
 public interface MovementAI
 {
-    public void OnStart(EnemyInfomation Info);
+    public void OnStart(float Speed);
     public void OnMove();
     public void OnStop();
 }
@@ -20,7 +20,9 @@ public abstract class MovementAIBase : MonoBehaviour, MovementAI
     public bool FinalArrived;
 
     public bool IsMoving;
-    public abstract void OnStart(EnemyInfomation Info);
+
+    public float Speed;
+    public abstract void OnStart(float Speed);
     public abstract void OnMove();
     public abstract void OnStop();
     public virtual void Init(Transform[] wayPoints)

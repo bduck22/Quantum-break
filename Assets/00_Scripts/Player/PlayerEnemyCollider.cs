@@ -13,7 +13,10 @@ public class PlayerEnemyCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Vector3 dir = transform.position - other.transform.position;
-        cc.Move(dir.normalized * HitPower * Time.deltaTime);
+        if(other.gameObject.layer == 8)
+        {
+            Vector3 dir = transform.position - other.transform.position;
+            cc.Move(dir.normalized * HitPower * Time.deltaTime);
+        }
     }
 }

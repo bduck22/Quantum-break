@@ -9,7 +9,9 @@ public class PlayerRotate : MonoBehaviour
     public float MinRotation;
     public float MaxRotation;
 
-    float deltaYaw;
+    float deltaYaw=0;
+
+    public float DeltaYawSpeed;
 
     public void Rotate(float Sensitivity, Vector2 Input)
     {
@@ -27,14 +29,15 @@ public class PlayerRotate : MonoBehaviour
     {
         if(deltaYaw != 0)
         {
-            transform.Rotate(Vector3.up * (deltaYaw * Time.deltaTime));
+            float minus = deltaYaw < 0 ? -1 : 1;
+            transform.Rotate(Vector3.up * (minus * Time.deltaTime * DeltaYawSpeed));
             if(deltaYaw > 0)
             {
-                deltaYaw -= Time.deltaTime;
+                deltaYaw -= Time.deltaTime;// * DeltaYawSpeed;
             }
             else if(deltaYaw < 0)
             {
-                deltaYaw += Time.deltaTime;
+                deltaYaw += Time.deltaTime;// * DeltaYawSpeed;
             }
             if(Mathf.Abs(deltaYaw) < 0.01f)
             {
@@ -45,7 +48,7 @@ public class PlayerRotate : MonoBehaviour
 
     public void WallRotate(float deltaYaw)
     {
-        this.deltaYaw = deltaYaw*3.015f;
+        this.deltaYaw += deltaYaw * 0.025f;
     }
 
     public void WallRotateStop()

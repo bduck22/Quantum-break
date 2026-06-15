@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 80418247579883579}
   - component: {fileID: 545589170209251278}
   - component: {fileID: 1874298266167147866}
+  - component: {fileID: 1737454925135452760}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -54,9 +55,9 @@ MonoBehaviour:
   MobName: Test
   Type: 0
   CurrentState: 1
+  ShootPoint: {fileID: 9190001858862129270}
   defaultSpeed: 1
   plusSpeed: 0
-  ShootPoint: {fileID: 9190001858862129270}
   IsDead: 0
   Invincibility: 0
   Weapon: {fileID: 0}
@@ -126,6 +127,9 @@ MonoBehaviour:
   Speed: 0
   OnMoreMoveTimer: 1
   ArriveDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &545589170209251278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,6 +169,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3ac22bb57c4d84597a85313aa018c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEventController
+--- !u!114 &1737454925135452760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571565744072507014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4125369fd4e57ab45a145f63dda6ade5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffController
+  IsEnemy: 1
+  Econtroller: {fileID: 0}
+  Pcontroller: {fileID: 0}
+  Buffs: []
 --- !u!1 &5206908031353441825
 GameObject:
   m_ObjectHideFlags: 0

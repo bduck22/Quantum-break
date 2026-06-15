@@ -9,6 +9,23 @@ public enum Mob_State
 
 public class EnemyController : MobBase
 {
+    [Header("능력치")]
+    public float Speed
+    {
+        get
+        {
+            return defaultSpeed + plusSpeed;
+        }
+        set
+        {
+            plusSpeed = value;
+            MovementAI?.SpeedRefresh(Speed);
+        }
+    }
+    public float defaultSpeed;
+    [SerializeField]
+    private float plusSpeed;
+
     [Header("상태")]
     public bool IsDead;
     public bool Invincibility;
@@ -162,7 +179,8 @@ public class EnemyController : MobBase
                 if (MovementAI)
                 {
                     OnWalked?.Invoke();
-                    MovementAI?.OnStart(Speed);
+                    MovementAI?.OnStart();
+                    MovementAI?.SpeedRefresh(Speed);
                 }
                 Weapon.OnStop();
                 return true;

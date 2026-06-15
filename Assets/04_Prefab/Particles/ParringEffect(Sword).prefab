@@ -9689,8 +9689,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParticleController
   spawnManager: {fileID: 0}
   Particle:
-  - {fileID: 2559413692765839492}
+  - IsDuration: 0
+    IsLifeTime: 0
+    IsSize: 0
+    Particle: {fileID: 2559413692765839492}
   ParticleNumber: 0
+  NotPool: 0
 --- !u!1 &8786382432646991868
 GameObject:
   m_ObjectHideFlags: 0

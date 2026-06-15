@@ -12,7 +12,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _SHADING_BLINNPHONG
+  - _NORMALMAP
+  - _SHADING_COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4678bb7c184447244bdc04680cb1f27a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
@@ -280,7 +281,7 @@ Material:
     - _EnableSpecular: 0
     - _EnableSpecularRandomizer: 0
     - _EnableSpecularStyling: 1
-    - _EnableStyling: 1
+    - _EnableStyling: 0
     - _EnableStylingDistanceFade: 0
     - _EnableToonShading: 1
     - _EnergyConservingSpecularColor: 1
@@ -317,14 +318,14 @@ Material:
     - _NoiseTextureQuality: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
-    - _NumberOfCells: 3
+    - _NumberOfCells: 2
     - _NumberOfCellsHatching: 3
     - _OcclusionStrength: 1
     - _OpacityRandomIntensity: 0
     - _OpacityRandomMode: 0
     - _OutlineConstantScreenWidth: 0
     - _OutlineDepthOffset: 0
-    - _OutlineWidth: 100
+    - _OutlineWidth: 5
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 20
     - _PPDMinSamples: 2
@@ -368,7 +369,7 @@ Material:
     - _SSRefractionProjectionModel: 0
     - _ShadingAffectedByNormalMap: 1
     - _ShadingFunction: 0
-    - _ShadingMode: 1
+    - _ShadingMode: 0
     - _ShadingNoise1Seed: 1
     - _ShadingNoise1Size: 1
     - _ShadingNoise2Seed: 1
@@ -539,13 +540,13 @@ Material:
     - _CastShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _CastShadowsPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 0.39215687}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
-    - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FormShadowColor: {r: 0, g: 0, b: 0, a: 0.78431374}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

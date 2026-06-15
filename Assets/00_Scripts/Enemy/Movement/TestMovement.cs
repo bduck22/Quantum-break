@@ -8,23 +8,40 @@ public class TestMovement : MovementAIBase
     public float ArriveDistance;
     Rigidbody rb;
 
+    [SerializeField] private LayerMask groundLayer;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         Speed = 0;
     }
 
-    public override void OnStart(float Speed)
+    public override void OnStart()
     {
-        this.Speed = Speed;
         IsMoving = true;
     }
+
+    public override void SpeedRefresh(float Speed)
+    {
+        this.Speed = Speed;
+    }
+
     public override void OnMove()
     {
         Transform target = WayPoints[CurrentWayPIndex];
 
         Vector3 currentPos = rb.position;
-        Vector3 targetPos = target.position;
+
+        RaycastHit hit;
+        Vector3 targetPos;
+        if (Physics.Raycast(target.position, Vector3.down, out hit, 100, groundLayer))
+        {
+            targetPos = hit.point;
+        }
+        else
+        {
+            targetPos = target.position;
+        }
 
         Vector3 toTarget = targetPos - currentPos;
         float distance = toTarget.magnitude;

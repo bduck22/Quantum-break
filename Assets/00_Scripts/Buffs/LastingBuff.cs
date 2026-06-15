@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class LastingBuff : BuffBase
+public abstract class LastingBuff : BuffBase
 {
-    public override void Tick()
+    public override bool TargetExit()
     {
-        Refresh();
+        IsFinished = true;
+        CurrentDuration = 0;
+        return true;
     }
 
     public override void Refresh()
@@ -13,22 +15,17 @@ public class LastingBuff : BuffBase
         {
             BuffActived();
         }
-        CurrentDuration = Duration;
+        CurrentDuration = Data.Duration;
     }
 
-    public void Update()
+    public override bool Tick()
     {
-        if(IsFinished)
+        if (!OriginalBuff.gameObject.activeInHierarchy)
         {
-            return;
-        }
-
-        CurrentDuration -= Time.deltaTime;
-        if (CurrentDuration <= 0)
-        {
-            CurrentDuration = 0;
-            IsFinished = true;
             BuffDeactived();
         }
+        return IsFinished;
     }
+
+    protected override void Update() { }
 }

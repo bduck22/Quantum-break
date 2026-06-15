@@ -1,10 +1,16 @@
 using UnityEngine;
 
-public class TurretDebuffBase : TurretAttackBase
+public abstract class TurretDebuffBase : TurretAttackBase
 {
     public BuffBase DeBuff;
-    public override void Attack()
+
+    public override void Init(DebuffData data)
     {
-        
+        DeBuff.Data = data;
+    }
+
+    public override bool IsCool()
+    {
+        return !AttackObject.gameObject.activeInHierarchy;
     }
 }

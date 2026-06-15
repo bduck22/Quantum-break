@@ -50,6 +50,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CastShadowsNumberOfCellsHatching: 3
+    - _EnableSpecular: 0
+    - _EnableSpecularStyling: 0
     - _NumberOfCellsHatching: 3
     - _OutlineWidth: 1.5
     - _RimSmoothness: 0

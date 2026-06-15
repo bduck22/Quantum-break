@@ -495,20 +495,20 @@ public class PlayerController : MonoBehaviour
     private readonly Vector3 WallBoxHalfExtents = new Vector3(0.65f, 0.2f, 1.25f);
 
 
-    private void OnDrawGizmos()
-    {
+    //private void OnDrawGizmos()
+    //{
 
-        Vector3 center = transform.position + transform.right * 1.5f;
-        Quaternion rotation = transform.rotation;
+    //    Vector3 center = transform.position + transform.right * 1.5f;
+    //    Quaternion rotation = transform.rotation;
 
-        Gizmos.color = Color.red;
-        Matrix4x4 oldMatrix = Gizmos.matrix;
-        Gizmos.matrix = Matrix4x4.TRS(center, rotation, Vector3.one);
+    //    Gizmos.color = Color.red;
+    //    Matrix4x4 oldMatrix = Gizmos.matrix;
+    //    Gizmos.matrix = Matrix4x4.TRS(center, rotation, Vector3.one);
 
-        Gizmos.DrawWireCube(Vector3.zero, WallBoxHalfExtents * 2f);
+    //    Gizmos.DrawWireCube(Vector3.zero, WallBoxHalfExtents * 2f);
 
-        Gizmos.matrix = oldMatrix;
-    }
+    //    Gizmos.matrix = oldMatrix;
+    //}
 
     bool IsRightWall(int right)
     {
@@ -570,14 +570,15 @@ public class PlayerController : MonoBehaviour
             //벽에 타고 있는 상태
             if (hitCount > 0)
             {
-                if (right > 0 && InputHandler.Move.x < 0)
-                {
-                    return false;
-                }
-                else if (right < 0 && InputHandler.Move.x > 0)
-                {
-                    return false;
-                }
+                //벽 반대 방향으로 누르면 해제
+                //if (right > 0 && InputHandler.Move.x < 0)
+                //{
+                //    return false;
+                //}
+                //else if (right < 0 && InputHandler.Move.x > 0)
+                //{
+                //    return false;
+                //}
 
                 return true;
             }

@@ -8,6 +8,8 @@ public class TurretController : TurretBase
 
     public float RotateSpeed;
 
+    public Transform Model;
+
     [SerializeField]
     private Vector3 LookPivot;
 
@@ -25,7 +27,8 @@ public class TurretController : TurretBase
 
     public void Init()
     {
-        timer = 0;
+        Attack.Init(Data.Data);
+        timer = Data.CoolTime;
         CognizanceRefresh();
     }
 
@@ -51,20 +54,25 @@ public class TurretController : TurretBase
         }
 
 
-        Quaternion targetrotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Target.position + LookPivot) - transform.position), Time.deltaTime * RotateSpeed);
-        transform.rotation = targetrotation;
+        Quaternion targetrotation = Quaternion.Lerp(Model.rotation, Quaternion.LookRotation((Target.position + LookPivot) - Model.position), Time.deltaTime * RotateSpeed);
+        Model.rotation = targetrotation;
     }
 
     void AttackAction()
     {
+        if (Target == null) return;
+
         if(Data.CoolTime > timer)
         {
-            timer += Time.deltaTime;
+            if (Attack.IsCool())
+            {
+                timer += Time.deltaTime;
+            }
         }
         else
         {
             timer = 0;
-            Attack?.Attack();
+            Attack?.Attack(Target);
         }
     }
 }

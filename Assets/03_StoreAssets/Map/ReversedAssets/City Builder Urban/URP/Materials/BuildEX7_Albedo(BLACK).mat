@@ -33,7 +33,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BuildEX7_Albedo
+  m_Name: BuildEX7_Albedo(BLACK)
   m_Shader: {fileID: -6465566751694194690, guid: 6b2899a30acc36740affcac479d22de6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -168,7 +168,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindowFrame:
-        m_Texture: {fileID: 2800000, guid: a39261188fa43094ba205e6417530324, type: 3}
+        m_Texture: {fileID: 2800000, guid: 164cdba750466df4dbaa35a21d706118, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindowFrameNormal:
@@ -243,7 +243,7 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _Emission: 0.001
+    - _Emission: 0.05
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
@@ -343,6 +343,6 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _WindowTint: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0}
+    - _WindowTint: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

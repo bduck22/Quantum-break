@@ -38,10 +38,12 @@ public class TurretTargetFinder : MonoBehaviour
     public void ListEnter(EnemyController enemy)
     {
         TargetList.Add(enemy);
+        enemy.OnDead += ListExit;
     }
 
     public void ListExit(EnemyController enemy)
     {
         TargetList.Remove(enemy);
+        enemy.OnDead -= ListExit;
     }
 }

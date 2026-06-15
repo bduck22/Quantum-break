@@ -63,8 +63,7 @@ public class MobEyeChecker : MonoBehaviour
         {
             if (LockOn)
             {
-                Debug.Log(dir.y);
-                if(Mathf.Abs(dir.y) > 5)
+                if(Mathf.Abs(dir.y) > 15)
                 {
                     if (lockontime >= StopToMoveTimer)
                     {
@@ -105,7 +104,7 @@ public class MobEyeChecker : MonoBehaviour
                     Vector3 dirToTarget = dir;
 
                     float angle = Vector3.Angle(forward, dirToTarget);
-                    if (angle <= EyeAngle * 0.5f&&Mathf.Abs(dir.y)<5)
+                    if (angle <= EyeAngle * 0.5f&&Mathf.Abs(dir.y)<15)
                     {
                         LockOn = true;
                         lockontime = 0;

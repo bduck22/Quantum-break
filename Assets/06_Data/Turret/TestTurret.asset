@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurretData
   TurretName: "\uACE0\uCCA0 \uC218\uAE09\uAE30"
   Type: 1
-  CoolTime: 2
-  Duration: 1
+  CoolTime: 1
+  Data:
+    Type: 0
+    Duration: 4
+    Size: 10
+    Power: 0.2
   Cognizance: 10

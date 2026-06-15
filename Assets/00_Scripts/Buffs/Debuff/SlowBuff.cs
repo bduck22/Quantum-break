@@ -2,25 +2,27 @@ using UnityEngine;
 
 public class SlowBuff : LastingBuff
 {
-    private void Update()
+
+    protected override BuffBase CreateCloneInstance()
     {
-        base.Update();
+        return new SlowBuff();
     }
 
     public override void BuffActived()
     {
         if (IsPlayerBuff)
         {
-            Player.Speed = -Player.defaultSpeed * Power;
+            Player.Speed = -Player.defaultSpeed * Data.Power;
         }
         else
         {
-            Enemy.Speed = -Enemy.defaultSpeed * Power;
+            Enemy.Speed = -Enemy.defaultSpeed * Data.Power;
         }
     }
 
     public override void BuffDeactived()
     {
+        Debug.Log("End!");
         if (IsPlayerBuff)
         {
             Player.Speed = 0;
@@ -29,5 +31,6 @@ public class SlowBuff : LastingBuff
         {
             Enemy.Speed = 0;
         }
+        TargetExit();
     }
 }

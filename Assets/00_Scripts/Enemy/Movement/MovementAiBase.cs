@@ -4,7 +4,7 @@ using System;
 
 public interface MovementAI
 {
-    public void OnStart(float Speed);
+    public void OnStart();
     public void OnMove();
     public void OnStop();
 }
@@ -22,7 +22,9 @@ public abstract class MovementAIBase : MonoBehaviour, MovementAI
     public bool IsMoving;
 
     public float Speed;
-    public abstract void OnStart(float Speed);
+    public abstract void OnStart();
+
+    public abstract void SpeedRefresh(float Speed);
     public abstract void OnMove();
     public abstract void OnStop();
     public virtual void Init(Transform[] wayPoints)

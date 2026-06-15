@@ -23,7 +23,7 @@ Material:
     RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: _RimAffectedByNormalMap
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -151,9 +151,9 @@ Material:
     - _EnableShadingRandomizer: 0
     - _EnableShadingStyling: 1
     - _EnableShadows: 1
-    - _EnableSpecular: 1
+    - _EnableSpecular: 0
     - _EnableSpecularRandomizer: 0
-    - _EnableSpecularStyling: 1
+    - _EnableSpecularStyling: 0
     - _EnableStyling: 1
     - _EnableStylingDistanceFade: 0
     - _EnableToonShading: 1

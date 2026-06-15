@@ -6,7 +6,7 @@ public class ParticleController : MonoBehaviour
 {
     public ParticlesSpawnManager spawnManager;
 
-    public ParticleSystem[] Particle;
+    public ParticleControl[] Particle;
 
     public int ParticleNumber;
 
@@ -18,6 +18,35 @@ public class ParticleController : MonoBehaviour
         transform.rotation = Rotation;
     }
 
+    public void InitWithTimer(Vector3 Position, Quaternion Rotation, float Duration, float Size)
+    {
+        transform.position = Position;
+        transform.rotation = Rotation;
+
+        Vector3 size = new Vector3(Size, Size, Size);
+
+        foreach (ParticleControl particle in Particle)
+        {
+            particle.Particle.Stop();
+            var mian = particle.Particle.main;
+
+            if (particle.IsDuration)
+            {
+                mian.duration = Duration;
+            }
+
+            if (particle.IsLifeTime)
+            {
+                mian.startLifetime = Duration;
+            }
+
+            if (particle.IsSize)
+            {
+                particle.Particle.transform.localScale = size;
+            }
+        }
+    } 
+
     public void DefaulInit(ParticlesSpawnManager spawnManager, int number)
     {
         this.spawnManager = spawnManager;
@@ -28,9 +57,9 @@ public class ParticleController : MonoBehaviour
     public void Play()
     {
         gameObject.SetActive(true);
-        foreach (ParticleSystem particle in Particle)
+        foreach (ParticleControl particle in Particle)
         {
-            particle.Play();
+            particle.Particle.Play();
         }
     }
 
@@ -39,4 +68,13 @@ public class ParticleController : MonoBehaviour
         if(!NotPool) spawnManager.InPool(ParticleNumber, this);
         gameObject.SetActive(false);
     }
+}
+
+[Serializable]
+public struct ParticleControl
+{
+    public bool IsDuration;
+    public bool IsLifeTime;
+    public bool IsSize;
+    public ParticleSystem Particle;
 }

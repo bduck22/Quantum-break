@@ -4,46 +4,78 @@ public abstract class BuffBase : MonoBehaviour
 {
     public bool IsFinished;
 
-    public float Duration;
+    public DebuffData Data;
 
     public float CurrentDuration;
-
-    public float Power;
 
     public EnemyController Enemy;
 
     public PlayerController Player;
 
+    [HideInInspector]
+    public BuffBase OriginalBuff;
+
     public bool IsPlayerBuff;
+
+    public bool Template;
 
     public void SetTarget(EnemyController enemy)
     {
+        Enemy = enemy;
         IsPlayerBuff = false;
         IsFinished = false;
     }
     public void SetTarget(PlayerController player)
     {
+        Player = player;
         IsPlayerBuff = true;
         IsFinished = false;
     }
 
-    public virtual void Tick()
+    public BuffBase Clone()
     {
-        CurrentDuration -= Time.deltaTime;
-        if(CurrentDuration <= 0)
+        BuffBase clone = CreateCloneInstance();
+
+        clone.CopyFrom(this, IsPlayerBuff);
+
+        return clone;
+    }
+
+    protected abstract BuffBase CreateCloneInstance();
+
+    protected virtual void CopyFrom(BuffBase original, bool originalTarget)
+    {
+        Data = original.Data;
+        IsPlayerBuff = originalTarget;
+        if (IsPlayerBuff)
         {
-            CurrentDuration = 0;
-            IsFinished = true;
-            BuffDeactived();
+            Player = original.Player;
+        }
+        else
+        {
+            Enemy = original.Enemy;
         }
     }
 
-    public virtual void Refresh()
+    protected abstract void Update();
+
+    public abstract bool Tick();
+
+    public virtual bool TargetEnter()
     {
-        CurrentDuration = Duration;
-        BuffActived();
+        return false;
+    }
+    public virtual bool TargetExit()
+    {
+        return false;
     }
 
     public virtual void BuffActived() { }
     public virtual void BuffDeactived() { }
+    public abstract void Refresh();
+}
+
+public enum Buff_Type
+{
+    Slow
 }

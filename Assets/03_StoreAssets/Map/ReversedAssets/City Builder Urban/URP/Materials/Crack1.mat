@@ -83,7 +83,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse:
-        m_Texture: {fileID: 2800000, guid: 8517330d02d3f4f48a2a306119876c7d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f077cf396f2fb804b866decf1ffbd8fd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionVectorMap:
@@ -99,7 +99,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Hight:
-        m_Texture: {fileID: 2800000, guid: 922597be0ec702943920f69a2a1fc7e4, type: 3}
+        m_Texture: {fileID: 2800000, guid: f2d0e7ead27706a49930307df806e459, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IridescenceMaskMap:
@@ -119,7 +119,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: d79dab51eac165341a994a920ba659c6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 81915d417f17b6a478abd6313ace0403, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -328,7 +328,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _WaterColor: {r: 0.3018868, g: 0.28848162, b: 0.2719829, a: 0}
+    - _WaterColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8962062195899004231

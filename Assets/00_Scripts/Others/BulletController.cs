@@ -90,7 +90,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 6)
+        if(other.gameObject.layer == 6 || other.gameObject.layer == 14)
         {
             ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.Playerhit, transform.position, Quaternion.identity);
             particle.Play();

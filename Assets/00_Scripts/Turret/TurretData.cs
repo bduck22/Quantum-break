@@ -6,6 +6,8 @@ public class TurretData : ScriptableObject
 {
     public string TurretName;
 
+    public Sprite TurretIcon;
+
     public Turret_Type Type;
 
     public float CoolTime;//발사 쿨타임
@@ -27,6 +29,8 @@ public class TurretData : ScriptableObject
     public DebuffData Data;
 
     public float Cognizance;
+
+    public int MaxCount;
 }
 
 [Serializable]

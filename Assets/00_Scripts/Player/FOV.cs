@@ -36,6 +36,8 @@ public class FOV : MonoBehaviour
         TargetFOV = DefaultFOV;
 
         cam.fieldOfView = TargetFOV;
+
+        transform.GetComponent<UISizeController>().CanvasRefresh(cam.fieldOfView);
     }
 
     private void Update()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-50)]
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("현재 상태")]
     public PlayerState CurrentState;
+    public bool IsHologram;
+    public bool IsDead;
+    public bool Stop = true;
 
     [Header("벽 타기 관련")]
     public bool Walling;
@@ -36,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public PlayerRotate PlayerRotate;
 
     public ArmAnimationController ArmAnimationController;
+
+    public UIController UIController;
 
     [Header("플레이어 능력치")]
     public float Speed
@@ -84,9 +90,6 @@ public class PlayerController : MonoBehaviour
 
     float AttackBufferTimer;
 
-    [Header("플레이어 시작 위치")]
-    public Transform SpawnPoint;
-
     [Header("상태값")]
     public bool CanWalkJump;
 
@@ -116,6 +119,9 @@ public class PlayerController : MonoBehaviour
         PlayerRotate = GetComponent<PlayerRotate>();
         ArmAnimationController = GetComponentInChildren<ArmAnimationController>();
 
+        UIController = GetComponentInChildren<UIController>();
+        UIController.OpenedUI += OpenedUI;
+        UIController.ClosedUI += CloseUI;
         cc = GetComponent<CharacterController>();
 
         groundState = new GroundState(this);
@@ -127,12 +133,15 @@ public class PlayerController : MonoBehaviour
         mapMask = LayerMask.GetMask("Map");
 
         mainCamera = Camera.main;
-
-        PlayerInit(SpawnPoint.position);
     }
 
     private void Update()
     {
+        if (IsDead|| Time.timeScale == 0 || Stop)
+        {
+            return;
+        }
+
         DefaultControl();
 
         StaminaHeal();
@@ -175,9 +184,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PlayerInit(Vector3 SpawnPoint)
+    void OpenedUI()
     {
-        transform.position = SpawnPoint;
+        IsHologram = true;
+    }
+    void CloseUI()
+    {
+        IsHologram = false;
+    }
+
+    public void PlayerInit(Vector3 spawnPoint)
+    {
+        cc.enabled = false;
+
+        transform.position = spawnPoint;
+
+        cc.enabled = true;
 
         InitState();
 
@@ -235,6 +257,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement.DashOrigin = Vector3.zero;
         PlayerMovement.Dashing = false;
         Invincibility = false;
+        UIController.CantOpen = false;
         Time.timeScale = 1f;
         StateMachine.CurrentState.Dash();
         InputHandler.ClearDash();
@@ -242,6 +265,13 @@ public class PlayerController : MonoBehaviour
 
     bool IsCanAttack()
     {
+        if (IsHologram)
+        {
+            AttackBufferTimer = 0;
+            InputHandler.ClearAttack();
+            return false;
+        }
+
         if (!ArmAnimationController.IsCanAttack)
         {
             if (AttackBufferTimer > 0)
@@ -311,9 +341,10 @@ public class PlayerController : MonoBehaviour
                     PlayerMovement.WallExit();
                     PlayerMovement.Dashing = true;
                     Invincibility = true;
+                    UIController.CantOpen = true;
                     Time.timeScale = 0.05f;
                 }
-                    Stamina -= Time.unscaledDeltaTime;
+                Stamina -= Time.unscaledDeltaTime;
             }
             else if (Invincibility)
             {
@@ -328,6 +359,7 @@ public class PlayerController : MonoBehaviour
 
     void DefaultControl()
     {
+
         if (IsCanAttack())
         {
             OnAttack?.Invoke();
@@ -345,7 +377,11 @@ public class PlayerController : MonoBehaviour
             DashReLoadTimer -= Time.deltaTime;
         }
 
-        if (InputHandler.DashPressed && InputHandler.DashHeld)
+        if (IsHologram)
+        {
+            InputHandler.ClearDash();
+        }
+        else if (InputHandler.DashPressed && InputHandler.DashHeld)
         {
             PressingDash();
         }
@@ -385,6 +421,8 @@ public class PlayerController : MonoBehaviour
     {
         CurrentState = PlayerState.Ground;
         StateMachine.InitState(groundState);
+        Stop = false;
+        PlayerMovement.Stop = false;
     }
 
     void StateChange(PlayerState State)
@@ -452,6 +490,13 @@ public class PlayerController : MonoBehaviour
                     if(CurrentState == PlayerState.Wall && WallCoyoteTime > WallCoyoteTimer && !InputHandler.DashHeld)
                     {
                         WallCoyoteTimer += Time.deltaTime;
+
+                        Walling = false;
+                        if (PlayerMovement.IsWall)
+                        {
+                            PlayerMovement.WallExit();
+                        }
+
                     }
                     else 
                     {
@@ -638,6 +683,7 @@ public class PlayerController : MonoBehaviour
             {
                 InvincibilityTimer = 0;
                 Invincibility = false;
+                UIController.CantOpen = false;
                 DashReLoadTimer = DashReloadTime;
                 EndHitInvincibility?.Invoke();
             }
@@ -647,9 +693,30 @@ public class PlayerController : MonoBehaviour
     public void OnHited()
     {
         Invincibility = true;
+        UIController.CantOpen = true;
         InvincibilityTimer = InvincibilityTime;
         PlayerMovement.VelocityInit();
-        Hp--;
+        if(PlusHp > 0)
+        {
+            PlusHp--;
+        }
+        else
+        {
+            Hp--;
+        }
+
+        if(Hp <= 0)
+        {
+            Dead();
+            return;
+        }
+
         OnHit?.Invoke();
+    }
+
+    public void Dead()
+    {
+        IsDead = true;
+        PlayerMovement.Stop = true;
     }
 }

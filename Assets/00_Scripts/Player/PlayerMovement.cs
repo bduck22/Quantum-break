@@ -25,6 +25,7 @@ public struct PlayerMovementData
 public class PlayerMovement : MonoBehaviour
 {
     CharacterController cc;
+    public bool Stop = true;
 
     [Header("카메라")]    
     public CameraShake CamShake;
@@ -95,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        blockCheckIgnoreMask = LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map") | LayerMask.GetMask("Bullet") | LayerMask.GetMask("PlayerAttack");
+        blockCheckIgnoreMask = LayerMask.GetMask("Enemy");//LayerMask.GetMask("Player") | LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map") | LayerMask.GetMask("Bullet") | LayerMask.GetMask("PlayerAttack");
     }
     private void Start()
     {
@@ -129,6 +130,12 @@ public class PlayerMovement : MonoBehaviour
         {
             FinalVel *= 0.2f;
         }
+
+        if(Time.timeScale == 0 || Stop)
+        {
+            FinalVel = Vector3.zero;
+        }
+
         cc.Move(FinalVel * Time.unscaledDeltaTime);
 
         MoveVector = Vector3.zero;
@@ -176,13 +183,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void Friction(out Vector3 FinalVel)
     {
-        if (cc.isGrounded)
+        if ((Mathf.Abs(WallJump.x) + Mathf.Abs(WallJump.z)) <= 1.5f&&!IsWall)//cc.isGrounded)
         {
             float rate = Data.Input.sqrMagnitude > 0f ? accel : decel;
 
             Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.deltaTime);
 
+            Velocity.y = MoveVector.y;
+
             FinalVel = Velocity;
+
+            if (Velocity.magnitude <= 1.1f)
+            {
+                Velocity = Vector3.zero;
+            }
         }
         else
         {
@@ -247,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
     bool CheckBlocked(Vector3 dir)
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position + BlockRayOffset, dir, out hit,  3, ~blockCheckIgnoreMask))
+        if(Physics.Raycast(transform.position + BlockRayOffset, dir, out hit,  3, blockCheckIgnoreMask))
         {
             Vector3 hitP = hit.transform.position;
             Vector3 distance = hitP - transform.position;
@@ -356,7 +370,7 @@ public class PlayerMovement : MonoBehaviour
             WallJump = Vector3.zero;
         }
 
-        YVeolocity = JumpPower*0.95f;
+        YVeolocity = JumpPower*0.85f;
         IsWall = false;
     }
 

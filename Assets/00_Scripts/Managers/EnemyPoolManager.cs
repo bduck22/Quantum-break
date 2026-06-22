@@ -38,7 +38,6 @@ public class EnemyPoolManager : MonoBehaviour
 
             for (int j = 0; j < DefulatSpawnCounts[i]; j++)
             {
-                EnemyCount++;
                 InPool(i, spawnEnemy(i));
             }
         }
@@ -66,6 +65,10 @@ public class EnemyPoolManager : MonoBehaviour
     public void InPool(int EnemyNumber, EnemyController Enemy)
     {
         EnemyPools[EnemyNumber].Enqueue(Enemy);
+    }
+
+    public void ImDead()
+    {
         EnemyCount--;
     }
 

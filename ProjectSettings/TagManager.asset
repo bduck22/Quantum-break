@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Enemy
   - FxTemporaire
+  - TurretBody
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - PlayerAttack
   - Turret
   - Buff
-  - 
-  - 
+  - TurretBody
+  - Interactor
   - 
   - 
   - 

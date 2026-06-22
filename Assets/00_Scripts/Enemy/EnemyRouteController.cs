@@ -22,6 +22,8 @@ public class EnemyRouteController : MonoBehaviour
 
     [SerializeField] bool Spawning;
 
+    public bool SpawnEnd;
+
     private void Start()
     {
         Routes = new List<Route>();
@@ -46,8 +48,6 @@ public class EnemyRouteController : MonoBehaviour
                 Routes[i].WayPoints[j] = transform.GetChild(i + 1).GetChild(j);
             }
         }
-
-        LoadRoute(0);
     }
 
     //float linefalsetime = 0;
@@ -69,7 +69,7 @@ public class EnemyRouteController : MonoBehaviour
                 color.a = 0.2f;
                 lineRenderer.material.color = color;
             }
-            else
+            else if(lineRenderer.material.color.a != 0.2f)
             {
                 lineRenderer.material.color -= Color.black * Time.deltaTime;
             }
@@ -120,13 +120,13 @@ public class EnemyRouteController : MonoBehaviour
         }
         WayPoints = (Transform[])Routes[CurrentWave].WayPoints.Clone();
         spawnCount = WaveSpawnDatas[currentWave].SpawnCount;
-
-        SpawnStart();
+        //SpawnStart();
     }
 
     public void SpawnStart()
     {
         Spawning = true;
+        SpawnEnd = false;
         //linefalsetime = 0;
         spawningtime = WaveSpawnDatas[CurrentWave].SpawnDelay;
     }
@@ -135,6 +135,8 @@ public class EnemyRouteController : MonoBehaviour
     {
         if (spawnCount <= 0)
         {
+            Spawning = false;
+            SpawnEnd = true;
             return;
         }
 

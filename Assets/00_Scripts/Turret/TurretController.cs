@@ -13,6 +13,9 @@ public class TurretController : TurretBase
     [SerializeField]
     private Vector3 LookPivot;
 
+    [HideInInspector]
+    public TurretSpawnManager spawnManager;
+
     [Header("스크립트")]
     public TurretTargetFinder TargetFinder;
     public TurretAttackBase Attack;
@@ -20,16 +23,19 @@ public class TurretController : TurretBase
     [Header("인식범위표시")]
     public SphereCollider collider;
 
-    private void Start()
+    public void DefaultInit(TurretSpawnManager spawnManager)
     {
-        Init();
+        this.spawnManager = spawnManager;   
     }
 
-    public void Init()
+    public void Init(Vector3 Position)
     {
+        transform.position = Position;
+        Target = null;
         Attack.Init(Data.Data);
         timer = Data.CoolTime;
         CognizanceRefresh();
+        gameObject.SetActive(true);
     }
 
     public void CognizanceRefresh()
@@ -74,5 +80,12 @@ public class TurretController : TurretBase
             timer = 0;
             Attack?.Attack(Target);
         }
+    }
+
+    public void UnInstall()
+    {
+        gameObject.SetActive(false);
+        spawnManager.InPool(Data.Type, this);
+        GameManager.Instance.Inventory.ReturnTurret(Data.Type);
     }
 }

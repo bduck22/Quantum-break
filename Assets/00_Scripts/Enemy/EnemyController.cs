@@ -101,9 +101,13 @@ public class EnemyController : MobBase
 
     public void EnemyInit(PlayerController Player)
     {
+        GameManager.Instance.CurrentMap.DefaultEnemyCount++;
+
         DeathTimer = 0;
         IsDead = false;
         Invincibility = false;
+        Special = false;
+        lastdeadtime = 0;
 
         this.Player = Player;
 
@@ -117,10 +121,40 @@ public class EnemyController : MobBase
     public float DeathTime;
     float DeathTimer;
 
+
+    float lastdeadtime;
+
+    [SerializeField] bool Special;
+
     bool CheckDead()
     {
         if (IsDead)
         {
+            if (Special)
+            {
+                DeathTimer = DeathTime - 3f;
+                if(Time.timeScale == 1)
+                {
+                    Time.timeScale = 0.2f;
+                    lastdeadtime = 1.7f;
+                }
+                else
+                {
+                    Special = false;
+                }
+            }
+
+            if (Time.timeScale == 0.2f && Special)
+            {
+                lastdeadtime -= Time.unscaledDeltaTime;
+                if (lastdeadtime < 0f)
+                {
+                    Special = false;
+                    lastdeadtime = 0;
+                    Time.timeScale = 1;
+                }
+            }
+
             if (DeathTime > DeathTimer)
             {
                 DeathTimer += Time.deltaTime;
@@ -129,6 +163,7 @@ public class EnemyController : MobBase
             {
                 if (MovementAI)
                 {
+                    GameManager.Instance.CheckWaveEnd();
                     PoolManager.InPool((int)Type, this);
                 }
                 gameObject.SetActive(false);
@@ -273,6 +308,24 @@ public class EnemyController : MobBase
             OnDeath?.Invoke();
             IsDead = true;
             Collider.enabled = false;
+            if (!MovementAI)
+            {
+                GameManager.Instance.CurrentMap.DefaultEnemyCount--;
+
+                if (GameManager.Instance.CurrentMap.DefaultEnemyCount == 0)
+                {
+                    Special = true;
+                }
+            }
+            else
+            {
+                GameManager.Instance.spawnManagers.Enemy.ImDead();
+
+                if ((GameManager.Instance.spawnManagers.Enemy.EnemyCount == 0 && GameManager.Instance.CurrentMap.IsSpawnEnd()))
+                {
+                    Special = true;
+                }
+            }
         }
     }
 }

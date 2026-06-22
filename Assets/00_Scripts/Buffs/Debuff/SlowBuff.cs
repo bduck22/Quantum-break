@@ -22,7 +22,6 @@ public class SlowBuff : LastingBuff
 
     public override void BuffDeactived()
     {
-        Debug.Log("End!");
         if (IsPlayerBuff)
         {
             Player.Speed = 0;

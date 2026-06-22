@@ -7,6 +7,7 @@ public class SpawnManagers : MonoBehaviour
     public BulletObjectPoolManager Bullet;
     public ParticlesSpawnManager Particle;
     public EnemyPoolManager Enemy;
+    public TurretSpawnManager Turret;
 
     private void Awake()
     {
@@ -18,5 +19,6 @@ public class SpawnManagers : MonoBehaviour
         Bullet.BulletPoolInit();
         Particle.Init();
         Enemy.Init();
+        Turret.Init();
     }
 }

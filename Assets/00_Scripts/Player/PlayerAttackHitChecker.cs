@@ -11,6 +11,13 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     public bool isparried = false;
 
+    public bool Killed;
+
+    private void OnEnable()
+    {
+        Killed = false;
+    }
+
     private void Awake()
     {
         layer = LayerMask.GetMask("Bullet");// | LayerMask.GetMask("Enemy");
@@ -61,11 +68,12 @@ public class PlayerAttackHitChecker : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (AttackCheck())
+            if (AttackCheck()&&!Killed)
             {
                 EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
 
                 enemy.Hit();
+                Killed = true;
             }
         }
         if (other.gameObject.layer == 10)

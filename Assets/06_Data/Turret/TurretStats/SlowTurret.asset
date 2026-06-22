@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886a028b9fe89d145b275f99f1719e97, type: 3}
-  m_Name: TestTurret
+  m_Name: SlowTurret
   m_EditorClassIdentifier: Assembly-CSharp::TurretData
   TurretName: "\uACE0\uCCA0 \uC218\uAE09\uAE30"
-  Type: 1
+  TurretIcon: {fileID: 21300000, guid: f0702dce0e219594ab76bda4e2f46869, type: 3}
+  Type: 0
   CoolTime: 1
   Data:
     Type: 0
@@ -21,3 +22,4 @@ MonoBehaviour:
     Size: 10
     Power: 0.2
   Cognizance: 10
+  MaxCount: 2

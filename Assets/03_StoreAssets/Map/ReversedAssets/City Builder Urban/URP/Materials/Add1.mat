@@ -152,7 +152,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_2836329F: 0.61
+    - Vector1_2836329F: 10.2
     - Vector1_29075540: 114.34
     - Vector1_5E16B115: 1.5
     - Vector1_66EB6DAF: 0
@@ -181,8 +181,8 @@ Material:
     - _DetailSmoothnessScale: 1
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 0
-    - _DirtPower: 0.35
-    - _DirtTiling: 0.98
+    - _DirtPower: 0.05
+    - _DirtTiling: 0.38
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
@@ -203,7 +203,7 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _Emission: 0.02
+    - _Emission: 0.01
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1024
@@ -235,7 +235,7 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
-    - _Pixels: 150
+    - _Pixels: 360.2
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceivesSSR: 1

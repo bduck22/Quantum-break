@@ -9877,6 +9877,7 @@ GameObject:
   - component: {fileID: 7456762862009237653}
   - component: {fileID: 1029496882722792038}
   - component: {fileID: 7071722385617964211}
+  - component: {fileID: 1987043500330403639}
   m_Layer: 0
   m_Name: MapCore
   m_TagString: Untagged
@@ -9962,6 +9963,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1987043500330403639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756238638311462199}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.415798, y: 5.4157996, z: 4.691436}
+  m_Center: {x: 0, y: 0.0000007152559, z: 0.66371304}
 --- !u!1 &4580639167538199419
 GameObject:
   m_ObjectHideFlags: 0

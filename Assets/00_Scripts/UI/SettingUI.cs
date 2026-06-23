@@ -14,10 +14,12 @@ public class SettingUI : MonoBehaviour
     void Open()
     {
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Close()
     {
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -105,6 +105,9 @@ public class PlayerController : MonoBehaviour
     public event Action OnAir;
     public event Action OnAttack;
 
+    public event Action OnGroundJump;
+    public event Action OnWallJump;
+
     public event Action OnDashing;
 
     public event Action OnHit;
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour
             DashReLoadTimer -= Time.deltaTime;
         }
 
-        if (IsHologram)
+        if (IsHologram||Time.timeScale==0.2f)
         {
             InputHandler.ClearDash();
         }
@@ -410,7 +413,19 @@ public class PlayerController : MonoBehaviour
 
         if (IsCanJump())
         {
+            PlayerState jumpState = CurrentState;
+
             StateMachine.CurrentState.Jump();
+
+            if (jumpState == PlayerState.Ground)
+            {
+                OnGroundJump?.Invoke();
+            }
+            else if (jumpState == PlayerState.Wall)
+            {
+                OnWallJump?.Invoke();
+            }
+
             InputHandler.ClearJump();
         }
 
@@ -495,6 +510,7 @@ public class PlayerController : MonoBehaviour
                         if (PlayerMovement.IsWall)
                         {
                             PlayerMovement.WallExit();
+                            OnWallJump?.Invoke();
                         }
 
                     }
@@ -503,6 +519,7 @@ public class PlayerController : MonoBehaviour
                         if (PlayerMovement.IsWall)
                         {
                             PlayerMovement.WallExit();
+                            OnWallJump?.Invoke();
                         }
                         WallCoyoteTimer = 0;
                         Walling = false;

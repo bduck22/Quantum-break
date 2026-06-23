@@ -42,12 +42,10 @@ public class TurretControlUI : MonoBehaviour
         if (count.InInvenCount > 0)
         {
             Installer.CanInstall = true;
-            Debug.Log("포탑이 있어!");
         }
         else
         {
             Installer.CanInstall = false;
-            Debug.Log("포탑이 없어!");
         }
     }
 

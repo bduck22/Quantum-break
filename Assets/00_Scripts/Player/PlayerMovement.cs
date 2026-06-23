@@ -86,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
 
     public event Action OnMoveStopped;
 
+    public event Action OnBigStepped;
+
     public event Action OnStepped;
 
     public event Action OnDash;
@@ -134,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         if(Time.timeScale == 0 || Stop)
         {
             FinalVel = Vector3.zero;
+            OnMoveStopped?.Invoke();
         }
 
         cc.Move(FinalVel * Time.unscaledDeltaTime);
@@ -279,6 +282,8 @@ public class PlayerMovement : MonoBehaviour
         Jump(6);
     }
 
+    private bool wasGrounded;
+
     public float gravity() {
         if (IsWall)
         {
@@ -301,8 +306,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cc.isGrounded)
             {
-                if(YVeolocity <= -25f)
+                if (!wasGrounded)
                 {
+                    if (YVeolocity <= -25f)
+                    {
+                        OnBigStepped?.Invoke();
+                    }
                     OnStepped?.Invoke();
                 }
                 JumpInGround = false;
@@ -313,6 +322,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 YVeolocity -= Data.YAdd * Time.deltaTime;
             }
+
+            wasGrounded = cc.isGrounded;
         }
         return YVeolocity = Mathf.Clamp(YVeolocity, MinGravity, MaxGravity);
     }

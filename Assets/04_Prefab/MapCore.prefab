@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 3286552101129348845}
   - component: {fileID: 5498886080530919281}
   - component: {fileID: 5683449691393797081}
-  m_Layer: 0
+  - component: {fileID: 4934705491223333599}
+  - component: {fileID: 5214936326563114979}
+  - component: {fileID: 2284423552426154373}
+  m_Layer: 15
   m_Name: Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +121,53 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
+--- !u!114 &4934705491223333599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786927562213554715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fd3fce7b09dc446899195deec3bead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainCoreController
+  TurretHp: 0
+  MaxTurretHp: 0
+--- !u!114 &5214936326563114979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786927562213554715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9427274202895e44fa9e5d8edb6c97fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractCore
+--- !u!135 &2284423552426154373
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786927562213554715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &886032112955448427
 GameObject:
   m_ObjectHideFlags: 0
@@ -9878,6 +9928,7 @@ GameObject:
   - component: {fileID: 1029496882722792038}
   - component: {fileID: 7071722385617964211}
   - component: {fileID: 1987043500330403639}
+  - component: {fileID: 1784098319577594116}
   m_Layer: 0
   m_Name: MapCore
   m_TagString: Untagged
@@ -9984,6 +10035,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.415798, y: 5.4157996, z: 4.691436}
   m_Center: {x: 0, y: 0.0000007152559, z: 0.66371304}
+--- !u!114 &1784098319577594116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756238638311462199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c46ed4e3c5f5154695a5c821d043790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepSurface
+  SurfaceType: 2
 --- !u!1 &4580639167538199419
 GameObject:
   m_ObjectHideFlags: 0
@@ -14916,7 +14980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &822019431200119508
 Transform:
   m_ObjectHideFlags: 0

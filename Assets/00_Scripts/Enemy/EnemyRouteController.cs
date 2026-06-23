@@ -135,8 +135,6 @@ public class EnemyRouteController : MonoBehaviour
     {
         if (spawnCount <= 0)
         {
-            Spawning = false;
-            SpawnEnd = true;
             return;
         }
 
@@ -147,6 +145,12 @@ public class EnemyRouteController : MonoBehaviour
         enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[CurrentWave].WayPoints[0].position);
 
         enemy.gameObject.SetActive(true);
+
+        if(spawnCount <= 0)
+        {
+            Spawning = false;
+            SpawnEnd = true;
+        }
     }
 }
 

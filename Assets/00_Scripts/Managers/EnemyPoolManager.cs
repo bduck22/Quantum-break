@@ -19,6 +19,8 @@ public class EnemyPoolManager : MonoBehaviour
     [Header("적별 폴링 리스트")]
     public Queue<EnemyController>[] EnemyPools;
 
+    public List<EnemyController> SpawnEnemys;
+
     [Header("적의 수")]
     public int EnemyCount=0;
 
@@ -59,12 +61,17 @@ public class EnemyPoolManager : MonoBehaviour
         }
 
         EnemyCount++;
+        SpawnEnemys.Add(Enemy);
         return Enemy;
     }
     
     public void InPool(int EnemyNumber, EnemyController Enemy)
     {
         EnemyPools[EnemyNumber].Enqueue(Enemy);
+        if (SpawnEnemys.Contains(Enemy))
+        {
+            SpawnEnemys.Remove(Enemy);
+        }
     }
 
     public void ImDead()
@@ -81,6 +88,14 @@ public class EnemyPoolManager : MonoBehaviour
         enemy.DefaultInit(this, (Enemy_Type)type);
 
         return enemy;
+    }
+
+    public void AllBack()
+    {
+        foreach(EnemyController enemy in SpawnEnemys)
+        {
+            enemy.Back();
+        }
     }
 }
 

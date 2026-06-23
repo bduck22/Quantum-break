@@ -138,7 +138,7 @@ public class EnemyController : MobBase
                     Time.timeScale = 0.2f;
                     lastdeadtime = 1.7f;
                 }
-                else
+                else if(lastdeadtime == 0)
                 {
                     Special = false;
                 }
@@ -161,18 +161,23 @@ public class EnemyController : MobBase
             }
             else
             {
-                if (MovementAI)
-                {
-                    GameManager.Instance.CheckWaveEnd();
-                    PoolManager.InPool((int)Type, this);
-                }
-                gameObject.SetActive(false);
-                DeathTimer = 0;
-                OnFalse?.Invoke();
+                Back();
             }
             return true;
         }
         return false;
+    }
+
+    public void Back()
+    {
+        if (MovementAI)
+        {
+            GameManager.Instance.CheckWaveEnd();
+            PoolManager.InPool((int)Type, this);
+        }
+        gameObject.SetActive(false);
+        DeathTimer = 0;
+        OnFalse?.Invoke();
     }
 
     bool CheckMoveFinished()

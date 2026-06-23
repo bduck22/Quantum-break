@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public SpawnManagers spawnManagers;
     public PlayerInventoryManager Inventory;
+    public UIWindow RewardUI;
+    public UIWindow ResultUI;
 
     [Header("맵마다 변경")]
-    public Transform Core;
     public EnemySpawnManager CurrentMap;
+    public MainCoreController Core;
 
     private void Awake()
     {
@@ -35,10 +37,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         spawnManagers.Init();
-        CurrentMap.Player = Player;
-        CurrentMap.Core = Core;
         Inventory.InitInventory();
-        Player.PlayerInit(CurrentMap.PlayerSpawnPoint.position);
         Current_State = Game_State.MapInit;
     }
 
@@ -57,12 +56,18 @@ public class GameManager : MonoBehaviour
 
     public void MapInit()
     {
+        CurrentMap.Player = Player;
+        CurrentMap.Core = Core.transform;
+        Player.PlayerInit(CurrentMap.PlayerSpawnPoint.position);
+        Core.Coreinit();
+
         CurrentMap.MapInit();
         Current_State = Game_State.Attack;
     }
 
     public void ReadyWave()
     {
+        CurrentWaveIndex++;
         CurrentMap.ReadyWave();
         Current_State = Game_State.Ready;
     }
@@ -101,7 +106,16 @@ public class GameManager : MonoBehaviour
 
     public void MapEnding()
     {
+        Player.Stop = true;
+        Player.PlayerMovement.Stop = true;
+        RewardUI.Open();
         Current_State = Game_State.MapEnd;
+    }
+
+    public void FailDead()
+    {
+        spawnManagers.Enemy.AllBack();
+        Current_State = Game_State.Fail;
     }
 }
 
@@ -112,5 +126,7 @@ public enum Game_State
     Attack,
     Ready,
     Waving,
-    MapEnd
+    MapEnd,
+    Fail,
+    Clear
 }

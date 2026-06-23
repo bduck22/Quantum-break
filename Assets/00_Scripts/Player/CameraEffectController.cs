@@ -61,7 +61,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash += PlayerForwardEffectController.VfxPlay;
         PlayerMovement.OnDash += ScreenGhostEffect.PlayEffect;
 
-        PlayerMovement.OnStepped += CameraAnimation.BigShake;
+        PlayerMovement.OnBigStepped += CameraAnimation.BigShake;
 
         PlayerController.OnDashing += FOV.DashingFOV;
         PlayerController.OnDashing += PostProcessingController.DashFilterOn;
@@ -100,7 +100,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash -= PlayerForwardEffectController.VfxPlay;
         PlayerMovement.OnDash -= ScreenGhostEffect.PlayEffect;
 
-        PlayerMovement.OnStepped -= CameraAnimation.BigShake;
+        PlayerMovement.OnBigStepped -= CameraAnimation.BigShake;
 
         PlayerController.OnDashing -= FOV.DashingFOV;
         PlayerController.OnDashing -= PostProcessingController.DashFilterOn;

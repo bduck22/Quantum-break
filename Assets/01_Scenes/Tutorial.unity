@@ -1871,14 +1871,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 30394921944723482, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 645033388920811494, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: accel
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 684020903410180867, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       propertyPath: 'Slots.Array.data[3]'
       value: 
@@ -1923,26 +1915,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3773180637161083801, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415227869760835076, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4997322972830800299, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574219593190951933, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: YDownAdd
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574219593190951933, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
-      propertyPath: SpawnPoint
-      value: 
-      objectReference: {fileID: 221862322}
     - target: {fileID: 8551730711776576062, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       propertyPath: m_Name
       value: Player

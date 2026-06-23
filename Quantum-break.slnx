@@ -15,10 +15,12 @@
   <Project Path="CFXRRuntime.csproj" />
   <Project Path="ShaderCrew.TheToonShader.3D.Runtime.csproj" />
   <Project Path="CFXR.WelcomeScreen.csproj" />
+  <Project Path="OldMovieFx.Runtime.csproj" />
   <Project Path="CFXREditor.csproj" />
   <Project Path="BzKovSoft.ObjectSlicer.Tests.csproj" />
   <Project Path="Hierarchy2.Runtime.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="OldMovieFx.Editor.csproj" />
   <Project Path="BzKovSoft.CharacterSlicer.Samples.csproj" />
   <Project Path="KinoBloom.Runtime.csproj" />
 </Solution>

@@ -19,6 +19,19 @@ public class UIController : MonoBehaviour
     public bool Opened;
     //public 
 
+    public AudioClip OpenSound;
+    public AudioClip CloseSound;
+
+    AudioSource Audio;
+
+    public SoundRandomPlayer ClosePlayer;
+    public SoundRandomPlayer OpenPlayer;
+
+    private void Awake()
+    {
+        Audio = GetComponent<AudioSource>();
+    }
+
     private static readonly Key[] NumberKeys =
     {
         Key.Digit1,
@@ -83,20 +96,37 @@ public class UIController : MonoBehaviour
         if(CurrentOpened == null)
         {
             CurrentOpened = Slots[slot];
+            CurrentOpened.Opened += OpenPlay;
+            CurrentOpened.Closed += ClosePlay;
         }
         else
         {
             if(CurrentOpened != Slots[slot])
             {
+                CurrentOpened.Opened -= OpenPlay;
+                CurrentOpened.Closed -= ClosePlay;
                 CurrentOpened.Close();
                 CurrentOpened = Slots[slot];
+                CurrentOpened.Opened += OpenPlay;
+                CurrentOpened.Closed += ClosePlay;
             }
         }
         CurrentOpened.Trigger();
     }
 
+    public void OpenPlay()
+    {
+        OpenPlayer.SoundPlay();
+    }
+
+    public void ClosePlay()
+    {
+        ClosePlayer.SoundPlay();
+    }
+
     public void OpenUI()
     {
+        OpenPlay();
         Opened = true;
         CurrentOpened = null;
         LeftCanMain.Open();
@@ -106,6 +136,7 @@ public class UIController : MonoBehaviour
 
     public void CloseUI()
     {
+        ClosePlay();
         Opened = false;
         LeftCanMain.Close();
         RightCanMain.Close();

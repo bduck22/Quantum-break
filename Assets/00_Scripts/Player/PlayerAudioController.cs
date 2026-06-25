@@ -31,6 +31,8 @@ public class PlayerAudioController : MonoBehaviour
     [Header("Common Action Sounds")]
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private AudioClip[] wallJumpSounds;
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip[] hitSounds;
 
     [Header("Wall Move Sounds")]
     [SerializeField] private AudioClip[] wallStepSounds;
@@ -55,6 +57,8 @@ public class PlayerAudioController : MonoBehaviour
     private int lastFootstepIndex = -1;
     private int lastJumpIndex = -1;
     private int lastWallJumpIndex = -1;
+    private int lastAttackIndex = -1;
+    private int lastHitIndex = -1;
     private int lastLandIndex = -1;
     private int lastHardLandIndex = -1;
     private int lastWallStepIndex = -1;
@@ -100,6 +104,9 @@ public class PlayerAudioController : MonoBehaviour
 
             player.OnGroundJump += PlayJumpSound;
             player.OnWallJump += PlayWallJumpSound;
+
+            player.OnAttack += PlayAttackSound;
+            player.OnHit += PlayHitSound;
         }
 
         if (movement)
@@ -127,6 +134,9 @@ public class PlayerAudioController : MonoBehaviour
 
             player.OnGroundJump -= PlayJumpSound;
             player.OnWallJump -= PlayWallJumpSound;
+
+            player.OnAttack -= PlayAttackSound;
+            player.OnHit -= PlayHitSound;
         }
 
         if (movement)
@@ -138,6 +148,7 @@ public class PlayerAudioController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(player.cc.velocity);
         UpdateFootstep();
         UpdateWallStep();
     }
@@ -249,7 +260,7 @@ public class PlayerAudioController : MonoBehaviour
             return false;
         }
 
-        if (player.IsDead || player.IsHologram)
+        if (player.IsDead)
         {
             return false;
         }
@@ -282,7 +293,7 @@ public class PlayerAudioController : MonoBehaviour
             return false;
         }
 
-        if (player.IsDead || player.IsHologram)
+        if (player.IsDead)
         {
             return false;
         }
@@ -336,6 +347,16 @@ public class PlayerAudioController : MonoBehaviour
         PlayRandom(clips, actionSource, ref lastLandIndex);
 
         movedDistance = 0f;
+    }
+
+    private void PlayAttackSound()
+    {
+        PlayRandom(attackSounds, actionSource, ref lastAttackIndex);
+    }
+
+    private void PlayHitSound()
+    {
+        PlayRandom(hitSounds, actionSource, ref lastHitIndex);
     }
 
     private void PlayHardLandSound()

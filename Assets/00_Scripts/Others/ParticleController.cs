@@ -12,6 +12,19 @@ public class ParticleController : MonoBehaviour
 
     public bool NotPool;
 
+    SoundRandomPlayer soundRandomPlayer;
+
+    AudioSource source;
+
+    private void Awake()
+    {
+        if (GetComponent<SoundRandomPlayer>())
+        {
+            soundRandomPlayer = GetComponent<SoundRandomPlayer>();
+            source = GetComponent<AudioSource>();
+        }
+    }
+
     public void Init(Vector3 Position, Quaternion Rotation)
     {
         transform.position = Position;
@@ -63,9 +76,37 @@ public class ParticleController : MonoBehaviour
         }
     }
 
+    bool soundstop=false;
+
+    private void Update()
+    {
+        if (soundstop)
+        {
+            if (!source.isPlaying)
+            {
+                Close();
+                soundstop = false;
+            }
+        }
+    }
+
     void OnParticleSystemStopped()
     {
-        if(!NotPool) spawnManager.InPool(ParticleNumber, this);
+
+        if (soundRandomPlayer)
+        {
+            soundstop = true;
+        }
+        else
+        {
+            Close();
+        }
+        
+    }
+
+    public void Close()
+    {
+        if (!NotPool) spawnManager.InPool(ParticleNumber, this);
         gameObject.SetActive(false);
     }
 }

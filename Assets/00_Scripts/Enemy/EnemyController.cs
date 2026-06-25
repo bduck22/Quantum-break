@@ -248,8 +248,13 @@ public class EnemyController : MobBase
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if(GameManager.Instance.Current_State == Game_State.Fail || GameManager.Instance.Current_State == Game_State.MapEnd)
+        {
+            return;
+        }
+
         if (CheckDead())
         {
             return;

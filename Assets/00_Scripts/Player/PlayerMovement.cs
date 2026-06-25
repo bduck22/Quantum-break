@@ -151,14 +151,14 @@ public class PlayerMovement : MonoBehaviour
             FinalVel.y = FinalVel.y / 10f;
             FinalVel.z = FinalVel.z / 15f;
 
-            FinalVel += transform.right * Data.Input.x * 5f;//
+            FinalVel += transform.right * Data.Input.x * 15f;//
             Vector3 NextVector = transform.position + FinalVel * Time.deltaTime;
             NextVector.y = 0;
             Vector3 DashOrigin = this.DashOrigin;
             DashOrigin.y = 0;
             NextVector = (DashOrigin - NextVector);
 
-            if (NextVector.magnitude > 6f)
+            if (NextVector.magnitude > 10f)
             {
                 Vector3 next = NextVector;
                 NextVector = transform.position + FinalVel * Time.deltaTime * -1;

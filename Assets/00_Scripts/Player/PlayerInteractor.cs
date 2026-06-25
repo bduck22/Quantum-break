@@ -18,11 +18,15 @@ public class PlayerInteractor : MonoBehaviour
 
     public float InteractTime;
 
+    FInteractionController FController;
+
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
 
         camera = Camera.main.transform;
+
+        FController = UIUpdateManager.Instance.FController;
     }
 
     private void Update()
@@ -34,20 +38,24 @@ public class PlayerInteractor : MonoBehaviour
             if(Object == null)
             {
                 Object = hit.transform.GetComponent<InteractableObject>();
+                if (Object.IsInteract()) FController.SetActiveInteraction(true);
             }
         }
         else if(Object != null)
         {
             Object = null;
+            FController.SetActiveInteraction(false);
         }
 
-        if (Object)
+        if (Object&& Object.IsInteract())
         {
             Keyboard keyboard = Keyboard.current;
 
             if (keyboard == null) return;
 
-            if (!keyboard.anyKey.isPressed) return;
+            FController.SetText(Object.GetInfo());
+
+            if (!keyboard.anyKey.isPressed && !fpress) return;
 
             if (keyboard.fKey.wasPressedThisFrame)
             {
@@ -57,12 +65,14 @@ public class PlayerInteractor : MonoBehaviour
             if (keyboard.fKey.wasReleasedThisFrame)
             {
                 fpress = false;
+                FController.SetGauge(0);
             }
 
             if (fpress)
             {
                 time += Time.deltaTime;
-                if(time >= InteractTime)
+                FController.SetGauge(time / InteractTime);
+                if (time >= InteractTime)
                 {
                     time = 0;
                     fpress = false;
@@ -71,6 +81,7 @@ public class PlayerInteractor : MonoBehaviour
             }
             else
             {
+                FController.SetGauge(0);
                 time = 0;
             }
         }

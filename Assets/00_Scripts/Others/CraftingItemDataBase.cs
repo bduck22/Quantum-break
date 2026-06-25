@@ -7,6 +7,9 @@ public class CraftingItemDataBase : ScriptableObject
     public int Level;
     public Crafting_Type itemType;
 
+
+    public int MaxCount;
+
 }
 
 public enum Crafting_Type

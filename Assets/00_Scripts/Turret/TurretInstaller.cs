@@ -21,6 +21,8 @@ public class TurretInstaller : MonoBehaviour
 
     public float InteractionDistance;
 
+    public DuplicateChecker Checker;
+
     private void Awake()
     {
         camera = Camera.main.transform;
@@ -43,14 +45,21 @@ public class TurretInstaller : MonoBehaviour
     public void PreViewDeActive()
     {
         IsActived = false;
+        Checker.OnDisable();
         for (int i = 0; i < TurretPreview.transform.childCount; i++)
         {
             TurretPreview.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if (!CanInstall)
+        {
+            LookTurret = null;
+            DeActive();
+            return;
+        }
 
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, InteractionDistance, TurretLayer))
@@ -62,37 +71,27 @@ public class TurretInstaller : MonoBehaviour
                 PreViewDeActive();
             }
         }
-        else if(CanInstall)
+        else
         {
             LookTurret = null;
             if (Physics.Raycast(camera.position, camera.forward, out hit, InteractionDistance, MapLayer))
             {
                 if(hit.normal.y >= 0.65)
                 {
-                    IsInstall = true;
-
                     if (!IsActived)
                     {
                         PreViewActive();
                     }
+                    IsInstall = true;
+                }
+                else
+                {
+                    DeActive();
                 }
             }
             else
             {
-                if (IsActived)
-                {
-                    PreViewDeActive();
-                }
-                IsInstall = false;
-            }
-        }
-        else
-        {
-            LookTurret = null;
-            if (IsActived)
-            {
-                IsInstall = false;
-                PreViewDeActive();
+                DeActive();
             }
         }
 
@@ -100,6 +99,20 @@ public class TurretInstaller : MonoBehaviour
         {
             TurretPreview.transform.position = hit.point;
         }
+    }
+
+    void DeActive()
+    {
+        if (IsActived)
+        {
+            IsInstall = false;
+            PreViewDeActive();
+        }
+    }
+
+    public bool IsCanInstall()
+    {
+        return IsInstall&& !Checker.IsDuplip();
     }
 
     public bool Interaction()
@@ -114,5 +127,10 @@ public class TurretInstaller : MonoBehaviour
             SpawnManagers.Instance.Turret.SetTurret(type, TurretPreview.transform.GetChild((int)type).position);
             return true;
         }
+    }
+
+    public bool IsDelete()
+    {
+        return LookTurret;
     }
 }

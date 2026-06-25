@@ -1,4 +1,4 @@
-Shader "Hidden/IWantGoHome/TVStarGlitchV10"
+Shader "Hidden/IWantGoHome/TVStarGlitchV12"
 {
     Properties
     {
@@ -42,7 +42,7 @@ Shader "Hidden/IWantGoHome/TVStarGlitchV10"
 
         Pass
         {
-            Name "TV Star Glitch V10"
+            Name "TV Star Glitch V12"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment Frag
@@ -277,16 +277,18 @@ Shader "Hidden/IWantGoHome/TVStarGlitchV10"
             float3 PowerOnEcho(float2 uv, float progress)
             {
                 float p = saturate(progress);
-                float echoFade = smoothstep(0.10, 0.30, p) * (1.0 - smoothstep(0.94, 1.0, p));
+                float echoIn = smoothstep(0.06, 0.24, p);
+                float echoOut = 1.0 - smoothstep(0.74, 1.0, p);
+                float echoFade = echoIn * pow(saturate(echoOut), 0.60);
                 float echo = _AfterimageIntensity * echoFade;
-                float offset = _AfterimageOffset * lerp(2.35, 0.08, smoothstep(0.0, 1.0, p));
+                float offset = _AfterimageOffset * lerp(2.90, 0.02, pow(smoothstep(0.0, 1.0, p), 0.72));
                 float3 mainCol = SampleScene(uv).rgb;
                 float3 px = SampleRGBSplit(uv + float2(offset, 0.0), _RGBSplit * 0.55 * echo, 0.0).rgb;
                 float3 nx = SampleRGBSplit(uv - float2(offset, 0.0), _RGBSplit * 0.55 * echo, 0.0).rgb;
                 float3 py = SampleRGBSplit(uv + float2(0.0, offset * 0.75), _RGBSplit * 0.28 * echo, 0.0).rgb;
                 float3 ny = SampleRGBSplit(uv - float2(0.0, offset * 0.75), _RGBSplit * 0.28 * echo, 0.0).rgb;
                 float3 echoCol = px * float3(1.0, 0.20, 0.12) + nx * float3(0.16, 0.34, 1.0) + py * float3(0.28, 1.0, 0.28) + ny * float3(1.0, 0.88, 0.18);
-                echoCol *= 0.26;
+                echoCol *= 0.34;
                 return mainCol + echoCol * echo;
             }
 
@@ -315,18 +317,16 @@ Shader "Hidden/IWantGoHome/TVStarGlitchV10"
                     return half4(col, 1.0);
                 }
 
+                // Mode 3: final F9 hold state. Keep the screen fully black.
                 if (mode < 3.5)
                 {
-                    float appear = eased;
-                    float jitter = 1.0 - eased;
-                    return half4(HeldReferenceGlitch(uv, appear, jitter), 1.0);
+                    return half4(0.0, 0.0, 0.0, 1.0);
                 }
 
+                // Mode 4: F10 starts from the black hold state. No final glitch dissolve.
                 if (mode < 4.5)
                 {
-                    float flicker = 0.72 + 0.28 * step(0.42, hash11(floor(_ManualTime * 24.0) + _HoldSeed));
-                    float dissolve = (1.0 - eased) * flicker;
-                    return half4(HeldReferenceGlitch(uv, dissolve, 0.22 * (1.0 - eased)), 1.0);
+                    return half4(0.0, 0.0, 0.0, 1.0);
                 }
 
                 if (mode < 5.5)
@@ -336,19 +336,19 @@ Shader "Hidden/IWantGoHome/TVStarGlitchV10"
 
                 float p = progress;
                 float glowRise = smoothstep(0.03, 0.48, p);
-                float glowFall = 1.0 - smoothstep(0.42, 0.88, p);
+                float glowFall = 1.0 - smoothstep(0.46, 0.90, p);
                 float flash = glowRise * glowFall * _FlashIntensity;
-                float sceneReveal = smoothstep(0.18, 0.80, p);
+                float sceneReveal = smoothstep(0.16, 0.72, p);
                 float3 sceneEcho = PowerOnEcho(uv, p);
                 float2 centerUv = uv * 2.0 - 1.0;
                 centerUv.x *= _Aspect;
-                float radialRadius = lerp(1.10, 0.62, smoothstep(0.0, 0.55, p));
+                float radialRadius = lerp(1.16, 0.68, smoothstep(0.0, 0.62, p));
                 float radial = exp(-pow(length(centerUv) / radialRadius, 2.2));
                 float3 flashCol = float3(1.0, 1.0, 1.0) * flash;
                 flashCol += float3(1.0, 1.0, 1.0) * radial * flash * 1.35;
                 float3 col = lerp(float3(0.0, 0.0, 0.0), sceneEcho, sceneReveal);
                 col += flashCol;
-                col = lerp(col, SampleScene(uv).rgb, smoothstep(0.985, 1.0, p));
+                col = lerp(col, SampleScene(uv).rgb, smoothstep(0.88, 1.0, p));
                 return half4(col, 1.0);
             }
             ENDHLSL

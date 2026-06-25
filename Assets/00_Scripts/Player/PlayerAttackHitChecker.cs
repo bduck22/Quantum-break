@@ -13,6 +13,8 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     public bool Killed;
 
+    public SoundRandomPlayer soundRandomPlayer;
+
     private void OnEnable()
     {
         Killed = false;
@@ -64,12 +66,17 @@ public class PlayerAttackHitChecker : MonoBehaviour
         return !isparried;
     }
 
+    public SlowMotionAudioFilter Filter;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             if (AttackCheck()&&!Killed)
             {
+                soundRandomPlayer.SoundPlay();
+                Filter.EnterSlowMotion();
+
                 EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
 
                 enemy.Hit();
@@ -79,6 +86,14 @@ public class PlayerAttackHitChecker : MonoBehaviour
         if (other.gameObject.layer == 10)
         {
             AttackCheck();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (Killed)
+        {
+            Filter.ExitSlowMotion();
         }
     }
 }

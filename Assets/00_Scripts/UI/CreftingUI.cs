@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using VolFx.Editor;
 
 public class CreftingUI : MonoBehaviour
 {
@@ -20,21 +21,46 @@ public class CreftingUI : MonoBehaviour
 
     public Crafter Crafter;
 
+    FInteractionController FController;
+
+    public bool stopped;
+
     private void Awake()
     {
         window = GetComponent<UIWindow>();
         window.Refreshed += ReFreshData;
+        window.Closed += stop;
+        window.Opened += open;
 
         EnumCursor = new MultiEnumCursor(
             typeof(Turret_Type),
             typeof(Item_Type)
         );
 
-        Crafter = GetComponent<Crafter>();  
+        Crafter = GetComponent<Crafter>();
+
+        FController = UIUpdateManager.Instance.FController;
+    }
+
+    void open()
+    {
+        stopped = false;
+    }
+
+    void stop()
+    {
+        stopped = true;
+        FController.SetActiveInteraction(false);
     }
 
     public void ReFreshData()
     {
+        if (GameManager.Instance.Current_State != Game_State.Ready)
+        {
+            FController.SetActiveInteraction(false);
+            return;
+        }
+
         CraftingItemDataBase data;
 
         InventoryData count;
@@ -54,7 +80,7 @@ public class CreftingUI : MonoBehaviour
 
         //ui 변경하기
 
-        
+        FController.SetActiveInteraction(true);
     }
 
     float fPressTime;
@@ -65,12 +91,29 @@ public class CreftingUI : MonoBehaviour
     {
         Keyboard keyboard = Keyboard.current;
 
-        if (keyboard == null)
+        if (keyboard == null || stopped)
         {
             return;
         }
 
-        if (!keyboard.anyKey.isPressed)
+        //if() 분기점 재료 부족 or 최대 수량 or 
+        if (!Crafter.IsCanCraftirng(EnumCursor.Current))
+        {
+            if (Crafter.IsMax())
+            {
+                FController.SetText("재료 부족");
+            }
+            else
+            {
+                FController.SetText("최대 수량");
+            }
+        }
+        else
+        {
+            FController.SetText("제작");
+        }
+
+        if (!keyboard.anyKey.isPressed && !fpress)
         {
             return;
         }
@@ -89,9 +132,16 @@ public class CreftingUI : MonoBehaviour
         {
             fpress = true;
         }
-        if (fpress)//&& Installer.IsInstall)
+
+        if (keyboard.fKey.wasReleasedThisFrame)
+        {
+            fpress = false;
+        }
+
+        if (fpress&& Crafter.IsCanCraftirng(EnumCursor.Current))//&& Installer.IsInstall)
         {
             fPressTime += Time.deltaTime;
+            FController.SetGauge(fPressTime / 0.75f);
             if (fPressTime >= 0.75f)
             {
                 fpress = false;
@@ -101,15 +151,12 @@ public class CreftingUI : MonoBehaviour
                 {
                     Crafter.Craft(EnumCursor.Current);
                 }
-                else
-                {
-                    //경고 띄우기
-                }
             }
         }
         else
         {
-            fPressTime = 0;
+            fpress = false;
+            fPressTime = 0; FController.SetGauge(0);
         }
     }
 }

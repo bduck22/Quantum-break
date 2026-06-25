@@ -7,6 +7,8 @@ public class Crafter : MonoBehaviour
 
     private CraftingItemDataBase data;
 
+    private InventoryData InvenData;
+
     private void Awake()
     {
         Inventory = GameManager.Instance.Inventory;
@@ -16,9 +18,12 @@ public class Crafter : MonoBehaviour
     {
         data=null;
 
+        InvenData = new InventoryData();
+
         if (Type is Turret_Type turrettype)
         {
             data = GameDataManager.Instance.GetCraftingData(turrettype);
+            InvenData = Inventory.TurretInInventory[turrettype];
         }
         else if(Type is Item_Type itemtype)
         {
@@ -27,12 +32,17 @@ public class Crafter : MonoBehaviour
 
         if (data == null) return false;
 
-        if (Inventory.HavingObject(data.Level, data.needIron))
+        if (Inventory.HavingObject(data.Level, data.needIron)&&(InvenData.InInvenCount + InvenData.SpawnedCount) < data.MaxCount)
         {
             return true;
         }
 
         return false;
+    }
+
+    public bool IsMax()
+    {
+        return (InvenData.InInvenCount + InvenData.SpawnedCount) < data.MaxCount;
     }
 
     public void Craft(Enum Type)

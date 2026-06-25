@@ -735,5 +735,6 @@ public class PlayerController : MonoBehaviour
     {
         IsDead = true;
         PlayerMovement.Stop = true;
+        GameManager.Instance.FailDead();
     }
 }

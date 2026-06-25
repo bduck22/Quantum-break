@@ -1,3 +1,4 @@
+using IWantGoHome.ScreenEffects;
 using UnityEngine;
 
 public class CameraEffectController : MonoBehaviour
@@ -24,6 +25,14 @@ public class CameraEffectController : MonoBehaviour
 
     public PlayerParringEffect PlayerParringEffect;
 
+    public SoundRandomPlayer DashPlayer;
+
+    public SoundRandomPlayer DashingPlayer;
+
+    public SlowMotionAudioFilter AudioFilter;
+
+    public PlayerHitAfterimageController PlayerHitAfterimageController;
+
     private void Awake()
     {
         CameraShake = GetComponent<CameraShake>();
@@ -34,6 +43,7 @@ public class CameraEffectController : MonoBehaviour
         ScreenGhostEffect = GetComponent<ScreenGhostEffect>();  
         PlayerHitEffect = GetComponent<PlayerHitEffect>();
         PlayerParringEffect = GetComponent<PlayerParringEffect>();
+        DashingPlayer = GetComponent<SoundRandomPlayer>();
     }
 
     private void OnEnable()
@@ -60,11 +70,16 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash += CameraHighlightLineDraw.OnDash;
         PlayerMovement.OnDash += PlayerForwardEffectController.VfxPlay;
         PlayerMovement.OnDash += ScreenGhostEffect.PlayEffect;
+        PlayerMovement.OnDash += DashPlayer.SoundPlay;
+        PlayerMovement.OnDash += DashingPlayer.Stop;
+        PlayerMovement.OnDash += AudioFilter.ExitSlowMotion;
 
         PlayerMovement.OnBigStepped += CameraAnimation.BigShake;
 
         PlayerController.OnDashing += FOV.DashingFOV;
         PlayerController.OnDashing += PostProcessingController.DashFilterOn;
+        PlayerController.OnDashing += DashingPlayer.SoundPlay;
+        PlayerController.OnDashing += AudioFilter.EnterSlowMotion;
 
         PlayerController.OnLeftWall += CameraAnimation.SetLeftWall;
         PlayerController.OnRightWall += CameraAnimation.SetRightWall;
@@ -76,6 +91,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnHit += PostProcessingController.HitFilterOn;
         PlayerController.OnHit += FOV.HitedFOV;
         PlayerController.OnHit += CameraAnimation.BigShake;
+        PlayerController.OnHit += PlayerHitAfterimageController.PlayHit;
 
         PlayerController.EndHitInvincibility += PlayerHitEffect.EndHit;
         PlayerController.EndHitInvincibility += PostProcessingController.HitFilterOff;
@@ -99,11 +115,16 @@ public class CameraEffectController : MonoBehaviour
         PlayerMovement.OnDash -= CameraHighlightLineDraw.OnDash;
         PlayerMovement.OnDash -= PlayerForwardEffectController.VfxPlay;
         PlayerMovement.OnDash -= ScreenGhostEffect.PlayEffect;
+        PlayerMovement.OnDash -= DashPlayer.SoundPlay;
+        PlayerMovement.OnDash -= DashingPlayer.Stop;
+        PlayerMovement.OnDash -= AudioFilter.ExitSlowMotion;
 
         PlayerMovement.OnBigStepped -= CameraAnimation.BigShake;
 
         PlayerController.OnDashing -= FOV.DashingFOV;
         PlayerController.OnDashing -= PostProcessingController.DashFilterOn;
+        PlayerController.OnDashing -= DashingPlayer.SoundPlay;
+        PlayerController.OnDashing -= AudioFilter.EnterSlowMotion;
 
         PlayerController.OnLeftWall -= CameraAnimation.SetLeftWall;
         PlayerController.OnRightWall -= CameraAnimation.SetRightWall;
@@ -115,6 +136,7 @@ public class CameraEffectController : MonoBehaviour
         PlayerController.OnHit -= PostProcessingController.HitFilterOn;
         PlayerController.OnHit -= FOV.HitedFOV;
         PlayerController.OnHit -= CameraAnimation.BigShake;
+        PlayerController.OnHit -= PlayerHitAfterimageController.PlayHit;
 
         PlayerController.EndHitInvincibility -= PlayerHitEffect.EndHit;
         PlayerController.EndHitInvincibility -= PostProcessingController.HitFilterOff;

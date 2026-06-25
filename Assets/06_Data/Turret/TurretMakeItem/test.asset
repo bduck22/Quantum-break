@@ -15,4 +15,5 @@ MonoBehaviour:
   needIron: 10
   Level: 0
   itemType: 0
+  MaxCount: 2
   turretType: 0

@@ -32,7 +32,7 @@ public class TurretSpawnManager : MonoBehaviour
 
             pools[(Turret_Type)i] = new Queue<TurretController>();
 
-            for (int j = 0; j < GameDataManager.Instance.GetData((Turret_Type)i).MaxCount; j++)
+            for (int j = 0; j < GameDataManager.Instance.GetCraftingData((Turret_Type)i).MaxCount; j++)
             {
                 TurretController turret = Instantiate(TurretPrefabs[i].gameObject, TurretParents[i]).GetComponent<TurretController>();
 

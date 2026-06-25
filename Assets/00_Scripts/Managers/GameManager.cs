@@ -1,3 +1,4 @@
+using IWantGoHome.ScreenEffects;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -98,6 +99,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool isAttackEnd()
+    {
+        if (CurrentMap.DefaultEnemyCount == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void WaveStart()
     {
         CurrentMap.StartWave();
@@ -108,14 +118,31 @@ public class GameManager : MonoBehaviour
     {
         Player.Stop = true;
         Player.PlayerMovement.Stop = true;
-        RewardUI.Open();
+        TVStarTransitionController.Instance.PlayPowerOffHold(false);
+        //RewardUI.Open();
         Current_State = Game_State.MapEnd;
     }
 
     public void FailDead()
     {
+        TVStarTransitionController.Instance.PlayPowerOffHold(false);
         spawnManagers.Enemy.AllBack();
         Current_State = Game_State.Fail;
+    }
+
+    public UIWindow Reward;
+    public UIWindow Result;
+
+    public void OnPannel()
+    {
+        if(Current_State == Game_State.MapEnd)
+        {
+            Reward.Open();
+        }
+        else if(Current_State == Game_State.Fail)
+        {
+            Result.Open();
+        }
     }
 }
 

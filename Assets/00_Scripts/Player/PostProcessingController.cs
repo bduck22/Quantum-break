@@ -75,6 +75,7 @@ public class PostProcessingController : MonoBehaviour
         lensoff = false;
         vigoff = false;
         vignette.active = true;
+        chromaticAberration.intensity.value = 1f;
         //depthOfField.active = true;
     }
 
@@ -96,11 +97,19 @@ public class PostProcessingController : MonoBehaviour
         vignette.intensity.value = 0;
         vignette.active = true;
         chromaticAberration.intensity.value = 1f;
+        lensDistortion.intensity.value = 0;
+        lensDistortion.active = true;
+        lensoff = false;
     }
 
     public void HitFilterOff()
     {
+        lensDistortion.intensity.value = 0.4f;
+        motionBlur.intensity.value = 0.4f;
+        motionBlur.clamp.value = 0.15f;
+        lensoff = true;
         vigoff = true;
+        chromaticAberration.intensity.value = 0.8f;
     }
 
     void SetChromatic()

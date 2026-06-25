@@ -480,7 +480,8 @@ MonoBehaviour:
   - {fileID: -5771050524997787175}
   - {fileID: 6092646077514179103}
   - {fileID: -7733501040796278828}
-  m_RendererFeatureMap: ad6b866f10d7b46c364ee8277151107fd9e1acb41f1ce9af1fe268c8536d8d54d45f39f9c615ad94
+  - {fileID: 6156295546447499630}
+  m_RendererFeatureMap: ad6b866f10d7b46c364ee8277151107fd9e1acb41f1ce9af1fe268c8536d8d54d45f39f9c615ad946e91529a2e8e6f55
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -525,6 +526,26 @@ MonoBehaviour:
   _event: 600
   _pass: {fileID: -3293344173606027921}
   _blitShader: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+--- !u!114 &6156295546447499630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: HitNoise
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
+  m_Active: 1
+  injectionPoint: 600
+  fetchColorBuffer: 1
+  requirements: 4
+  passMaterial: {fileID: 2100000, guid: da1bcffcaab24004da217a8028cdd01e, type: 2}
+  passIndex: 0
+  bindDepthStencilAttachment: 0
+  m_Version: 1
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 0

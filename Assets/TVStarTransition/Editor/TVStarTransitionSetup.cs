@@ -11,16 +11,16 @@ namespace IWantGoHome.ScreenEffects.Editor
     {
         private const string RootFolder = "Assets/TVStarTransition";
         private const string MaterialFolder = RootFolder + "/Runtime/Materials";
-        private const string MaterialPath = MaterialFolder + "/M_TVStarGlitchV10.mat";
-        private const string ShaderName = "Hidden/IWantGoHome/TVStarGlitchV10";
+        private const string MaterialPath = MaterialFolder + "/M_TVStarGlitchV12.mat";
+        private const string ShaderName = "Hidden/IWantGoHome/TVStarGlitchV12";
 
-        [MenuItem("Tools/I Want Go Home/TV Star Transition/Create Fullscreen Glitch V10 Setup")]
+        [MenuItem("Tools/I Want Go Home/TV Star Transition/Create Fullscreen Glitch V12 Setup")]
         public static void CreateFullscreenGlitchSetup()
         {
             Material material = GetOrCreateMaterial();
             if (material == null)
             {
-                Debug.LogError("TV Star Transition V10 setup failed: material could not be created.");
+                Debug.LogError("TV Star Transition V12 setup failed: material could not be created.");
                 return;
             }
 
@@ -64,10 +64,10 @@ namespace IWantGoHome.ScreenEffects.Editor
 
             Selection.activeObject = root;
             EditorGUIUtility.PingObject(material);
-            Debug.Log("TV Star Transition V10 setup created. Add a URP Full Screen Pass Renderer Feature and assign material: " + MaterialPath);
+            Debug.Log("TV Star Transition V12 setup created. Add a URP Full Screen Pass Renderer Feature and assign material: " + MaterialPath);
         }
 
-        [MenuItem("Tools/I Want Go Home/TV Star Transition/Create V10 Material Only")]
+        [MenuItem("Tools/I Want Go Home/TV Star Transition/Create V12 Material Only")]
         public static void CreateMaterialOnly()
         {
             Material material = GetOrCreateMaterial();
@@ -89,7 +89,7 @@ namespace IWantGoHome.ScreenEffects.Editor
             rect.sizeDelta = new Vector2(960f, 180f);
 
             Text text = textObject.AddComponent<Text>();
-            text.text = "OPTIONAL RESULT UI\nF9 holds dark glitch screen / F10 releases effect / F11 hides";
+            text.text = "OPTIONAL RESULT UI\nF9 holds black screen / F10 releases effect / F11 hides";
             text.alignment = TextAnchor.MiddleCenter;
             text.fontSize = 38;
             text.color = Color.white;
@@ -120,7 +120,7 @@ namespace IWantGoHome.ScreenEffects.Editor
                 return null;
             }
 
-            Material material = new Material(shader) { name = "M_TVStarGlitchV10" };
+            Material material = new Material(shader) { name = "M_TVStarGlitchV12" };
             ApplyDefaultMaterialValues(material);
             AssetDatabase.CreateAsset(material, MaterialPath);
             AssetDatabase.SaveAssets();
@@ -150,8 +150,8 @@ namespace IWantGoHome.ScreenEffects.Editor
             material.SetFloat("_StarIntensity", 2.25f);
             material.SetFloat("_StarGlowIntensity", 0.16f);
             material.SetFloat("_FlashIntensity", 3.65f);
-            material.SetFloat("_AfterimageIntensity", 1.60f);
-            material.SetFloat("_AfterimageOffset", 0.082f);
+            material.SetFloat("_AfterimageIntensity", 1.70f);
+            material.SetFloat("_AfterimageOffset", 0.096f);
         }
 
         private static void EnsureFolder(string folderPath)

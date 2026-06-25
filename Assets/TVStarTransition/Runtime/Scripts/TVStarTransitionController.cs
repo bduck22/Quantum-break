@@ -6,17 +6,17 @@ using UnityEngine.Events;
 namespace IWantGoHome.ScreenEffects
 {
     [Serializable]
-    public sealed class TVStarTransitionV10Profile
+    public sealed class TVStarTransitionV12Profile
     {
         [Header("F9 Power Off")]
         [Min(0f)] public float shutdownGlitchDuration = 0.70f;
         [Min(0f)] public float shutdownStarDuration = 0.52f;
-        [Min(0f)] public float holdIntroDuration = 0.42f;
+        [Min(0f)] public float holdIntroDuration = 0.12f;
 
         [Header("F10 Power On")]
         [Min(0f)] public float holdDissolveDuration = 0.72f;
         [Min(0f)] public float blackHoldDuration = 0.32f;
-        [Min(0f)] public float powerOnFlashDuration = 4.60f;
+        [Min(0f)] public float powerOnFlashDuration = 6.40f;
 
         [Header("Current Screen Glitch")]
         [Range(0f, 3f)] public float sceneGlitchIntensity = 1.28f;
@@ -43,8 +43,8 @@ namespace IWantGoHome.ScreenEffects
 
         [Header("Power On Flash / Afterimage")]
         [Range(0f, 8f)] public float flashIntensity = 3.65f;
-        [Range(0f, 2f)] public float afterimageIntensity = 1.60f;
-        [Range(0f, 0.20f)] public float afterimageOffset = 0.082f;
+        [Range(0f, 2f)] public float afterimageIntensity = 1.70f;
+        [Range(0f, 0.20f)] public float afterimageOffset = 0.090f;
     }
 
     public sealed class TVStarTransitionController : MonoBehaviour
@@ -57,7 +57,7 @@ namespace IWantGoHome.ScreenEffects
         [SerializeField] private CanvasGroup resultUIGroup;
 
         [Header("Profile")]
-        [SerializeField] private TVStarTransitionV10Profile profile = new TVStarTransitionV10Profile();
+        [SerializeField] private TVStarTransitionV12Profile profile = new TVStarTransitionV12Profile();
 
         [Header("Options")]
         [SerializeField] private bool makeMaterialInstance = false;
@@ -150,7 +150,7 @@ namespace IWantGoHome.ScreenEffects
             ApplyProfile();
             if (runtimeMaterial == null)
             {
-                Debug.LogError("Transition material is missing. Assign M_TVStarGlitchV10 to both the controller and the URP Full Screen Pass Renderer Feature.", this);
+                Debug.LogError("Transition material is missing. Assign M_TVStarGlitchV12 to both the controller and the URP Full Screen Pass Renderer Feature.", this);
                 return;
             }
             if (routine != null) StopCoroutine(routine);
@@ -213,8 +213,8 @@ namespace IWantGoHome.ScreenEffects
             if (runtimeMaterial != null) return;
             if (transitionMaterial == null)
             {
-                Shader shader = Shader.Find("Hidden/IWantGoHome/TVStarGlitchV10");
-                if (shader != null) transitionMaterial = new Material(shader) { name = "M_TVStarGlitchV10_Runtime" };
+                Shader shader = Shader.Find("Hidden/IWantGoHome/TVStarGlitchV12");
+                if (shader != null) transitionMaterial = new Material(shader) { name = "M_TVStarGlitchV12_Runtime" };
             }
             if (transitionMaterial == null) return;
             runtimeMaterial = makeMaterialInstance && Application.isPlaying ? new Material(transitionMaterial) : transitionMaterial;

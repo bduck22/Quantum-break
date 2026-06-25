@@ -29,8 +29,6 @@ public class TurretData : ScriptableObject
     public DebuffData Data;
 
     public float Cognizance;
-
-    public int MaxCount;
 }
 
 [Serializable]

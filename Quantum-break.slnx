@@ -1,10 +1,10 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="BzKovSoft.ObjectSlicer.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="AYellowpaper.SerializedCollections.csproj" />
   <Project Path="ToonyColorsPro.Demo.Editor.csproj" />
   <Project Path="Hierarchy2.Editor.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="ShaderCrew.TheToonShader.Core.Runtime.csproj" />
   <Project Path="CFXRDemo.csproj" />
   <Project Path="BzKovSoft.CharacterSlicer.csproj" />
@@ -15,12 +15,10 @@
   <Project Path="CFXRRuntime.csproj" />
   <Project Path="ShaderCrew.TheToonShader.3D.Runtime.csproj" />
   <Project Path="CFXR.WelcomeScreen.csproj" />
-  <Project Path="OldMovieFx.Runtime.csproj" />
   <Project Path="CFXREditor.csproj" />
   <Project Path="BzKovSoft.ObjectSlicer.Tests.csproj" />
   <Project Path="Hierarchy2.Runtime.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
-  <Project Path="OldMovieFx.Editor.csproj" />
   <Project Path="BzKovSoft.CharacterSlicer.Samples.csproj" />
   <Project Path="KinoBloom.Runtime.csproj" />
 </Solution>

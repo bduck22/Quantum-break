@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class EnemyRouteController : MonoBehaviour
@@ -142,7 +141,7 @@ public class EnemyRouteController : MonoBehaviour
         EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal);
         enemy.Player = player;
         enemy.Core = Core;
-        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[CurrentWave].WayPoints[0].position);
+        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[CurrentWave].WayPoints[CurrentWave].position);
 
         enemy.gameObject.SetActive(true);
 

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int WaveCount;
     public int CurrentWaveIndex;
 
+    public bool Cleared;
+
     [Header("절대불변")]
     public PlayerController Player;
     public SpawnManagers spawnManagers;
@@ -23,6 +25,12 @@ public class GameManager : MonoBehaviour
     [Header("맵마다 변경")]
     public EnemySpawnManager CurrentMap;
     public MainCoreController Core;
+
+    public int CurrentMapIndex=0;
+    public int MaxMapIndex;
+
+    public MapData Map1;
+    public MapData Map2;
 
     private void Awake()
     {
@@ -37,9 +45,12 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        Cleared = false;
         spawnManagers.Init();
         Inventory.InitInventory();
         Current_State = Game_State.MapInit;
+        MaxMapIndex = GameDataManager.Instance.GetRandomRoomCount();
+        Application.targetFrameRate = 120;
     }
 
     void CheckState()
@@ -57,6 +68,10 @@ public class GameManager : MonoBehaviour
 
     public void MapInit()
     {
+        MapData Mapdata = GameDataManager.Instance.GetMap(0);
+
+        
+
         CurrentMap.Player = Player;
         CurrentMap.Core = Core.transform;
         Player.PlayerInit(CurrentMap.PlayerSpawnPoint.position);
@@ -85,7 +100,15 @@ public class GameManager : MonoBehaviour
             else
             {
                 //맵 클리어
-                MapEnding();
+                Cleared = true;
+                if(CurrentMapIndex < MaxMapIndex)
+                {
+                    MapEnding();
+                }
+                else
+                {
+                    Clear();
+                }
             }
         }
     }
@@ -116,11 +139,24 @@ public class GameManager : MonoBehaviour
 
     public void MapEnding()
     {
+        CurrentMapIndex++;
         Player.Stop = true;
         Player.PlayerMovement.Stop = true;
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         //RewardUI.Open();
         Current_State = Game_State.MapEnd;
+    }
+
+    public void NextMap()
+    {
+
+    }
+
+    public void Clear()
+    {
+        TVStarTransitionController.Instance.PlayPowerOffHold(false);
+        Player.Stop = true;
+        Current_State = Game_State.Clear;
     }
 
     public void FailDead()
@@ -139,7 +175,7 @@ public class GameManager : MonoBehaviour
         {
             Reward.Open();
         }
-        else if(Current_State == Game_State.Fail)
+        else if(Current_State == Game_State.Fail || Current_State == Game_State.Clear)
         {
             Result.Open();
         }

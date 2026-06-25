@@ -8126,7 +8126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   Current_State: 0
-  WaveCount: 1
+  WaveCount: 0
   CurrentWaveIndex: 0
   Cleared: 0
   Player: {fileID: 2079762290}
@@ -8140,6 +8140,7 @@ MonoBehaviour:
   MaxMapIndex: 0
   Map1: {fileID: 0}
   Map2: {fileID: 0}
+  MapP: {fileID: 296476343}
   Reward: {fileID: 567304032}
   Result: {fileID: 116913328}
 --- !u!4 &63575533
@@ -36985,6 +36986,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296235681}
   m_CullTransparentMesh: 0
+--- !u!1 &296476342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296476343}
+  m_Layer: 0
+  m_Name: CurrentMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296476343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296476342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.00176, y: 0, z: -15.35543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296737758
 GameObject:
   m_ObjectHideFlags: 0
@@ -257457,6 +257489,7 @@ SceneRoots:
   - {fileID: 810350132}
   - {fileID: 780171235}
   - {fileID: 1573658532}
+  - {fileID: 296476343}
   - {fileID: 1560559731}
   - {fileID: 1962103869}
   - {fileID: 1939986294}

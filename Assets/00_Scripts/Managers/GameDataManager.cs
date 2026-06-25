@@ -2,8 +2,8 @@ using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static CreftingUI;
 
+[DefaultExecutionOrder(-101)]
 public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance;
@@ -21,7 +21,6 @@ public class GameDataManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        MapDatas = new List<InGameMapData>();
         //if(Instance == null)
         //{
         //    Instance = this;
@@ -102,7 +101,9 @@ public class GameDataManager : MonoBehaviour
 
     private InGameMapData GetUnusedRandomMapByDifficultyWithFallback(int startDifficulty)
     {
-        int maxDifficulty = GetMaxMapDifficulty();
+        int maxDifficulty = 5;
+
+        startDifficulty = Mathf.Clamp(startDifficulty, 1, 5);
 
         for (int difficulty = startDifficulty; difficulty <= maxDifficulty; difficulty++)
         {
@@ -159,33 +160,6 @@ public class GameDataManager : MonoBehaviour
 
         minDifficulty = Mathf.Clamp(minDifficulty, 1, 5);
         maxDifficulty = Mathf.Clamp(maxDifficulty, 1, 5);
-    }
-
-    private int GetMaxMapDifficulty()
-    {
-        int maxDifficulty = 0;
-
-        for (int i = 0; i < MapDatas.Count; i++)
-        {
-            InGameMapData inGameMapData = MapDatas[i];
-
-            if (inGameMapData == null)
-            {
-                continue;
-            }
-
-            if (inGameMapData.MapData == null)
-            {
-                continue;
-            }
-
-            if (inGameMapData.MapData.Difficult > maxDifficulty)
-            {
-                maxDifficulty = inGameMapData.MapData.Difficult;
-            }
-        }
-
-        return maxDifficulty;
     }
 
     public int GetRandomRoomCount()

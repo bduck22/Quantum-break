@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using VolFx.Editor;
 
 public class CreftingUI : MonoBehaviour
 {

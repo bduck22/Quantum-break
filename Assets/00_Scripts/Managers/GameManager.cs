@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public MapData Map1;
     public MapData Map2;
 
+    public Transform MapP;
+
     private void Awake()
     {
         Instance = this;
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
         Inventory.InitInventory();
         Current_State = Game_State.MapInit;
         MaxMapIndex = GameDataManager.Instance.GetRandomRoomCount();
+        CurrentMapIndex = 0;
         Application.targetFrameRate = 120;
     }
 
@@ -68,12 +71,14 @@ public class GameManager : MonoBehaviour
 
     public void MapInit()
     {
-        MapData Mapdata = GameDataManager.Instance.GetMap(0);
+        MapData Mapdata = GameDataManager.Instance.GetMap(CurrentMapIndex);
+        Debug.Log(Mapdata);
 
-        
+        WaveCount = Mapdata.Wave;
+
+        CurrentMap = Instantiate(Mapdata.Map, MapP).GetComponent<EnemySpawnManager>();
 
         CurrentMap.Player = Player;
-        CurrentMap.Core = Core.transform;
         Player.PlayerInit(CurrentMap.PlayerSpawnPoint.position);
         Core.Coreinit();
 

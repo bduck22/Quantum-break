@@ -12,7 +12,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     [HideInInspector]
     public PlayerController Player;
-    [HideInInspector]
+
     public Transform Core;
 
     public int DefaultEnemyCount;

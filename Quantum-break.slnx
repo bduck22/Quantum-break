@@ -1,6 +1,6 @@
 ﻿<Solution>
-  <Project Path="BzKovSoft.ObjectSlicer.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="BzKovSoft.ObjectSlicer.csproj" />
   <Project Path="AYellowpaper.SerializedCollections.csproj" />
   <Project Path="ToonyColorsPro.Demo.Editor.csproj" />
   <Project Path="Hierarchy2.Editor.csproj" />

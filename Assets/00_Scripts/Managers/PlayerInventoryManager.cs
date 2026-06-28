@@ -7,6 +7,9 @@ public class PlayerInventoryManager : MonoBehaviour
     [SerializedDictionary("Type", "Count")]
     public SerializedDictionary<Turret_Type, InventoryData> TurretInInventory;
 
+    [SerializedDictionary("Type", "Level")]
+    public SerializedDictionary<Player_Card_Type, PlayerCardData> PlayerCardInInventory;
+
     public int Iron
     {
         get
@@ -31,6 +34,18 @@ public class PlayerInventoryManager : MonoBehaviour
         }
         iron = 0;
         CoreCounts = new int[3] { 0, 0, 0 };
+
+        for (int i = 0; i < PlayerCardInInventory.Count; i++)
+        {
+            Player_Card_Type type = (Player_Card_Type)i;
+
+            PlayerCardData data = PlayerCardInInventory[type];
+            data.HavingCount = 0;
+
+            data.MaxCount = GameDataManager.Instance.GetCardData(type).Data.MaxCount;
+
+            PlayerCardInInventory[type] = data;
+        }
     }
 
     public bool IsHaveTurret(Turret_Type type)
@@ -129,6 +144,32 @@ public class PlayerInventoryManager : MonoBehaviour
 
         UIUpdateManager.Instance.UIController.CurrentOpened.Refresh();
     }
+
+    public bool IsCanGetCard(Player_Card_Type type)
+    {
+        PlayerCardData data = PlayerCardInInventory[type];
+
+        if(data.MaxCount == 0)
+        {
+            return true;
+        }
+
+        if (data.HavingCount < data.MaxCount)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void GetCard(Player_Card_Type type)
+    {
+        PlayerCardData data = PlayerCardInInventory[type];
+        if(data.HavingCount < data.MaxCount)
+        {
+            data.HavingCount++;
+        }
+        PlayerCardInInventory[type] = data;
+    }
 }
 
 [Serializable]
@@ -136,5 +177,12 @@ public struct InventoryData
 {
     public int InInvenCount;
     public int SpawnedCount;
+}
+
+[Serializable]
+public struct PlayerCardData
+{
+    public int HavingCount;
+    public int MaxCount;
 }
 

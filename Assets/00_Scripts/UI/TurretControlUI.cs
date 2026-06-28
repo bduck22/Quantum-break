@@ -44,19 +44,28 @@ public class TurretControlUI : MonoBehaviour
 
     public void ReFreshData()
     {
-        if(GameManager.Instance.Current_State != Game_State.Ready) {
+
+        TurretData data = GameDataManager.Instance.GetTurretData(CurrentType);
+
+        CraftingItemDataBase data2 = GameDataManager.Instance.GetCraftingData(CurrentType);
+
+        InventoryData count = GameManager.Instance.Inventory.TurretInInventory[CurrentType];
+
+        //ui 반영하기
+        TurretIcon.sprite = data2.Icon;
+        Count.text = "보유 수량 : " + count.InInvenCount.ToString("#,##0");
+        Name.text = data2.Name;
+        Description.text = data2.Description;
+
+        Installer.type = CurrentType;
+
+        if (GameManager.Instance.Current_State != Game_State.Ready)
+        {
             FController.SetActiveInteraction(false);
             Installer.CanInstall = false;
             return;
         }
 
-        TurretData data = GameDataManager.Instance.GetData(CurrentType);
-
-        //ui 반영하기
-
-        InventoryData count = GameManager.Instance.Inventory.TurretInInventory[CurrentType];
-
-        Installer.type = CurrentType;
         if (count.InInvenCount > 0)
         {
             Installer.CanInstall = true;
@@ -180,6 +189,8 @@ public class TurretControlUI : MonoBehaviour
                 type = Enum.GetValues(typeof(Turret_Type)).Length-1;
             }
         }
+
+        ImageAnimator.SetTrigger("Play");
 
         CurrentType = (Turret_Type)type;
         ReFreshData();

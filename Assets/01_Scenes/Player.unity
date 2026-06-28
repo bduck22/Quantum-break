@@ -23771,6 +23771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9427274202895e44fa9e5d8edb6c97fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractCore
+  OnObject: {fileID: 0}
 --- !u!114 &222254070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42495,8 +42496,32 @@ PrefabInstance:
     - {fileID: 80418247579883579, guid: 725752bdc99e00442bfae1d6541d9f4b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7897907200334937422, guid: 725752bdc99e00442bfae1d6541d9f4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 398123263}
   m_SourcePrefab: {fileID: 100100000, guid: 725752bdc99e00442bfae1d6541d9f4b, type: 3}
+--- !u!1 &398123262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7897907200334937422, guid: 725752bdc99e00442bfae1d6541d9f4b, type: 3}
+  m_PrefabInstance: {fileID: 398123261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &398123263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398123262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0e8c9f6de8a024a83516c0b8837c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BzKovSoft.CharacterSlicer::BzKovSoft.CharacterSlicer.BzSliceableCharacter
+  defaultSliceMaterial: {fileID: 0}
+  asynchronously: 0
+  waitIfBusy: 0
+  objectGrouping: 0
 --- !u!1 &398528508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109208, guid: b5c6f1e15b5541a4990e2f0b2715e6be, type: 3}
@@ -71377,6 +71402,11 @@ MonoBehaviour:
   CurrentMap: {fileID: 634159427}
   Core: {fileID: 222254070}
   CurrentMapIndex: 0
+  MaxMapIndex: 0
+  MaxCoreHp: 0
+  Map1: {fileID: 0}
+  Map2: {fileID: 0}
+  MapP: {fileID: 0}
   Reward: {fileID: 1765446562}
   Result: {fileID: 427768862}
 --- !u!1 &622095049
@@ -109228,6 +109258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb43759e882dbbc4cb0c2efce78c9e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIUpdateManager
+  overlayWaypointUI: {fileID: 0}
   UIController: {fileID: 1584155749}
   FController: {fileID: 945686502}
   Canvas: {fileID: 122303301}
@@ -146468,6 +146499,8 @@ MonoBehaviour:
       Value:
         Data: {fileID: 11400000, guid: 8011e0b0c9b47be488df86ca2290a998, type: 2}
         MakeData: {fileID: 11400000, guid: 95f381f33cd15524894209f836b19c1c, type: 2}
+  EnemyDatas:
+    _serializedList: []
   GameLevel: 0
   MapDatas: []
 --- !u!4 &1279520488
@@ -253208,6 +253241,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 806519376815721099, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1397109615}
+    - targetCorrespondingSourceObject: {fileID: 3168430626365753966, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3498394276780953835}
+    - targetCorrespondingSourceObject: {fileID: 3168430626365753966, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3498394276780953836}
     - targetCorrespondingSourceObject: {fileID: 6561082979148676665, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1584155751}
@@ -253229,6 +253268,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d729bee20b935c4a8ca8e16e34b6105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!1 &3498394276780953834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3168430626365753966, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
+  m_PrefabInstance: {fileID: 3498394276780953832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3498394276780953835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498394276780953834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23b366537b31b54197288f122deabeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BzKovSoft.ObjectSlicer.Samples::BzKovSoft.ObjectSlicer.Samples.BzKnife
+  _origin: {x: 0, y: -1, z: 0}
+  _direction: {x: 0, y: 1, z: 0}
+--- !u!65 &3498394276780953836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498394276780953834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.46344241, y: 0.14848149, z: 6.316217}
+  m_Center: {x: -0.044893783, y: 0.00000024344357, z: 2.333888}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

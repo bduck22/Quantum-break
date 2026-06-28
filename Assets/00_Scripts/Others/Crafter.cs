@@ -52,5 +52,7 @@ public class Crafter : MonoBehaviour
         Inventory.UseIron(data.needIron);
 
         Inventory.GetItem(Type);
+
+        UIUpdateManager.Instance.CountUpdate();
     }
 }

@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float rate = Data.Input.sqrMagnitude > 0f ? accel : decel;
 
-            Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.deltaTime);
+            Velocity = Vector3.MoveTowards(Velocity, MoveVector, rate * Time.unscaledDeltaTime);
 
             Velocity.y = MoveVector.y;
 

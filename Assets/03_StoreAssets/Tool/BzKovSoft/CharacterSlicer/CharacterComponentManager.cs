@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BzKovSoft.ObjectSlicer;
@@ -167,62 +167,51 @@ namespace BzKovSoft.CharacterSlicer
 			Profiler.EndSample();
 			Profiler.EndSample();
 
-			// ----------------------
-			// rearrange objects
-			Profiler.BeginSample("rearrange objects");
-			Transform oldRoot;
-			oldRoot = go.transform.Find("rootChrSlr");
-			if (oldRoot == null)
-			{
-				var animator = go.GetComponent<Animator>();
-				oldRoot = animator.GetBoneTransform(HumanBodyBones.Hips);
+            // ----------------------
+            // rearrange objects
+            Profiler.BeginSample("rearrange objects");
 
-				if (oldRoot == null)
-				{
-					for (int i = 0; i < go.transform.childCount; i++)
-					{
-						var rigid = go.transform.GetChild(i).GetComponent<Rigidbody>();
-						if (rigid == null)
-						{
-							continue;
-						}
+            Transform oldRoot = FindCharacterRoot(go);
 
-						if (oldRoot != null)
-						{
-							throw new InvalidOperationException("Cannot find root object. Several objects with rigidbody was found");
-						}
+            if (oldRoot == null)
+            {
+                throw new InvalidOperationException(
+                    "Cannot find character root. " +
+                    "For Generic rig or no Avatar character, add CharacterSliceRoot to pelvis/body root bone."
+                );
+            }
 
-						oldRoot = rigid.transform;
-					}
-				}
+            var newRoot = new GameObject("rootChrSlr").transform;
+            newRoot.SetParent(go.transform, false);
 
-				if (oldRoot == null)
-				{
-					throw new InvalidOperationException("No root with rigidbody found");
-				}
-			}
+            for (int i = 0; i < freeEnds.Count; i++)
+            {
+                var freeEnd = freeEnds[i];
 
-			var newRoot = new GameObject("rootChrSlr").transform;
-			newRoot.SetParent(go.transform, false);
-			for (int i = 0; i < freeEnds.Count; i++)
-			{
-				var freeEnd = freeEnds[i];
-				freeEnd.transform.SetParent(newRoot, true);
-			}
+                if (freeEnd == null)
+                {
+                    continue;
+                }
 
-			if (main != null)
-			{
-				oldRoot.SetParent(main, true);
-			}
-			else
-			{
-				oldRoot.SetParent(newRoot, true);
-			}
-			Profiler.EndSample();
+                freeEnd.transform.SetParent(newRoot, true);
+            }
 
-			// ----------------------
-			// delete rigidbodies
-			Profiler.BeginSample("delete rigidbodies");
+            if (main != null && oldRoot != main)
+            {
+                oldRoot.SetParent(main, true);
+            }
+            else
+            {
+                oldRoot.SetParent(newRoot, true);
+            }
+
+            Profiler.EndSample();
+
+
+
+            // ----------------------
+            // delete rigidbodies
+            Profiler.BeginSample("delete rigidbodies");
 			for (int i = 0; i < rigids.Length; i++)
 			{
 				var rigid = rigids[i];
@@ -251,7 +240,114 @@ namespace BzKovSoft.CharacterSlicer
 			Profiler.EndSample();
 		}
 
-		private static bool IsAlreadyConnected(Transform from, Transform to, List<Joint> joints, HashSet<Transform> ocupied)
+        private static Transform FindCharacterRoot(GameObject go)
+        {
+            Transform oldSlicerRoot = go.transform.Find("rootChrSlr");
+            if (oldSlicerRoot != null)
+            {
+                return oldSlicerRoot;
+            }
+
+            CharacterSliceRoot sliceRoot = go.GetComponentInChildren<CharacterSliceRoot>(true);
+            if (sliceRoot != null)
+            {
+                Transform explicitRoot = sliceRoot.GetRoot();
+
+                if (explicitRoot != null && explicitRoot.IsChildOf(go.transform))
+                {
+                    return explicitRoot;
+                }
+            }
+
+            Animator animator = go.GetComponent<Animator>();
+            if (animator != null &&
+                animator.avatar != null &&
+                animator.avatar.isValid &&
+                animator.avatar.isHuman)
+            {
+                Transform hips = animator.GetBoneTransform(HumanBodyBones.Hips);
+
+                if (hips != null)
+                {
+                    return hips;
+                }
+            }
+
+            SkinnedMeshRenderer[] renderers = go.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                SkinnedMeshRenderer skinnedMeshRenderer = renderers[i];
+
+                if (skinnedMeshRenderer == null)
+                {
+                    continue;
+                }
+
+                Transform rootBone = skinnedMeshRenderer.rootBone;
+
+                if (rootBone != null && rootBone.IsChildOf(go.transform))
+                {
+                    return rootBone;
+                }
+            }
+
+            return FindBestRigidbodyRoot(go.transform);
+        }
+
+        private static Transform FindBestRigidbodyRoot(Transform root)
+        {
+            Rigidbody[] rigids = root.GetComponentsInChildren<Rigidbody>(true);
+
+            Transform bestRoot = null;
+            int bestChildRigidCount = -1;
+            int bestDepth = int.MaxValue;
+
+            for (int i = 0; i < rigids.Length; i++)
+            {
+                Rigidbody rigid = rigids[i];
+
+                if (rigid == null)
+                {
+                    continue;
+                }
+
+                Transform tr = rigid.transform;
+
+                if (tr == root)
+                {
+                    continue;
+                }
+
+                int childRigidCount = tr.GetComponentsInChildren<Rigidbody>(true).Length;
+                int depth = GetDepthFromRoot(root, tr);
+
+                if (childRigidCount > bestChildRigidCount ||
+                    childRigidCount == bestChildRigidCount && depth < bestDepth)
+                {
+                    bestRoot = tr;
+                    bestChildRigidCount = childRigidCount;
+                    bestDepth = depth;
+                }
+            }
+
+            return bestRoot;
+        }
+
+        private static int GetDepthFromRoot(Transform root, Transform target)
+        {
+            int depth = 0;
+            Transform current = target;
+
+            while (current != null && current != root)
+            {
+                depth++;
+                current = current.parent;
+            }
+
+            return depth;
+        }
+        private static bool IsAlreadyConnected(Transform from, Transform to, List<Joint> joints, HashSet<Transform> ocupied)
 		{
 			List<Transform> connectedItems = new List<Transform>();
 

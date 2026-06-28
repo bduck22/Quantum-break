@@ -1,4 +1,4 @@
-﻿using BzKovSoft.ObjectSlicer;
+using BzKovSoft.ObjectSlicer;
 using UnityEngine;
 
 namespace BzKovSoft.CharacterSlicer
@@ -11,10 +11,6 @@ namespace BzKovSoft.CharacterSlicer
 		private void Awake()
 		{
 			var animator = GetComponent<Animator>();
-			if (animator != null && animator.updateMode != AnimatorUpdateMode.Fixed)
-			{
-				UnityEngine.Debug.LogWarning("Recommended to use Animator.UpdateMode = AnimatePhysics for your sliceable character");
-			}
 		}
 
 		protected override AdapterAndMesh GetAdapterAndMesh(Renderer renderer)

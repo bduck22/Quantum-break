@@ -148,7 +148,6 @@ public class PlayerAudioController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(player.cc.velocity);
         UpdateFootstep();
         UpdateWallStep();
     }

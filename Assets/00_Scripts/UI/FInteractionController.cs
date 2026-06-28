@@ -12,9 +12,12 @@ public class FInteractionController : MonoBehaviour
 
     Image NonInteract;
 
+    AudioSource source;
+
     private void Awake()
     {
         NonInteract = GetComponent<Image>();
+        source = GetComponent<AudioSource>();
     }
 
     public void SetText(string Text)
@@ -31,6 +34,16 @@ public class FInteractionController : MonoBehaviour
         else
         {
             Gauge.fillAmount = value;
+            source.Play();
+
+        }
+
+        if(Gauge.fillAmount == 1)
+        {
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
         }
     }
 

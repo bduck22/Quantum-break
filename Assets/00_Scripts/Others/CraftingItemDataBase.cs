@@ -7,6 +7,11 @@ public class CraftingItemDataBase : ScriptableObject
     public int Level;
     public Crafting_Type itemType;
 
+    public Sprite Icon;
+
+    public string Name;
+
+    [TextArea] public string Description;
 
     public int MaxCount;
 

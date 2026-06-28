@@ -39,9 +39,14 @@ public class TestWeapon : MobWeaponBase
             {
                 TargetVelocity.y = 0;
             }
+            else
+            {
+                TargetVelocity.y = -3f;
+            }
 
 
-            float Distance = Vector3.Distance(ShootP.position, TargetPos);
+
+                float Distance = Vector3.Distance(ShootP.position, TargetPos);
             float timeToHit = Distance / Data.BulletSpeed;
 
             Vector3 predictedPos = TargetPos + TargetVelocity * timeToHit * LeadPer;
@@ -55,7 +60,7 @@ public class TestWeapon : MobWeaponBase
 
         Quaternion rotation = Quaternion.LookRotation(dir);
 
-        SpawnManagers.Instance.Bullet.SpawnBullet(ShootP.position, rotation, Data.BulletSpeed, Data.BulletCount, Data.BulletDelay, Enemy);
+        SpawnManagers.Instance.Bullet.SpawnBullet(ShootP.position, rotation, Data.BulletSpeed, Data.BulletCount, Data.BulletDelay, Data.DestroyDistance, Enemy);
     }
 
     public override void OnRating()

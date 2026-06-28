@@ -38,7 +38,7 @@ public class TurretSpawnManager : MonoBehaviour
 
                 turret.gameObject.SetActive(false);
 
-                turret.Data = GameDataManager.Instance.GetData((Turret_Type)i);
+                turret.Data = GameDataManager.Instance.GetTurretData((Turret_Type)i);
                 turret.DefaultInit(this);
 
                 InPool((Turret_Type)(i), turret);

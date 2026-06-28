@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using BzKovSoft.ObjectSlicer;
 using BzKovSoft.ObjectSlicer.EventHandlers;
 using UnityEngine;
@@ -209,9 +209,9 @@ namespace BzKovSoft.CharacterSlicer.Samples.EventHandlers
 			{
 				var rigid = rigids[i];
 
-				rigid.linearVelocity = velocityContinue;
-				rigid.angularVelocity = angularVelocityContinue;
-			}
+                RigidbodyCompat.SetLinearVelocity(rigid, velocityContinue);
+                rigid.angularVelocity = angularVelocityContinue;
+            }
 		}
 
 		private static IEnumerator SmoothDepenetration(GameObject go)

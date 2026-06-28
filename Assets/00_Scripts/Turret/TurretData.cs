@@ -4,10 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/TurretData")]
 public class TurretData : ScriptableObject
 {
-    public string TurretName;
-
-    public Sprite TurretIcon;
-
     public Turret_Type Type;
 
     public float CoolTime;//발사 쿨타임

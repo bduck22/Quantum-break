@@ -1,3 +1,4 @@
+using BzKovSoft.ObjectSlicer.Samples;
 using UnityEngine;
 
 public class PlayerAttackHitChecker : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerAttackHitChecker : MonoBehaviour
     public bool isparried = false;
 
     public bool Killed;
+
+    public LayerMask Layer;
 
     public SoundRandomPlayer soundRandomPlayer;
 
@@ -34,6 +37,8 @@ public class PlayerAttackHitChecker : MonoBehaviour
     {
         isparried = false;
     }
+
+    public SampleKnifeSlicer Slicer;
 
     public bool AttackCheck()
     {
@@ -68,19 +73,32 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     public SlowMotionAudioFilter Filter;
 
+    public Vector3 pivot = new Vector3(0,1.5f,0);
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             if (AttackCheck()&&!Killed)
             {
-                soundRandomPlayer.SoundPlay();
-                Filter.EnterSlowMotion();
+                RaycastHit hit;
+                if(Physics.Raycast(Head.position, ((other.attachedRigidbody.position+pivot) - Head.position).normalized,out hit,  100, Layer))
+                {
+                    if (hit.transform.gameObject.layer != 8) return;
 
-                EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
+                    soundRandomPlayer.SoundPlay();
+                    Filter.EnterSlowMotion();
 
-                enemy.Hit();
-                Killed = true;
+                    EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
+
+                    enemy.Hit();
+
+                    enemy.Animation.enabled = false;
+
+                    CallEnemySlice(other);
+
+                    Killed = true;
+                }
             }
         }
         if (other.gameObject.layer == 10)
@@ -95,5 +113,19 @@ public class PlayerAttackHitChecker : MonoBehaviour
         {
             Filter.ExitSlowMotion();
         }
+    }
+
+    [SerializeField] private Transform swordTransform;
+
+    private async void CallEnemySlice(Collider hitCollider)
+    {
+        if (hitCollider == null)
+        {
+            return;
+        }
+
+        EnemySliceExecutor sliceExecutor = hitCollider.GetComponentInParent<EnemySliceExecutor>();
+
+        await sliceExecutor.TrySliceBySwordYAtFixedPoint(swordTransform);
     }
 }

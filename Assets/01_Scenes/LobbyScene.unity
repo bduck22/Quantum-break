@@ -401,7 +401,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5745781008432138602, guid: d43e24e7e342adb4082b567514ea5fca, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -470,6 +471,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -667,7 +671,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2213,7 +2218,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2500,6 +2506,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2754,6 +2763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3123,7 +3133,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3199,6 +3210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3350,7 +3362,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3678,7 +3691,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWindow (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1329849994963609885, guid: de4c99c90fdbc144c8650a3e72421d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3810,7 +3824,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4171,37 +4186,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8695469932569764000, guid: 538be55034c623b46b60b2d7d1477e3f, type: 3}
   m_PrefabInstance: {fileID: 109976765}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &112113802
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 112113803}
-  m_Layer: 0
-  m_Name: spawnpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &112113803
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112113802}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0017990224, y: -0.99121135, z: 0.12503082, w: 0.04317519}
-  m_LocalPosition: {x: 26.728548, y: 6.3765373, z: 3.9453378}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &112249778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4393,6 +4377,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4930,7 +4917,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5062,7 +5050,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6451282872557384317, guid: 87ee718dcb6956e4a93d0f4319073d38, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5385,7 +5374,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5455,7 +5445,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6726,7 +6717,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7757,6 +7749,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8064,7 +8058,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8519,18 +8514,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 183668737}
-    - targetCorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 183668736}
   m_SourcePrefab: {fileID: 100100000, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!4 &183668733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-  m_PrefabInstance: {fileID: 183668732}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &183668734 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
   m_PrefabInstance: {fileID: 183668732}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &183668735 stripped
@@ -8538,28 +8525,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
   m_PrefabInstance: {fileID: 183668732}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &183668736
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183668734}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8378914597586779873, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!65 &183668737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8637,7 +8602,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8945,7 +8911,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9753,7 +9720,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10437,7 +10405,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10573,7 +10542,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10683,7 +10653,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10823,7 +10794,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1577097526249991127, guid: 90f6677d09c4f7f44819ae02391219b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11119,7 +11091,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11728,7 +11701,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11962,6 +11936,7 @@ PrefabInstance:
       objectReference: {fileID: -5053925668127403250, guid: 105e2bed0e2a15c42a2ac1fb965b0db1, type: 3}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12194,7 +12169,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12787,7 +12763,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13077,6 +13054,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5029100562736080934, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 6627937590793449261, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 4543959542842859253, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13146,7 +13125,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13298,7 +13278,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19613,7 +19594,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20326,7 +20308,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21055,7 +21038,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22306,7 +22290,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22700,7 +22685,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23288,7 +23274,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23354,7 +23341,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23517,7 +23505,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23967,7 +23956,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24123,7 +24113,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24189,7 +24180,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24457,7 +24449,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24721,7 +24714,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24941,6 +24935,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25594,7 +25590,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25660,7 +25657,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26145,7 +26143,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26577,7 +26576,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1987967237426843448, guid: a05f6a5833c433a4dbfc568e30226303, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26643,7 +26643,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26713,7 +26714,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26911,7 +26913,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27302,7 +27305,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27560,7 +27564,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28218,7 +28223,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29094,7 +29100,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29324,7 +29331,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29538,7 +29546,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30072,7 +30081,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30298,7 +30308,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30438,7 +30449,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31003,7 +31015,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31618,6 +31631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31929,7 +31943,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (21)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31998,6 +32013,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32343,7 +32361,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32573,7 +32592,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -33057,7 +33077,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -33189,7 +33210,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -33255,7 +33277,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -33493,7 +33516,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35440,7 +35464,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35829,7 +35854,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36039,7 +36065,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1577097526249991127, guid: 90f6677d09c4f7f44819ae02391219b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36361,6 +36388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36496,7 +36524,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37034,7 +37063,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37446,7 +37476,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FoodCart
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1656139774997420053, guid: 4e19886a6f37040468ab2599828d9eb0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37602,7 +37633,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37698,37 +37730,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9179298184195577965, guid: a33604b5bdb60d846882d948bbcc92a5, type: 3}
   m_PrefabInstance: {fileID: 741997520}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &742976672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 742976673}
-  m_Layer: 0
-  m_Name: --->Map
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &742976673
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742976672}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.08685, y: -0, z: 91.74454}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &745693221
 GameObject:
   m_ObjectHideFlags: 0
@@ -37965,7 +37966,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BillboardWideOLD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4493151224198697838, guid: 82fde541d2b86bf4984933fe49b31d35, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38035,7 +38037,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38101,7 +38104,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38237,7 +38241,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38545,7 +38550,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38611,7 +38617,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (16)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39045,6 +39052,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39512,7 +39521,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2264972776895960267, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
+    - {fileID: 6287939642989699992, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39580,6 +39591,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39645,7 +39658,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39781,7 +39795,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 42451521125054465, guid: 15dc9c897f2356149a5cd54b23d3ad44, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -39847,7 +39862,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -40346,7 +40362,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -40498,7 +40515,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -40781,6 +40799,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -41435,7 +41456,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2264972776895960267, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
+    - {fileID: 6287939642989699992, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -41820,7 +41843,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -42184,6 +42208,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5029100562736080934, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 6627937590793449261, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 4543959542842859253, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -43053,7 +43079,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (18)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -43189,7 +43216,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (17)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -43565,6 +43593,229 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 928796922164973094, guid: c72cd9ca4e76d744b8cd1cc0d3a6c6a3, type: 3}
   m_PrefabInstance: {fileID: 859166116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &859613334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859613338}
+  - component: {fileID: 859613337}
+  - component: {fileID: 859613336}
+  - component: {fileID: 859613335}
+  m_Layer: 0
+  m_Name: TVStarTransitionController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &859613335
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859613334}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5703055200677286444, guid: f2727259ffdfb5b458d0097fa141e074, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 58563d85e932a004a82d149577f9c1bf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &859613336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859613334}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181c9de4fc008b94da3da96299646a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IWantGoHome.ScreenEffects.Samples.TVStarTransitionDemoInput_NewInputSystem
+--- !u!114 &859613337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859613334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb3611562845e44fac5edda0466178b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IWantGoHome.ScreenEffects.TVStarTransitionController
+  rootCanvas: {fileID: 1495774385}
+  transitionMaterial: {fileID: 2100000, guid: c42f78216f5d04446a0c4fc050b58c60, type: 2}
+  resultUIGroup: {fileID: 0}
+  profile:
+    shutdownGlitchDuration: 0.7
+    shutdownStarDuration: 0.52
+    holdIntroDuration: 0.42
+    holdDissolveDuration: 0.72
+    blackHoldDuration: 0.32
+    powerOnFlashDuration: 3.2
+    sceneGlitchIntensity: 1.28
+    rgbSplit: 0.038
+    horizontalTear: 0.145
+    waveDistortion: 0.02
+    fineNoise: 0.007
+    holdBurstIntensity: 1
+    holdLineDensity: 2.6
+    holdVerticalSpikeIntensity: 0.04
+    starEdgeSoftness: 0.003
+    starSharpness: 22
+    starHorizontalReach: 2.85
+    starVerticalReach: 0.52
+    starHorizontalThickness: 0.09
+    starVerticalThickness: 0.03
+    starTipWidth: 0.001
+    starIntensity: 2.25
+    starGlowIntensity: 0.16
+    flashIntensity: 3.65
+    afterimageIntensity: 1.35
+    afterimageOffset: 0.07
+  makeMaterialInstance: 0
+  dontDestroyOnLoad: 0
+  sortingOrder: 32000
+  hideOnAwake: 1
+  OnStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerOffStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 859613335}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPowerOnStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerOffCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerOnCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClosed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &859613338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859613334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1495774382}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &867730065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43621,7 +43872,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -43687,7 +43939,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -44296,7 +44549,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -44841,7 +45095,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -44907,7 +45162,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -45358,43 +45614,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 188586533}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 891122412}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!4 &891122410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
   m_PrefabInstance: {fileID: 891122409}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &891122411 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-  m_PrefabInstance: {fileID: 891122409}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &891122412
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891122411}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8378914597586779873, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!1 &892661179
 GameObject:
   m_ObjectHideFlags: 0
@@ -45988,7 +46214,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrafficLightLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2832170939265166567, guid: 01f8acf27a8dedd4faf5f0fe000a5e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46444,7 +46671,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWindow (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1329849994963609885, guid: de4c99c90fdbc144c8650a3e72421d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46510,7 +46738,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (15)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46580,7 +46809,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2403719301832335199, guid: 30c5aedc86536f445af54766ad1ddfab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46736,7 +46966,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46802,7 +47033,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (22)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -52001,6 +52233,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8207903021722606851, guid: b74911e7f54ffec4fb1d2043afd5be47, type: 3}
   m_PrefabInstance: {fileID: 944753267}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &946371404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946371405}
+  - component: {fileID: 946371406}
+  m_Layer: 0
+  m_Name: LobbyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946371405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946371404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1157.407, y: 635.8036, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946371406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946371404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad220f81717c67a4f9dfc9b5a4da7b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LobbyManager
 --- !u!1001 &946867416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52459,7 +52735,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrafficLightLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2832170939265166567, guid: 01f8acf27a8dedd4faf5f0fe000a5e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -52595,7 +52872,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1577097526249991127, guid: 90f6677d09c4f7f44819ae02391219b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -52661,7 +52939,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -52727,7 +53006,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -52953,7 +53233,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -53443,7 +53724,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2264972776895960267, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
+    - {fileID: 6287939642989699992, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -53587,6 +53870,7 @@ PrefabInstance:
       objectReference: {fileID: -5053925668127403250, guid: 105e2bed0e2a15c42a2ac1fb965b0db1, type: 3}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -53652,7 +53936,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -53968,7 +54253,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -54290,6 +54576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -54425,7 +54712,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -54495,7 +54783,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -54721,7 +55010,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -55297,7 +55587,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -56457,7 +56748,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWaterTower (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6416793033091774148, guid: 5ae0407041948d045bd460d8b7b9c083, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -56727,7 +57019,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -57131,7 +57424,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 42451521125054465, guid: 15dc9c897f2356149a5cd54b23d3ad44, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -57287,7 +57581,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -57676,7 +57971,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -62681,7 +62977,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -62903,7 +63200,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -64663,7 +64961,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -64990,7 +65289,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -65414,7 +65714,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6989595211934863539, guid: 7ae45593991f8db4791021b93cc999de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -65832,6 +66133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -66230,7 +66532,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -66970,7 +67273,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -67302,7 +67606,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6451282872557384317, guid: 87ee718dcb6956e4a93d0f4319073d38, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -67528,7 +67833,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (23)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -68260,7 +68566,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1577097526249991127, guid: 90f6677d09c4f7f44819ae02391219b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -68491,37 +68798,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216910572}
   m_Mesh: {fileID: 8379677281609801307, guid: b6028366265e2a849a7a5fb1d764dfc1, type: 3}
---- !u!1 &1218357310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1218357311}
-  m_Layer: 0
-  m_Name: --->GamePlay
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1218357311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218357310}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.08685, y: -0, z: 91.74454}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1219064429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68924,7 +69200,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1987967237426843448, guid: a05f6a5833c433a4dbfc568e30226303, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -69000,6 +69277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -69698,7 +69976,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (19)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -70612,7 +70891,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -70682,7 +70962,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2403719301832335199, guid: 30c5aedc86536f445af54766ad1ddfab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -76488,7 +76769,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -76877,7 +77159,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -77019,6 +77302,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5029100562736080934, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 6627937590793449261, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
+    - {fileID: 4543959542842859253, guid: 87a1159af1d095a4ca078f04cd98bf72, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -77267,7 +77552,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -77766,7 +78052,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (25)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -78344,7 +78631,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -78476,7 +78764,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BillboardWideOLD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4493151224198697838, guid: 82fde541d2b86bf4984933fe49b31d35, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -78612,7 +78901,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -78780,7 +79070,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamTubeLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3919653804633974882, guid: a088b49bd01303d478f49b956b1ce14e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -79221,6 +79512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -79286,7 +79578,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -79750,7 +80043,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -80206,7 +80500,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -80272,7 +80567,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -80338,7 +80634,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -80885,7 +81182,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -80951,7 +81249,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -82274,37 +82573,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3170542612579183543, guid: b0e393816db8fd845b0873c966b2203d, type: 3}
   m_PrefabInstance: {fileID: 1389786534}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1394418666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1394418667}
-  m_Layer: 0
-  m_Name: --->Props
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1394418667
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394418666}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.08685, y: -0, z: 91.74454}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1396009162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82583,7 +82851,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -82984,7 +83253,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -83130,6 +83400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -83261,7 +83532,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -84588,7 +84860,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -89674,7 +89947,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1987967237426843448, guid: a05f6a5833c433a4dbfc568e30226303, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -90362,7 +90636,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWindow
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1329849994963609885, guid: de4c99c90fdbc144c8650a3e72421d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -90580,7 +90855,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -90711,7 +90987,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -91803,7 +92080,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -92071,6 +92349,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9179298184195577965, guid: a33604b5bdb60d846882d948bbcc92a5, type: 3}
   m_PrefabInstance: {fileID: 1494017427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1495774381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495774382}
+  - component: {fileID: 1495774385}
+  - component: {fileID: 1495774384}
+  - component: {fileID: 1495774383}
+  m_Layer: 0
+  m_Name: TVStarTransitionUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1495774382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495774381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859613338}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1495774383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495774381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1495774384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495774381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1495774385
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495774381}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 32000
+  m_TargetDisplay: 0
 --- !u!1001 &1498179157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92430,7 +92809,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -92500,7 +92880,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -93976,6 +94357,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -94556,7 +94939,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWaterTower (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6416793033091774148, guid: 5ae0407041948d045bd460d8b7b9c083, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -95097,7 +95481,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -95163,7 +95548,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370352200075880577, guid: 3c3343c0ed9e5ca43965758ea170ed56, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -95451,7 +95837,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -95767,7 +96154,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -96031,7 +96419,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -97531,6 +97920,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -97816,7 +98208,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -97882,7 +98275,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -98170,7 +98564,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWindow (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1329849994963609885, guid: de4c99c90fdbc144c8650a3e72421d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -98302,7 +98697,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -98839,7 +99235,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -99497,7 +99894,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -99747,7 +100145,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -99813,7 +100212,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -100607,7 +101007,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -101554,7 +101955,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -102035,7 +102437,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -102187,7 +102590,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -102636,7 +103040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b20d3156802377c40ab35b0af01e17e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc937c4a251ab0645b444cdfbb2a1718, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -103262,6 +103666,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5999353090154059522, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     - {fileID: 1347615572, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656092998875554, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 8345656091575190356, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
+    - {fileID: 4130046497858685418, guid: 84d400ad2f633d54a86dad42c3a40af7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -103327,7 +103734,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -104144,6 +104552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -105612,7 +106021,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -105678,7 +106088,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamTubeLOD (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3919653804633974882, guid: a088b49bd01303d478f49b956b1ce14e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -105699,7 +106110,6 @@ GameObject:
   - component: {fileID: 1770402965}
   - component: {fileID: 1770402968}
   - component: {fileID: 1770402967}
-  - component: {fileID: 1770402966}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -105722,28 +106132,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1516579875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1770402966
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770402964}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1770402967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -105993,7 +106381,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -106491,7 +106880,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BusStopLOD (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8989751991660432799, guid: 21ac48152bbf6834cb2a1cc04d9c9bdd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -106654,7 +107044,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantBlockRoundLOD (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2869698127057389707, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -106720,7 +107111,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (24)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -107106,7 +107498,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -107616,7 +108009,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -108130,7 +108524,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -108565,6 +108960,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -108786,7 +109183,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamTubeLOD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3919653804633974882, guid: a088b49bd01303d478f49b956b1ce14e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -109125,7 +109523,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -109515,7 +109914,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -110977,7 +111377,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -111568,7 +111969,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -111766,7 +112168,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1577097526249991127, guid: 90f6677d09c4f7f44819ae02391219b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -111836,7 +112239,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -112835,7 +113239,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -113372,43 +113777,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1935302562}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!4 &1935302560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
   m_PrefabInstance: {fileID: 1935302559}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1935302561 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-  m_PrefabInstance: {fileID: 1935302559}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1935302562
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935302561}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8378914597586779873, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!1001 &1935868632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113679,7 +114054,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6093267646526269567, guid: 84d9674317f3f4a419319c662c5235d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -114130,43 +114506,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 252835394}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1947615986}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!4 &1947615984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
   m_PrefabInstance: {fileID: 1947615983}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1947615985 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5874574794753826942, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
-  m_PrefabInstance: {fileID: 1947615983}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1947615986
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947615985}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8378914597586779873, guid: ec9392fc9e90e8c4e9aa8c8f7a91512d, type: 3}
 --- !u!1 &1949532657
 GameObject:
   m_ObjectHideFlags: 0
@@ -114744,7 +115090,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -115090,7 +115437,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlockadeSmall (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3597837691176851147, guid: 45e2777e35fd3904e955b1069a84253c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -115156,7 +115504,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5273852921434080506, guid: 27b98f1cc445aad4a8839f719a88b51e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -115222,7 +115571,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2264972776895960267, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
+    - {fileID: 6287939642989699992, guid: 9137b704be833954cb775f3c7726aea7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -115899,6 +116250,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -116241,7 +116594,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -116377,7 +116731,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -116767,7 +117122,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadConeLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3407924292097842853, guid: 70e4a0260cc6a43418fd7065ada21c47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -116833,7 +117189,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -116995,6 +117352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3204296707191909564, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
+    - {fileID: 4281016185444760316, guid: ddd5bb780fab0ae458d6f70a19bf8619, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -117258,7 +117616,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (20)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -118340,7 +118699,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -119840,6 +120200,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 532356171749291255, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 1877517151302238826, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
+    - {fileID: 6436556232307052910, guid: 12f3209d6d5255d40ac86d41370a0774, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -120073,7 +120435,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -125829,7 +126192,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6396038022366090084, guid: 5bb36342867be114c9c0da00d2b53835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -126715,7 +127079,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoofWaterTower
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6416793033091774148, guid: 5ae0407041948d045bd460d8b7b9c083, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -127163,7 +127528,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -127299,7 +127665,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlagLOD (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6050081735461498591, guid: 48643db6627541648afe56a8fdd347f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -127642,7 +128009,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetLightLOD (14)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060766072356989538, guid: 7a9210c3a46355a459e031ff27f05513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -127798,7 +128166,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386618105884699826, guid: bff2ed50d7dbd124db01509cc6825e8a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -128180,7 +128549,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4976619778410234934, guid: fc01fda5153c58143b6e9bfbf12d66fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -128832,31 +129202,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2258431765165834064}
---- !u!143 &5617107693989314022
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551730711851073989}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.8
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5787505379949170928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128917,33 +129262,6 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
---- !u!54 &6480604509317125356
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551730711851073989}
-  serializedVersion: 5
-  m_Mass: 0.0000001
-  m_LinearDamping: 0
-  m_AngularDamping: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!4 &6822698273423913920
 Transform:
   m_ObjectHideFlags: 0
@@ -129008,9 +129326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3188472417842045633}
-  - component: {fileID: 5617107693989314022}
   - component: {fileID: 5514819461290849397}
-  - component: {fileID: 6480604509317125356}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -129038,12 +129354,10 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1394418667}
-  - {fileID: 742976673}
   - {fileID: 1516579875}
-  - {fileID: 1218357311}
-  - {fileID: 112113803}
   - {fileID: 3188472417842045633}
   - {fileID: 370913416}
   - {fileID: 675371826}
   - {fileID: 1890791728}
+  - {fileID: 859613338}
+  - {fileID: 946371405}

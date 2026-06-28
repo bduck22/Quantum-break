@@ -33,7 +33,7 @@ public class BulletController : MonoBehaviour
 
         Quaternion rotation = Dir.rotation;//Quaternion.LookRotation(Dir.);
 
-        BulletInit(transform.position, rotation, BulletSpeed);
+        BulletInit(transform.position, rotation, BulletSpeed, DestroyDistance);
 
         ParticleController particle =  SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.BulletParring, transform.position, Quaternion.identity);
 
@@ -67,10 +67,11 @@ public class BulletController : MonoBehaviour
         transform.parent = Parent;
     }
 
-    public void BulletInit(Vector3 Position, Quaternion Rotation, float BulletSpeed)
+    public void BulletInit(Vector3 Position, Quaternion Rotation, float BulletSpeed, float BulletDistance)
     {
         SetLayer(10);
         this.BulletSpeed = BulletSpeed;
+        this.DestroyDistance = BulletDistance;
 
         transform.position = Position;
         transform.rotation = Rotation;
@@ -90,7 +91,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 6 || other.gameObject.layer == 14 || (other.gameObject.layer == 15&&other.GetComponent<TurretController>()))
+        if(other.gameObject.layer == 6 || other.gameObject.layer == 14 || (other.gameObject.layer == 15))
         {
             ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.Playerhit, transform.position, Quaternion.identity);
             particle.Play();

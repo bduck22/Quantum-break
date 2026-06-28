@@ -21,8 +21,8 @@ public class UIWindow : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        Opened?.Invoke();
         Refreshed?.Invoke();
+        Opened?.Invoke();
     }
 
     public void Refresh()

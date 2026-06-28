@@ -5,6 +5,7 @@ using UnityEngine;
 public class MobWeaponData : ScriptableObject
 {
     public float BulletSpeed;
+    public float DestroyDistance;
     public float ShootRate;
     public int BulletCount;
     public float BulletDelay;

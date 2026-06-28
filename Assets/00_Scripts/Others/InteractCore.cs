@@ -4,6 +4,8 @@ public class InteractCore : InteractableObject
 {
     MainCoreController controller;
 
+    public GameObject OnObject;
+
     private void Awake()
     {
         controller = GetComponent<MainCoreController>();
@@ -13,6 +15,7 @@ public class InteractCore : InteractableObject
     {
         if(GameManager.Instance.Current_State == Game_State.Attack)
         {
+            OnObject.SetActive(true);
             GameManager.Instance.CheckAttackEnd();
             controller.CoreActived();
         }

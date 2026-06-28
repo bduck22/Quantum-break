@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 
 [DefaultExecutionOrder(-50)]
 public class PlayerController : MonoBehaviour
@@ -140,6 +142,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Stop)
+        {
+            InputHandler.ClearAttack();
+            InputHandler.ClearDash();
+            InputHandler.ClearJump();
+        }
+
         if (IsDead|| Time.timeScale == 0 || Stop)
         {
             return;
@@ -196,14 +205,19 @@ public class PlayerController : MonoBehaviour
         IsHologram = false;
     }
 
-    public void PlayerInit(Vector3 spawnPoint)
+    public void PlayerInit(Transform spawnPoint)
     {
         cc.enabled = false;
-
-        transform.position = spawnPoint;
-
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+        transform.GetChild(0).rotation = Quaternion.identity;
         cc.enabled = true;
 
+        UIUpdateManager.Instance.FController.SetText("");
+    }
+
+    public void PlayerInit()
+    {
         InitState();
 
         StatInit();
@@ -212,7 +226,7 @@ public class PlayerController : MonoBehaviour
     void StatInit()
     {
         Hp = MaxHp;
-
+        UIUpdateManager.Instance.UpdatePlayerHp(Hp, PlusHp);
         Stamina = MaxStamina;
     }
 
@@ -222,6 +236,7 @@ public class PlayerController : MonoBehaviour
         {
             Stamina = Mathf.Clamp(Stamina + StaminaHealSpeed * Time.deltaTime, 0, MaxStamina);
         }
+        UIUpdateManager.Instance.UpdateStamina(Stamina, MaxStamina);
     }
 
     float jumpbuffer;
@@ -332,7 +347,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if ((Stamina > 0 && Invincibility) || Stamina >= 1)
+            if ((Stamina > 0 && PlayerMovement.Dashing) || Stamina >= 1)
             {
                 if (!Invincibility)
                 {
@@ -349,7 +364,7 @@ public class PlayerController : MonoBehaviour
                 }
                 Stamina -= Time.unscaledDeltaTime;
             }
-            else if (Invincibility)
+            else if (PlayerMovement.Dashing)
             {
                 DashUp();
             }
@@ -388,12 +403,16 @@ public class PlayerController : MonoBehaviour
         {
             PressingDash();
         }
-        else if (InputHandler.DashPressed)
+        else if (InputHandler.DashPressed&&PlayerMovement.Dashing)
         {
             DashUp();
         }
+        else
+        {
+            InputHandler.ClearDash();
+        }
 
-        PlayerMovement.isHoldingJump = InputHandler.JumpHeld;
+            PlayerMovement.isHoldingJump = InputHandler.JumpHeld;
 
         if (jumpbuffer > 0)
         {
@@ -703,12 +722,17 @@ public class PlayerController : MonoBehaviour
                 UIController.CantOpen = false;
                 DashReLoadTimer = DashReloadTime;
                 EndHitInvincibility?.Invoke();
+                Filter.ExitSlowMotion();
             }
         }
     }
 
+    [Header("기타")]
+    public SlowMotionAudioFilter Filter;
+
     public void OnHited()
     {
+        Filter.EnterSlowMotion();
         Invincibility = true;
         UIController.CantOpen = true;
         InvincibilityTimer = InvincibilityTime;
@@ -722,9 +746,12 @@ public class PlayerController : MonoBehaviour
             Hp--;
         }
 
-        if(Hp <= 0)
+        UIUpdateManager.Instance.UpdatePlayerHp(Hp, PlusHp);
+
+        if (Hp <= 0)
         {
             Dead();
+            Filter.ExitSlowMotion();
             return;
         }
 

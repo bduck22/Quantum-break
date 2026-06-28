@@ -1,5 +1,6 @@
 using IWantGoHome.ScreenEffects;
 using NUnit.Framework;
+using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -29,10 +30,16 @@ public class GameManager : MonoBehaviour
     public int CurrentMapIndex=0;
     public int MaxMapIndex;
 
+    public float MaxCoreHp;
+
     public MapData Map1;
     public MapData Map2;
 
+    public MapData SelectedMap;
+
     public Transform MapP;
+
+    public event Action<PlayerController> OnDefaultEnemyInit;
 
     private void Awake()
     {
@@ -54,6 +61,8 @@ public class GameManager : MonoBehaviour
         MaxMapIndex = GameDataManager.Instance.GetRandomRoomCount();
         CurrentMapIndex = 0;
         Application.targetFrameRate = 120;
+        SelectedMap = GameDataManager.Instance.GetMap(CurrentMapIndex);
+        CurrentWaveIndex = 0;
     }
 
     void CheckState()
@@ -71,19 +80,36 @@ public class GameManager : MonoBehaviour
 
     public void MapInit()
     {
-        MapData Mapdata = GameDataManager.Instance.GetMap(CurrentMapIndex);
-        Debug.Log(Mapdata);
+        TVStarTransitionController.Instance.PlayPowerOnRelease();
+        if (CurrentMap)
+        {
+            Destroy(CurrentMap.gameObject);
+        }
 
-        WaveCount = Mapdata.Wave;
+        GameDataManager.Instance.SetMapUsed(SelectedMap);
 
-        CurrentMap = Instantiate(Mapdata.Map, MapP).GetComponent<EnemySpawnManager>();
+        CurrentWaveIndex = 0;
+
+        WaveCount = SelectedMap.Wave;
+
+        CurrentMap = Instantiate(SelectedMap.Map, MapP).GetComponent<EnemySpawnManager>();
 
         CurrentMap.Player = Player;
-        Player.PlayerInit(CurrentMap.PlayerSpawnPoint.position);
-        Core.Coreinit();
+
+        Core = CurrentMap.Core.GetComponent<MainCoreController>();
+        Core.Coreinit(MaxCoreHp);
 
         CurrentMap.MapInit();
+        Player.PlayerInit(CurrentMap.PlayerSpawnPoint);
+        OnDefaultEnemyInit?.Invoke(Player);
+        OnDefaultEnemyInit = null;
+
         Current_State = Game_State.Attack;
+    }
+
+    public void PlayerInit()
+    {
+        Player.PlayerInit();
     }
 
     public void ReadyWave()
@@ -95,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckWaveEnd()
     {
-        if (spawnManagers.Enemy.EnemyCount==0&&CurrentMap.IsSpawnEnd())
+        if (spawnManagers.Enemy.EnemyCount==0&&CurrentMap.IsSpawnEnd()&&Current_State == Game_State.Waving)
         {
             if(WaveCount < CurrentWaveIndex)
             {
@@ -139,36 +165,45 @@ public class GameManager : MonoBehaviour
     public void WaveStart()
     {
         CurrentMap.StartWave();
+        UIUpdateManager.Instance.ClearWaveSpawnWaypoints();
         Current_State = Game_State.Waving;
     }
 
     public void MapEnding()
     {
+        Current_State = Game_State.MapEnd;
         CurrentMapIndex++;
         Player.Stop = true;
         Player.PlayerMovement.Stop = true;
+        spawnManagers.Enemy.AllBack();
+        NextMap();
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         //RewardUI.Open();
-        Current_State = Game_State.MapEnd;
     }
 
     public void NextMap()
     {
-
+        Map1 = GameDataManager.Instance.GetMap(CurrentMapIndex);
+        Map2 = GameDataManager.Instance.GetMap(CurrentMapIndex);
     }
 
     public void Clear()
     {
-        TVStarTransitionController.Instance.PlayPowerOffHold(false);
-        Player.Stop = true;
         Current_State = Game_State.Clear;
+        Player.Stop = true;
+        Player.PlayerMovement.Stop = true;
+        TVStarTransitionController.Instance.PlayPowerOffHold(false);
+        spawnManagers.Enemy.AllBack();
+        Player.Stop = true;
     }
 
     public void FailDead()
     {
+        Current_State = Game_State.Fail;
+        Player.Stop = true;
+        Player.PlayerMovement.Stop = true;
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         spawnManagers.Enemy.AllBack();
-        Current_State = Game_State.Fail;
     }
 
     public UIWindow Reward;
@@ -184,6 +219,11 @@ public class GameManager : MonoBehaviour
         {
             Result.Open();
         }
+    }
+
+    public void GoMain()
+    {
+
     }
 }
 

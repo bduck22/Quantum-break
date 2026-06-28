@@ -15,6 +15,7 @@ public class CreftingUI : MonoBehaviour
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Description;
     public TextMeshProUGUI NeedIngredient;
+    public TextMeshProUGUI NeedCore;
 
     public MultiEnumCursor EnumCursor;
 
@@ -54,17 +55,11 @@ public class CreftingUI : MonoBehaviour
 
     public void ReFreshData()
     {
-        if (GameManager.Instance.Current_State != Game_State.Ready)
-        {
-            FController.SetActiveInteraction(false);
-            return;
-        }
+        CraftingItemDataBase data = null;
 
-        CraftingItemDataBase data;
+        InventoryData count = new InventoryData();
 
-        InventoryData count;
-
-        if(EnumCursor.Current is Turret_Type turretType)
+        if (EnumCursor.Current is Turret_Type turretType)
         {
             data = GameDataManager.Instance.GetCraftingData(turretType);
 
@@ -78,6 +73,19 @@ public class CreftingUI : MonoBehaviour
         }
 
         //ui 변경하기
+        Count.text = $"보유 수량 : {count.InInvenCount.ToString("#,##0")} / {data.MaxCount.ToString("#,##0")}";
+        Name.text = data.Name;
+        Description.text = data.Description;
+        NeedCore.text = $"필요 코어 : Lv.{data.Level+1}";
+        NeedIngredient.text = $"소모 고철 : {data.needIron.ToString("#,##0")}";
+
+        ItemIcon.sprite = data.Icon;
+
+        if (GameManager.Instance.Current_State != Game_State.Ready)
+        {
+            FController.SetActiveInteraction(false);
+            return;
+        }
 
         FController.SetActiveInteraction(true);
     }
@@ -174,24 +182,17 @@ public class MultiEnumCursor
 
     public MultiEnumCursor(params Type[] enumTypes)
     {
-        if (enumTypes == null || enumTypes.Length == 0)
-        {
-            throw new ArgumentException("하나 이상의 enum 타입이 필요합니다.");
-        }
 
         foreach (Type enumType in enumTypes)
         {
-            if (enumType == null)
-            {
-                throw new ArgumentNullException(nameof(enumTypes), "enum 타입이 null입니다.");
-            }
-
-            if (!enumType.IsEnum)
-            {
-                throw new ArgumentException($"{enumType.Name}은 enum 타입이 아닙니다.");
-            }
 
             Array rawValues = Enum.GetValues(enumType);
+
+            // 핵심: 값이 없는 enum은 커서 대상에서 제외
+            if (rawValues.Length == 0)
+            {
+                continue;
+            }
 
             Enum[] values = new Enum[rawValues.Length];
 
@@ -245,9 +246,9 @@ public class MultiEnumCursor
 
         groupIndex--;
 
-        if (groupIndex < 0 )
+        if (groupIndex < 0)
         {
-            groupIndex = enumValueGroups.Count-1;
+            groupIndex = enumValueGroups.Count - 1;
         }
 
         valueIndex = enumValueGroups[groupIndex].Length - 1;

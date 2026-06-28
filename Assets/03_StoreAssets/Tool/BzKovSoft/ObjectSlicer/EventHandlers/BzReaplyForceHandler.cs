@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BzKovSoft.ObjectSlicer.EventHandlers
@@ -41,9 +41,9 @@ namespace BzKovSoft.ObjectSlicer.EventHandlers
 				if (rigid == null)
 					continue;
 
-				rigid.angularVelocity = origRigid.angularVelocity;
-				rigid.linearVelocity = origRigid.linearVelocity;
-			}
+                rigid.angularVelocity = origRigid.angularVelocity;
+                RigidbodyCompat.SetLinearVelocity(rigid, RigidbodyCompat.GetLinearVelocity(origRigid));
+            }
 		}
 	}
 }

@@ -110,15 +110,22 @@ public class EnemyRouteController : MonoBehaviour
         lineRenderer.enabled = true;
         lineRenderer.material.color = LineColor;
 
-        lineRenderer.positionCount = Routes[currentWave].WayPoints.Length;
+        Route route = Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex];
 
-        for (int i = 0; i < Routes[currentWave].WayPoints.Length; i++)
+        lineRenderer.positionCount = route.WayPoints.Length;
+
+        for (int i = 0; i < route.WayPoints.Length; i++)
         {
-            Vector3 P = new Vector3(Routes[currentWave].WayPoints[i].position.x, Routes[currentWave].WayPoints[i].position.y + 0.5f, Routes[currentWave].WayPoints[i].position.z);
+            Vector3 P = new Vector3(route.WayPoints[i].position.x, route.WayPoints[i].position.y + 0.5f, route.WayPoints[i].position.z);
             lineRenderer.SetPosition(i, P);
         }
-        WayPoints = (Transform[])Routes[CurrentWave].WayPoints.Clone();
+        WayPoints = (Transform[])route.WayPoints.Clone();
         spawnCount = WaveSpawnDatas[currentWave].SpawnCount;
+
+        UIUpdateManager.Instance.AddWaveSpawnWaypoint(
+            route.WayPoints[0],
+            WaveSpawnDatas[currentWave]
+        );
         //SpawnStart();
     }
 
@@ -141,7 +148,7 @@ public class EnemyRouteController : MonoBehaviour
         EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal);
         enemy.Player = player;
         enemy.Core = Core;
-        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[CurrentWave].WayPoints[CurrentWave].position);
+        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex].WayPoints[0].position);
 
         enemy.gameObject.SetActive(true);
 

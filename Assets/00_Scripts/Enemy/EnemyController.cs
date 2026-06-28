@@ -26,6 +26,8 @@ public class EnemyController : MobBase
     [SerializeField]
     private float plusSpeed;
 
+    public int Level;
+
     [Header("상태")]
     public bool IsDead;
     public bool Invincibility;
@@ -59,6 +61,12 @@ public class EnemyController : MobBase
     [HideInInspector]
     Collider Collider;
 
+    public ModelParamiter Model;
+
+    public EnemyAnimationController Animation;
+
+    EnemySliceExecutor Slicer;
+
     private void Awake()
     {
         MovementAI = GetComponent<MovementAIBase>();
@@ -71,10 +79,14 @@ public class EnemyController : MobBase
         }
         Collider = GetComponentInChildren<Collider>();
 
-        if (!MovementAI)
+        if (MovementAI==null)
         {
-            EnemyInit(GameManager.Instance.Player);
+            GameManager.Instance.OnDefaultEnemyInit += EnemyInit;
         }
+
+        Animation = GetComponentInChildren<EnemyAnimationController>();
+
+        Slicer = GetComponent<EnemySliceExecutor>();
     }
     public void DefaultInit(EnemyPoolManager poolManager, Enemy_Type type)
     {
@@ -82,8 +94,28 @@ public class EnemyController : MobBase
         this.Type = type;
     }
 
+    void ModelInit()
+    {
+        ModelParamiter model = Instantiate(Model.gameObject, transform).GetComponent<ModelParamiter>();
+
+        model.transform.position = transform.position;
+
+        Slicer.sliceableCharacter = model.Slicer;
+
+        ShootPoint = model.ShootPoint;
+        Spine = model.Spine;
+
+        Weapon.ShinyEffect = model.ShinyEffect;
+
+        Animation.animator = model.Animator;
+
+        Animation.enabled = true;
+    }
+
     public void EnemyInit(Transform[] WayPoints, Vector3 Position)
     {
+        ModelInit();
+
         DeathTimer = 0;
         IsDead = false;
         Invincibility = false;
@@ -101,7 +133,7 @@ public class EnemyController : MobBase
 
     public void EnemyInit(PlayerController Player)
     {
-        GameManager.Instance.CurrentMap.DefaultEnemyCount++;
+        ModelInit();
 
         DeathTimer = 0;
         IsDead = false;
@@ -114,7 +146,9 @@ public class EnemyController : MobBase
         Weapon.Init(Player.PlayerMovement, this);
         EyeChecker.Init(Player);
 
-        OnFind.Invoke();
+        GameManager.Instance.CurrentMap.DefaultEnemyCount++;
+
+        OnFind?.Invoke();
     }
 
     [Header("시체 사라지는 시간")]
@@ -172,12 +206,20 @@ public class EnemyController : MobBase
     {
         if (MovementAI)
         {
-            GameManager.Instance.CheckWaveEnd();
+            if (GameManager.Instance.Current_State == Game_State.Waving)
+            {
+                GameManager.Instance.CheckWaveEnd();
+            }
             PoolManager.InPool((int)Type, this);
         }
         gameObject.SetActive(false);
         DeathTimer = 0;
         OnFalse?.Invoke();
+
+        for (int i = 2; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     bool CheckMoveFinished()
@@ -318,6 +360,13 @@ public class EnemyController : MobBase
             OnDeath?.Invoke();
             IsDead = true;
             Collider.enabled = false;
+            if(UnityEngine.Random.Range(0, 100) < 20)
+            {
+                GameManager.Instance.Inventory.GetCore(Level);
+            }
+
+            GameManager.Instance.Inventory.GetIron(UnityEngine.Random.Range(2, 5));
+
             if (!MovementAI)
             {
                 GameManager.Instance.CurrentMap.DefaultEnemyCount--;

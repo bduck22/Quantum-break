@@ -31,7 +31,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        if (controller.IsDead || Time.timeScale == 0 || controller.Stop) return;
+        if (controller.IsDead || Time.timeScale == 0 || controller.Stop || controller.IsHologram) return;
 
         if (Physics.Raycast(camera.position, camera.forward, out hit, InteractionDistance, InteractLayer))
         {

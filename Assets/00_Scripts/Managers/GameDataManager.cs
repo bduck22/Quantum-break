@@ -11,6 +11,12 @@ public class GameDataManager : MonoBehaviour
     [SerializedDictionary("Type", "Data")]
     [SerializeField] private SerializedDictionary<Turret_Type, TurretDataCollection> TurretDatas;
 
+    [SerializedDictionary("Type", "Data")]
+    [SerializeField] private SerializedDictionary<Enemy_Type, EnemyDataCollection> EnemyDatas;
+
+    [SerializedDictionary("Type", "Data")]
+    public SerializedDictionary<Player_Card_Type, CardDataCollection> CardDatas;
+
     public int GameLevel;
 
     [SerializeField] private List<InGameMapData> MapDatas;
@@ -20,18 +26,18 @@ public class GameDataManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-        //if(Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
+    //제작 데이터 반환
     public CraftingItemDataBase GetCraftingData(Item_Type type)
     {
         return null; // 아이템 추가시 수정
@@ -41,21 +47,52 @@ public class GameDataManager : MonoBehaviour
         return TurretDatas[type].MakeData;
     }
 
-    public TurretData GetData(Turret_Type type)
+    //터렛 데이터 반환
+    public TurretData GetTurretData(Turret_Type type)
     {
         return TurretDatas[type].Data;
     }
 
-    public bool IsData(Turret_Type type)
+    public bool IsTurretData(Turret_Type type)
     {
         return TurretDatas.ContainsKey(type);
+    }
+
+    //적 데이터 반환
+    public EnemyDataCollection GetEnemyData(Enemy_Type type)
+    {
+        return EnemyDatas[type];
+    }
+
+    public bool IsEnemyData(Enemy_Type type)
+    {
+        return true;
+    }
+
+    //맵 데이터 선정 및 반환
+    public void SetMapUsed(MapData targetMapData)
+    {
+        for (int i = 0; i < MapDatas.Count; i++)
+        {
+            InGameMapData inGameMapData = MapDatas[i];
+
+            if (inGameMapData.MapData == null)
+            {
+                continue;
+            }
+
+            if (inGameMapData.MapData == targetMapData)
+            {
+                inGameMapData.IsUsed = true;
+                return;
+            }
+        }
     }
 
     public MapData GetMap(int CurrentIndex)
     {
         if (MapDatas == null || MapDatas.Count == 0)
         {
-            Debug.LogWarning("MapDatas가 비어있습니다.");
             return null;
         }
 
@@ -91,11 +128,9 @@ public class GameDataManager : MonoBehaviour
 
         if (selectedMapData == null)
         {
-            Debug.LogWarning($"사용 가능한 맵을 찾지 못했습니다. GameLevel: {GameLevel}, CurrentIndex: {CurrentIndex}");
             return null;
         }
 
-        selectedMapData.IsUsed = true;
         return selectedMapData.MapData;
     }
 
@@ -167,21 +202,90 @@ public class GameDataManager : MonoBehaviour
         switch (GameLevel)
         {
             case 0:
-                return 2;
+                return 1;
 
             case 1:
-                return UnityEngine.Random.Range(3, 5); // 3 ~ 4
+                return UnityEngine.Random.Range(2, 4); // 3 ~ 4
 
             case 2:
-                return UnityEngine.Random.Range(3, 6); // 3 ~ 5
+                return UnityEngine.Random.Range(2, 5); // 3 ~ 5
 
             case 3:
-                return UnityEngine.Random.Range(5, 7); // 5 ~ 6
+                return UnityEngine.Random.Range(4, 6); // 5 ~ 6
 
             default:
-                Debug.LogWarning($"정의되지 않은 GameLevel입니다: {GameLevel}");
                 return 2;
         }
+    }
+
+    //플레이어 카드
+    public PlayerCardBase GetCardData(Player_Card_Type type)
+    {
+        return CardDatas[type].Card;
+    }
+
+    public PlayerCardBase GetRandomCardCollection()
+    {
+        Array cardTypes = Enum.GetValues(typeof(Player_Card_Type));
+
+        for (int i = 0; i < cardTypes.Length; i++)
+        {
+            Player_Card_Type type = (Player_Card_Type)cardTypes.GetValue(i);
+
+            if ((int)type < 3)
+            {
+                continue;
+            }
+
+            if (!CardDatas.TryGetValue(type, out CardDataCollection collection))
+            {
+                continue;
+            }
+
+            if (collection == null || collection.Data == null)
+            {
+                continue;
+            }
+
+            if (!GameManager.Instance.Inventory.IsCanGetCard(type))
+            {
+                continue;
+            }
+
+            float randomValue = UnityEngine.Random.Range(0f, 100f);
+
+            if (randomValue <= collection.Data.ShowPer)
+            {
+                collection.Card.Init(GameManager.Instance.Player);
+                return collection.Card;
+            }
+        }
+
+        return GetGuaranteedRandomCardCollection();
+    }
+
+    private PlayerCardBase GetGuaranteedRandomCardCollection()
+    {
+        for (int tryCount = 0; tryCount < 10; tryCount++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, 3);
+            Player_Card_Type type = (Player_Card_Type)randomIndex;
+
+            if (!CardDatas.TryGetValue(type, out CardDataCollection collection))
+            {
+                continue;
+            }
+
+            if (collection == null)
+            {
+                continue;
+            }
+
+            collection.Card.Init(GameManager.Instance.Player);
+            return collection.Card;
+        }
+
+        return null;
     }
 }
 
@@ -198,4 +302,24 @@ public class InGameMapData
 {
     public MapData MapData;
     public bool IsUsed;
+}
+
+[Serializable]
+public class EnemyDataCollection
+{
+    public MobWeaponData Data;
+    public Sprite Icon;
+    public string Name;
+}
+
+[Serializable]
+public class CardDataCollection
+{
+    public PlayerCardBase Card;
+    public PlayerCardScriptableData Data;
+
+    public void ApplyCardEffect()
+    {
+        Card.Apply();
+    }
 }

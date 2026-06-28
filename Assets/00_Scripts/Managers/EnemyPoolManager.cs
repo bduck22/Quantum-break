@@ -92,19 +92,20 @@ public class EnemyPoolManager : MonoBehaviour
 
     public void AllBack()
     {
-        foreach(EnemyController enemy in SpawnEnemys)
+        for(int i = 0; i < SpawnEnemys.Count;)
         {
+            EnemyController enemy = SpawnEnemys[i];
             enemy.Back();
         }
+        EnemyCount = 0;
     }
 }
 
 public enum Enemy_Type 
 {
     Normal,
-    Wall,
+    ShotGun,
     CoreRush,
     Stealth,
-    InFight,
-    Invincible
+    Wall
 }

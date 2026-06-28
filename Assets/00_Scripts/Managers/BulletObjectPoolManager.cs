@@ -21,12 +21,12 @@ public class BulletObjectPoolManager : MonoBehaviour
         }
     }
 
-    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount ,float BulletDelay, EnemyController enemy)
+    public void SpawnBullet(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount ,float BulletDelay, float BulletDistance, EnemyController enemy)
     {
-        StartCoroutine(SpawningBullets(Position, Rotation, BulletSpeed, BulletCount, BulletDelay, enemy));
+        StartCoroutine(SpawningBullets(Position, Rotation, BulletSpeed, BulletCount, BulletDelay, BulletDistance, enemy));
     }
 
-    IEnumerator SpawningBullets(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount, float BulletDelay, EnemyController enemy)
+    IEnumerator SpawningBullets(Vector3 Position, Quaternion Rotation, float BulletSpeed, int BulletCount, float BulletDelay, float BulletDistance, EnemyController enemy)
     {
         for(int i = 0; i < BulletCount; i++)
         {
@@ -45,7 +45,7 @@ public class BulletObjectPoolManager : MonoBehaviour
                 bullet = spawnbullet();
             }
 
-            bullet.BulletInit(Position, Rotation, BulletSpeed);
+            bullet.BulletInit(Position, Rotation, BulletSpeed, BulletDistance);
 
             yield return new WaitForSeconds(BulletDelay);
         }

@@ -27,9 +27,12 @@ public class UIController : MonoBehaviour
     public SoundRandomPlayer ClosePlayer;
     public SoundRandomPlayer OpenPlayer;
 
+    PlayerController controller;
+
     private void Awake()
     {
         Audio = GetComponent<AudioSource>();
+        controller = transform.parent.GetComponent<PlayerController>();
     }
 
     private static readonly Key[] NumberKeys =
@@ -50,6 +53,15 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        if (controller.IsDead || controller.Stop)
+        {
+            if (Opened)
+            {
+                CloseUI();
+            }
+            return;
+        }
+
         Keyboard keyboard = Keyboard.current;
 
         if (keyboard == null)
@@ -79,7 +91,7 @@ public class UIController : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < NumberKeys.Length; i++)
+        for (int i = 0; i < NumberKeys.Length-1; i++)
         {
             if (keyboard[NumberKeys[i]].wasPressedThisFrame ||
                 keyboard[NumpadKeys[i]].wasPressedThisFrame
@@ -126,6 +138,7 @@ public class UIController : MonoBehaviour
 
     public void OpenUI()
     {
+        UIUpdateManager.Instance.CountUpdate();
         OpenPlay();
         Opened = true;
         CurrentOpened = null;

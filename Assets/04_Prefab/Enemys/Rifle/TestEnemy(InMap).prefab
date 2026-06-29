@@ -140,6 +140,7 @@ MonoBehaviour:
   ShootPoint: {fileID: 0}
   defaultSpeed: 1
   plusSpeed: 0
+  Level: 0
   IsDead: 0
   Invincibility: 0
   Weapon: {fileID: 0}

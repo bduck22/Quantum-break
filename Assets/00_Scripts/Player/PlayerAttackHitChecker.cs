@@ -44,7 +44,7 @@ public class PlayerAttackHitChecker : MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, transform.lossyScale * 0.5f, transform.rotation, layer);
 
-        
+
         //bool isattacked = false;
 
         //EnemyController enemy = null;
@@ -61,6 +61,7 @@ public class PlayerAttackHitChecker : MonoBehaviour
                     SpawnManagers.Instance.Particle.SpawnParticle(Particle_Type.SwordParring, collider.transform.position, Quaternion.identity).Play();
                 }
             }
+
             //if(collider.gameObject.layer == 8)
             //{
             //    enemy = collider.attachedRigidbody.GetComponent<EnemyController>();

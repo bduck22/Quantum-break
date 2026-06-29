@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Spawn1-2
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawnData
   Type: 0
-  SpawnCount: 2
-  SpawnDelay: 5
+  SpawnCount: 5
+  SpawnDelay: 20
+  SpawnPointIndex: 1

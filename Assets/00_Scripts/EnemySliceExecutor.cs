@@ -24,8 +24,15 @@ public class EnemySliceExecutor : MonoBehaviour
 
     private bool sliced;
 
+    public bool IsSliced => sliced;
+
     public async Task<bool> TrySliceBySwordYAtFixedPoint(Transform swordTransform)
     {
+        if (sliced)
+        {
+            return false;
+        }
+
         if (swordTransform == null)
         {
             return false;
@@ -64,7 +71,6 @@ public class EnemySliceExecutor : MonoBehaviour
         sliced = true;
 
         Plane plane = new Plane(planeNormal, slicePoint);
-
         BzSliceTryResult result = await sliceableCharacter.SliceAsync(plane, null);
 
         if (result == null || !result.sliced)
@@ -86,8 +92,13 @@ public class EnemySliceExecutor : MonoBehaviour
 
     private void SpawnSliceParticle(Vector3 slicePoint)
     {
+        if (SpawnManagers.Instance == null || SpawnManagers.Instance.Particle == null)
+        {
+            return;
+        }
+
         ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(
-            Particle_Type.BulletParring,
+            Particle_Type.Playerhit,
             slicePoint,
             Quaternion.identity
         );
@@ -161,17 +172,19 @@ public class EnemySliceExecutor : MonoBehaviour
 
             Rigidbody rigidbody = EnableRootRigidbody(slicedObject);
 
-            if (addRandomHorizontalVelocity)
+            if (!addRandomHorizontalVelocity)
             {
-                Vector3 moveDirection = randomHorizontalDirection;
-
-                if (oppositeDirectionForPieces && i % 2 == 1)
-                {
-                    moveDirection = -moveDirection;
-                }
-
-                ApplyHorizontalVelocity(rigidbody, moveDirection);
+                continue;
             }
+
+            Vector3 moveDirection = randomHorizontalDirection;
+
+            if (oppositeDirectionForPieces && i % 2 == 1)
+            {
+                moveDirection = -moveDirection;
+            }
+
+            ApplyHorizontalVelocity(rigidbody, moveDirection);
         }
     }
 
@@ -250,10 +263,7 @@ public class EnemySliceExecutor : MonoBehaviour
             return;
         }
 
-        if (rigidbody.isKinematic)
-        {
-            rigidbody.isKinematic = false;
-        }
+        rigidbody.isKinematic = false;
 
         direction.y = 0f;
 
@@ -269,7 +279,7 @@ public class EnemySliceExecutor : MonoBehaviour
 #if UNITY_6000_0_OR_NEWER
         rigidbody.linearVelocity = horizontalVelocity;
 #else
-    rigidbody.velocity = horizontalVelocity;
+        rigidbody.velocity = horizontalVelocity;
 #endif
     }
 

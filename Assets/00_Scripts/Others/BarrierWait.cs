@@ -3,31 +3,55 @@ using UnityEngine;
 public class BarrierWait : MonoBehaviour
 {
     Quaternion Rotation;
-    Rigidbody rb;
+    EnemySliceExecutor Slicer;
+
+    EnemyController controller;
+
+    MeshRenderer renderer;
+
+    bool Stop;
 
     private void Start()
     {
-        Rotation = transform.rotation;
-        
+        Slicer = transform.GetComponentInParent<EnemySliceExecutor>();
+        controller = transform.parent.parent.GetComponent<EnemyController>();
+        renderer = GetComponentInChildren<MeshRenderer>();
+
+        Rotation = Quaternion.identity;
+
+        controller.OnFind += Init;
+        controller.OnWalked += False;
+    }
+
+    public void Init()
+    {
+        Stop = true;
+        renderer.enabled = true;
+    }
+
+    public void False()
+    {
+        Stop = false;
+        renderer.enabled = false;
     }
 
     private void Update()
     {
-        if (rb == null)
+        if (Slicer.IsSliced || controller.IsDead)
         {
-            rb = GetComponentInParent<Rigidbody>();
-            if (rb == null)
-            {
-                this.enabled = false;
-            }
-            else if(!rb.isKinematic)
-            {
-                this.enabled= false;
-            }
+            gameObject.SetActive(false);
         }
 
-        if (transform.rotation != Rotation)
+        if (!Stop)
         {
+            Rotation = transform.parent.parent.rotation;
+        }
+        else
+        {
+            if(Rotation == Quaternion.identity)
+            {
+                Rotation = transform.parent.parent.rotation;
+            }
             transform.rotation = Rotation;
         }
     }

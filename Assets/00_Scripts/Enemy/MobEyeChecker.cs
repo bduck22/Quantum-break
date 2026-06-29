@@ -54,9 +54,25 @@ public class MobEyeChecker : MonoBehaviour
 
         if (Vector3.Magnitude(dir) <= MinCheckDistance)
         {
-            LockOn = true;
-            lockontime = 0;
-            return true;
+            if (CheckingPlayerInEye(dir)) //플레이어가 있음
+            {
+                LockOn = true;
+                lockontime = 0;
+                return true;
+            }
+            else //플레이어가 숨음
+            {
+                if (lockontime >= StopToMoveTimer)
+                {
+                    lockontime = 0;
+                    LockOn = false;
+                }
+                else
+                {
+                    lockontime += Time.deltaTime;
+                }
+                return false;
+            }
         }
 
         if (Vector3.Magnitude(dir) <= MaxCheckDistance)

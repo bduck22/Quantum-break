@@ -33,7 +33,7 @@ Material:
     - _AfterimageOffset: 0.045
     - _Aspect: 1.7777778
     - _CenterGlowIntensity: 0.28
-    - _ManualTime: 11.439575
+    - _ManualTime: 23.387138
     - _Mode: 0
     - _Progress: 1
     - _RGBSplit: 0.016
@@ -43,7 +43,7 @@ Material:
     - _VignetteIntensity: 0.22
     - _ZoomAmount: 0.045
     m_Colors:
-    - _Pivot: {r: 0.50965184, g: 0.5037488, b: 0, a: 0}
-    - _RandomShift: {r: 0.002131715, g: -0.00014122207, b: 0, a: 0}
+    - _Pivot: {r: 0.48970428, g: 0.49506137, b: 0, a: 0}
+    - _RandomShift: {r: -0.0010778795, g: -0.0018589318, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

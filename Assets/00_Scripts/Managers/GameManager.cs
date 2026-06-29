@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
     {
         if (spawnManagers.Enemy.EnemyCount==0&&CurrentMap.IsSpawnEnd()&&Current_State == Game_State.Waving)
         {
-            Debug.Log(CurrentWaveIndex + " " + WaveCount);
             if(WaveCount > CurrentWaveIndex)
             {
                 ReadyWave();

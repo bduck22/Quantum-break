@@ -46,6 +46,8 @@ public class EnemyController : MobBase
     public event Action<EnemyController> OnDead;
     public event Action OnFalse;
 
+    public event Action OnInit;
+
     public Transform[] WayPoints;
 
     [Header("허리")]
@@ -110,6 +112,10 @@ public class EnemyController : MobBase
         Animation.animator = model.Animator;
 
         Animation.enabled = true;
+
+        Slicer.ResetSliceState();
+
+        OnInit?.Invoke();
     }
 
     public void EnemyInit(Transform[] WayPoints, Vector3 Position)
@@ -124,7 +130,7 @@ public class EnemyController : MobBase
 
         MovementAI?.Init(this.WayPoints);
         Weapon.Init(Player.GetComponent<PlayerController>().PlayerMovement, this);
-        EyeChecker.Init(Player);
+        EyeChecker?.Init(Player);
 
         transform.position = Position;
 
@@ -231,8 +237,11 @@ public class EnemyController : MobBase
                 CurrentState = Mob_State.Attack;
                 OnFind?.Invoke();
                 MovementAI.OnStop();
-                EyeChecker.Target = Core;
-                EyeChecker.CheckTargetInEye();
+                if (EyeChecker)
+                {
+                    EyeChecker.Target = Core;
+                    EyeChecker.CheckTargetInEye();
+                }
             }
 
             LookAt(Core.transform);
@@ -245,7 +254,17 @@ public class EnemyController : MobBase
 
     bool CheckLockOn()
     {
-        if (EyeChecker.LockOn)
+        bool IsLockOn = false;
+        if (EyeChecker)
+        {
+             IsLockOn = EyeChecker.LockOn;
+        }
+        else
+        {
+            IsLockOn = false;
+        }
+
+        if (IsLockOn)
         {
             if (EyeChecker.lockontime == 0)
             {
@@ -387,4 +406,5 @@ public class EnemyController : MobBase
             }
         }
     }
+
 }

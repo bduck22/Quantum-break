@@ -354,9 +354,9 @@ Material:
     - _CastShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _CastShadowsPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CoreShadowColor: {r: 0, g: 0, b: 0, a: 0.39215687}
     - _EmissionColor: {r: 3.5137253, g: 21.08805, b: 23.968628, a: 1}
-    - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FormShadowColor: {r: 0, g: 0, b: 0, a: 0.78431374}
     - _OutlineColor: {r: 0, g: 0.25700426, b: 1, a: 1}
     - _PolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

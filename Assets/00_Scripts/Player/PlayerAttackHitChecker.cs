@@ -85,7 +85,7 @@ public class PlayerAttackHitChecker : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(Head.position, ((other.attachedRigidbody.position+pivot) - Head.position).normalized,out hit,  100, Layer))
                 {
-                    if (hit.transform.gameObject.layer != 8) return;
+                    if (hit.collider.transform.gameObject.layer != 8) return;
 
                     soundRandomPlayer.SoundPlay();
                     Filter.EnterSlowMotion();

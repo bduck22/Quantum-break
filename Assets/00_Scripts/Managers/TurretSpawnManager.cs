@@ -1,6 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class TurretSpawnManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class TurretSpawnManager : MonoBehaviour
 
     public Transform TurretPoolsParent;
 
+    public List<TurretController> SpawnTurrets;
 
     public void Init()
     {
@@ -36,6 +38,8 @@ public class TurretSpawnManager : MonoBehaviour
             {
                 TurretController turret = Instantiate(TurretPrefabs[i].gameObject, TurretParents[i]).GetComponent<TurretController>();
 
+
+
                 turret.gameObject.SetActive(false);
 
                 turret.Data = GameDataManager.Instance.GetTurretData((Turret_Type)i);
@@ -49,12 +53,27 @@ public class TurretSpawnManager : MonoBehaviour
     public void InPool(Turret_Type Type, TurretController Controller)
     {
         pools[Type].Enqueue(Controller);
+        if (SpawnTurrets.Contains(Controller))
+        {
+            SpawnTurrets.Remove(Controller);
+        }
     }
 
     public void SetTurret(Turret_Type type, Vector3 Position)
     {
         TurretController Turret = pools[type].Dequeue();
 
+        SpawnTurrets.Add(Turret);
+
         Turret.Init(Position);
+    }
+
+    public void AllBack()
+    {
+        for (int i = 0; i < SpawnTurrets.Count;)
+        {
+            TurretController turret = SpawnTurrets[i];
+            turret.UnInstall();
+        }
     }
 }

@@ -33,6 +33,7 @@ public class GameDataManager : MonoBehaviour
         }
         else
         {
+            Instance.InitMapData();
             Destroy(gameObject);
         }
     }
@@ -70,6 +71,13 @@ public class GameDataManager : MonoBehaviour
     }
 
     //맵 데이터 선정 및 반환
+    public void InitMapData()
+    {
+        foreach (InGameMapData mapData in MapDatas)
+        {
+            mapData.IsUsed = false;
+        }
+    }
     public void SetMapUsed(MapData targetMapData)
     {
         for (int i = 0; i < MapDatas.Count; i++)

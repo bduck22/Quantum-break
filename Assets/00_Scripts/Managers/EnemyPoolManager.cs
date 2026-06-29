@@ -40,12 +40,12 @@ public class EnemyPoolManager : MonoBehaviour
 
             for (int j = 0; j < DefulatSpawnCounts[i]; j++)
             {
-                InPool(i, spawnEnemy(i));
+                InPool(i, spawnEnemy(i, Quaternion.identity));
             }
         }
     }
     
-    public EnemyController SpawnEnemy(Enemy_Type Type)
+    public EnemyController SpawnEnemy(Enemy_Type Type, Quaternion Rotation)
     {
         int IntType = (int)Type;
 
@@ -57,7 +57,7 @@ public class EnemyPoolManager : MonoBehaviour
         }
         else
         {
-            Enemy = spawnEnemy(IntType);
+            Enemy = spawnEnemy(IntType, Rotation);
         }
 
         EnemyCount++;
@@ -79,10 +79,12 @@ public class EnemyPoolManager : MonoBehaviour
         EnemyCount--;
     }
 
-    EnemyController spawnEnemy(int type)
+    EnemyController spawnEnemy(int type, Quaternion Rotation)
     {
-        EnemyController enemy = Instantiate(Enemies[type], EnemyParents[type]).GetComponent<EnemyController>();
-    
+        EnemyController enemy = Instantiate(Enemies[type], Vector3.zero, Rotation ).GetComponent<EnemyController>();
+
+        enemy.transform.parent = EnemyParents[type];
+
         enemy.gameObject.SetActive(false);
 
         enemy.DefaultInit(this, (Enemy_Type)type);

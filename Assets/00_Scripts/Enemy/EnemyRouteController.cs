@@ -107,6 +107,18 @@ public class EnemyRouteController : MonoBehaviour
     {
         CurrentWave = currentWave;
 
+        if (!WaveSpawnDatas[CurrentWave])
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+
+        if(WaveSpawnDatas[CurrentWave].SpawnCount <= 0)
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+
         lineRenderer.enabled = true;
         lineRenderer.material.color = LineColor;
 
@@ -131,6 +143,18 @@ public class EnemyRouteController : MonoBehaviour
 
     public void SpawnStart()
     {
+        if (!WaveSpawnDatas[CurrentWave])
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+
+        if (WaveSpawnDatas[CurrentWave].SpawnCount <= 0)
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+
         Spawning = true;
         SpawnEnd = false;
         //linefalsetime = 0;
@@ -144,11 +168,13 @@ public class EnemyRouteController : MonoBehaviour
             return;
         }
 
+
+        Route route = Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex];
         spawnCount--;
-        EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal);
+        EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal, Quaternion.Euler(0, GetYRotation(route.WayPoints[0].position, route.WayPoints[1].position), 0) );
         enemy.Player = player;
         enemy.Core = Core;
-        enemy.EnemyInit(WayPoints.Clone() as Transform[], Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex].WayPoints[0].position);
+        enemy.EnemyInit(WayPoints.Clone() as Transform[], route.WayPoints[0].position);
 
         enemy.gameObject.SetActive(true);
 
@@ -157,6 +183,23 @@ public class EnemyRouteController : MonoBehaviour
             Spawning = false;
             SpawnEnd = true;
         }
+    }
+
+    public float GetYRotation(Vector3 point0, Vector3 point1)
+    {
+        Vector3 direction = point1 - point0;
+
+        // 높이 차이는 무시하고 XZ 평면 기준으로만 계산
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.0001f)
+        {
+            return 0f;
+        }
+
+        float yAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+        return yAngle;
     }
 }
 

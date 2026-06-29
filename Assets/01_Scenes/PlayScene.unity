@@ -4026,10 +4026,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPoolManager
   Enemies:
+  - {fileID: 7912776289875352270, guid: 0517792c61be45145b11e97625902cef, type: 3}
   - {fileID: 6681463533276269488, guid: 725752bdc99e00442bfae1d6541d9f4b, type: 3}
+  - {fileID: 2680497046344937645, guid: 972a22e393b65684493a4e30155a643e, type: 3}
   EnemyPoolsParent: {fileID: 474133415}
   EnemyParents: []
-  DefulatSpawnCounts: 05000000
+  DefulatSpawnCounts: 050000000500000005000000
   SpawnEnemys: []
   EnemyCount: 0
 --- !u!1 &35500021
@@ -98182,6 +98184,7 @@ MonoBehaviour:
   - {fileID: 2050263888594078665, guid: d85839c96ab350940bdacd9293b858d3, type: 3}
   TurretParents: []
   TurretPoolsParent: {fileID: 989329893}
+  SpawnTurrets: []
 --- !u!4 &796708116
 Transform:
   m_ObjectHideFlags: 0
@@ -236532,8 +236535,18 @@ MonoBehaviour:
     _serializedList:
     - Key: 0
       Value:
-        Data: {fileID: 11400000, guid: 2c2b309626bc49e48bc52678d9f6c913, type: 2}
+        Data: {fileID: 11400000, guid: 5e5f988150d8e924386029406b3de1e1, type: 2}
         Icon: {fileID: 21300000, guid: fd5470ceb378942439b8de92ef4f0b17, type: 3}
+        Name: FF
+    - Key: 4
+      Value:
+        Data: {fileID: 11400000, guid: 2c2b309626bc49e48bc52678d9f6c913, type: 2}
+        Icon: {fileID: 21300000, guid: b95c049dc38b3d549b37a036ad47e1c3, type: 3}
+        Name: FF
+    - Key: 2
+      Value:
+        Data: {fileID: 11400000, guid: f2b17c5a703696841b45cc6c1f7e95f3, type: 2}
+        Icon: {fileID: 21300000, guid: 6a489431c52c93e4e907f3bd4c219f94, type: 3}
         Name: FF
   CardDatas:
     _serializedList:
@@ -252261,6 +252274,10 @@ PrefabInstance:
     - target: {fileID: 3188472417899536698, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040271039083791047, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
+      propertyPath: m_Volume
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8551730711776576062, guid: 8fcd85dd301303e44bdddff68b77b71b, type: 3}
       propertyPath: m_Name

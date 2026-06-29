@@ -56,7 +56,7 @@ MonoBehaviour:
   Type: 2
   CurrentState: 1
   ShootPoint: {fileID: 0}
-  defaultSpeed: 1
+  defaultSpeed: 5
   plusSpeed: 0
   Level: 1
   IsDead: 0

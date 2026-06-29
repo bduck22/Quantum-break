@@ -98,7 +98,7 @@ public class EnemySliceExecutor : MonoBehaviour
         }
 
         ParticleController particle = SpawnManagers.Instance.Particle.SpawnParticle(
-            Particle_Type.Playerhit,
+            Particle_Type.BulletParring,
             slicePoint,
             Quaternion.identity
         );

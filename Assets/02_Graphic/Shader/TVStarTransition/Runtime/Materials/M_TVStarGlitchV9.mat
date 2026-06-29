@@ -32,12 +32,12 @@ Material:
     - _FlashIntensity: 3.65
     - _HoldBurstIntensity: 1
     - _HoldLineDensity: 2.6
-    - _HoldSeed: 1580.2018
+    - _HoldSeed: 31.73
     - _HoldVerticalSpikeIntensity: 0.04
     - _HorizontalTear: 0.145
-    - _ManualTime: 23.387138
+    - _ManualTime: 76.970505
     - _Mode: 0
-    - _Progress: 1
+    - _Progress: 0
     - _RGBSplit: 0.038
     - _SceneGlitchIntensity: 1.28
     - _StarEdge: 0.003

@@ -146,12 +146,14 @@ public class EnemyRouteController : MonoBehaviour
         if (!WaveSpawnDatas[CurrentWave])
         {
             lineRenderer.enabled = false;
+            SpawnEnd = true;
             return;
         }
 
         if (WaveSpawnDatas[CurrentWave].SpawnCount <= 0)
         {
             lineRenderer.enabled = false;
+            SpawnEnd = true;
             return;
         }
 
@@ -171,7 +173,7 @@ public class EnemyRouteController : MonoBehaviour
 
         Route route = Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex];
         spawnCount--;
-        EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(Enemy_Type.Normal, Quaternion.Euler(0, GetYRotation(route.WayPoints[0].position, route.WayPoints[1].position), 0) );
+        EnemyController enemy = SpawnManagers.Instance.Enemy.SpawnEnemy(WaveSpawnDatas[CurrentWave].Type, Quaternion.Euler(0, GetYRotation(route.WayPoints[0].position, route.WayPoints[1].position), 0) );
         enemy.Player = player;
         enemy.Core = Core;
         enemy.EnemyInit(WayPoints.Clone() as Transform[], route.WayPoints[0].position);

@@ -383,7 +383,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ArmAttack4
-  m_Speed: 1.8
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 570922177143901662}
@@ -754,7 +754,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ArmAttack2
-  m_Speed: 1.8
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6431750984042609664}
@@ -978,7 +978,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ArmAttack3
-  m_Speed: 1.8
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6213580729065278010}
@@ -1006,7 +1006,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ArmAttack1
-  m_Speed: 1.8
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 654689968681558701}

@@ -54,7 +54,7 @@ public class CardSelectorUI : MonoBehaviour
             GameManager.Instance.Inventory.GetCard(Cards[num].Type);
             Cards[num].Apply();
         }
-        GameManager.Instance.Cleared = false;
+        GameManager.Instance.Cardget = true;
         transform.gameObject.SetActive(false);
 
         window.Refresh();

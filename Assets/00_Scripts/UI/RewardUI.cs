@@ -115,9 +115,9 @@ public class RewardUI : MonoBehaviour
             }
         }
 
-        RewardButton.enabled = GameManager.Instance.Cleared;
+        RewardButton.enabled = !GameManager.Instance.Cardget;
 
-        RewardButton.GetComponent<CanvasGroup>().alpha = GameManager.Instance.Cleared ? 1 : 0.2f;
+        RewardButton.GetComponent<CanvasGroup>().alpha = !GameManager.Instance.Cardget ? 1 : 0.2f;
 
         Title.text = GameManager.Instance.Cleared ?"코어 수복됨" :"코어 파괴됨";
 

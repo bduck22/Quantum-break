@@ -2,6 +2,8 @@ using IWantGoHome.ScreenEffects;
 using NUnit.Framework;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int CurrentWaveIndex;
 
     public bool Cleared;
+    public bool Cardget;
 
     [Header("절대불변")]
     public PlayerController Player;
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         Cleared = false;
+        Cardget = false;
         spawnManagers.Init();
         Inventory.InitInventory();
         Current_State = Game_State.MapInit;
@@ -80,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     public void MapInit()
     {
+        Cleared = false;
+        Cardget = false;
         TVStarTransitionController.Instance.PlayPowerOnRelease();
         if (CurrentMap)
         {
@@ -114,18 +120,18 @@ public class GameManager : MonoBehaviour
 
     public void ReadyWave()
     {
+        Current_State = Game_State.Ready;
         CurrentWaveIndex++;
         CurrentMap.ReadyWave();
-        Current_State = Game_State.Ready;
     }
 
     public void CheckWaveEnd()
     {
         if (spawnManagers.Enemy.EnemyCount==0&&CurrentMap.IsSpawnEnd()&&Current_State == Game_State.Waving)
         {
-            if(WaveCount < CurrentWaveIndex)
+            Debug.Log(CurrentWaveIndex + " " + WaveCount);
+            if(WaveCount > CurrentWaveIndex)
             {
-                WaveCount++;
                 ReadyWave();
             }
             else
@@ -171,6 +177,7 @@ public class GameManager : MonoBehaviour
 
     public void MapEnding()
     {
+        if (!Cleared) Cardget = true;
         Current_State = Game_State.MapEnd;
         CurrentMapIndex++;
         Player.Stop = true;
@@ -223,7 +230,7 @@ public class GameManager : MonoBehaviour
 
     public void GoMain()
     {
-
+        SceneManager.LoadScene(0);
     }
 }
 

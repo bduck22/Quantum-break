@@ -8346,6 +8346,7 @@ MonoBehaviour:
   WaveCount: 0
   CurrentWaveIndex: 0
   Cleared: 0
+  Cardget: 0
   Player: {fileID: 2079762290}
   spawnManagers: {fileID: 2089133990}
   Inventory: {fileID: 401949716}
@@ -15486,7 +15487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &116913328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15754,6 +15755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b44c4052dda7f74d9038fb4c331b58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResultUI
+  Title: {fileID: 156163633}
+  Diffi: {fileID: 1877876886}
 --- !u!1 &118319832
 GameObject:
   m_ObjectHideFlags: 0
@@ -236550,7 +236553,7 @@ MonoBehaviour:
   MapDatas:
   - MapData: {fileID: 11400000, guid: d73d9b2e14e7372408e076c08452b773, type: 2}
     IsUsed: 0
-  - MapData: {fileID: 11400000, guid: d73d9b2e14e7372408e076c08452b773, type: 2}
+  - MapData: {fileID: 11400000, guid: f28ccbc26a951784cb95e4a34338c604, type: 2}
     IsUsed: 0
 --- !u!4 &1939986294
 Transform:

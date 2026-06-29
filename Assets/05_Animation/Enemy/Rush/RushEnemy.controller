@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75b38d92731cf7b47a3a4499f8abf189, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1d9fc44d4b380c04ab2c83d7db37947b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -85,7 +85,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RifeDeath
-  m_Speed: 1.35
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -97,7 +97,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 41a550b0ccea28244ae1ae8fa1d05902, type: 2}
+  m_Motion: {fileID: 7400000, guid: abf71e56ff7f64a45a30a7f0c16b81c6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -133,7 +133,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rifle Walk
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2001895105578718680}
@@ -146,7 +146,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 968fc9300d4aaf044bea76e8e274d19e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 594b42b2c6b88874e966131ce4722e8b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -296,7 +296,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 12e5fcab5cf4edb4db00f188ef6673ae, type: 2}
+  m_Motion: {fileID: 7400000, guid: 12fc0811b386d8047a26c30f558b2a71, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

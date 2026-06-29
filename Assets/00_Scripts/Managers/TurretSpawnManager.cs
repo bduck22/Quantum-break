@@ -30,11 +30,13 @@ public class TurretSpawnManager : MonoBehaviour
             TurretParents[i] = new GameObject().transform;
             TurretParents[i].parent = TurretPoolsParent;
 
-            TurretParents[i].name = ((Turret_Type)i).ToString();
+            Turret_Type type = TurretPrefabs[i].Data.Type;
 
-            pools[(Turret_Type)i] = new Queue<TurretController>();
+            TurretParents[i].name = (type).ToString();
 
-            for (int j = 0; j < GameDataManager.Instance.GetCraftingData((Turret_Type)i).MaxCount; j++)
+            pools[type] = new Queue<TurretController>();
+
+            for (int j = 0; j < GameDataManager.Instance.GetCraftingData(type).MaxCount; j++)
             {
                 TurretController turret = Instantiate(TurretPrefabs[i].gameObject, TurretParents[i]).GetComponent<TurretController>();
 
@@ -42,10 +44,10 @@ public class TurretSpawnManager : MonoBehaviour
 
                 turret.gameObject.SetActive(false);
 
-                turret.Data = GameDataManager.Instance.GetTurretData((Turret_Type)i);
+                turret.Data = GameDataManager.Instance.GetTurretData(type);
                 turret.DefaultInit(this);
 
-                InPool((Turret_Type)(i), turret);
+                InPool(type, turret);
             }
         }
     }

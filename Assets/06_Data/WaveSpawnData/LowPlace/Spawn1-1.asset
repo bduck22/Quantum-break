@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d902dd45eb9fe1c4b86539438fea2199, type: 3}
   m_Name: Spawn1-1
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawnData
-  Type: 0
+  Type: 2
   SpawnCount: 5
   SpawnDelay: 10
   SpawnPointIndex: 0

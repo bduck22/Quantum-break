@@ -69,20 +69,19 @@ public class UIUpdateManager : MonoBehaviour
 
     public void OnCanvas()
     {
-        Canvas.alpha = 0;
         Canvas.gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        if (Canvas.gameObject.activeSelf&&Canvas.alpha !=1)
-        {
-            Canvas.alpha += Time.deltaTime*1.5f;
-            if(Canvas.alpha >= 1)
-            {
-                Canvas.alpha = 1;
-            }
-        }
+        //if (Canvas.gameObject.activeSelf&&Canvas.alpha !=1)
+        //{
+        //    Canvas.alpha += Time.deltaTime*1.5f;
+        //    if(Canvas.alpha >= 1)
+        //    {
+        //        Canvas.alpha = 1;
+        //    }
+        //}
     }
 
     public GameObject PlusHP;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCardScriptableData
   Name: "\uCD5C\uB300 \uC2A4\uD14C\uBBF8\uB098 \uC99D\uAC00"
   Description: "\uCD5C\uB300 \uC2A4\uD14C\uBBF8\uB098\uAC00 {value}\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  Icon: {fileID: 0}
+  Icon: {fileID: 100999175, guid: e6039148624cd28498fe29674ec69294, type: 3}
   Value: 0.5
   ShowPer: 0
   MaxCount: 0

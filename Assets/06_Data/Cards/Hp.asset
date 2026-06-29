@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: "\uC784\uC2DC \uBCF4\uD638\uB9C9 \uCD94\uAC00"
   Description: "\uD53C\uACA9\uC744 {value}\uD68C \uB9C9\uC544\uC8FC\uB294 \uBCF4\uD638\uB9C9\uC744
     \uD68D\uB4DD\uD569\uB2C8\uB2E4."
-  Icon: {fileID: 0}
+  Icon: {fileID: -1320973270, guid: e6039148624cd28498fe29674ec69294, type: 3}
   Value: 1
   ShowPer: 0
   MaxCount: 0

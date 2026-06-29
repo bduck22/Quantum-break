@@ -18,9 +18,24 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     public SoundRandomPlayer soundRandomPlayer;
 
+    private EnemyController pendingSliceTarget;
+    private bool hasHitThisAttack;
     private void OnEnable()
     {
         Killed = false;
+    }
+
+    private void Update()
+    {
+        if (!pendingSliceTarget)
+        {
+            return;
+        }
+
+        EnemyController target = pendingSliceTarget;
+        pendingSliceTarget = null;
+
+        CallEnemySlice(target);
     }
 
     private void Awake()
@@ -87,18 +102,25 @@ public class PlayerAttackHitChecker : MonoBehaviour
                 {
                     if (hit.collider.transform.gameObject.layer != 8) return;
 
-                    soundRandomPlayer.SoundPlay();
-                    Filter.EnterSlowMotion();
 
-                    EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
 
-                    enemy.Hit();
+                    if (!Killed)
+                    {
+                        soundRandomPlayer.SoundPlay();
+                        Filter.EnterSlowMotion();
 
-                    enemy.Animation.enabled = false;
+                        EnemyController enemy = other.attachedRigidbody.GetComponent<EnemyController>();
 
-                    CallEnemySlice(other);
+                        enemy.Hit();
 
-                    Killed = true;
+                        enemy.Animation.enabled = false;
+
+                        pendingSliceTarget = enemy;
+
+                        hasHitThisAttack = true;
+                        Killed = true;
+                    }
+
                 }
             }
         }
@@ -118,14 +140,14 @@ public class PlayerAttackHitChecker : MonoBehaviour
 
     [SerializeField] private Transform swordTransform;
 
-    private async void CallEnemySlice(Collider hitCollider)
+    private async void CallEnemySlice(EnemyController hitCollider)
     {
         if (hitCollider == null)
         {
             return;
         }
 
-        EnemySliceExecutor sliceExecutor = hitCollider.GetComponentInParent<EnemySliceExecutor>();
+        EnemySliceExecutor sliceExecutor = hitCollider.Slicer;
 
         await sliceExecutor.TrySliceBySwordYAtFixedPoint(swordTransform);
     }

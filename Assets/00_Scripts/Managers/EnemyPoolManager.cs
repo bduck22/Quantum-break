@@ -106,8 +106,8 @@ public class EnemyPoolManager : MonoBehaviour
 public enum Enemy_Type 
 {
     Normal,
-    ShotGun,
+    Wall,
     CoreRush,
-    Stealth,
-    Wall
+    ShotGun,
+    Stealth
 }

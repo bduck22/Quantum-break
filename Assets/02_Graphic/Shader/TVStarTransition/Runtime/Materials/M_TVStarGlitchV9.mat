@@ -35,9 +35,15 @@ Material:
     - _HoldSeed: 8015.3105
     - _HoldVerticalSpikeIntensity: 0.04
     - _HorizontalTear: 0.145
+<<<<<<< Updated upstream
     - _ManualTime: 141.67183
     - _Mode: 3
     - _Progress: 1
+=======
+    - _ManualTime: 1.8229294
+    - _Mode: 6
+    - _Progress: 0.077762716
+>>>>>>> Stashed changes
     - _RGBSplit: 0.038
     - _SceneGlitchIntensity: 1.28
     - _StarEdge: 0.003

@@ -24,7 +24,18 @@ public class StatusUI : MonoBehaviour
 
     public void ReFreshData()
     {
-        
+        PlayerCardBase Card = GameDataManager.Instance.GetCardData(CurrentType);
+
+        ItemIcon.sprite = Card.Data.Icon;
+
+        Name.text = Card.Data.Name;
+
+        string description = Card.Data.Description;
+        description = description.Replace("{value}", Card.Data.Value.ToString());
+
+        Description.text = description;
+
+        Count.text = $"보유 갯수 : {GameManager.Instance.Inventory.PlayerCardInInventory[CurrentType].HavingCount}" + (Card.Data.MaxCount != 0 ? " / " + Card.Data.MaxCount : "");
     }
 
     private void Update()
@@ -55,7 +66,7 @@ public class StatusUI : MonoBehaviour
     public void Next()
     {
         int num = (int)CurrentType;
-        if(++num >= sizeof(Player_Card_Type))
+        if(++num >= sizeof(Player_Card_Type)-1)
         {
             num = 0;
         }
@@ -70,7 +81,7 @@ public class StatusUI : MonoBehaviour
         int num = (int)CurrentType;
         if (--num < 0)
         {
-            num = sizeof(Player_Card_Type)-1;
+            num = sizeof(Player_Card_Type)-2;
         }
 
         CurrentType = (Player_Card_Type)num;

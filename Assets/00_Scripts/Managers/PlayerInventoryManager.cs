@@ -164,7 +164,7 @@ public class PlayerInventoryManager : MonoBehaviour
     public void GetCard(Player_Card_Type type)
     {
         PlayerCardData data = PlayerCardInInventory[type];
-        if(data.HavingCount < data.MaxCount)
+        if(data.HavingCount < data.MaxCount || data.MaxCount == 0)
         {
             data.HavingCount++;
         }

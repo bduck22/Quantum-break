@@ -67,7 +67,7 @@ public class EnemyController : MobBase
 
     public EnemyAnimationController Animation;
 
-    EnemySliceExecutor Slicer;
+    public EnemySliceExecutor Slicer;
 
     private void Awake()
     {
@@ -361,7 +361,14 @@ public class EnemyController : MobBase
         if (Weapon.IsCanAttack())
         {
             OnAttacked?.Invoke();
-            Weapon.OnAttack(ShootPoint, EyeChecker.Target);
+            if (EyeChecker)
+            {
+                Weapon.OnAttack(ShootPoint, EyeChecker.Target);
+            }
+            else
+            {
+                Weapon.OnAttack(ShootPoint, Core);
+            }
         }
         else
         {

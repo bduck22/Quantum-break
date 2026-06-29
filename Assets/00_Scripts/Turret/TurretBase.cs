@@ -7,6 +7,5 @@ public class TurretBase : MonoBehaviour
 
 public enum Turret_Type
 {
-    IronTaker,
     Slow
 }

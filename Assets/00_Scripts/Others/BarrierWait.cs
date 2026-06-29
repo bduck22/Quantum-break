@@ -2,17 +2,33 @@ using UnityEngine;
 
 public class BarrierWait : MonoBehaviour
 {
-    Vector3 Position;
+    Quaternion Rotation;
+    Rigidbody rb;
+
     private void Start()
     {
-        Position = transform.position;
+        Rotation = transform.rotation;
+        
     }
 
     private void Update()
     {
-        if (transform.position != Position)
+        if (rb == null)
         {
-            transform.position = Position;
+            rb = GetComponentInParent<Rigidbody>();
+            if (rb == null)
+            {
+                this.enabled = false;
+            }
+            else if(!rb.isKinematic)
+            {
+                this.enabled= false;
+            }
+        }
+
+        if (transform.rotation != Rotation)
+        {
+            transform.rotation = Rotation;
         }
     }
 }

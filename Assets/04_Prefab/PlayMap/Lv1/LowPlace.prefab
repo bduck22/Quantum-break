@@ -1877,6 +1877,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRouteController
   WaveSpawnDatas:
   - {fileID: 11400000, guid: 5007d098a173e0349896b884efa4cf6f, type: 2}
+  - {fileID: 11400000, guid: f54ee790c3506df47973ee3bf76dad14, type: 2}
+  - {fileID: 11400000, guid: 474a2f990fb457b4aac43dac1ee77310, type: 2}
   Routes:
   - WayPoints: []
   CurrentWave: 0

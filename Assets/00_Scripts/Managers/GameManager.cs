@@ -176,12 +176,19 @@ public class GameManager : MonoBehaviour
 
     public void MapEnding()
     {
+        if (CurrentMapIndex >= MaxMapIndex)
+        {
+            Clear();
+            return;
+        }
+
         if (!Cleared) Cardget = true;
         Current_State = Game_State.MapEnd;
         CurrentMapIndex++;
         Player.Stop = true;
         Player.PlayerMovement.Stop = true;
         spawnManagers.Enemy.AllBack();
+        spawnManagers.Turret.AllBack();
         NextMap();
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         //RewardUI.Open();
@@ -200,6 +207,7 @@ public class GameManager : MonoBehaviour
         Player.PlayerMovement.Stop = true;
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         spawnManagers.Enemy.AllBack();
+        spawnManagers.Turret.AllBack();
         Player.Stop = true;
     }
 
@@ -210,6 +218,7 @@ public class GameManager : MonoBehaviour
         Player.PlayerMovement.Stop = true;
         TVStarTransitionController.Instance.PlayPowerOffHold(false);
         spawnManagers.Enemy.AllBack();
+        spawnManagers.Turret.AllBack();
     }
 
     public UIWindow Reward;

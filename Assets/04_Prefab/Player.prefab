@@ -298,7 +298,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.3
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -5517,6 +5517,7 @@ GameObject:
   - component: {fileID: 6584907717481215786}
   - component: {fileID: 3773180637161083801}
   - component: {fileID: 1594368717716306799}
+  - component: {fileID: 3819733579524315192}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -5633,6 +5634,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7035e101ead77468e815a4df99a3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationEventMethods
+--- !u!114 &3819733579524315192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3814020943879280506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e935ff4ed058643b8f2d3d0c77ffa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusUI
+  ItemIcon: {fileID: 7328136493407133026}
+  Count: {fileID: 2500298524463487288}
+  Name: {fileID: 1803948505108698820}
+  Description: {fileID: 6157158640476963463}
+  CurrentType: 0
 --- !u!1 &3839421207951747698
 GameObject:
   m_ObjectHideFlags: 0
@@ -10127,7 +10145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.010029316, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10798,6 +10816,7 @@ Transform:
   - {fileID: 8646282363585524747}
   - {fileID: 2096656719787055743}
   - {fileID: 2356322079840637140}
+  - {fileID: 4192855024452189113}
   m_Father: {fileID: 6778330966240797013}
   m_LocalEulerAnglesHint: {x: -5.399, y: 15.642, z: -29.872}
 --- !u!1 &8260236712294574898
@@ -11455,7 +11474,7 @@ MonoBehaviour:
   InvincibilityTime: 1.5
   CanWalkJump: 0
   Invincibility: 0
-  Sensitivity: 60
+  Sensitivity: 35
   WallCoyoteTimer: 0
   Filter: {fileID: 1961880959304962149}
 --- !u!114 &6720759181549599553
@@ -13155,6 +13174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CyberSword2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7b781b86ef5c2df4b87e462462896dff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13164,6 +13187,92 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7b781b86ef5c2df4b87e462462896dff, type: 3}
   m_PrefabInstance: {fileID: 2826553093149357887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4448072174520130642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1989622701398873394}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45331803
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.72901577
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.563
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.65833354
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000029057253
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000002384185
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.75272626
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 97.654
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3172be1a610b7a54e91a3191ff2a423c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e7acf789d52078479a8462f6a776c01, type: 2}
+    - target: {fileID: 919132149155446097, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+      propertyPath: m_Name
+      value: CyberSword3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+--- !u!4 &4192855024452189113 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 914c3fc4972618d4ab480f64c2ea3c59, type: 3}
+  m_PrefabInstance: {fileID: 4448072174520130642}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4768039936498618801
 PrefabInstance:
@@ -14063,7 +14172,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

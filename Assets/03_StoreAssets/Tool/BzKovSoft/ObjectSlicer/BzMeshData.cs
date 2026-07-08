@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -47,7 +46,7 @@ namespace BzKovSoft.ObjectSlicer
 		public BzMeshData(Mesh initFrom, Material[] materials)
 		{
 			Materials = materials;
-			int vertCount = initFrom.vertexCount / 3;
+			int vertCount = initFrom.vertexCount;
 			Bindposes = initFrom.bindposes;
 			if (Bindposes.Length == 0) Bindposes = null;
 
@@ -87,112 +86,183 @@ namespace BzKovSoft.ObjectSlicer
 			if (BoneWeights.Count == 0) BoneWeights = null;
 		}
 
-		/// <summary>
-		/// Generate Unity Mesh object
-		/// </summary>
-		public BzGeneratedMesh GenerateMeshes(BzMeshItemData meshItemData)
-		{
-			var materials = Materials == null ? null : new List<Material>();
-			var subMeshes = new List<int[]>(SubMeshCount);
-			var useMap = new bool[Vertices.Count];
-			for (int subMeshIndex = 0; subMeshIndex < SubMeshCount; subMeshIndex++)
-			{
-				var trs = meshItemData.triangles
-					.Where(_ => _.subMeshIndex == subMeshIndex)
-					.ToArray();
+        /// <summary>
+        /// Generate Unity Mesh object
+        /// </summary>
+        public BzGeneratedMesh GenerateMeshes(BzMeshItemData meshItemData)
+        {
+            List<Material> materials = Materials == null ? null : new List<Material>(SubMeshCount);
+            var subMeshes = new List<int[]>(SubMeshCount);
 
-				if (trs.Length == 0)
-				{
-					continue;
-				}
+            bool[] useMap = new bool[Vertices.Count];
 
-				materials?.Add(Materials[subMeshIndex]);
-				var subMesh = new int[trs.Length * 3];
-				subMeshes.Add(subMesh);
+            int[] triangleCountsBySubMesh = new int[SubMeshCount];
 
-				for (int i = 0; i < trs.Length; i++)
-				{
-					var tr = trs[i];
-					int index = i * 3;
-					subMesh[index + 0] = tr.i1;
-					subMesh[index + 1] = tr.i2;
-					subMesh[index + 2] = tr.i3;
-					useMap[tr.i1] = true;
-					useMap[tr.i2] = true;
-					useMap[tr.i3] = true;
-				}
-			}
+            for (int i = 0; i < meshItemData.triangles.Count; i++)
+            {
+                BzTriangle triangle = meshItemData.triangles[i];
 
-			int newSize = 0;
-			int[] shiftMap = new int[useMap.Length];
-			for (int i = 0; i < useMap.Length; i++)
-			{
-				bool used = useMap[i];
-				shiftMap[i] = newSize;
-				if (used)
-					++newSize;
-			}
+                if (triangle.subMeshIndex < 0 || triangle.subMeshIndex >= SubMeshCount)
+                {
+                    continue;
+                }
 
-			for (int subMeshIndex = 0; subMeshIndex < subMeshes.Count; subMeshIndex++)
-			{
-				var trs = subMeshes[subMeshIndex];
-				for (int i = 0; i < trs.Length; i++)
-				{
-					int index = trs[i];
-					index = shiftMap[index];
-					trs[i] = index;
-				}
-			}
+                triangleCountsBySubMesh[triangle.subMeshIndex]++;
+            }
 
-			Mesh mesh = new Mesh();
+            int[] subMeshOutputIndexMap = new int[SubMeshCount];
 
-			if (Vertices.Count > ushort.MaxValue)
-			{
-				mesh.indexFormat = IndexFormat.UInt32;
-			}
+            for (int subMeshIndex = 0; subMeshIndex < SubMeshCount; subMeshIndex++)
+            {
+                int triangleCount = triangleCountsBySubMesh[subMeshIndex];
 
-			mesh.SetVertices(ReduceSizeByUseMap(Vertices, useMap, newSize));
-			if (NormalsExists)
-				mesh.SetNormals(ReduceSizeByUseMap(Normals, useMap, newSize));
+                if (triangleCount == 0)
+                {
+                    subMeshOutputIndexMap[subMeshIndex] = -1;
+                    continue;
+                }
 
-			if (ColorsExists)
-				mesh.SetColors(ReduceSizeByUseMap(Colors, useMap, newSize));
-			if (Colors32Exists)
-				mesh.SetColors(ReduceSizeByUseMap(Colors32, useMap, newSize));
+                if (materials != null)
+                {
+                    materials.Add(Materials[subMeshIndex]);
+                }
 
-			if (UVExists)
-				mesh.SetUVs(0, ReduceSizeByUseMap(UV, useMap, newSize));
-			if (UV2Exists)
-				mesh.SetUVs(1, ReduceSizeByUseMap(UV2, useMap, newSize));
-			if (UV3Exists)
-				mesh.SetUVs(2, ReduceSizeByUseMap(UV3, useMap, newSize));
-			if (UV4Exists)
-				mesh.SetUVs(3, ReduceSizeByUseMap(UV4, useMap, newSize));
+                int[] subMesh = new int[triangleCount * 3];
+                subMeshOutputIndexMap[subMeshIndex] = subMeshes.Count;
+                subMeshes.Add(subMesh);
+            }
 
-			if (TangentsExists)
-				mesh.SetTangents(ReduceSizeByUseMap(Tangents, useMap, newSize));
+            int[] writtenTrianglesBySubMesh = new int[SubMeshCount];
 
-			if (BoneWeightsExists)
-			{
-				mesh.boneWeights = ReduceSizeByUseMap(BoneWeights, useMap, newSize);
-				mesh.bindposes = Bindposes;
-			}
+            for (int i = 0; i < meshItemData.triangles.Count; i++)
+            {
+                BzTriangle triangle = meshItemData.triangles[i];
 
-			mesh.subMeshCount = subMeshes.Count;
-			for (int i = 0; i < subMeshes.Count; i++)
-			{
-				mesh.SetTriangles(subMeshes[i], i);
-			}
+                int sourceSubMeshIndex = triangle.subMeshIndex;
 
-			var result = new BzGeneratedMesh
-			{
-				mesh = mesh,
-				materials = materials?.ToArray(),
-			};
-			return result;
-		}
+                if (sourceSubMeshIndex < 0 || sourceSubMeshIndex >= SubMeshCount)
+                {
+                    continue;
+                }
 
-		private T[] ReduceSizeByUseMap<T>(List<T> vertices, bool[] useMap, int newSize)
+                int outputSubMeshIndex = subMeshOutputIndexMap[sourceSubMeshIndex];
+
+                if (outputSubMeshIndex < 0)
+                {
+                    continue;
+                }
+
+                int[] subMesh = subMeshes[outputSubMeshIndex];
+                int writeIndex = writtenTrianglesBySubMesh[sourceSubMeshIndex] * 3;
+
+                subMesh[writeIndex + 0] = triangle.i1;
+                subMesh[writeIndex + 1] = triangle.i2;
+                subMesh[writeIndex + 2] = triangle.i3;
+
+                writtenTrianglesBySubMesh[sourceSubMeshIndex]++;
+
+                useMap[triangle.i1] = true;
+                useMap[triangle.i2] = true;
+                useMap[triangle.i3] = true;
+            }
+
+            int newSize = 0;
+            int[] shiftMap = new int[useMap.Length];
+
+            for (int i = 0; i < useMap.Length; i++)
+            {
+                bool used = useMap[i];
+                shiftMap[i] = newSize;
+
+                if (used)
+                {
+                    newSize++;
+                }
+            }
+
+            for (int subMeshIndex = 0; subMeshIndex < subMeshes.Count; subMeshIndex++)
+            {
+                int[] triangles = subMeshes[subMeshIndex];
+
+                for (int i = 0; i < triangles.Length; i++)
+                {
+                    int index = triangles[i];
+                    triangles[i] = shiftMap[index];
+                }
+            }
+
+            Mesh mesh = new Mesh();
+
+            if (Vertices.Count > ushort.MaxValue)
+            {
+                mesh.indexFormat = IndexFormat.UInt32;
+            }
+
+            mesh.SetVertices(ReduceSizeByUseMap(Vertices, useMap, newSize));
+
+            if (NormalsExists)
+            {
+                mesh.SetNormals(ReduceSizeByUseMap(Normals, useMap, newSize));
+            }
+
+            if (ColorsExists)
+            {
+                mesh.SetColors(ReduceSizeByUseMap(Colors, useMap, newSize));
+            }
+
+            if (Colors32Exists)
+            {
+                mesh.SetColors(ReduceSizeByUseMap(Colors32, useMap, newSize));
+            }
+
+            if (UVExists)
+            {
+                mesh.SetUVs(0, ReduceSizeByUseMap(UV, useMap, newSize));
+            }
+
+            if (UV2Exists)
+            {
+                mesh.SetUVs(1, ReduceSizeByUseMap(UV2, useMap, newSize));
+            }
+
+            if (UV3Exists)
+            {
+                mesh.SetUVs(2, ReduceSizeByUseMap(UV3, useMap, newSize));
+            }
+
+            if (UV4Exists)
+            {
+                mesh.SetUVs(3, ReduceSizeByUseMap(UV4, useMap, newSize));
+            }
+
+            if (TangentsExists)
+            {
+                mesh.SetTangents(ReduceSizeByUseMap(Tangents, useMap, newSize));
+            }
+
+            if (BoneWeightsExists)
+            {
+                mesh.boneWeights = ReduceSizeByUseMap(BoneWeights, useMap, newSize);
+                mesh.bindposes = Bindposes;
+            }
+
+            mesh.subMeshCount = subMeshes.Count;
+
+            for (int i = 0; i < subMeshes.Count; i++)
+            {
+                mesh.SetTriangles(subMeshes[i], i);
+            }
+
+            var result = new BzGeneratedMesh
+            {
+                mesh = mesh,
+                materials = materials?.ToArray(),
+            };
+
+            return result;
+        }
+
+        private T[] ReduceSizeByUseMap<T>(List<T> vertices, bool[] useMap, int newSize)
 		{
 			T[] result = new T[newSize];
 			int counter = 0;

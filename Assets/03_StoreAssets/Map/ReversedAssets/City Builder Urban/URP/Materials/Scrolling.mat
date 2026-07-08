@@ -249,7 +249,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _SSRefractionProjectionModel: 0
-    - _ScanAmount: 20
+    - _ScanAmount: 160
     - _ScanPower: 1.5
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1

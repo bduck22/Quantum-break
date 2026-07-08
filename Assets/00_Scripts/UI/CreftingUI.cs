@@ -63,7 +63,14 @@ public class CreftingUI : MonoBehaviour
         {
             data = GameDataManager.Instance.GetCraftingData(turretType);
 
-            count = GameManager.Instance.Inventory.TurretInInventory[turretType];
+            if (GameManager.Instance)
+            {
+                count = GameManager.Instance.Inventory.TurretInInventory[turretType];
+            }
+            else
+            {
+                count = TutorialManager.Instance.Inventory.TurretInInventory[turretType];
+            }
         }
         else if(EnumCursor.Current is Item_Type itemType)
         {
@@ -73,7 +80,7 @@ public class CreftingUI : MonoBehaviour
         }
 
         //ui 변경하기
-        Count.text = $"보유 수량 : {count.InInvenCount.ToString("#,##0")} / {data.MaxCount.ToString("#,##0")}";
+        Count.text = $"보유 수량 : {(count.InInvenCount + count.SpawnedCount).ToString("#,##0")} / {data.MaxCount.ToString("#,##0")}";
         Name.text = data.Name;
         Description.text = data.Description;
         NeedCore.text = $"필요 코어 : Lv.{data.Level+1}";
@@ -81,11 +88,23 @@ public class CreftingUI : MonoBehaviour
 
         ItemIcon.sprite = data.Icon;
 
-        if (GameManager.Instance.Current_State != Game_State.Ready)
+        if(GameManager.Instance)
         {
-            FController.SetActiveInteraction(false);
-            return;
+            if (GameManager.Instance.Current_State != Game_State.Ready)
+            {
+                FController.SetActiveInteraction(false);
+                return;
+            }
         }
+        else
+        {
+            if (TutorialManager.Instance.Current_State != Game_State.Ready)
+            {
+                FController.SetActiveInteraction(false);
+                return;
+            }
+        }
+
 
         FController.SetActiveInteraction(true);
     }

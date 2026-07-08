@@ -49,7 +49,17 @@ public class TurretControlUI : MonoBehaviour
 
         CraftingItemDataBase data2 = GameDataManager.Instance.GetCraftingData(CurrentType);
 
-        InventoryData count = GameManager.Instance.Inventory.TurretInInventory[CurrentType];
+        InventoryData count;
+
+        if (GameManager.Instance)
+        {
+            count = GameManager.Instance.Inventory.TurretInInventory[CurrentType];
+        }
+        else
+        {
+            count = TutorialManager.Instance.Inventory.TurretInInventory[CurrentType];
+        }
+
 
         //ui 반영하기
         TurretIcon.sprite = data2.Icon;
@@ -59,12 +69,25 @@ public class TurretControlUI : MonoBehaviour
 
         Installer.type = CurrentType;
 
-        if (GameManager.Instance.Current_State != Game_State.Ready)
+        if (GameManager.Instance)
         {
-            FController.SetActiveInteraction(false);
-            Installer.CanInstall = false;
-            return;
+            if (GameManager.Instance.Current_State != Game_State.Ready)
+            {
+                FController.SetActiveInteraction(false);
+                Installer.CanInstall = false;
+                return;
+            }
         }
+        else
+        {
+            if (TutorialManager.Instance.Current_State != Game_State.Ready)
+            {
+                FController.SetActiveInteraction(false);
+                Installer.CanInstall = false;
+                return;
+            }
+        }
+
 
         if (count.InInvenCount > 0)
         {
@@ -112,14 +135,28 @@ public class TurretControlUI : MonoBehaviour
                 }
                 else
                 {
-                    if(GameManager.Instance.Current_State != Game_State.Ready)
+                    if (GameManager.Instance)
                     {
-                        FController.SetText("전투 중");
+                        if (GameManager.Instance.Current_State != Game_State.Ready)
+                        {
+                            FController.SetText("전투 중");
+                        }
+                        else
+                        {
+                            FController.SetText("수량 부족");
+                        }
                     }
-                    else 
+                    else
                     {
-                        FController.SetText("수량 부족");
-                    }    
+                        if (TutorialManager.Instance.Current_State != Game_State.Ready)
+                        {
+                            FController.SetText("전투 중");
+                        }
+                        else
+                        {
+                            FController.SetText("수량 부족");
+                        }
+                    }
                 }
             }
         }
@@ -160,7 +197,15 @@ public class TurretControlUI : MonoBehaviour
 
                 if (Installer.Interaction())
                 {
-                    GameManager.Instance.Inventory.SpawnTurret(CurrentType);
+                    if(GameManager.Instance)
+                    {
+                        GameManager.Instance.Inventory.SpawnTurret(CurrentType);
+                    }
+                    else
+                    {
+                        TutorialManager.Instance.Inventory.SpawnTurret(CurrentType);
+                    }
+                    
                     ReFreshData();
                 }
             }

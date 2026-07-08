@@ -70,7 +70,9 @@ MonoBehaviour:
   Core: {fileID: 0}
   Model: {fileID: 813383817435181374, guid: 1136984e79e61544f9cf92ccda78de26, type: 3}
   Animation: {fileID: 0}
-  DeathTime: 15
+  Slicer: {fileID: 0}
+  SliceProxy: {fileID: 1574906529282473372, guid: ba973d4db08ec6949bb2d0020c597ac0, type: 3}
+  DeathTime: 10
   Special: 0
 --- !u!54 &968989555594696966
 Rigidbody:
@@ -139,8 +141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7451dce61999066458b5efb2ec9555e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySliceExecutor
-  sliceableCharacter: {fileID: 0}
-  sliceHeightOffset: 1.75
+  animatedModelRoot: {fileID: 0}
+  skinnedMeshRenderer: {fileID: 0}
+  sliceableObject: {fileID: 0}
+  sliceMeshFilter: {fileID: 0}
+  sliceMeshRenderer: {fileID: 0}
+  capsuleColliderTemplate: {fileID: 0}
+  sliceHeightOffset: 1.7
   enableGravityAfterSlice: 1
   slicedMass: 1
   linearDamping: 0.5
@@ -148,6 +155,13 @@ MonoBehaviour:
   addRandomHorizontalVelocity: 1
   randomHorizontalSpeed: 10
   oppositeDirectionForPieces: 1
+  createdColliderCenterZOffset: 1
+  stripUnusedMeshChannels: 1
+  stripTangents: 1
+  stripVertexColors: 1
+  stripSecondaryUVs: 1
+  stripMainUV: 0
+  stripBoneData: 1
 --- !u!114 &5823704507823904076
 MonoBehaviour:
   m_ObjectHideFlags: 0

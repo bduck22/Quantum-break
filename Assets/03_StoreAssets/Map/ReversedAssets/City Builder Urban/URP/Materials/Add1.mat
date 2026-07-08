@@ -99,7 +99,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 7bd31eabd97ad754a9585dada7d7b3fd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2383c5b48ab424b40b67764038680b6a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -243,7 +243,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _SSRefractionProjectionModel: 0
-    - _ScanAmount: 20
+    - _ScanAmount: 160
     - _ScanPower: 1.5
     - _Smoothness: 1
     - _SmoothnessRemapMax: 1

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,105 +52,169 @@ namespace BzKovSoft.ObjectSlicer
 			return new Vector3(v.x * f, v.y * f, v.z * f);
 		}
 
-		public static void GroupTrianglesToMeshes(BzMeshData meshData, bool objectGrouping)
-		{
-			var meshes = new List<ShortMeshData>();
-			bool intersected = false;
-			foreach (var tr in meshData.Triangles)
-			{
-				intersected = false;
-				ShortMeshData asd = null;
-				foreach (var mesh in meshes)
-				{
-					if (mesh.side != tr.side)
-					{
-						continue;
-					}
+        public static void GroupTrianglesToMeshes(BzMeshData meshData, bool objectGrouping)
+        {
+            if (!objectGrouping)
+            {
+                GroupTrianglesToTwoMeshesFast(meshData);
+                return;
+            }
 
-					if (objectGrouping)
-					{
-						if (mesh.indices.Contains(tr.i1) ||
-							mesh.indices.Contains(tr.i2) ||
-							mesh.indices.Contains(tr.i3) ||
-							mesh.vertices.Contains(tr.v1) ||
-							mesh.vertices.Contains(tr.v2) ||
-							mesh.vertices.Contains(tr.v3))
-						{
-							intersected = true;
-						}
-					}
-					else
-					{
-						intersected = true;
-					}
+            var meshes = new List<ShortMeshData>();
+            bool intersected = false;
 
+            foreach (var tr in meshData.Triangles)
+            {
+                intersected = false;
+                ShortMeshData targetMesh = null;
 
-					if (intersected)
-					{
-						asd = mesh;
-						break;
-					}
-				}
+                foreach (var mesh in meshes)
+                {
+                    if (mesh.side != tr.side)
+                    {
+                        continue;
+                    }
 
-				if (!intersected)
-				{
-					asd = new ShortMeshData();
-					asd.side = tr.side;
-					asd.triangles = new List<BzTriangle>(meshData.Triangles.Count / (meshes.Count + 1));
-					asd.indices = new HashSet<int>();
-					asd.vertices = new HashSet<Vector3>();
-					meshes.Add(asd);
-				}
+                    if (mesh.indices.Contains(tr.i1) ||
+                        mesh.indices.Contains(tr.i2) ||
+                        mesh.indices.Contains(tr.i3) ||
+                        mesh.vertices.Contains(tr.v1) ||
+                        mesh.vertices.Contains(tr.v2) ||
+                        mesh.vertices.Contains(tr.v3))
+                    {
+                        intersected = true;
+                    }
 
-				asd.triangles.Add(tr);
-				asd.indices.Add(tr.i1);
-				asd.indices.Add(tr.i2);
-				asd.indices.Add(tr.i3);
-				asd.vertices.Add(tr.v1);
-				asd.vertices.Add(tr.v2);
-				asd.vertices.Add(tr.v3);
-			}
+                    if (intersected)
+                    {
+                        targetMesh = mesh;
+                        break;
+                    }
+                }
 
-			do
-			{
-				meshes.Sort((a, b) => -b.triangles.Count.CompareTo(a.triangles.Count));
-				intersected = FindIntersection(meshes, out var firstMesh, out var secondMesh);
+                if (!intersected)
+                {
+                    targetMesh = new ShortMeshData();
+                    targetMesh.side = tr.side;
+                    targetMesh.triangles = new List<BzTriangle>(meshData.Triangles.Count / (meshes.Count + 1));
+                    targetMesh.indices = new HashSet<int>();
+                    targetMesh.vertices = new HashSet<Vector3>();
+                    meshes.Add(targetMesh);
+                }
 
-				if (intersected)
-				{
-					if (firstMesh.triangles.Count > secondMesh.triangles.Count)
-					{
-						firstMesh.triangles.AddRange(secondMesh.triangles);
-						firstMesh.indices.UnionWith(secondMesh.indices);
-						firstMesh.vertices.UnionWith(secondMesh.vertices);
-						meshes.Remove(secondMesh);
-					}
-					else
-					{
-						secondMesh.triangles.AddRange(firstMesh.triangles);
-						secondMesh.indices.UnionWith(firstMesh.indices);
-						secondMesh.vertices.UnionWith(firstMesh.vertices);
-						meshes.Remove(firstMesh);
-					}
-				}
-			}
-			while (intersected);
+                targetMesh.triangles.Add(tr);
+                targetMesh.indices.Add(tr.i1);
+                targetMesh.indices.Add(tr.i2);
+                targetMesh.indices.Add(tr.i3);
+                targetMesh.vertices.Add(tr.v1);
+                targetMesh.vertices.Add(tr.v2);
+                targetMesh.vertices.Add(tr.v3);
+            }
 
+            do
+            {
+                meshes.Sort((a, b) => -b.triangles.Count.CompareTo(a.triangles.Count));
+                intersected = FindIntersection(meshes, out var firstMesh, out var secondMesh);
 
-			var result = new List<BzMeshItemData>(meshes.Count);
-			for (int i = 0; i < meshes.Count; i++)
-			{
-				var mesh = meshes[i];
-				var resultItem = new BzMeshItemData();
-				resultItem.side = mesh.side;
-				resultItem.triangles = mesh.triangles;
-				result.Add(resultItem);
-			}
+                if (intersected)
+                {
+                    if (firstMesh.triangles.Count > secondMesh.triangles.Count)
+                    {
+                        firstMesh.triangles.AddRange(secondMesh.triangles);
+                        firstMesh.indices.UnionWith(secondMesh.indices);
+                        firstMesh.vertices.UnionWith(secondMesh.vertices);
+                        meshes.Remove(secondMesh);
+                    }
+                    else
+                    {
+                        secondMesh.triangles.AddRange(firstMesh.triangles);
+                        secondMesh.indices.UnionWith(firstMesh.indices);
+                        secondMesh.vertices.UnionWith(firstMesh.vertices);
+                        meshes.Remove(firstMesh);
+                    }
+                }
+            }
+            while (intersected);
 
-			meshData.Meshes = result;
-		}
+            var result = new List<BzMeshItemData>(meshes.Count);
 
-		public static float VolumeOfMesh(List<BzTriangle> triangles, out Vector3 centerOfMass, out Vector3 centerOfPoints)
+            for (int i = 0; i < meshes.Count; i++)
+            {
+                var mesh = meshes[i];
+                var resultItem = new BzMeshItemData();
+                resultItem.side = mesh.side;
+                resultItem.triangles = mesh.triangles;
+                result.Add(resultItem);
+            }
+
+            meshData.Meshes = result;
+        }
+
+        private static void GroupTrianglesToTwoMeshesFast(BzMeshData meshData)
+        {
+            List<BzTriangle> negativeTriangles = null;
+            List<BzTriangle> positiveTriangles = null;
+
+            int estimatedCapacity = meshData.Triangles.Count / 2;
+
+            for (int i = 0; i < meshData.Triangles.Count; i++)
+            {
+                BzTriangle triangle = meshData.Triangles[i];
+
+                if (triangle.side)
+                {
+                    if (positiveTriangles == null)
+                    {
+                        positiveTriangles = new List<BzTriangle>(estimatedCapacity);
+                    }
+
+                    positiveTriangles.Add(triangle);
+                }
+                else
+                {
+                    if (negativeTriangles == null)
+                    {
+                        negativeTriangles = new List<BzTriangle>(estimatedCapacity);
+                    }
+
+                    negativeTriangles.Add(triangle);
+                }
+            }
+
+            int resultCount = 0;
+
+            if (negativeTriangles != null && negativeTriangles.Count > 0)
+            {
+                resultCount++;
+            }
+
+            if (positiveTriangles != null && positiveTriangles.Count > 0)
+            {
+                resultCount++;
+            }
+
+            var result = new List<BzMeshItemData>(resultCount);
+
+            if (negativeTriangles != null && negativeTriangles.Count > 0)
+            {
+                var negativeMesh = new BzMeshItemData();
+                negativeMesh.side = false;
+                negativeMesh.triangles = negativeTriangles;
+                result.Add(negativeMesh);
+            }
+
+            if (positiveTriangles != null && positiveTriangles.Count > 0)
+            {
+                var positiveMesh = new BzMeshItemData();
+                positiveMesh.side = true;
+                positiveMesh.triangles = positiveTriangles;
+                result.Add(positiveMesh);
+            }
+
+            meshData.Meshes = result;
+        }
+
+        public static float VolumeOfMesh(List<BzTriangle> triangles, out Vector3 centerOfMass, out Vector3 centerOfPoints)
 		{
 			centerOfMass = Vector3.zero;
 			centerOfPoints = Vector3.zero;

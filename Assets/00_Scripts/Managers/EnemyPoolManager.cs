@@ -61,6 +61,7 @@ public class EnemyPoolManager : MonoBehaviour
         }
 
         EnemyCount++;
+        if (GameManager.Instance) UIUpdateManager.Instance.UpdateEnemyCount();
         SpawnEnemys.Add(Enemy);
         return Enemy;
     }
@@ -77,6 +78,7 @@ public class EnemyPoolManager : MonoBehaviour
     public void ImDead()
     {
         EnemyCount--;
+        if(GameManager.Instance) UIUpdateManager.Instance.UpdateEnemyCount();
     }
 
     EnemyController spawnEnemy(int type, Quaternion Rotation)

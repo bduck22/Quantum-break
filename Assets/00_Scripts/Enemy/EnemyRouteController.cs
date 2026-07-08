@@ -62,15 +62,15 @@ public class EnemyRouteController : MonoBehaviour
         if (Spawning)
         {
             //linefalsetime += Time.deltaTime;
-            if (lineRenderer.material.color.a < 0.2f)
+            if (lineRenderer.sharedMaterial.color.a < 0.2f)
             {
                 Color color = LineColor;
                 color.a = 0.2f;
-                lineRenderer.material.color = color;
+                lineRenderer.sharedMaterial.color = color;
             }
-            else if(lineRenderer.material.color.a != 0.2f)
+            else if(lineRenderer.sharedMaterial.color.a != 0.2f)
             {
-                lineRenderer.material.color -= Color.black * Time.deltaTime;
+                lineRenderer.sharedMaterial.color -= Color.black * Time.deltaTime;
             }
 
             //if (linefalsetime > 2f)
@@ -94,11 +94,11 @@ public class EnemyRouteController : MonoBehaviour
 
         if (lineRenderer.enabled)
         {
-            lineRenderer.material.mainTextureOffset -= new Vector2(3 * Time.deltaTime, 0);
-            lineRenderer.material.mainTextureOffset = new Vector2(Mathf.Clamp(lineRenderer.material.mainTextureOffset.x, -1, 0), lineRenderer.material.mainTextureOffset.y);
-            if (lineRenderer.material.mainTextureOffset.x <= -1)
+            lineRenderer.sharedMaterial.mainTextureOffset -= new Vector2(3 * Time.deltaTime, 0);
+            lineRenderer.sharedMaterial.mainTextureOffset = new Vector2(Mathf.Clamp(lineRenderer.sharedMaterial.mainTextureOffset.x, -1, 0), lineRenderer.sharedMaterial.mainTextureOffset.y);
+            if (lineRenderer.sharedMaterial.mainTextureOffset.x <= -1)
             {
-                lineRenderer.material.mainTextureOffset = new Vector2(0, lineRenderer.material.mainTextureOffset.y);
+                lineRenderer.sharedMaterial.mainTextureOffset = new Vector2(0, lineRenderer.sharedMaterial.mainTextureOffset.y);
             }
         }
     }
@@ -120,7 +120,7 @@ public class EnemyRouteController : MonoBehaviour
         }
 
         lineRenderer.enabled = true;
-        lineRenderer.material.color = LineColor;
+        lineRenderer.sharedMaterial.color = LineColor;
 
         Route route = Routes[WaveSpawnDatas[CurrentWave].SpawnPointIndex];
 

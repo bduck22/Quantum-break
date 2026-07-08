@@ -27,7 +27,28 @@ Material:
   m_ValidKeywords:
   - _NORMALMAP
   - _SHADING_COLOR
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ANCHORSSTOOBJECTSORIGIN_ON
+  - _CASTSHADOWSANCHORSSTOOBJECTSORIGIN_ON
+  - _CASTSHADOWSSSCAMERADISTANCESCALED_ON
+  - _ENABLEANTIALIASING_ON
+  - _ENABLECASTSHADOWS_ON
+  - _ENABLESHADINGSTYLING_ON
+  - _ENABLESHADOWS_ON
+  - _ENABLETOONSHADING_ON
+  - _RIMAFFECTEDBYNORMALMAP_ON
+  - _RIMANCHORSSTOOBJECTSORIGIN_ON
+  - _RIMSSCAMERADISTANCESCALED_ON
+  - _SHADINGAFFECTEDBYNORMALMAP_ON
+  - _SHADINGUSELIGHTCOLORS_ON
+  - _SPECULARAFFECTEDBYNORMALMAP_ON
+  - _SPECULARANCHORSSTOOBJECTSORIGIN_ON
+  - _SPECULARSSCAMERADISTANCESCALED_ON
+  - _SPECULARUSELIGHTCOLORS_ON
+  - _SSCAMERADISTANCESCALED_ON
+  - _SUMLIGHTSBEFOREPOSTERIZATION_ON
+  - _SYNCWITHRIM_ON
+  - _SYNCWITHSPECULAR_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -237,7 +258,7 @@ Material:
     - _CastShadowsThicknessRandomMode: 0
     - _CastShadowsThicknesshRandomIntensity: 0
     - _CastShadowsUVSet: 0
-    - _CellTransitionSmoothness: 0.2
+    - _CellTransitionSmoothness: 1
     - _CoatMask: 0
     - _CoordinateSystem: 0
     - _Cull: 2
@@ -331,7 +352,7 @@ Material:
     - _NoiseTextureQuality: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
-    - _NumberOfCells: 2
+    - _NumberOfCells: 15
     - _NumberOfCellsHatching: 2
     - _OcclusionStrength: 1
     - _OpacityRandomIntensity: 0

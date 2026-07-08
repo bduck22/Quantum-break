@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapData
   Name: "\uB0AE\uC740 \uAE38"
   Map: {fileID: 8198670179660833741, guid: 1e4df5f3d5c632845b113c31daa8a990, type: 3}
-  Wave: 3
+  Wave: 2
   Difficult: 1

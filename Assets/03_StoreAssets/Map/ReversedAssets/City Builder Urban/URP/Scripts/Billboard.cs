@@ -25,7 +25,7 @@ public class Billboard : MonoBehaviour
     void Start()
     {
 
-        mat = GetComponent<Renderer>().material;
+        mat = GetComponent<Renderer>().sharedMaterial;
         Scans = mat.GetFloat("_ScanAmount");
         ChangeAdd();
         

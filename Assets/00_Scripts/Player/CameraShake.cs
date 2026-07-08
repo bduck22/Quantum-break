@@ -50,10 +50,13 @@ public class CameraShake : MonoBehaviour
 
     public void StopShake()
     {
-        shaking = false;
-        YTimer = 0;
-        XTimer = 0;
-        StartCoroutine(BackCamera(BackSpeed));
+        if (shaking)
+        {
+            shaking = false;
+            YTimer = 0;
+            XTimer = 0;
+            StartCoroutine(BackCamera(BackSpeed));
+        }
         //transform.localPosition = new Vector3(BaseX, BaseY, 0);
     }
 

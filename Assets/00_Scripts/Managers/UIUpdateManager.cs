@@ -22,6 +22,7 @@ public class UIUpdateManager : MonoBehaviour
 
     public Slider StaminaSlider;
 
+    public TextMeshProUGUI EnemyCount;
     private void Awake()
     {
         Instance = this;
@@ -29,10 +30,21 @@ public class UIUpdateManager : MonoBehaviour
 
     public void CountUpdate()
     {
-        IronCount.text = GameManager.Instance.Inventory.Iron.ToString("#,##0");
+        PlayerInventoryManager Inventory;
+        if (GameManager.Instance)
+        {
+            Inventory = GameManager.Instance.Inventory;
+        }
+        else
+        {
+            Inventory = TutorialManager.Instance.Inventory;
+        }
+
+
+            IronCount.text = Inventory.Iron.ToString("#,##0");
         for (int i = 0; i < coreCount.Length; i++)
         {
-            coreCount[i].text = GameManager.Instance.Inventory.CoreCounts[i].ToString("#,##0");
+            coreCount[i].text = Inventory.CoreCounts[i].ToString("#,##0");
         }
 
     }
@@ -116,6 +128,18 @@ public class UIUpdateManager : MonoBehaviour
                 Destroy(HpParent.GetChild(3).gameObject);
                 pluscount++;
             }
+        }
+    }
+
+    public void UpdateEnemyCount()
+    {
+        if(GameManager.Instance.Current_State == Game_State.Waving)
+        {
+            EnemyCount.text = "남은 적 수 : " + GameManager.Instance.spawnManagers.Enemy.EnemyCount.ToString("#,##0");
+        }
+        else
+        {
+            EnemyCount.text = "남은 적 수 : " + GameManager.Instance.CurrentMap.DefaultEnemyCount.ToString("#,##0");
         }
     }
 

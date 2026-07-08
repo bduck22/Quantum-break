@@ -38,9 +38,9 @@ public class EnemySpawnManager : MonoBehaviour
         return true;
     }
 
-    public void ReadyWave()
+    public void ReadyWave(int index)
     {
-        OnWaveStartInt?.Invoke(GameManager.Instance.CurrentWaveIndex-1);
+        OnWaveStartInt?.Invoke(index);// );
     }
 
     public void StartWave()

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,19 +34,28 @@ public class PlayerInteractor : MonoBehaviour
 
         if (Physics.Raycast(camera.position, camera.forward, out hit, InteractionDistance, InteractLayer))
         {
-            if(Object == null)
+            if (Object == null)
             {
-                Object = hit.transform.GetComponent<InteractableObject>();
-                if (Object.IsInteract()) FController.SetActiveInteraction(true);
+                if (hit.transform.GetComponent<InteractableObject>())
+                {
+                    Object = hit.transform.GetComponent<InteractableObject>();
+
+                    if (Object.End) FController.SetActiveInteraction(false);
+                    if (Object.IsInteract()) FController.SetActiveInteraction(true);
+                }
+            }
+            else if (Object.End)
+            {
+                FController.SetActiveInteraction(false);
             }
         }
-        else if(Object != null)
+        else if (Object != null)
         {
             Object = null;
             FController.SetActiveInteraction(false);
         }
 
-        if (Object&& Object.IsInteract())
+        if (Object && Object.IsInteract())
         {
             Keyboard keyboard = Keyboard.current;
 
@@ -86,6 +94,6 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
     }
-    [SerializeField]float time;
+    [SerializeField] float time;
     bool fpress;
 }

@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
 
     public UIWindow CurrentOpened;
 
+    public bool Lock;
+
     public bool CantOpen;
 
     public bool Opened;
@@ -53,6 +55,11 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        if(Lock)
+        {
+            return;
+        }
+
         if (controller.IsDead || controller.Stop)
         {
             if (Opened)

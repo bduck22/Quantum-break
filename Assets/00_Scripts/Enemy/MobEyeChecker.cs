@@ -28,7 +28,7 @@ public class MobEyeChecker : MonoBehaviour
 
     private void Start()
     {
-        layer = LayerMask.GetMask("PlayerMapCol") | LayerMask.GetMask("Map");
+        layer = LayerMask.GetMask("Player") | LayerMask.GetMask("Map") | LayerMask.GetMask("Interactor") | LayerMask.GetMask("Default");
     }
 
     public void Init(PlayerController Player)
@@ -54,24 +54,27 @@ public class MobEyeChecker : MonoBehaviour
 
         if (Vector3.Magnitude(dir) <= MinCheckDistance)
         {
-            if (CheckingPlayerInEye(dir)) //플레이어가 있음
+            if (!LockOn)
             {
-                LockOn = true;
-                lockontime = 0;
-                return true;
-            }
-            else //플레이어가 숨음
-            {
-                if (lockontime >= StopToMoveTimer)
+                if (CheckingPlayerInEye(dir)) //플레이어가 있음
                 {
+                    LockOn = true;
                     lockontime = 0;
-                    LockOn = false;
+                    return true;
                 }
-                else
+                else //플레이어가 숨음
                 {
-                    lockontime += Time.deltaTime;
+                    if (lockontime >= StopToMoveTimer)
+                    {
+                        lockontime = 0;
+                        LockOn = false;
+                    }
+                    else
+                    {
+                        lockontime += Time.deltaTime;
+                    }
+                    return false;
                 }
-                return false;
             }
         }
 
@@ -130,7 +133,15 @@ public class MobEyeChecker : MonoBehaviour
             }
         }
 
-        LockOn = false;
+        if (lockontime >= StopToMoveTimer)
+        {
+            lockontime = 0;
+            LockOn = false;
+        }
+        else
+        {
+            lockontime += Time.deltaTime;
+        }
         return false;
     }
 

@@ -69,6 +69,8 @@ public class EnemyController : MobBase
 
     public EnemySliceExecutor Slicer;
 
+    public SliceProxy SliceProxy;
+
     private void Awake()
     {
         MovementAI = GetComponent<MovementAIBase>();
@@ -81,9 +83,16 @@ public class EnemyController : MobBase
         }
         Collider = GetComponentInChildren<Collider>();
 
-        if (MovementAI==null)
+        if (MovementAI == null)
         {
-            GameManager.Instance.OnDefaultEnemyInit += EnemyInit;
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.OnDefaultEnemyInit += EnemyInit;
+            }
+            else
+            {
+                TutorialManager.Instance.EnemyInit += EnemyInit;
+            }
         }
 
         Animation = GetComponentInChildren<EnemyAnimationController>();
@@ -99,10 +108,16 @@ public class EnemyController : MobBase
     void ModelInit()
     {
         ModelParamiter model = Instantiate(Model.gameObject, transform).GetComponent<ModelParamiter>();
+        SliceProxy proxy = Instantiate(SliceProxy.gameObject, transform).GetComponent<SliceProxy>();
 
         model.transform.position = transform.position;
 
-        Slicer.sliceableCharacter = model.Slicer;
+        Slicer.skinnedMeshRenderer = model.Renderer;
+        Slicer.animatedModelRoot = model.gameObject;
+
+        Slicer.sliceableObject = proxy.Object;
+        Slicer.sliceMeshFilter = proxy.MeshFilter;
+        Slicer.sliceMeshRenderer = proxy.MeshRenderer;
 
         ShootPoint = model.ShootPoint;
         Spine = model.Spine;
@@ -152,7 +167,11 @@ public class EnemyController : MobBase
         Weapon.Init(Player.PlayerMovement, this);
         EyeChecker.Init(Player);
 
-        GameManager.Instance.CurrentMap.DefaultEnemyCount++;
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.CurrentMap.DefaultEnemyCount++;
+            UIUpdateManager.Instance.UpdateEnemyCount();
+        }
 
         OnFind?.Invoke();
     }
@@ -173,12 +192,13 @@ public class EnemyController : MobBase
             if (Special)
             {
                 DeathTimer = DeathTime - 3f;
-                if(Time.timeScale == 1)
+                if (Time.timeScale == 1)
                 {
+                    if(GameManager.Instance)GameManager.Instance.Player.Filter.EnterSlowMotion();
                     Time.timeScale = 0.2f;
                     lastdeadtime = 1.7f;
                 }
-                else if(lastdeadtime == 0)
+                else if (lastdeadtime == 0)
                 {
                     Special = false;
                 }
@@ -189,6 +209,7 @@ public class EnemyController : MobBase
                 lastdeadtime -= Time.unscaledDeltaTime;
                 if (lastdeadtime < 0f)
                 {
+                    if (GameManager.Instance) GameManager.Instance.Player.Filter.ExitSlowMotion();
                     Special = false;
                     lastdeadtime = 0;
                     Time.timeScale = 1;
@@ -212,11 +233,21 @@ public class EnemyController : MobBase
     {
         if (MovementAI)
         {
-            if (GameManager.Instance.Current_State == Game_State.Waving)
+            if (GameManager.Instance)
             {
-                GameManager.Instance.CheckWaveEnd();
+                if (GameManager.Instance.Current_State == Game_State.Waving)
+                {
+                    GameManager.Instance.CheckWaveEnd();
+                }
+                PoolManager.InPool((int)Type, this);
             }
-            PoolManager.InPool((int)Type, this);
+            else
+            {
+                if (TutorialManager.Instance.Current_State == Game_State.Waving)
+                {
+                    TutorialManager.Instance.End();
+                }
+            }
         }
         gameObject.SetActive(false);
         DeathTimer = 0;
@@ -257,7 +288,7 @@ public class EnemyController : MobBase
         bool IsLockOn = false;
         if (EyeChecker)
         {
-             IsLockOn = EyeChecker.LockOn;
+            IsLockOn = EyeChecker.LockOn;
         }
         else
         {
@@ -311,9 +342,16 @@ public class EnemyController : MobBase
 
     private void FixedUpdate()
     {
-        if(GameManager.Instance.Current_State == Game_State.Fail || GameManager.Instance.Current_State == Game_State.MapEnd)
+        if (GameManager.Instance)
         {
-            return;
+            if (GameManager.Instance.Current_State == Game_State.Fail || GameManager.Instance.Current_State == Game_State.MapEnd)
+            {
+                return;
+            }
+        }
+        else
+        {
+
         }
 
         if (CheckDead())
@@ -386,7 +424,23 @@ public class EnemyController : MobBase
             OnDeath?.Invoke();
             IsDead = true;
             Collider.enabled = false;
-            if(UnityEngine.Random.Range(0, 100) < 20)
+
+            if (!GameManager.Instance)
+            {
+                if (MovementAI)
+                {
+                    TutorialManager.Instance.spawnManagers.Enemy.ImDead();
+
+                    if ((TutorialManager.Instance.spawnManagers.Enemy.EnemyCount == 0 && TutorialManager.Instance.CurrentMap.IsSpawnEnd()))
+                    {
+                        Special = true;
+                    }
+
+                }
+                return;
+            }
+
+            if (UnityEngine.Random.Range(0, 100) < 20)
             {
                 GameManager.Instance.Inventory.GetCore(Level);
             }
@@ -396,6 +450,7 @@ public class EnemyController : MobBase
             if (!MovementAI)
             {
                 GameManager.Instance.CurrentMap.DefaultEnemyCount--;
+                UIUpdateManager.Instance.UpdateEnemyCount();
 
                 if (GameManager.Instance.CurrentMap.DefaultEnemyCount == 0)
                 {

@@ -11,7 +11,14 @@ public class Crafter : MonoBehaviour
 
     private void Awake()
     {
-        Inventory = GameManager.Instance.Inventory;
+        if (GameManager.Instance)
+        {
+            Inventory = GameManager.Instance.Inventory;
+        }
+        else if (TutorialManager.Instance)
+        {
+            Inventory = TutorialManager.Instance.Inventory;
+        }
     }
 
     public bool IsCanCraftirng(Enum Type)

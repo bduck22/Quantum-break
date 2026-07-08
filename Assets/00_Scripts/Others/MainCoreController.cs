@@ -19,6 +19,8 @@ public class MainCoreController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!GameManager.Instance) return;
+
         if (GameManager.Instance.Current_State != Game_State.Waving) return;
 
         if(other.gameObject.layer == 10)

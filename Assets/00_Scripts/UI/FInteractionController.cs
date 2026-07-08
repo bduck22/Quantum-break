@@ -10,13 +10,12 @@ public class FInteractionController : MonoBehaviour
 
     public GameObject FUI;
 
-    Image NonInteract;
+    public Image NonInteract;
 
     AudioSource source;
 
     private void Awake()
     {
-        NonInteract = GetComponent<Image>();
         source = GetComponent<AudioSource>();
     }
 

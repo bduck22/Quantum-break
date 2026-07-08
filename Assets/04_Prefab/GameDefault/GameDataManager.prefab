@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7992446658589752432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3784070334774345306}
+  - component: {fileID: 1584345489270922087}
+  m_Layer: 0
+  m_Name: GameDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3784070334774345306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992446658589752432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.44671, y: 7.54248, z: 59.48026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584345489270922087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992446658589752432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d25e57dc5936d44486e82113e6cd2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameDataManager
+  TurretDatas:
+    _serializedList:
+    - Key: 0
+      Value:
+        Data: {fileID: 11400000, guid: 8011e0b0c9b47be488df86ca2290a998, type: 2}
+        MakeData: {fileID: 11400000, guid: 95f381f33cd15524894209f836b19c1c, type: 2}
+  EnemyDatas:
+    _serializedList:
+    - Key: 0
+      Value:
+        Data: {fileID: 11400000, guid: 5e5f988150d8e924386029406b3de1e1, type: 2}
+        Icon: {fileID: 21300000, guid: fd5470ceb378942439b8de92ef4f0b17, type: 3}
+        Name: FF
+    - Key: 4
+      Value:
+        Data: {fileID: 11400000, guid: 2c2b309626bc49e48bc52678d9f6c913, type: 2}
+        Icon: {fileID: 21300000, guid: b95c049dc38b3d549b37a036ad47e1c3, type: 3}
+        Name: FF
+    - Key: 2
+      Value:
+        Data: {fileID: 11400000, guid: f2b17c5a703696841b45cc6c1f7e95f3, type: 2}
+        Icon: {fileID: 21300000, guid: 6a489431c52c93e4e907f3bd4c219f94, type: 3}
+        Name: FF
+  CardDatas:
+    _serializedList:
+    - Key: 0
+      Value:
+        Card: {fileID: 11400000, guid: 31c6b81141a599d43886388e617056b3, type: 2}
+        Data: {fileID: 11400000, guid: e05dda0f4a057a94bbb45c847b81e7be, type: 2}
+    - Key: 1
+      Value:
+        Card: {fileID: 11400000, guid: 3bd1fb998ffc86b42a7849e8a7041a4e, type: 2}
+        Data: {fileID: 11400000, guid: 1312224047dc4c4418f7be67644e6883, type: 2}
+    - Key: 2
+      Value:
+        Card: {fileID: 11400000, guid: f8170d2c840678843a9401cc3adfb097, type: 2}
+        Data: {fileID: 11400000, guid: a3f46c37977ee4f4d890e4da4268e002, type: 2}
+  GameLevel: 0
+  MapDatas:
+  - MapData: {fileID: 11400000, guid: d73d9b2e14e7372408e076c08452b773, type: 2}
+    IsUsed: 0

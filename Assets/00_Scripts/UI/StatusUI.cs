@@ -35,7 +35,15 @@ public class StatusUI : MonoBehaviour
 
         Description.text = description;
 
-        Count.text = $"보유 갯수 : {GameManager.Instance.Inventory.PlayerCardInInventory[CurrentType].HavingCount}" + (Card.Data.MaxCount != 0 ? " / " + Card.Data.MaxCount : "");
+        if (GameManager.Instance)
+        {
+            Count.text = $"보유 갯수 : {GameManager.Instance.Inventory.PlayerCardInInventory[CurrentType].HavingCount}" + (Card.Data.MaxCount != 0 ? " / " + Card.Data.MaxCount : "");
+        }
+        else
+        {
+            Count.text = $"보유 갯수 : {TutorialManager.Instance.Inventory.PlayerCardInInventory[CurrentType].HavingCount}" + (Card.Data.MaxCount != 0 ? " / " + Card.Data.MaxCount : "");
+        }
+        
     }
 
     private void Update()

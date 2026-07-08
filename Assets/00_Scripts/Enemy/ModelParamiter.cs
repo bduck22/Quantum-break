@@ -1,4 +1,4 @@
-using BzKovSoft.CharacterSlicer;
+using BzKovSoft.ObjectSlicer;
 using UnityEngine;
 
 public class ModelParamiter : MonoBehaviour
@@ -11,5 +11,5 @@ public class ModelParamiter : MonoBehaviour
 
     public Animator Animator;
 
-    public BzSliceableCharacter Slicer;
+    public SkinnedMeshRenderer Renderer;
 }

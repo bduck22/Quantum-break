@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
 
     public bool Invincibility;
 
+    public bool NotHit;
+
     [Header("게임 설정치")]
     public float Sensitivity;
 
@@ -213,7 +215,7 @@ public class PlayerController : MonoBehaviour
         transform.GetChild(0).rotation = Quaternion.identity;
         cc.enabled = true;
 
-        UIUpdateManager.Instance.FController.SetText("");
+        UIUpdateManager.Instance.FController.SetActiveInteraction(false);
     }
 
     public void PlayerInit()
@@ -737,13 +739,17 @@ public class PlayerController : MonoBehaviour
         UIController.CantOpen = true;
         InvincibilityTimer = InvincibilityTime;
         PlayerMovement.VelocityInit();
-        if(PlusHp > 0)
+
+        if (!NotHit)
         {
-            PlusHp--;
-        }
-        else
-        {
-            Hp--;
+            if (PlusHp > 0)
+            {
+                PlusHp--;
+            }
+            else
+            {
+                Hp--;
+            }
         }
 
         UIUpdateManager.Instance.UpdatePlayerHp(Hp, PlusHp);

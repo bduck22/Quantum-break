@@ -10159,7 +10159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainCoreController
   TurretHp: 0
-  MaxTurretHp: 500
+  MaxTurretHp: 25
 --- !u!114 &8309070582459874795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10172,6 +10172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9427274202895e44fa9e5d8edb6c97fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractCore
+  End: 0
   OnObject: {fileID: 1524990941780920096}
 --- !u!1 &4580639167538199419
 GameObject:

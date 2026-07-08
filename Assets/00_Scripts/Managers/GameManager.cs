@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         Current_State = Game_State.Ready;
         CurrentWaveIndex++;
-        CurrentMap.ReadyWave();
+        CurrentMap.ReadyWave(CurrentWaveIndex - 1);
     }
 
     public void CheckWaveEnd()

@@ -21,19 +21,40 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Build5_Albedo
-  m_Shader: {fileID: 4800000, guid: 5b7d18bf8a091cc48a3a9075eca72ff9, type: 3}
+  m_Shader: {fileID: 4800000, guid: f5cbdd554c80cf840960f02543c9e6a8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _NORMALMAP
   - _SHADING_COLOR
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ANCHORSSTOOBJECTSORIGIN_ON
+  - _CASTSHADOWSANCHORSSTOOBJECTSORIGIN_ON
+  - _CASTSHADOWSSSCAMERADISTANCESCALED_ON
+  - _ENABLEANTIALIASING_ON
+  - _ENABLECASTSHADOWS_ON
+  - _ENABLESHADINGSTYLING_ON
+  - _ENABLESHADOWS_ON
+  - _ENABLETOONSHADING_ON
+  - _OUTLINECONSTANTSCREENWIDTH_ON
+  - _RIMAFFECTEDBYNORMALMAP_ON
+  - _RIMANCHORSSTOOBJECTSORIGIN_ON
+  - _RIMSSCAMERADISTANCESCALED_ON
+  - _SHADINGAFFECTEDBYNORMALMAP_ON
+  - _SHADINGUSELIGHTCOLORS_ON
+  - _SPECULARAFFECTEDBYNORMALMAP_ON
+  - _SPECULARANCHORSSTOOBJECTSORIGIN_ON
+  - _SPECULARSSCAMERADISTANCESCALED_ON
+  - _SPECULARUSELIGHTCOLORS_ON
+  - _SSCAMERADISTANCESCALED_ON
+  - _SUMLIGHTSBEFOREPOSTERIZATION_ON
+  - _SYNCWITHRIM_ON
+  - _SYNCWITHSPECULAR_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
@@ -284,7 +305,7 @@ Material:
     - _EnableCastShadowsStyling: 1
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
-    - _EnableOutline: 1
+    - _EnableOutline: 0
     - _EnableRim: 0
     - _EnableRimRandomizer: 0
     - _EnableRimStyling: 0

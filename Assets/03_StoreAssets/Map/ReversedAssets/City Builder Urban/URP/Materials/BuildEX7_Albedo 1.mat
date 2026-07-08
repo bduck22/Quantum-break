@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BuildEX7_Albedo 1
-  m_Shader: {fileID: 4800000, guid: 5b7d18bf8a091cc48a3a9075eca72ff9, type: 3}
+  m_Shader: {fileID: 4800000, guid: f5cbdd554c80cf840960f02543c9e6a8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -271,7 +271,7 @@ Material:
     - _EnableCastShadowsStyling: 1
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
-    - _EnableOutline: 1
+    - _EnableOutline: 0
     - _EnableRim: 0
     - _EnableRimRandomizer: 0
     - _EnableRimStyling: 0

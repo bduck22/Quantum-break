@@ -210,7 +210,7 @@ public class GameDataManager : MonoBehaviour
         switch (GameLevel)
         {
             case 0:
-                return 1;
+                return 0;
 
             case 1:
                 return UnityEngine.Random.Range(2, 4); // 3 ~ 4

@@ -170,7 +170,7 @@ Material:
     - _EnableCastShadowsRandomizer: 0
     - _EnableCastShadowsStyling: 1
     - _EnableOutline: 1
-    - _EnableRim: 0
+    - _EnableRim: 1
     - _EnableRimRandomizer: 0
     - _EnableRimStyling: 0
     - _EnableShadingRandomizer: 0
@@ -236,8 +236,8 @@ Material:
     - _RimOpacityRandomMode: 0
     - _RimPolarCenterMode: 0
     - _RimSSCameraDistanceScaled: 1
-    - _RimSize: 0.4
-    - _RimSmoothness: 0
+    - _RimSize: 0.107
+    - _RimSmoothness: 0.076
     - _RimSpacingRandomIntensity: 0
     - _RimSpacingRandomMode: 0
     - _RimStyle: 0
@@ -389,7 +389,7 @@ Material:
     - _FormShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _PolarCenter: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0.27672952, g: 0.27672952, b: 0.27672952, a: 1}
     - _RimPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 0, a: 1}

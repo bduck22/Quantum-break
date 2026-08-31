@@ -99,7 +99,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 2383c5b48ab424b40b67764038680b6a, type: 3}
+        m_Texture: {fileID: 2800000, guid: e0e34c1e11b9ae8458ecffa115b61180, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:

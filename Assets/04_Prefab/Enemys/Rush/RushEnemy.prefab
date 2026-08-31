@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 118219985835068797}
   - component: {fileID: 2680497046344937645}
-  - component: {fileID: 968989555594696966}
-  - component: {fileID: 2127897114256265472}
-  - component: {fileID: 2661486663775698103}
-  - component: {fileID: 2564586096418005716}
-  - component: {fileID: 5823704507823904076}
   - component: {fileID: 4702356131163135778}
+  - component: {fileID: 5823704507823904076}
+  - component: {fileID: 2564586096418005716}
+  - component: {fileID: 2661486663775698103}
+  - component: {fileID: 2127897114256265472}
+  - component: {fileID: 968989555594696966}
   m_Layer: 8
   m_Name: RushEnemy
   m_TagString: Untagged
@@ -74,34 +74,7 @@ MonoBehaviour:
   SliceProxy: {fileID: 1574906529282473372, guid: ba973d4db08ec6949bb2d0020c597ac0, type: 3}
   DeathTime: 10
   Special: 0
---- !u!54 &968989555594696966
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777230436191436975}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2127897114256265472
+--- !u!114 &4702356131163135778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,10 +83,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 777230436191436975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3ac22bb57c4d84597a85313aa018c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cd22e170df0f374b90056562f8f9df9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyEventController
---- !u!114 &2661486663775698103
+  m_EditorClassIdentifier: Assembly-CSharp::RushWeapon
+  RatingTime: 0
+  Data: {fileID: 11400000, guid: f2b17c5a703696841b45cc6c1f7e95f3, type: 2}
+  ShinyEffect: {fileID: 0}
+  Shooted: 0
+  Dead: 0
+  Enemy: {fileID: 0}
+--- !u!114 &5823704507823904076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,13 +101,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 777230436191436975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4125369fd4e57ab45a145f63dda6ade5, type: 3}
+  m_Script: {fileID: 11500000, guid: a646030ad7c23294ca74bb0670b69bd8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuffController
-  IsEnemy: 1
-  Econtroller: {fileID: 0}
-  Pcontroller: {fileID: 0}
-  Buffs: []
+  m_EditorClassIdentifier: Assembly-CSharp::TestMovement
+  WayPoints: []
+  CurrentWayPIndex: 0
+  FinalArrived: 0
+  IsMoving: 0
+  Speed: 0
+  OnMoreMoveTimer: 1.5
+  ArriveDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2564586096418005716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +147,7 @@ MonoBehaviour:
   stripSecondaryUVs: 1
   stripMainUV: 0
   stripBoneData: 1
---- !u!114 &5823704507823904076
+--- !u!114 &2661486663775698103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,37 +156,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 777230436191436975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a646030ad7c23294ca74bb0670b69bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4125369fd4e57ab45a145f63dda6ade5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestMovement
-  WayPoints: []
-  CurrentWayPIndex: 0
-  FinalArrived: 0
-  IsMoving: 0
-  Speed: 0
-  OnMoreMoveTimer: 1.5
-  ArriveDistance: 0.5
-  groundLayer:
+  m_EditorClassIdentifier: Assembly-CSharp::BuffController
+  IsEnemy: 1
+  Econtroller: {fileID: 0}
+  Pcontroller: {fileID: 0}
+  Buffs: []
+--- !u!114 &2127897114256265472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777230436191436975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3ac22bb57c4d84597a85313aa018c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEventController
+--- !u!54 &968989555594696966
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777230436191436975}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
---- !u!114 &4702356131163135778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777230436191436975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd22e170df0f374b90056562f8f9df9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RushWeapon
-  RatingTime: 0
-  Data: {fileID: 11400000, guid: f2b17c5a703696841b45cc6c1f7e95f3, type: 2}
-  ShinyEffect: {fileID: 0}
-  Shooted: 0
-  Dead: 0
-  Enemy: {fileID: 0}
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2002321225137020196
 GameObject:
   m_ObjectHideFlags: 0
